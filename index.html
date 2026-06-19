@@ -5,7 +5,7 @@
   <title>Guyler's HomeScreen</title>
 
   <!-- Swanky Font -->
-  <link href="https://fonts.googleapis.com/css2?family=Swanky+and+Moo+Moo&display=swap" rel="stylesheet">
+  https://fonts.googleapis.com/css2?family=Swanky+and+Moo+Moo&display=swap
 
   <style>
     body {
@@ -15,7 +15,6 @@
       color: #2b2b2b;
     }
 
-    /* Ribbon Background */
     .wave-bg {
       position: fixed;
       top: 0;
@@ -57,14 +56,12 @@
       100% { transform: translateX(-35%) rotate(0deg); }
     }
 
-    /* Layout */
     .main {
       display: flex;
       gap: 35px;
       align-items: flex-start;
     }
 
-    /* Calendar */
     .calendar {
       flex: 5;
       border-radius: 12px;
@@ -72,7 +69,6 @@
       box-shadow: 0 6px 16px rgba(0,0,0,0.15);
     }
 
-    /* Right panels */
     .side {
       flex: 2;
       display: flex;
@@ -80,7 +76,6 @@
       gap: 30px;
     }
 
-    /* Panels */
     .box {
       background: rgba(255, 255, 255, 0.95);
       padding: 25px;
@@ -90,13 +85,11 @@
       border-left: 6px solid #c86b3c;
     }
 
-    /* Highlight */
     .week {
       border-left: 6px solid #6b8f71;
       background: rgba(238, 243, 239, 0.95);
     }
 
-    /* Headings */
     h3 {
       margin-top: 0;
       font-size: 34px;
@@ -111,19 +104,12 @@
 
     li {
       margin-bottom: 12px;
-      font-size: 28px;
     }
-
-    p {
-      font-size: 28px;
-    }
-
   </style>
 </head>
 
 <body>
 
-  <!-- Background -->
   <div class="wave-bg">
     <div class="wave"></div>
     <div class="wave"></div>
@@ -132,43 +118,57 @@
 
   <div class="main">
 
-    <!-- ✅ FIXED CALENDAR -->
     <div class="calendar">
-      <iframe 
-        src="https://calendar.google.com/calendar/embed?src=tguyler11%40gmail.com&ctz=Europe%2FLondon&mode=AGENDA"
-        style="border: 0"
-        width="100%"
-        height="1200">
-      </iframe>
+      https://calendar.google.com/calendar/embed?src=tguyler11%40gmail.com&ctz=Europe%2FLondon&mode=AGENDA
     </div>
 
-    <!-- Panels -->
     <div class="side">
 
+      <!-- TODAY -->
       <div class="box">
-        <h3>Today (V2)</h3>
-        <p>Planned: surface key all-day events and daily priorities.</p>
-      </div>
-
-      <div class="box week">
-        <h3>This Week</h3>
+        <h3>Today</h3>
         <ul>
-          <li>Finish Diocese dashboard fix</li>
-          <li>Complete one module (Microsoft Learn / DataCamp)</li>
-          <li>Prep coaching session (agenda + questions)</li>
+          <li>🎯 Priority: Define before 09:00</li>
+          <li>🔧 First step: Start before checking email</li>
+          <li>✅ Win: One meaningful chunk completed</li>
+          <li>⚠️ Risk: Context switching / “quick tasks” creep</li>
         </ul>
       </div>
 
-      <div class="box">
-        <h3>This Month</h3>
+      <!-- WEEK -->
+      <div class="box week">
+        <h3>This Week</h3>
+        <ul>
+          <li>✅ Finance Model — fully wired + validated</li>
+          <li>✅ Bishop Barry — output completed + shared</li>
+          <li>✅ Dashboard — data fixed + visuals refreshed</li>
+          <li>✅ 2 × learning sessions 45mins each</li>
+        </ul>
       </div>
 
+      <!-- MONTH -->
+      <div class="box">
+        <h3>This Month (July)</h3>
+        <ul>
+          <li>🎯 Theme: Build Momentum</li>
+          <li>🐍 Python: Use on one real dataset from work</li>
+          <li>📚 Microsoft Learn: Complete 1–2 modules + apply something</li>
+          <li>📊 Work: Improve or automate one recurring task</li>
+          <li>⚙️ Reduce one recurring friction in your workflow</li>
+        </ul>
+      </div>
+
+      <!-- YEAR -->
       <div class="box">
         <h3>This Year</h3>
+        <ul>
+          <li>🐍 Python: Work independently (write + debug scripts)</li>
+          <li>📈 Work: Become the go-to for solving data problems</li>
+          <li>⚡ Energy: Protect focus time and reduce reactive days</li>
+        </ul>
       </div>
 
     </div>
-
   </div>
 
 </body>
