@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Run</title>
+
+  <!-- Swanky Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Swanky+and+Moo+Moo&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      margin: 20px;
+      font-family: 'Swanky and Moo Moo', cursive;
+      font-size: 28px; /* Increased base size */
+      color: #2b2b2b;
+    }
+
+    /* Ribbon Background */
+    .wave-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      overflow: hidden;
+    }
+
+    .wave {
+      position: absolute;
+      width: 250%;
+      height: 250%;
+      border-radius: 50%;
+      opacity: 0.45; /* stronger visibility */
+    }
+
+    .wave:nth-child(1) {
+      background: linear-gradient(120deg, #e2a57b, #6b8f71);
+      animation: waveMove 50s linear infinite;
+    }
+
+    .wave:nth-child(2) {
+      background: linear-gradient(120deg, #6b8f71, #f4f1ed);
+      animation: waveMove 80s linear infinite reverse;
+      opacity: 0.4;
+    }
+
+    .wave:nth-child(3) {
+      background: linear-gradient(120deg, #c86b3c, #6b8f71);
+      animation: waveMove 110s linear infinite;
+      opacity: 0.35;
+    }
+
+    @keyframes waveMove {
+      0% { transform: translateX(-35%) rotate(0deg); }
+      50% { transform: translateX(10%) rotate(12deg); }
+      100% { transform: translateX(-35%) rotate(0deg); }
+    }
+
+    /* Layout */
+    .main {
+      display: flex;
+      gap: 35px;
+      align-items: flex-start;
+    }
+
+    /* Calendar */
+    .calendar {
+      flex: 5; /* Increased dominance */
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 6px 16px rgba(0,0,0,0.15);
+    }
+
+    /* Right panels */
+    .side {
+      flex: 2;
+      display: flex;
+      flex-direction: column;
+      gap: 30px; /* More spacing between boxes */
+    }
+
+    /* Panels */
+    .box {
+      background: rgba(255, 255, 255, 0.95);
+      padding: 25px;
+      border-radius: 14px;
+      min-height: 200px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+      border-left: 6px solid #c86b3c;
+    }
+
+    /* Highlight */
+    .week {
+      border-left: 6px solid #6b8f71;
+      background: rgba(238, 243, 239, 0.95);
+    }
+
+    /* Headings */
+    h3 {
+      margin-top: 0;
+      font-size: 34px; /* bigger headers */
+      font-weight: bold;
+      color: #c86b3c;
+    }
+
+    ul {
+      padding-left: 25px;
+      margin-top: 15px;
+    }
+
+    li {
+      margin-bottom: 12px;
+      font-size: 28px; /* matches global scale */
+    }
+
+    p {
+      font-size: 28px; /* larger paragraph text */
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <!-- Background -->
+  <div class="wave-bg">
+    <div class="wave"></div>
+    <div class="wave"></div>
+    <div class="wave"></div>
+  </div>
+
+  <div class="main">
+
+    <!-- Calendar -->
+    <div class="calendar">
+      <iframe 
+        src="https://calendar.google.com/calendar/embed?src=tguyler11%40gmail.com&ctz=Europe%2FLondon&mode=AGENDA"
+        style="border: 0"
+        width="100%"
+        height="1200"> <!-- Larger for readability -->
+      </iframe>
+    </div>
+
+    <!-- Panels -->
+    <div class="side">
+
+      <div class="box">
+        <h3>Today (V2)</h3>
+        <p>Planned: surface key all-day events and daily priorities.</p>
+      </div>
+
+      <div class="box week">
+        <h3>This Week</h3>
+        <ul>
+          <li>Finish Diocese dashboard fix</li>
+          <li>Complete one module (Microsoft Learn / DataCamp)</li>
+          <li>Prep coaching session (agenda + questions)</li>
+        </ul>
+      </div>
+
+      <div class="box">
+        <h3>This Month</h3>
+      </div>
+
+      <div class="box">
+        <h3>This Year</h3>
+      </div>
+
+    </div>
+
+  </div>
+
+</body>
+</html>
