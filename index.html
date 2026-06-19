@@ -5,7 +5,7 @@
   <title>Guyler's HomeScreen</title>
 
   <!-- Swanky Font -->
-  https://fonts.googleapis.com/css2?family=Swanky+and+Moo+Moo&display=swap
+  <link href="https://fonts.googleapis.com/css2?family=Swanky+and+Moo+Moo&display=swap" rel="stylesheet">
 
   <style>
     body {
@@ -15,6 +15,7 @@
       color: #2b2b2b;
     }
 
+    /* Background */
     .wave-bg {
       position: fixed;
       top: 0;
@@ -56,6 +57,7 @@
       100% { transform: translateX(-35%) rotate(0deg); }
     }
 
+    /* Layout */
     .main {
       display: flex;
       gap: 35px;
@@ -105,11 +107,16 @@
     li {
       margin-bottom: 12px;
     }
+
+    p {
+      margin-top: 10px;
+    }
   </style>
 </head>
 
 <body>
 
+  <!-- Background -->
   <div class="wave-bg">
     <div class="wave"></div>
     <div class="wave"></div>
@@ -118,21 +125,23 @@
 
   <div class="main">
 
+    <!-- Calendar -->
     <div class="calendar">
-      https://calendar.google.com/calendar/embed?src=tguyler11%40gmail.com&ctz=Europe%2FLondon&mode=AGENDA
+      <iframe 
+        src="https://calendar.google.com/calendar/embed?src=tguyler11%40gmail.com&ctz=Europe%2FLondon&mode=AGENDA"
+        style="border: 0"
+        width="100%"
+        height="1200">
+      </iframe>
     </div>
 
+    <!-- Side Panels -->
     <div class="side">
 
       <!-- TODAY -->
       <div class="box">
-        <h3>Today</h3>
-        <ul>
-          <li>🎯 Priority: Define before 09:00</li>
-          <li>🔧 First step: Start before checking email</li>
-          <li>✅ Win: One meaningful chunk completed</li>
-          <li>⚠️ Risk: Context switching / “quick tasks” creep</li>
-        </ul>
+        <h3>Today (V2)</h3>
+        <p>Planned: surface key all-day events and daily priorities.</p>
       </div>
 
       <!-- WEEK -->
@@ -142,7 +151,7 @@
           <li>✅ Finance Model — fully wired + validated</li>
           <li>✅ Bishop Barry — output completed + shared</li>
           <li>✅ Dashboard — data fixed + visuals refreshed</li>
-          <li>✅ 2 × learning sessions 45mins each</li>
+          <li>✅ 2 × learning sessions (hidden in calendar blocks)</li>
         </ul>
       </div>
 
