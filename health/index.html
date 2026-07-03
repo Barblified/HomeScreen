@@ -232,6 +232,25 @@
       </div>
     </section>
 
+    <section class="grid" aria-label="Today's nutrition">
+      <div class="tile">
+        <strong id="calories-today">—</strong>
+        <span>Calories</span>
+      </div>
+      <div class="tile">
+        <strong id="protein-grams-today">—</strong>
+        <span>Protein</span>
+      </div>
+      <div class="tile">
+        <strong id="carbs-grams-today">—</strong>
+        <span>Carbs</span>
+      </div>
+      <div class="tile">
+        <strong id="fat-grams-today">—</strong>
+        <span>Fat</span>
+      </div>
+    </section>
+
     <section class="grid" aria-label="Weekly discipline">
       <div class="tile">
         <strong id="logged">—</strong>
@@ -239,7 +258,7 @@
       </div>
       <div class="tile">
         <strong id="protein">—</strong>
-        <span>Protein</span>
+        <span>Protein days</span>
       </div>
       <div class="tile">
         <strong id="workouts">—</strong>
@@ -269,6 +288,10 @@
       currentBmi: 38.2639,
       totalLostKg: 0,
       checkpointProgressPercent: 0,
+      caloriesToday: 0,
+      proteinGramsToday: 0,
+      carbsGramsToday: 0,
+      fatGramsToday: 0,
       daysLoggedThisWeek: 0,
       proteinDaysThisWeek: 0,
       workoutsThisWeek: 0,
@@ -283,8 +306,21 @@
       return Number.isFinite(number) ? number : fallbackValue;
     }
 
+    function firstNumber(metrics, keys, fallbackValue = 0) {
+      for (const key of keys) {
+        const number = Number(metrics[key]);
+        if (Number.isFinite(number)) return number;
+      }
+      return fallbackValue;
+    }
+
     function formatKg(value) {
       return `${numberOrFallback(value).toFixed(1)} kg`;
+    }
+
+    function formatWholeNumber(value, suffix = "") {
+      const number = numberOrFallback(value, 0);
+      return number > 0 ? `${Math.round(number).toLocaleString("en-GB")}${suffix}` : "—";
     }
 
     function clamp(value, min, max) {
@@ -304,6 +340,10 @@
       const lost = numberOrFallback(metrics.totalLostKg, start - current);
       const bmi = numberOrFallback(metrics.currentBmi, 0);
       const progress = clamp(numberOrFallback(metrics.checkpointProgressPercent, 0), 0, 100);
+      const caloriesToday = firstNumber(metrics, ["caloriesToday", "todayCalories", "dailyCalories", "caloriesConsumedToday", "kcalToday"]);
+      const proteinToday = firstNumber(metrics, ["proteinGramsToday", "proteinToday", "todayProtein", "dailyProtein", "proteinGToday"]);
+      const carbsToday = firstNumber(metrics, ["carbsGramsToday", "carbsToday", "todayCarbs", "dailyCarbs", "carbohydratesToday"]);
+      const fatToday = firstNumber(metrics, ["fatGramsToday", "fatToday", "todayFat", "dailyFat", "fatsToday"]);
 
       document.getElementById("status").textContent =
         metrics.accountabilityStatus || "Log first. Move next.";
@@ -319,6 +359,15 @@
       document.getElementById("checkpoint-percent").textContent =
         `${progress.toFixed(0)}%`;
       document.getElementById("progress-bar").style.width = `${progress}%`;
+
+      document.getElementById("calories-today").textContent =
+        formatWholeNumber(caloriesToday);
+      document.getElementById("protein-grams-today").textContent =
+        formatWholeNumber(proteinToday, "g");
+      document.getElementById("carbs-grams-today").textContent =
+        formatWholeNumber(carbsToday, "g");
+      document.getElementById("fat-grams-today").textContent =
+        formatWholeNumber(fatToday, "g");
 
       document.getElementById("logged").textContent =
         `${numberOrFallback(metrics.daysLoggedThisWeek, 0)}/7`;
