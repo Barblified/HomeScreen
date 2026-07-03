@@ -1,18 +1,35 @@
 <!DOCTYPE html>
-<html>
+<html lang="en-GB">
 
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <title>Guyler's HomeScreen</title>
 
   <!-- Swanky Font -->
   <link href="https://fonts.googleapis.com/css2?family=Swanky+and+Moo+Moo&display=swap" rel="stylesheet">
 
   <style>
+    :root {
+      --orange: #c86b3c;
+      --green: #6b8f71;
+      --deep-green: #2f5f46;
+      --cream: #f4f1ed;
+      --ink: #2b2b2b;
+      --paper: rgba(255, 255, 255, 0.95);
+      --shadow: 0 6px 16px rgba(0,0,0,0.15);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
     body {
       margin: 20px;
       font-family: 'Swanky and Moo Moo', cursive;
       font-size: 28px;
-      color: #2b2b2b;
+      color: var(--ink);
     }
 
     /* Background */
@@ -24,6 +41,7 @@
       height: 100%;
       z-index: -1;
       overflow: hidden;
+      background: var(--cream);
     }
 
     .wave {
@@ -68,7 +86,12 @@
       flex: 5;
       border-radius: 12px;
       overflow: hidden;
-      box-shadow: 0 6px 16px rgba(0,0,0,0.15);
+      box-shadow: var(--shadow);
+      background: rgba(255,255,255,0.7);
+    }
+
+    .calendar iframe {
+      display: block;
     }
 
     .side {
@@ -76,40 +99,159 @@
       display: flex;
       flex-direction: column;
       gap: 30px;
+      min-width: 360px;
     }
 
     .box {
-      background: rgba(255, 255, 255, 0.95);
+      background: var(--paper);
       padding: 25px;
       border-radius: 14px;
       min-height: 200px;
       box-shadow: 0 4px 12px rgba(0,0,0,0.12);
-      border-left: 6px solid #c86b3c;
+      border-left: 6px solid var(--orange);
     }
 
     .week {
-      border-left: 6px solid #6b8f71;
+      border-left: 6px solid var(--green);
       background: rgba(238, 243, 239, 0.95);
+    }
+
+    .health {
+      border-left: 6px solid var(--deep-green);
+      background: rgba(245, 248, 245, 0.96);
     }
 
     h3 {
       margin-top: 0;
+      margin-bottom: 15px;
       font-size: 34px;
       font-weight: bold;
-      color: #c86b3c;
+      color: var(--orange);
+    }
+
+    .health h3 {
+      color: var(--deep-green);
     }
 
     ul {
       padding-left: 25px;
       margin-top: 15px;
+      margin-bottom: 0;
     }
 
     li {
       margin-bottom: 12px;
+      line-height: 1.12;
     }
 
     p {
       margin-top: 10px;
+    }
+
+    .metric-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      border-bottom: 1px solid rgba(0,0,0,0.08);
+      padding: 6px 0;
+      font-size: 26px;
+    }
+
+    .metric-row span:first-child {
+      color: #444;
+    }
+
+    .metric-row span:last-child {
+      font-weight: bold;
+      color: var(--deep-green);
+      text-align: right;
+    }
+
+    .progress-wrap {
+      margin-top: 18px;
+      margin-bottom: 14px;
+    }
+
+    .progress-label {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      font-size: 24px;
+      margin-bottom: 6px;
+    }
+
+    .progress-label span:last-child {
+      font-weight: bold;
+      color: var(--deep-green);
+    }
+
+    .progress-bar {
+      width: 100%;
+      height: 28px;
+      background: rgba(0,0,0,0.12);
+      border-radius: 999px;
+      overflow: hidden;
+      box-shadow: inset 0 2px 4px rgba(0,0,0,0.15);
+    }
+
+    .progress-fill {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, var(--green), var(--orange));
+      border-radius: 999px;
+      transition: width 0.8s ease;
+    }
+
+    .status-pill {
+      margin-top: 16px;
+      padding: 12px 14px;
+      border-radius: 12px;
+      background: rgba(47, 95, 70, 0.10);
+      border: 1px solid rgba(47, 95, 70, 0.20);
+      color: var(--deep-green);
+      font-size: 24px;
+      line-height: 1.15;
+      font-weight: bold;
+    }
+
+    .health-note {
+      font-size: 22px;
+      margin-top: 14px;
+      color: #555;
+      line-height: 1.2;
+    }
+
+    .last-updated {
+      font-size: 21px;
+      margin-top: 12px;
+      color: #777;
+    }
+
+    .data-source {
+      font-size: 19px;
+      margin-top: 8px;
+      color: #777;
+    }
+
+    @media (max-width: 1100px) {
+      body {
+        margin: 12px;
+        font-size: 24px;
+      }
+
+      .main {
+        flex-direction: column;
+      }
+
+      .calendar,
+      .side {
+        width: 100%;
+        min-width: unset;
+      }
+
+      .calendar iframe {
+        height: 700px;
+      }
     }
   </style>
 </head>
@@ -127,7 +269,7 @@
 
     <!-- Calendar -->
     <div class="calendar">
-      <iframe 
+      <iframe
         src="https://calendar.google.com/calendar/embed?src=tguyler11%40gmail.com&ctz=Europe%2FLondon&mode=AGENDA"
         style="border: 0"
         width="100%"
@@ -137,6 +279,92 @@
 
     <!-- Side Panels -->
     <div class="side">
+
+      <!-- HEALTH -->
+      <div class="box health">
+        <h3>Health Cut</h3>
+
+        <div class="metric-row">
+          <span>Start</span>
+          <span id="startWeight">--</span>
+        </div>
+
+        <div class="metric-row">
+          <span>Current</span>
+          <span id="currentWeight">--</span>
+        </div>
+
+        <div class="metric-row">
+          <span>Lost</span>
+          <span id="lostWeight">--</span>
+        </div>
+
+        <div class="metric-row">
+          <span>BMI</span>
+          <span id="currentBmi">--</span>
+        </div>
+
+        <div class="metric-row">
+          <span>Checkpoint</span>
+          <span id="checkpointWeight">--</span>
+        </div>
+
+        <div class="metric-row">
+          <span>Final Goal</span>
+          <span id="finalGoalWeight">--</span>
+        </div>
+
+        <div class="progress-wrap">
+          <div class="progress-label">
+            <span>Progress to 100kg</span>
+            <span id="checkpointProgressText">--</span>
+          </div>
+          <div class="progress-bar">
+            <div class="progress-fill" id="checkpointProgressBar"></div>
+          </div>
+        </div>
+
+        <div class="progress-wrap">
+          <div class="progress-label">
+            <span>Progress to 74kg</span>
+            <span id="totalProgressText">--</span>
+          </div>
+          <div class="progress-bar">
+            <div class="progress-fill" id="totalProgressBar"></div>
+          </div>
+        </div>
+
+        <div class="metric-row">
+          <span>Logged</span>
+          <span id="daysLogged">--</span>
+        </div>
+
+        <div class="metric-row">
+          <span>Protein</span>
+          <span id="proteinDays">--</span>
+        </div>
+
+        <div class="metric-row">
+          <span>Workouts</span>
+          <span id="workoutsDone">--</span>
+        </div>
+
+        <div class="metric-row">
+          <span>Sleep</span>
+          <span id="sleepDays">--</span>
+        </div>
+
+        <div class="status-pill" id="accountabilityStatus">
+          Loading health metrics...
+        </div>
+
+        <p class="health-note">
+          Public stewardship. No hiding. No drift. First target: 100kg.
+        </p>
+
+        <p class="last-updated" id="lastUpdated">Last updated: --</p>
+        <p class="data-source" id="dataSource">Source: Google Sheets</p>
+      </div>
 
       <!-- WEEK -->
       <div class="box week">
@@ -168,12 +396,214 @@
           <li>🐍 Soft Skills: Work on influencing up, down and sideways</li>
           <li>📈 Work: Become the go-to for solving data problems</li>
           <li>⚡ Energy: Protect focus time and reduce reactive days</li>
-          <li>💪 Health: See abs by christmas</li>
+          <li>💪 Health: Cut to 100kg first. Abs are earned after obedience.</li>
         </ul>
       </div>
 
     </div>
   </div>
+
+  <script>
+    /*
+      HEALTH CUT DASHBOARD
+      --------------------
+      Source: Google Sheets via Apps Script web app.
+      Fallback: local object below, so the homepage still renders if the endpoint fails.
+    */
+
+    const REMOTE_METRICS_URL = "https://script.google.com/macros/s/AKfycbyYTh09vxDAyq8EHzuJxxFOK0qq7PYa_Kw3oxOr8Vv3D2g9NOvblvE4MjaWrgErl1gChg/exec";
+
+    const fallbackHealthMetrics = {
+      heightM: 1.72,
+      startingWeightKg: 113.2,
+      currentWeightKg: 113.2,
+      checkpointWeightKg: 100,
+      finalGoalKg: 74,
+
+      daysLoggedThisWeek: 0,
+      proteinDaysThisWeek: 0,
+      workoutsThisWeek: 0,
+      workoutTarget: 3,
+      sleepTargetDaysThisWeek: 0,
+
+      lastUpdated: "3 July 2026"
+    };
+
+    function setText(id, value) {
+      const element = document.getElementById(id);
+      if (element) element.textContent = value;
+    }
+
+    function setWidth(id, percent) {
+      const element = document.getElementById(id);
+      if (element) element.style.width = `${percent}%`;
+    }
+
+    function toNumber(value, fallback = 0) {
+      if (value === null || value === undefined || value === "") return fallback;
+      const number = Number(value);
+      return Number.isFinite(number) ? number : fallback;
+    }
+
+    function round(value, decimals = 1) {
+      return Number(value).toFixed(decimals);
+    }
+
+    function clamp(value, min, max) {
+      return Math.min(Math.max(value, min), max);
+    }
+
+    function calculateProgress(startingWeight, currentWeight, targetWeight) {
+      const totalRequiredLoss = startingWeight - targetWeight;
+      const actualLoss = startingWeight - currentWeight;
+
+      if (totalRequiredLoss <= 0) return 0;
+
+      return clamp((actualLoss / totalRequiredLoss) * 100, 0, 100);
+    }
+
+    function calculateBmi(weightKg, heightM) {
+      if (!weightKg || !heightM) return null;
+      return weightKg / (heightM * heightM);
+    }
+
+    function getAccountabilityStatus(data, checkpointProgress) {
+      const logged = toNumber(data.daysLoggedThisWeek);
+      const protein = toNumber(data.proteinDaysThisWeek);
+      const workouts = toNumber(data.workoutsThisWeek);
+      const workoutTarget = toNumber(data.workoutTarget, 3);
+      const sleep = toNumber(data.sleepTargetDaysThisWeek);
+
+      if (logged >= 6 && protein >= 5 && workouts >= workoutTarget && sleep >= 5) {
+        return "Strong week. Keep pressing.";
+      }
+
+      if (logged >= 4 && protein >= 3 && workouts >= 2) {
+        return "Decent week. Tighten the weak link.";
+      }
+
+      if (checkpointProgress > 0 && logged < 4) {
+        return "Weight moved, but logging is weak. No hiding.";
+      }
+
+      return "Today is the reset. Log first. Move next.";
+    }
+
+    function normaliseMetrics(rawData) {
+      /*
+        Supports either:
+        1. Direct JSON object:
+           { "startingWeightKg": 113.2, "currentWeightKg": 112.8, ... }
+
+        2. Key/value shape:
+           { "metrics": { "startingWeightKg": 113.2, ... } }
+
+        3. Array from Public_Output:
+           [
+             { "metric": "startingWeightKg", "value": 113.2 },
+             { "metric": "currentWeightKg", "value": 112.8 }
+           ]
+      */
+
+      if (Array.isArray(rawData)) {
+        return rawData.reduce((accumulator, row) => {
+          const key = row.metric || row.key || row.name;
+          const value = row.value;
+          if (key) accumulator[key] = value;
+          return accumulator;
+        }, {});
+      }
+
+      if (rawData && rawData.metrics) {
+        return rawData.metrics;
+      }
+
+      return rawData || {};
+    }
+
+    async function loadHealthMetrics() {
+      try {
+        const response = await fetch(REMOTE_METRICS_URL, {
+          method: "GET",
+          cache: "no-store"
+        });
+
+        if (!response.ok) {
+          throw new Error(`Metrics fetch failed: ${response.status}`);
+        }
+
+        const rawMetrics = await response.json();
+        const remoteMetrics = normaliseMetrics(rawMetrics);
+
+        setText("dataSource", "Source: Google Sheets");
+
+        return {
+          ...fallbackHealthMetrics,
+          ...remoteMetrics
+        };
+      } catch (error) {
+        console.warn("Using fallback health metrics:", error);
+        setText("dataSource", "Source: fallback metrics — check Apps Script deployment");
+        return fallbackHealthMetrics;
+      }
+    }
+
+    function renderHealthMetrics(data) {
+      const startingWeight = toNumber(data.startingWeightKg);
+      const currentWeight = toNumber(data.currentWeightKg);
+      const checkpointWeight = toNumber(data.checkpointWeightKg);
+      const finalGoalWeight = toNumber(data.finalGoalKg);
+      const heightM = toNumber(data.heightM, 1.72);
+
+      const lostWeight = startingWeight - currentWeight;
+
+      const checkpointProgress = calculateProgress(
+        startingWeight,
+        currentWeight,
+        checkpointWeight
+      );
+
+      const totalProgress = calculateProgress(
+        startingWeight,
+        currentWeight,
+        finalGoalWeight
+      );
+
+      const bmi = calculateBmi(currentWeight, heightM);
+      const accountabilityStatus = getAccountabilityStatus(data, checkpointProgress);
+
+      setText("startWeight", `${round(startingWeight)} kg`);
+      setText("currentWeight", `${round(currentWeight)} kg`);
+      setText("lostWeight", `${round(lostWeight)} kg`);
+      setText("checkpointWeight", `${round(checkpointWeight, 0)} kg`);
+      setText("finalGoalWeight", `${round(finalGoalWeight, 0)} kg`);
+
+      setText("checkpointProgressText", `${round(checkpointProgress, 0)}%`);
+      setWidth("checkpointProgressBar", checkpointProgress);
+
+      setText("totalProgressText", `${round(totalProgress, 0)}%`);
+      setWidth("totalProgressBar", totalProgress);
+
+      setText("daysLogged", `${toNumber(data.daysLoggedThisWeek)} / 7`);
+      setText("proteinDays", `${toNumber(data.proteinDaysThisWeek)} / 7`);
+      setText("workoutsDone", `${toNumber(data.workoutsThisWeek)} / ${toNumber(data.workoutTarget, 3)}`);
+      setText("sleepDays", `${toNumber(data.sleepTargetDaysThisWeek)} / 7`);
+
+      if (bmi) {
+        setText("currentBmi", round(bmi, 1));
+      }
+
+      setText("accountabilityStatus", accountabilityStatus);
+      setText("lastUpdated", `Last updated: ${data.lastUpdated || "unknown"}`);
+    }
+
+    async function initHealthDashboard() {
+      const metrics = await loadHealthMetrics();
+      renderHealthMetrics(metrics);
+    }
+
+    initHealthDashboard();
+  </script>
 
 </body>
 </html>
