@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Obryn Health Cut</title>
+  <link href="https://fonts.googleapis.com/css2?family=Swanky+and+Moo+Moo&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-1: #0b1f17;
+      --bg-2: #173f2e;
+      --card: rgba(255, 255, 255, 0.94);
+      --ink: #17231c;
+      --muted: #59645e;
+      --line: rgba(23, 35, 28, 0.14);
+      --accent: #2f6f4e;
+      --accent-2: #d88b45;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      padding: 24px;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 20% 20%, rgba(216, 139, 69, 0.28), transparent 30%),
+        radial-gradient(circle at 80% 10%, rgba(255, 255, 255, 0.12), transparent 24%),
+        linear-gradient(135deg, var(--bg-1), var(--bg-2));
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    .card {
+      width: min(100%, 560px);
+      background: var(--card);
+      border: 1px solid rgba(255, 255, 255, 0.5);
+      border-radius: 28px;
+      padding: 26px;
+      box-shadow: 0 24px 80px rgba(0, 0, 0, 0.28);
+      backdrop-filter: blur(8px);
+    }
+
+    .eyebrow {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      margin: 4px 0 16px;
+      font-family: "Swanky and Moo Moo", cursive;
+      font-size: clamp(3.1rem, 12vw, 5.2rem);
+      line-height: 0.9;
+      font-weight: 400;
+    }
+
+    .status {
+      margin: 0 0 22px;
+      padding: 14px 16px;
+      border-radius: 18px;
+      background: rgba(47, 111, 78, 0.11);
+      border: 1px solid rgba(47, 111, 78, 0.22);
+      font-weight: 700;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 14px;
+      margin-bottom: 16px;
+    }
+
+    .metric {
+      padding: 16px;
+      border-radius: 20px;
+      background: rgba(255, 255, 255, 0.62);
+      border: 1px solid var(--line);
+    }
+
+    .metric small {
+      display: block;
+      color: var(--muted);
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .metric strong {
+      display: block;
+      margin-top: 6px;
+      font-size: 2.2rem;
+      line-height: 1;
+    }
+
+    .metric span {
+      display: block;
+      margin-top: 6px;
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    .progress-wrap {
+      margin: 12px 0 18px;
+    }
+
+    .progress-label {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      color: var(--muted);
+      font-size: 0.88rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .progress {
+      width: 100%;
+      height: 14px;
+      overflow: hidden;
+      border-radius: 999px;
+      background: rgba(23, 35, 28, 0.12);
+    }
+
+    .bar {
+      width: 0%;
+      height: 100%;
+      border-radius: inherit;
+      background: linear-gradient(90deg, var(--accent), var(--accent-2));
+      transition: width 600ms ease;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+      margin-top: 16px;
+    }
+
+    .tile {
+      padding: 12px 10px;
+      text-align: center;
+      border-radius: 16px;
+      background: rgba(255, 255, 255, 0.58);
+      border: 1px solid var(--line);
+    }
+
+    .tile strong {
+      display: block;
+      font-size: 1.35rem;
+    }
+
+    .tile span {
+      display: block;
+      margin-top: 3px;
+      color: var(--muted);
+      font-size: 0.78rem;
+      font-weight: 700;
+    }
+
+    footer {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      margin-top: 18px;
+      padding-top: 14px;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 0.82rem;
+    }
+
+    @media (max-width: 560px) {
+      body {
+        padding: 16px;
+      }
+
+      .card {
+        border-radius: 22px;
+        padding: 20px;
+      }
+
+      .hero {
+        grid-template-columns: 1fr;
+      }
+
+      .grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      footer {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="card" aria-live="polite">
+    <p class="eyebrow">Public accountability</p>
+    <h1>Health Cut</h1>
+
+    <p class="status" id="status">Loading the latest numbers…</p>
+
+    <section class="hero">
+      <div class="metric">
+        <small>Total lost</small>
+        <strong id="lost">—</strong>
+        <span id="weight-line">Current weight loading…</span>
+      </div>
+
+      <div class="metric">
+        <small>BMI</small>
+        <strong id="bmi">—</strong>
+        <span>Trend, not identity.</span>
+      </div>
+    </section>
+
+    <section class="progress-wrap">
+      <div class="progress-label">
+        <span id="checkpoint-label">Progress to checkpoint</span>
+        <span id="checkpoint-percent">—</span>
+      </div>
+      <div class="progress">
+        <div class="bar" id="progress-bar"></div>
+      </div>
+    </section>
+
+    <section class="grid" aria-label="Weekly discipline">
+      <div class="tile">
+        <strong id="logged">—</strong>
+        <span>Logged</span>
+      </div>
+      <div class="tile">
+        <strong id="protein">—</strong>
+        <span>Protein</span>
+      </div>
+      <div class="tile">
+        <strong id="workouts">—</strong>
+        <span>Workouts</span>
+      </div>
+      <div class="tile">
+        <strong id="sleep">—</strong>
+        <span>Sleep</span>
+      </div>
+    </section>
+
+    <footer>
+      <span id="updated">Updated: —</span>
+      <span id="source">Source: Google Sheets</span>
+    </footer>
+  </main>
+
+  <script>
+    const REMOTE_METRICS_URL = "https://script.google.com/macros/s/AKfycbwihWQw8Frs1acA1Y-CELBw0NmX4O5KFzcqU3f8TbFpSegleKyPM64TkqTyoNyAWhLP/exec";
+
+    const fallback = {
+      startingWeightKg: 113.2,
+      currentWeightKg: 113.2,
+      checkpointWeightKg: 100,
+      finalGoalKg: 74,
+      heightM: 1.72,
+      currentBmi: 38.2639,
+      totalLostKg: 0,
+      checkpointProgressPercent: 0,
+      daysLoggedThisWeek: 0,
+      proteinDaysThisWeek: 0,
+      workoutsThisWeek: 0,
+      workoutTarget: 3,
+      sleepTargetDaysThisWeek: 0,
+      lastUpdated: "fallback",
+      accountabilityStatus: "Live data did not load. Check the Apps Script endpoint."
+    };
+
+    function numberOrFallback(value, fallbackValue = 0) {
+      const number = Number(value);
+      return Number.isFinite(number) ? number : fallbackValue;
+    }
+
+    function formatKg(value) {
+      return `${numberOrFallback(value).toFixed(1)} kg`;
+    }
+
+    function clamp(value, min, max) {
+      return Math.min(Math.max(value, min), max);
+    }
+
+    function normalizePayload(payload) {
+      if (payload && payload.metrics) return payload.metrics;
+      if (payload && typeof payload === "object") return payload;
+      return fallback;
+    }
+
+    function render(metrics, sourceLabel = "Google Sheets") {
+      const start = numberOrFallback(metrics.startingWeightKg, 113.2);
+      const current = numberOrFallback(metrics.currentWeightKg, start);
+      const checkpoint = numberOrFallback(metrics.checkpointWeightKg, 100);
+      const lost = numberOrFallback(metrics.totalLostKg, start - current);
+      const bmi = numberOrFallback(metrics.currentBmi, 0);
+      const progress = clamp(numberOrFallback(metrics.checkpointProgressPercent, 0), 0, 100);
+
+      document.getElementById("status").textContent =
+        metrics.accountabilityStatus || "Log first. Move next.";
+
+      document.getElementById("lost").textContent = formatKg(lost);
+      document.getElementById("weight-line").textContent =
+        `Current: ${formatKg(current)} · Start: ${formatKg(start)}`;
+
+      document.getElementById("bmi").textContent = bmi ? bmi.toFixed(1) : "—";
+
+      document.getElementById("checkpoint-label").textContent =
+        `Progress to ${formatKg(checkpoint)} checkpoint`;
+      document.getElementById("checkpoint-percent").textContent =
+        `${progress.toFixed(0)}%`;
+      document.getElementById("progress-bar").style.width = `${progress}%`;
+
+      document.getElementById("logged").textContent =
+        `${numberOrFallback(metrics.daysLoggedThisWeek, 0)}/7`;
+      document.getElementById("protein").textContent =
+        `${numberOrFallback(metrics.proteinDaysThisWeek, 0)}/7`;
+      document.getElementById("workouts").textContent =
+        `${numberOrFallback(metrics.workoutsThisWeek, 0)}/${numberOrFallback(metrics.workoutTarget, 3)}`;
+      document.getElementById("sleep").textContent =
+        `${numberOrFallback(metrics.sleepTargetDaysThisWeek, 0)}/7`;
+
+      document.getElementById("updated").textContent =
+        `Updated: ${metrics.lastUpdated || "today"}`;
+      document.getElementById("source").textContent =
+        `Source: ${sourceLabel}`;
+    }
+
+    async function loadMetrics() {
+      try {
+        const response = await fetch(`${REMOTE_METRICS_URL}?t=${Date.now()}`, {
+          cache: "no-store"
+        });
+
+        if (!response.ok) {
+          throw new Error(`HTTP ${response.status}`);
+        }
+
+        const payload = await response.json();
+        render(normalizePayload(payload), payload.source || "Google Sheets");
+      } catch (error) {
+        console.warn("Health Cut metrics failed to load:", error);
+        render(fallback, "Fallback");
+      }
+    }
+
+    loadMetrics();
+  </script>
+</body>
+</html>
