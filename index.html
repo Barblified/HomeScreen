@@ -12,13 +12,16 @@
 
   <style>
     :root {
-      --orange: #c86b3c;
-      --green: #6b8f71;
-      --deep-green: #2f5f46;
-      --cream: #f4f1ed;
-      --ink: #2b2b2b;
-      --paper: rgba(255, 255, 255, 0.95);
-      --shadow: 0 6px 16px rgba(0,0,0,0.15);
+      --bronze: #9c6b3f;
+      --steel: #647985;
+      --forest: #2d574b;
+      --canvas: #e9e9e5;
+      --ink: #20282d;
+      --muted-ink: #4f5b61;
+      --paper: rgba(250, 250, 248, 0.95);
+      --steel-paper: rgba(239, 243, 245, 0.95);
+      --forest-paper: rgba(241, 246, 243, 0.96);
+      --shadow: 0 6px 18px rgba(25, 33, 37, 0.16);
     }
 
     * {
@@ -41,7 +44,7 @@
       height: 100%;
       z-index: -1;
       overflow: hidden;
-      background: var(--cream);
+      background: var(--canvas);
     }
 
     .wave {
@@ -53,18 +56,18 @@
     }
 
     .wave:nth-child(1) {
-      background: linear-gradient(120deg, #e2a57b, #6b8f71);
+      background: linear-gradient(120deg, #b9a38b, #708590);
       animation: waveMove 50s linear infinite;
     }
 
     .wave:nth-child(2) {
-      background: linear-gradient(120deg, #6b8f71, #f4f1ed);
+      background: linear-gradient(120deg, #647985, #e9e9e5);
       animation: waveMove 80s linear infinite reverse;
       opacity: 0.4;
     }
 
     .wave:nth-child(3) {
-      background: linear-gradient(120deg, #c86b3c, #6b8f71);
+      background: linear-gradient(120deg, #8e6747, #3f655b);
       animation: waveMove 110s linear infinite;
       opacity: 0.35;
     }
@@ -87,7 +90,7 @@
       border-radius: 12px;
       overflow: hidden;
       box-shadow: var(--shadow);
-      background: rgba(255,255,255,0.7);
+      background: rgba(250, 250, 248, 0.78);
     }
 
     .calendar iframe {
@@ -107,18 +110,18 @@
       padding: 25px;
       border-radius: 14px;
       min-height: 200px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.12);
-      border-left: 6px solid var(--orange);
+      box-shadow: 0 4px 14px rgba(25, 33, 37, 0.12);
+      border-left: 6px solid var(--bronze);
     }
 
     .week {
-      border-left: 6px solid var(--green);
-      background: rgba(238, 243, 239, 0.95);
+      border-left: 6px solid var(--steel);
+      background: var(--steel-paper);
     }
 
     .health {
-      border-left: 6px solid var(--deep-green);
-      background: rgba(245, 248, 245, 0.96);
+      border-left: 6px solid var(--forest);
+      background: var(--forest-paper);
     }
 
     h3 {
@@ -126,11 +129,11 @@
       margin-bottom: 15px;
       font-size: 34px;
       font-weight: bold;
-      color: var(--orange);
+      color: var(--bronze);
     }
 
     .health h3 {
-      color: var(--deep-green);
+      color: var(--forest);
     }
 
     ul {
@@ -158,12 +161,12 @@
     }
 
     .metric-row span:first-child {
-      color: #444;
+      color: var(--muted-ink);
     }
 
     .metric-row span:last-child {
       font-weight: bold;
-      color: var(--deep-green);
+      color: var(--forest);
       text-align: right;
     }
 
@@ -182,7 +185,7 @@
 
     .progress-label span:last-child {
       font-weight: bold;
-      color: var(--deep-green);
+      color: var(--forest);
     }
 
     .progress-bar {
@@ -197,7 +200,7 @@
     .progress-fill {
       height: 100%;
       width: 0%;
-      background: linear-gradient(90deg, var(--green), var(--orange));
+      background: linear-gradient(90deg, var(--steel), var(--bronze));
       border-radius: 999px;
       transition: width 0.8s ease;
     }
@@ -206,9 +209,9 @@
       margin-top: 16px;
       padding: 12px 14px;
       border-radius: 12px;
-      background: rgba(47, 95, 70, 0.10);
-      border: 1px solid rgba(47, 95, 70, 0.20);
-      color: var(--deep-green);
+      background: rgba(45, 87, 75, 0.10);
+      border: 1px solid rgba(45, 87, 75, 0.22);
+      color: var(--forest);
       font-size: 24px;
       line-height: 1.15;
       font-weight: bold;
@@ -217,20 +220,20 @@
     .health-note {
       font-size: 22px;
       margin-top: 14px;
-      color: #555;
+      color: var(--muted-ink);
       line-height: 1.2;
     }
 
     .last-updated {
       font-size: 21px;
       margin-top: 12px;
-      color: #777;
+      color: #707a7f;
     }
 
     .data-source {
       font-size: 19px;
       margin-top: 8px;
-      color: #777;
+      color: #707a7f;
     }
 
     @media (max-width: 1100px) {
