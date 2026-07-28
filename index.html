@@ -15,6 +15,8 @@
       --bronze: #9c6b3f;
       --steel: #647985;
       --forest: #2d574b;
+      --spotify: #1ed760;
+      --spotify-dark: #146c38;
       --canvas: #e9e9e5;
       --ink: #20282d;
       --muted-ink: #4f5b61;
@@ -85,31 +87,39 @@
       align-items: flex-start;
     }
 
+    .top-row {
+      display: grid;
+      grid-template-columns:
+        minmax(0, 1.5fr)
+        minmax(360px, 1.05fr)
+        minmax(260px, 0.75fr);
+      gap: 30px;
+      align-items: stretch;
+      margin-bottom: 30px;
+    }
+
+    .top-row .box {
+      min-height: unset;
+      height: 100%;
+    }
+
     .box.week-banner {
       min-height: unset;
-      margin-bottom: 30px;
       border-left-color: var(--steel);
       background: var(--steel-paper);
     }
 
-    .section-heading {
-      display: flex;
-      align-items: center;
-      gap: 18px;
-      margin-bottom: 15px;
-    }
-
-    .section-heading h3 {
-      margin: 0;
+    .links-box {
+      border-left-color: var(--bronze);
+      background: var(--paper);
     }
 
     .quick-links {
       display: flex;
       align-items: center;
       gap: 10px;
-      margin-left: auto;
       flex-wrap: wrap;
-      justify-content: flex-end;
+      justify-content: flex-start;
     }
 
     .quick-link {
@@ -170,11 +180,6 @@
       min-height: 200px;
       box-shadow: 0 4px 14px rgba(25, 33, 37, 0.12);
       border-left: 6px solid var(--bronze);
-    }
-
-    .week {
-      border-left: 6px solid var(--steel);
-      background: var(--steel-paper);
     }
 
     .health {
@@ -288,6 +293,166 @@
       color: var(--steel);
     }
 
+    .spotify {
+      border-left: 6px solid var(--spotify);
+      background: rgba(240, 248, 242, 0.96);
+    }
+
+    .spotify h3 {
+      color: var(--spotify-dark);
+    }
+
+    .spotify-content {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+    }
+
+    .spotify-artwork-wrap {
+      position: relative;
+      flex: 0 0 112px;
+      width: 112px;
+      height: 112px;
+      overflow: hidden;
+      border-radius: 12px;
+      background: #18201b;
+      box-shadow: 0 4px 12px rgba(20, 32, 24, 0.22);
+    }
+
+    .spotify-artwork {
+      display: none;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .spotify-placeholder {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      height: 100%;
+    }
+
+    .spotify-placeholder svg {
+      width: 58px;
+      height: 58px;
+    }
+
+    .spotify-info {
+      min-width: 0;
+      flex: 1;
+    }
+
+    .spotify-state {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin: 0 0 5px;
+      color: var(--spotify-dark);
+      font-size: 19px;
+      font-weight: bold;
+      line-height: 1;
+    }
+
+    .spotify-pulse {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--spotify);
+      box-shadow: 0 0 0 0 rgba(30, 215, 96, 0.45);
+    }
+
+    .spotify.is-playing .spotify-pulse {
+      animation: spotifyPulse 1.8s ease-out infinite;
+    }
+
+    @keyframes spotifyPulse {
+      0% { box-shadow: 0 0 0 0 rgba(30, 215, 96, 0.45); }
+      70% { box-shadow: 0 0 0 8px rgba(30, 215, 96, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(30, 215, 96, 0); }
+    }
+
+    .spotify-title,
+    .spotify-artist,
+    .spotify-album {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .spotify-title {
+      margin: 0;
+      color: var(--ink);
+      font-size: 29px;
+      font-weight: bold;
+      line-height: 1.05;
+    }
+
+    .spotify-artist {
+      margin: 6px 0 0;
+      color: var(--forest);
+      font-size: 24px;
+      line-height: 1.05;
+    }
+
+    .spotify-album {
+      margin: 5px 0 0;
+      color: var(--muted-ink);
+      font-size: 19px;
+      line-height: 1.05;
+    }
+
+    .spotify-progress {
+      margin-top: 16px;
+    }
+
+    .spotify-progress-bar {
+      width: 100%;
+      height: 8px;
+      overflow: hidden;
+      border-radius: 999px;
+      background: rgba(20, 108, 56, 0.15);
+    }
+
+    .spotify-progress-fill {
+      width: 0%;
+      height: 100%;
+      border-radius: inherit;
+      background: var(--spotify);
+      transition: width 0.8s linear;
+    }
+
+    .spotify-times {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 5px;
+      color: var(--muted-ink);
+      font-size: 17px;
+      line-height: 1;
+    }
+
+    .spotify-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-top: 12px;
+      font-size: 18px;
+      line-height: 1.1;
+    }
+
+    .spotify-status {
+      margin: 0;
+      color: var(--muted-ink);
+    }
+
+    .spotify-link {
+      flex: 0 0 auto;
+      color: var(--spotify-dark);
+      font-weight: bold;
+    }
+
     ul {
       padding-left: 25px;
       margin-top: 15px;
@@ -398,6 +563,12 @@
         flex-direction: column;
       }
 
+      .top-row {
+        grid-template-columns: 1fr;
+        gap: 22px;
+        margin-bottom: 22px;
+      }
+
       .calendar,
       .side {
         width: 100%;
@@ -408,20 +579,11 @@
         height: 700px;
       }
 
-      .week-banner {
-        margin-bottom: 22px;
-      }
     }
 
     @media (max-width: 650px) {
-      .section-heading {
-        align-items: flex-start;
-        flex-direction: column;
-      }
-
       .quick-links {
         width: 100%;
-        margin-left: 0;
         justify-content: flex-start;
       }
 
@@ -432,6 +594,16 @@
 
       .weather-grid {
         grid-template-columns: 1fr;
+      }
+
+      .spotify-content {
+        align-items: flex-start;
+      }
+
+      .spotify-artwork-wrap {
+        flex-basis: 96px;
+        width: 96px;
+        height: 96px;
       }
     }
   </style>
@@ -446,11 +618,60 @@
     <div class="wave"></div>
   </div>
 
-  <!-- WEEK AND QUICK LINKS -->
-  <section class="box week-banner" aria-labelledby="this-week-heading">
-    <div class="section-heading">
-      <h3 id="this-week-heading">This Week</h3>
+  <!-- TOP ROW -->
+  <div class="top-row">
 
+    <!-- WEEK -->
+    <section class="box week-banner" aria-labelledby="this-week-heading">
+      <h3 id="this-week-heading">This Week</h3>
+      <ul>
+        <li>🧠 Keep my brain healthy, nobody will die if things don't get done.</li>
+        <li>❣ Trust in God. Trust His peace.</li>
+        <li>🦀 At the end of the week, ensure I could tell God I did my absolute best.</li>
+      </ul>
+    </section>
+
+    <!-- WEATHER -->
+    <section class="box weather" aria-labelledby="weather-heading">
+      <h3 id="weather-heading">Weather</h3>
+
+      <div class="weather-hero">
+        <div>
+          <p class="weather-condition" id="weatherCondition">Loading weather...</p>
+          <p class="weather-location">Hucknall, Nottinghamshire</p>
+        </div>
+        <div class="weather-temperature" id="weatherTemperature">--°</div>
+      </div>
+
+      <div class="weather-grid">
+        <div class="weather-metric">
+          <span>UV Index</span>
+          <span id="weatherUv">--</span>
+        </div>
+        <div class="weather-metric">
+          <span>Dew Point</span>
+          <span id="weatherDewPoint">--°</span>
+        </div>
+        <div class="weather-metric">
+          <span>Humidity</span>
+          <span id="weatherHumidity">--%</span>
+        </div>
+      </div>
+
+      <p class="weather-status" id="weatherStatus">Connecting to AccuWeather...</p>
+      <p class="weather-credit">
+        <a
+          href="https://www.accuweather.com/en/gb/hucknall/ng15-7/current-weather/713055"
+          target="_blank"
+          rel="noopener noreferrer">
+          Full weather on AccuWeather
+        </a>
+      </p>
+    </section>
+
+    <!-- QUICK LINKS -->
+    <section class="box links-box" aria-labelledby="quick-links-heading">
+      <h3 id="quick-links-heading">Quick Links</h3>
       <nav class="quick-links" aria-label="Quick links">
         <a
           class="quick-link"
@@ -523,14 +744,9 @@
           </svg>
         </a>
       </nav>
-    </div>
+    </section>
 
-    <ul>
-      <li>🧠 Keep my brain healthy, nobody will die if things don't get done.</li>
-      <li>❣ Trust in God. Trust His peace.</li>
-      <li>🦀 At the end of the week, ensure I could tell God I did my absolute best.</li>
-    </ul>
-  </section>
+  </div>
 
   <div class="main">
 
@@ -547,42 +763,56 @@
     <!-- Side Panels -->
     <div class="side">
 
-      <!-- WEATHER -->
-      <section class="box weather" aria-labelledby="weather-heading">
-        <h3 id="weather-heading">Weather</h3>
+      <!-- SPOTIFY NOW PLAYING -->
+      <section class="box spotify" id="spotifyCard" aria-labelledby="spotify-heading">
+        <h3 id="spotify-heading">Now Playing</h3>
 
-        <div class="weather-hero">
-          <div>
-            <p class="weather-condition" id="weatherCondition">Loading weather...</p>
-            <p class="weather-location">Hucknall, Nottinghamshire</p>
+        <div class="spotify-content">
+          <div class="spotify-artwork-wrap">
+            <img
+              class="spotify-artwork"
+              id="spotifyArtwork"
+              alt="">
+            <div class="spotify-placeholder" id="spotifyPlaceholder" aria-hidden="true">
+              <svg viewBox="0 0 32 32" focusable="false">
+                <circle cx="16" cy="16" r="14" fill="#1ed760"/>
+                <path d="M8.5 12.2c5.4-1.5 11.6-.9 15.2 1.1M9.8 16.7c4.4-1.1 9.5-.6 12.6.9M10.8 20.8c3.5-.8 7.4-.4 10 1" fill="none" stroke="#142018" stroke-width="2.3" stroke-linecap="round"/>
+              </svg>
+            </div>
           </div>
-          <div class="weather-temperature" id="weatherTemperature">--°</div>
+
+          <div class="spotify-info">
+            <p class="spotify-state">
+              <span class="spotify-pulse" aria-hidden="true"></span>
+              <span id="spotifyPlaybackState">Connecting...</span>
+            </p>
+            <p class="spotify-title" id="spotifyTitle">Spotify setup needed</p>
+            <p class="spotify-artist" id="spotifyArtist">No track loaded</p>
+            <p class="spotify-album" id="spotifyAlbum">Connect the secure Spotify feed</p>
+          </div>
         </div>
 
-        <div class="weather-grid">
-          <div class="weather-metric">
-            <span>UV Index</span>
-            <span id="weatherUv">--</span>
+        <div class="spotify-progress" aria-label="Playback progress">
+          <div class="spotify-progress-bar">
+            <div class="spotify-progress-fill" id="spotifyProgressBar"></div>
           </div>
-          <div class="weather-metric">
-            <span>Dew Point</span>
-            <span id="weatherDewPoint">--°</span>
-          </div>
-          <div class="weather-metric">
-            <span>Humidity</span>
-            <span id="weatherHumidity">--%</span>
+          <div class="spotify-times">
+            <span id="spotifyProgressTime">0:00</span>
+            <span id="spotifyDuration">0:00</span>
           </div>
         </div>
 
-        <p class="weather-status" id="weatherStatus">Connecting to AccuWeather...</p>
-        <p class="weather-credit">
+        <div class="spotify-footer">
+          <p class="spotify-status" id="spotifyStatus">Waiting for Spotify...</p>
           <a
-            href="https://www.accuweather.com/en/gb/hucknall/ng15-7/current-weather/713055"
+            class="spotify-link"
+            id="spotifyTrackLink"
+            href="https://open.spotify.com/"
             target="_blank"
             rel="noopener noreferrer">
-            Full weather on AccuWeather
+            Open Spotify
           </a>
-        </p>
+        </div>
       </section>
 
       <!-- HEALTH -->
@@ -716,6 +946,21 @@
       paste it into this public HTML file.
     */
     const ACCUWEATHER_DATA_URL = "";
+
+    /*
+      SPOTIFY NOW PLAYING
+      -------------------
+      Set this to a secure proxy endpoint that refreshes the Spotify access
+      token and returns GET /v1/me/player/currently-playing.
+
+      Keep the Spotify client secret and refresh token in the proxy's private
+      configuration. Do not paste either credential into this public HTML file.
+    */
+    const SPOTIFY_DATA_URL = "";
+    const SPOTIFY_REFRESH_INTERVAL_MS = 30000;
+
+    let spotifyProgressTimer = null;
+    let spotifyRefreshTimer = null;
 
     const fallbackHealthMetrics = {
       heightM: 1.72,
@@ -887,6 +1132,220 @@
       }
     }
 
+    function formatPlaybackTime(milliseconds) {
+      const totalSeconds = Math.max(0, Math.floor(toNumber(milliseconds) / 1000));
+      const minutes = Math.floor(totalSeconds / 60);
+      const seconds = String(totalSeconds % 60).padStart(2, "0");
+      return `${minutes}:${seconds}`;
+    }
+
+    function setSpotifyArtwork(imageUrl, itemName = "") {
+      const artwork = document.getElementById("spotifyArtwork");
+      const placeholder = document.getElementById("spotifyPlaceholder");
+
+      if (!artwork || !placeholder) return;
+
+      if (imageUrl && String(imageUrl).startsWith("https://")) {
+        artwork.src = imageUrl;
+        artwork.alt = itemName ? `Artwork for ${itemName}` : "Spotify artwork";
+        artwork.style.display = "block";
+        placeholder.style.display = "none";
+        return;
+      }
+
+      artwork.removeAttribute("src");
+      artwork.alt = "";
+      artwork.style.display = "none";
+      placeholder.style.display = "flex";
+    }
+
+    function setSpotifyLink(url) {
+      const link = document.getElementById("spotifyTrackLink");
+      if (!link) return;
+
+      try {
+        const parsedUrl = new URL(url);
+        const isSpotifyUrl =
+          parsedUrl.protocol === "https:" &&
+          (parsedUrl.hostname === "open.spotify.com" ||
+            parsedUrl.hostname.endsWith(".spotify.com"));
+
+        link.href = isSpotifyUrl ? parsedUrl.href : "https://open.spotify.com/";
+      } catch {
+        link.href = "https://open.spotify.com/";
+      }
+    }
+
+    function updateSpotifyProgress(progressMs, durationMs) {
+      const safeDuration = Math.max(toNumber(durationMs), 0);
+      const safeProgress = clamp(toNumber(progressMs), 0, safeDuration || 0);
+      const percent = safeDuration > 0 ? (safeProgress / safeDuration) * 100 : 0;
+
+      setWidth("spotifyProgressBar", percent);
+      setText("spotifyProgressTime", formatPlaybackTime(safeProgress));
+      setText("spotifyDuration", formatPlaybackTime(safeDuration));
+    }
+
+    function startSpotifyProgress(progressMs, durationMs, isPlaying) {
+      if (spotifyProgressTimer) {
+        clearInterval(spotifyProgressTimer);
+        spotifyProgressTimer = null;
+      }
+
+      let currentProgress = toNumber(progressMs);
+      const duration = toNumber(durationMs);
+      updateSpotifyProgress(currentProgress, duration);
+
+      if (!isPlaying || duration <= 0) return;
+
+      spotifyProgressTimer = setInterval(() => {
+        currentProgress = Math.min(currentProgress + 1000, duration);
+        updateSpotifyProgress(currentProgress, duration);
+
+        if (currentProgress >= duration) {
+          clearInterval(spotifyProgressTimer);
+          spotifyProgressTimer = null;
+        }
+      }, 1000);
+    }
+
+    function normaliseSpotifyPlayback(rawData) {
+      return firstDefined(
+        rawData?.spotify,
+        rawData?.playback,
+        rawData?.currentlyPlaying,
+        rawData
+      ) || {};
+    }
+
+    function renderSpotifyIdle(message = "Nothing playing right now") {
+      const card = document.getElementById("spotifyCard");
+      if (card) card.classList.remove("is-playing");
+
+      setSpotifyArtwork("");
+      setSpotifyLink("https://open.spotify.com/");
+      setText("spotifyPlaybackState", "Spotify idle");
+      setText("spotifyTitle", message);
+      setText("spotifyArtist", "Start something in Spotify");
+      setText("spotifyAlbum", "This card will update automatically");
+      setText("spotifyStatus", "Checked just now");
+      startSpotifyProgress(0, 0, false);
+    }
+
+    function renderSpotifyPlayback(rawData) {
+      const playback = normaliseSpotifyPlayback(rawData);
+      const item = firstDefined(playback.item, playback.track, playback.episode);
+
+      if (!item) {
+        renderSpotifyIdle();
+        return;
+      }
+
+      const isPlaying = Boolean(firstDefined(playback.is_playing, playback.isPlaying, false));
+      const itemType = firstDefined(
+        playback.currently_playing_type,
+        playback.currentlyPlayingType,
+        item.type,
+        "track"
+      );
+
+      const title = firstDefined(item.name, playback.title, "Unknown title");
+      const artists = Array.isArray(item.artists)
+        ? item.artists.map(artist => artist.name).filter(Boolean).join(", ")
+        : "";
+
+      const artist = firstDefined(
+        artists,
+        playback.artist,
+        item.show?.publisher,
+        item.publisher,
+        itemType === "episode" ? "Podcast episode" : "Unknown artist"
+      );
+
+      const album = firstDefined(
+        item.album?.name,
+        item.show?.name,
+        playback.album,
+        itemType === "episode" ? "Spotify podcast" : "Spotify"
+      );
+
+      const artworkUrl = firstDefined(
+        item.album?.images?.[0]?.url,
+        item.images?.[0]?.url,
+        item.show?.images?.[0]?.url,
+        playback.artworkUrl,
+        playback.imageUrl
+      );
+
+      const trackUrl = firstDefined(
+        item.external_urls?.spotify,
+        playback.externalUrl,
+        playback.spotifyUrl,
+        "https://open.spotify.com/"
+      );
+
+      const progressMs = firstDefined(playback.progress_ms, playback.progressMs, 0);
+      const durationMs = firstDefined(item.duration_ms, playback.durationMs, 0);
+      const card = document.getElementById("spotifyCard");
+
+      if (card) card.classList.toggle("is-playing", isPlaying);
+
+      setSpotifyArtwork(artworkUrl, title);
+      setSpotifyLink(trackUrl);
+      setText("spotifyPlaybackState", isPlaying ? "Playing now" : "Paused");
+      setText("spotifyTitle", title);
+      setText("spotifyArtist", artist);
+      setText("spotifyAlbum", album);
+      setText(
+        "spotifyStatus",
+        `${itemType === "episode" ? "Episode" : "Track"} · refreshes every 30 seconds`
+      );
+      startSpotifyProgress(progressMs, durationMs, isPlaying);
+    }
+
+    async function loadSpotifyPlayback() {
+      try {
+        const response = await fetch(SPOTIFY_DATA_URL, {
+          method: "GET",
+          cache: "no-store"
+        });
+
+        if (response.status === 204) {
+          renderSpotifyIdle();
+          return;
+        }
+
+        if (!response.ok) {
+          throw new Error(`Spotify fetch failed: ${response.status}`);
+        }
+
+        const playbackData = await response.json();
+        renderSpotifyPlayback(playbackData);
+      } catch (error) {
+        console.warn("Unable to load Spotify playback:", error);
+        setText("spotifyPlaybackState", "Spotify unavailable");
+        setText("spotifyTitle", "Could not load playback");
+        setText("spotifyArtist", "The Spotify feed could not be reached");
+        setText("spotifyAlbum", "Try again shortly");
+        setText("spotifyStatus", "Connection failed");
+      }
+    }
+
+    function initSpotify() {
+      if (!SPOTIFY_DATA_URL) {
+        setText("spotifyPlaybackState", "Spotify setup needed");
+        setText("spotifyStatus", "Connect the secure Spotify feed to make this live.");
+        return;
+      }
+
+      loadSpotifyPlayback();
+
+      spotifyRefreshTimer = setInterval(
+        loadSpotifyPlayback,
+        SPOTIFY_REFRESH_INTERVAL_MS
+      );
+    }
+
     function getAccountabilityStatus(data, checkpointProgress) {
       const logged = toNumber(data.daysLoggedThisWeek);
       const protein = toNumber(data.proteinDaysThisWeek);
@@ -1024,6 +1483,7 @@
 
     initHealthDashboard();
     initAccuWeather();
+    initSpotify();
   </script>
 
 </body>
