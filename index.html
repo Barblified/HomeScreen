@@ -85,6 +85,64 @@
       align-items: flex-start;
     }
 
+    .box.week-banner {
+      min-height: unset;
+      margin-bottom: 30px;
+      border-left-color: var(--steel);
+      background: var(--steel-paper);
+    }
+
+    .section-heading {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      margin-bottom: 15px;
+    }
+
+    .section-heading h3 {
+      margin: 0;
+    }
+
+    .quick-links {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-left: auto;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .quick-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 46px;
+      height: 46px;
+      border: 1px solid rgba(32, 40, 45, 0.14);
+      border-radius: 12px;
+      color: var(--ink);
+      background: rgba(255, 255, 255, 0.72);
+      box-shadow: 0 2px 7px rgba(25, 33, 37, 0.10);
+      transition: transform 0.16s ease, box-shadow 0.16s ease, background 0.16s ease;
+    }
+
+    .quick-link:hover,
+    .quick-link:focus-visible {
+      transform: translateY(-2px);
+      background: #fff;
+      box-shadow: 0 5px 12px rgba(25, 33, 37, 0.16);
+    }
+
+    .quick-link:focus-visible {
+      outline: 3px solid rgba(100, 121, 133, 0.45);
+      outline-offset: 3px;
+    }
+
+    .quick-link svg {
+      width: 27px;
+      height: 27px;
+    }
+
     .calendar {
       flex: 5;
       border-radius: 12px;
@@ -124,6 +182,11 @@
       background: var(--forest-paper);
     }
 
+    .weather {
+      border-left: 6px solid var(--steel);
+      background: var(--steel-paper);
+    }
+
     h3 {
       margin-top: 0;
       margin-bottom: 15px;
@@ -134,6 +197,95 @@
 
     .health h3 {
       color: var(--forest);
+    }
+
+    .week-banner h3 {
+      color: var(--steel);
+    }
+
+    .weather h3 {
+      color: var(--steel);
+    }
+
+    .weather-hero {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 18px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+    }
+
+    .weather-condition {
+      margin: 0;
+      color: var(--ink);
+      font-size: 30px;
+      line-height: 1.05;
+    }
+
+    .weather-location {
+      margin: 5px 0 0;
+      color: var(--muted-ink);
+      font-size: 21px;
+      line-height: 1.1;
+    }
+
+    .weather-temperature {
+      flex: 0 0 auto;
+      color: var(--steel);
+      font-size: 52px;
+      font-weight: bold;
+      line-height: 0.9;
+    }
+
+    .weather-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    .weather-metric {
+      padding: 10px 8px;
+      border: 1px solid rgba(100, 121, 133, 0.18);
+      border-radius: 10px;
+      background: rgba(255, 255, 255, 0.55);
+      text-align: center;
+    }
+
+    .weather-metric span {
+      display: block;
+    }
+
+    .weather-metric span:first-child {
+      color: var(--muted-ink);
+      font-size: 19px;
+      line-height: 1;
+    }
+
+    .weather-metric span:last-child {
+      margin-top: 6px;
+      color: var(--steel);
+      font-size: 25px;
+      font-weight: bold;
+      line-height: 1;
+    }
+
+    .weather-status {
+      margin: 13px 0 0;
+      color: var(--muted-ink);
+      font-size: 20px;
+      line-height: 1.15;
+    }
+
+    .weather-credit {
+      margin: 7px 0 0;
+      font-size: 18px;
+      line-height: 1.1;
+    }
+
+    .weather-credit a {
+      color: var(--steel);
     }
 
     ul {
@@ -255,6 +407,32 @@
       .calendar iframe {
         height: 700px;
       }
+
+      .week-banner {
+        margin-bottom: 22px;
+      }
+    }
+
+    @media (max-width: 650px) {
+      .section-heading {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .quick-links {
+        width: 100%;
+        margin-left: 0;
+        justify-content: flex-start;
+      }
+
+      .quick-link {
+        width: 44px;
+        height: 44px;
+      }
+
+      .weather-grid {
+        grid-template-columns: 1fr;
+      }
     }
   </style>
 </head>
@@ -267,6 +445,92 @@
     <div class="wave"></div>
     <div class="wave"></div>
   </div>
+
+  <!-- WEEK AND QUICK LINKS -->
+  <section class="box week-banner" aria-labelledby="this-week-heading">
+    <div class="section-heading">
+      <h3 id="this-week-heading">This Week</h3>
+
+      <nav class="quick-links" aria-label="Quick links">
+        <a
+          class="quick-link"
+          href="https://calendar.google.com/calendar/u/0/r"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Open Google Calendar"
+          title="Google Calendar">
+          <svg viewBox="0 0 32 32" aria-hidden="true" focusable="false">
+            <rect x="4" y="5" width="24" height="23" rx="4" fill="#fff" stroke="#4285f4" stroke-width="2"/>
+            <path d="M4 11h24" stroke="#4285f4" stroke-width="2"/>
+            <path d="M10 3v5M22 3v5" stroke="#34a853" stroke-width="3" stroke-linecap="round"/>
+            <rect x="9" y="15" width="5" height="4" rx="1" fill="#fbbc05"/>
+            <rect x="18" y="15" width="5" height="4" rx="1" fill="#ea4335"/>
+            <rect x="9" y="22" width="5" height="3" rx="1" fill="#4285f4"/>
+          </svg>
+        </a>
+
+        <a
+          class="quick-link"
+          href="https://calendly.com/app/scheduling/meeting_types/user/me"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Open Calendly"
+          title="Calendly">
+          <svg viewBox="0 0 32 32" aria-hidden="true" focusable="false">
+            <circle cx="16" cy="16" r="13" fill="#006bff"/>
+            <circle cx="16" cy="16" r="8" fill="none" stroke="#fff" stroke-width="3"/>
+            <path d="M16 11v5l4 2" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+
+        <a
+          class="quick-link"
+          href="https://app.calendarbridge.com/dashboard"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Open CalendarBridge"
+          title="CalendarBridge">
+          <svg viewBox="0 0 32 32" aria-hidden="true" focusable="false">
+            <rect x="3" y="7" width="11" height="11" rx="3" fill="#647985"/>
+            <rect x="18" y="14" width="11" height="11" rx="3" fill="#9c6b3f"/>
+            <path d="M12 23h5.5l-2-2M20 9h-5.5l2 2" fill="none" stroke="#2d574b" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+
+        <a
+          class="quick-link"
+          href="https://open.spotify.com/"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Open Spotify"
+          title="Spotify">
+          <svg viewBox="0 0 32 32" aria-hidden="true" focusable="false">
+            <circle cx="16" cy="16" r="14" fill="#1ed760"/>
+            <path d="M8.5 12.2c5.4-1.5 11.6-.9 15.2 1.1M9.8 16.7c4.4-1.1 9.5-.6 12.6.9M10.8 20.8c3.5-.8 7.4-.4 10 1" fill="none" stroke="#142018" stroke-width="2.3" stroke-linecap="round"/>
+          </svg>
+        </a>
+
+        <a
+          class="quick-link"
+          href="https://www.accuweather.com/"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Open AccuWeather"
+          title="AccuWeather">
+          <svg viewBox="0 0 32 32" aria-hidden="true" focusable="false">
+            <circle cx="16" cy="16" r="6" fill="#f7921e"/>
+            <path d="M16 3v4M16 25v4M3 16h4M25 16h4M6.8 6.8l2.8 2.8M22.4 22.4l2.8 2.8M25.2 6.8l-2.8 2.8M9.6 22.4l-2.8 2.8" stroke="#f7921e" stroke-width="2.5" stroke-linecap="round"/>
+          </svg>
+        </a>
+      </nav>
+    </div>
+
+    <ul>
+      <li>🧠 Keep my brain healthy, nobody will die if things don't get done.</li>
+      <li>❣ Trust in God. Trust His peace.</li>
+      <li>🦀 At the end of the week, ensure I could tell God I did my absolute best.</li>
+    </ul>
+  </section>
 
   <div class="main">
 
@@ -282,6 +546,44 @@
 
     <!-- Side Panels -->
     <div class="side">
+
+      <!-- WEATHER -->
+      <section class="box weather" aria-labelledby="weather-heading">
+        <h3 id="weather-heading">Weather</h3>
+
+        <div class="weather-hero">
+          <div>
+            <p class="weather-condition" id="weatherCondition">Loading weather...</p>
+            <p class="weather-location">Hucknall, Nottinghamshire</p>
+          </div>
+          <div class="weather-temperature" id="weatherTemperature">--°</div>
+        </div>
+
+        <div class="weather-grid">
+          <div class="weather-metric">
+            <span>UV Index</span>
+            <span id="weatherUv">--</span>
+          </div>
+          <div class="weather-metric">
+            <span>Dew Point</span>
+            <span id="weatherDewPoint">--°</span>
+          </div>
+          <div class="weather-metric">
+            <span>Humidity</span>
+            <span id="weatherHumidity">--%</span>
+          </div>
+        </div>
+
+        <p class="weather-status" id="weatherStatus">Connecting to AccuWeather...</p>
+        <p class="weather-credit">
+          <a
+            href="https://www.accuweather.com/en/gb/hucknall/ng15-7/current-weather/713055"
+            target="_blank"
+            rel="noopener noreferrer">
+            Full weather on AccuWeather
+          </a>
+        </p>
+      </section>
 
       <!-- HEALTH -->
       <div class="box health">
@@ -369,16 +671,6 @@
         <p class="data-source" id="dataSource">Source: Google Sheets</p>
       </div>
 
-      <!-- WEEK -->
-      <div class="box week">
-        <h3>This Week</h3>
-        <ul>
-          <li>🧠 Keep my brain healthy, nobody will die if things don't get done.</li>
-          <li>❣ Trust in God. Trust His peace.</li>
-          <li>🦀 At the end of the week, ensure I could tell God I did my absolute best.</li>
-        </ul>
-      </div>
-
       <!-- MONTH -->
       <div class="box">
         <h3>This Month (July)</h3>
@@ -413,6 +705,17 @@
     */
 
     const REMOTE_METRICS_URL = "https://script.google.com/macros/s/AKfycbwihWQw8Frs1acA1Y-CELBw0NmX4O5KFzcqU3f8TbFpSegleKyPM64TkqTyoNyAWhLP/exec";
+
+    /*
+      ACCUWEATHER
+      -----------
+      Set this to a secure proxy endpoint, such as Google Apps Script, that
+      returns AccuWeather's detailed Current Conditions response.
+
+      Keep the AccuWeather API key in the proxy's private configuration. Do not
+      paste it into this public HTML file.
+    */
+    const ACCUWEATHER_DATA_URL = "";
 
     const fallbackHealthMetrics = {
       heightM: 1.72,
@@ -466,6 +769,122 @@
     function calculateBmi(weightKg, heightM) {
       if (!weightKg || !heightM) return null;
       return weightKg / (heightM * heightM);
+    }
+
+    function firstDefined(...values) {
+      return values.find(value => value !== undefined && value !== null && value !== "");
+    }
+
+    function normaliseAccuWeatherCondition(rawData) {
+      const payload = firstDefined(
+        rawData?.weather,
+        rawData?.currentConditions,
+        rawData?.conditions,
+        rawData
+      );
+
+      if (Array.isArray(payload)) {
+        return payload[0] || {};
+      }
+
+      return payload || {};
+    }
+
+    function renderAccuWeather(rawData) {
+      const condition = normaliseAccuWeatherCondition(rawData);
+
+      const weatherText = firstDefined(
+        condition.WeatherText,
+        condition.weatherText,
+        condition.condition
+      );
+
+      const temperatureC = firstDefined(
+        condition.Temperature?.Metric?.Value,
+        condition.temperatureC,
+        condition.temperature
+      );
+
+      const uvIndex = firstDefined(
+        condition.UVIndex,
+        condition.uvIndex
+      );
+
+      const dewPointC = firstDefined(
+        condition.DewPoint?.Metric?.Value,
+        condition.dewPointC,
+        condition.dewPoint
+      );
+
+      const humidity = firstDefined(
+        condition.RelativeHumidity,
+        condition.relativeHumidity,
+        condition.humidity
+      );
+
+      const observedAt = firstDefined(
+        condition.LocalObservationDateTime,
+        condition.observedAt,
+        condition.updatedAt
+      );
+
+      if (
+        !weatherText ||
+        temperatureC === undefined ||
+        uvIndex === undefined ||
+        dewPointC === undefined ||
+        humidity === undefined
+      ) {
+        throw new Error("The weather response is missing detailed current conditions.");
+      }
+
+      setText("weatherCondition", weatherText);
+      setText("weatherTemperature", `${round(toNumber(temperatureC), 0)}°`);
+      setText("weatherUv", round(toNumber(uvIndex), 0));
+      setText("weatherDewPoint", `${round(toNumber(dewPointC), 0)}°`);
+      setText("weatherHumidity", `${round(toNumber(humidity), 0)}%`);
+
+      if (observedAt) {
+        const observationDate = new Date(observedAt);
+
+        if (!Number.isNaN(observationDate.getTime())) {
+          const observationTime = observationDate.toLocaleTimeString("en-GB", {
+            hour: "2-digit",
+            minute: "2-digit"
+          });
+
+          setText("weatherStatus", `Observed at ${observationTime} · AccuWeather`);
+          return;
+        }
+      }
+
+      setText("weatherStatus", "Current conditions · AccuWeather");
+    }
+
+    async function initAccuWeather() {
+      if (!ACCUWEATHER_DATA_URL) {
+        setText("weatherCondition", "AccuWeather setup needed");
+        setText("weatherStatus", "Connect the secure AccuWeather feed to load live conditions.");
+        return;
+      }
+
+      try {
+        const response = await fetch(ACCUWEATHER_DATA_URL, {
+          method: "GET",
+          cache: "no-store"
+        });
+
+        if (!response.ok) {
+          throw new Error(`Weather fetch failed: ${response.status}`);
+        }
+
+        const weatherData = await response.json();
+        renderAccuWeather(weatherData);
+      } catch (error) {
+        console.warn("Unable to load AccuWeather conditions:", error);
+        setText("weatherCondition", "Weather unavailable");
+        setText("weatherStatus", "The AccuWeather feed could not be reached.");
+      }
     }
 
     function getAccountabilityStatus(data, checkpointProgress) {
@@ -604,6 +1023,7 @@
     }
 
     initHealthDashboard();
+    initAccuWeather();
   </script>
 
 </body>
