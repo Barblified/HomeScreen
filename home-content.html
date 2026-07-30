@@ -1,0 +1,1036 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Guyler's HomeScreen</title>
+
+  <!-- Swanky Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Swanky+and+Moo+Moo&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bronze: #9c6b3f;
+      --steel: #647985;
+      --forest: #2d574b;
+      --canvas: #e9e9e5;
+      --ink: #20282d;
+      --muted-ink: #4f5b61;
+      --paper: rgba(250, 250, 248, 0.95);
+      --steel-paper: rgba(239, 243, 245, 0.95);
+      --forest-paper: rgba(241, 246, 243, 0.96);
+      --shadow: 0 6px 18px rgba(25, 33, 37, 0.16);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 20px;
+      font-family: 'Swanky and Moo Moo', cursive;
+      font-size: 28px;
+      color: var(--ink);
+    }
+
+    /* Background */
+    .wave-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      overflow: hidden;
+      background: var(--canvas);
+    }
+
+    .wave {
+      position: absolute;
+      width: 250%;
+      height: 250%;
+      border-radius: 50%;
+      opacity: 0.45;
+    }
+
+    .wave:nth-child(1) {
+      background: linear-gradient(120deg, #b9a38b, #708590);
+      animation: waveMove 50s linear infinite;
+    }
+
+    .wave:nth-child(2) {
+      background: linear-gradient(120deg, #647985, #e9e9e5);
+      animation: waveMove 80s linear infinite reverse;
+      opacity: 0.4;
+    }
+
+    .wave:nth-child(3) {
+      background: linear-gradient(120deg, #8e6747, #3f655b);
+      animation: waveMove 110s linear infinite;
+      opacity: 0.35;
+    }
+
+    @keyframes waveMove {
+      0% { transform: translateX(-35%) rotate(0deg); }
+      50% { transform: translateX(10%) rotate(12deg); }
+      100% { transform: translateX(-35%) rotate(0deg); }
+    }
+
+    /* Layout */
+    .main {
+      display: flex;
+      gap: 35px;
+      align-items: flex-start;
+    }
+
+    .top-row {
+      display: grid;
+      grid-template-columns:
+        minmax(0, 1.5fr)
+        minmax(360px, 1.05fr)
+        minmax(260px, 0.75fr);
+      gap: 30px;
+      align-items: stretch;
+      margin-bottom: 30px;
+    }
+
+    .top-row .box {
+      min-height: unset;
+      height: 100%;
+    }
+
+    .box.week-banner {
+      min-height: unset;
+      border-left-color: var(--steel);
+      background: var(--steel-paper);
+    }
+
+    .links-box {
+      border-left-color: var(--bronze);
+      background: var(--paper);
+    }
+
+    .quick-links {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: flex-start;
+    }
+
+    .quick-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 46px;
+      height: 46px;
+      border: 1px solid rgba(32, 40, 45, 0.14);
+      border-radius: 12px;
+      color: var(--ink);
+      background: rgba(255, 255, 255, 0.72);
+      box-shadow: 0 2px 7px rgba(25, 33, 37, 0.10);
+      transition: transform 0.16s ease, box-shadow 0.16s ease, background 0.16s ease;
+    }
+
+    .quick-link:hover,
+    .quick-link:focus-visible {
+      transform: translateY(-2px);
+      background: #fff;
+      box-shadow: 0 5px 12px rgba(25, 33, 37, 0.16);
+    }
+
+    .quick-link:focus-visible {
+      outline: 3px solid rgba(100, 121, 133, 0.45);
+      outline-offset: 3px;
+    }
+
+    .quick-link svg {
+      width: 27px;
+      height: 27px;
+    }
+
+    .calendar {
+      flex: 5;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      background: rgba(250, 250, 248, 0.78);
+    }
+
+    .calendar iframe {
+      display: block;
+    }
+
+    .side {
+      flex: 2;
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+      min-width: 360px;
+    }
+
+    .box {
+      background: var(--paper);
+      padding: 25px;
+      border-radius: 14px;
+      min-height: 200px;
+      box-shadow: 0 4px 14px rgba(25, 33, 37, 0.12);
+      border-left: 6px solid var(--bronze);
+    }
+
+    .health {
+      border-left: 6px solid var(--forest);
+      background: var(--forest-paper);
+    }
+
+    .weather {
+      border-left: 6px solid var(--steel);
+      background: var(--steel-paper);
+    }
+
+    h3 {
+      margin-top: 0;
+      margin-bottom: 15px;
+      font-size: 34px;
+      font-weight: bold;
+      color: var(--bronze);
+    }
+
+    .health h3 {
+      color: var(--forest);
+    }
+
+    .week-banner h3 {
+      color: var(--steel);
+    }
+
+    .weather h3 {
+      color: var(--steel);
+    }
+
+    .weather-hero {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 18px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+    }
+
+    .weather-condition {
+      margin: 0;
+      color: var(--ink);
+      font-size: 30px;
+      line-height: 1.05;
+    }
+
+    .weather-location {
+      margin: 5px 0 0;
+      color: var(--muted-ink);
+      font-size: 21px;
+      line-height: 1.1;
+    }
+
+    .weather-temperature {
+      flex: 0 0 auto;
+      color: var(--steel);
+      font-size: 52px;
+      font-weight: bold;
+      line-height: 0.9;
+    }
+
+    .weather-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    .weather-metric {
+      padding: 10px 8px;
+      border: 1px solid rgba(100, 121, 133, 0.18);
+      border-radius: 10px;
+      background: rgba(255, 255, 255, 0.55);
+      text-align: center;
+    }
+
+    .weather-metric span {
+      display: block;
+    }
+
+    .weather-metric span:first-child {
+      color: var(--muted-ink);
+      font-size: 19px;
+      line-height: 1;
+    }
+
+    .weather-metric span:last-child {
+      margin-top: 6px;
+      color: var(--steel);
+      font-size: 25px;
+      font-weight: bold;
+      line-height: 1;
+    }
+
+    .weather-status {
+      margin: 13px 0 0;
+      color: var(--muted-ink);
+      font-size: 20px;
+      line-height: 1.15;
+    }
+
+    .weather-credit {
+      margin: 7px 0 0;
+      font-size: 18px;
+      line-height: 1.1;
+    }
+
+    .weather-credit a {
+      color: var(--steel);
+    }
+
+    ul {
+      padding-left: 25px;
+      margin-top: 15px;
+      margin-bottom: 0;
+    }
+
+    li {
+      margin-bottom: 12px;
+      line-height: 1.12;
+    }
+
+    p {
+      margin-top: 10px;
+    }
+
+    .metric-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      border-bottom: 1px solid rgba(0,0,0,0.08);
+      padding: 6px 0;
+      font-size: 26px;
+    }
+
+    .metric-row span:first-child {
+      color: var(--muted-ink);
+    }
+
+    .metric-row span:last-child {
+      font-weight: bold;
+      color: var(--forest);
+      text-align: right;
+    }
+
+    .progress-wrap {
+      margin-top: 18px;
+      margin-bottom: 14px;
+    }
+
+    .progress-label {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      font-size: 24px;
+      margin-bottom: 6px;
+    }
+
+    .progress-label span:last-child {
+      font-weight: bold;
+      color: var(--forest);
+    }
+
+    .progress-bar {
+      width: 100%;
+      height: 28px;
+      background: rgba(0,0,0,0.12);
+      border-radius: 999px;
+      overflow: hidden;
+      box-shadow: inset 0 2px 4px rgba(0,0,0,0.15);
+    }
+
+    .progress-fill {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, var(--steel), var(--bronze));
+      border-radius: 999px;
+      transition: width 0.8s ease;
+    }
+
+    .status-pill {
+      margin-top: 16px;
+      padding: 12px 14px;
+      border-radius: 12px;
+      background: rgba(45, 87, 75, 0.10);
+      border: 1px solid rgba(45, 87, 75, 0.22);
+      color: var(--forest);
+      font-size: 24px;
+      line-height: 1.15;
+      font-weight: bold;
+    }
+
+    .health-note {
+      font-size: 22px;
+      margin-top: 14px;
+      color: var(--muted-ink);
+      line-height: 1.2;
+    }
+
+    .last-updated {
+      font-size: 21px;
+      margin-top: 12px;
+      color: #707a7f;
+    }
+
+    .data-source {
+      font-size: 19px;
+      margin-top: 8px;
+      color: #707a7f;
+    }
+
+    @media (max-width: 1100px) {
+      body {
+        margin: 12px;
+        font-size: 24px;
+      }
+
+      .main {
+        flex-direction: column;
+      }
+
+      .top-row {
+        grid-template-columns: 1fr;
+        gap: 22px;
+        margin-bottom: 22px;
+      }
+
+      .calendar,
+      .side {
+        width: 100%;
+        min-width: unset;
+      }
+
+      .calendar iframe {
+        height: 700px;
+      }
+
+    }
+
+    @media (max-width: 650px) {
+      .quick-links {
+        width: 100%;
+        justify-content: flex-start;
+      }
+
+      .quick-link {
+        width: 44px;
+        height: 44px;
+      }
+
+      .weather-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Background -->
+  <div class="wave-bg">
+    <div class="wave"></div>
+    <div class="wave"></div>
+    <div class="wave"></div>
+  </div>
+
+  <!-- TOP ROW -->
+  <div class="top-row">
+
+    <!-- WEEK -->
+    <section class="box week-banner" aria-labelledby="this-week-heading">
+      <h3 id="this-week-heading">This Week</h3>
+      <ul>
+        <li>🧠 Keep my brain healthy, nobody will die if things don't get done.</li>
+        <li>❣ Trust in God. Trust His peace.</li>
+        <li>🦀 At the end of the week, ensure I could tell God I did my absolute best.</li>
+      </ul>
+    </section>
+
+    <!-- WEATHER -->
+    <section class="box weather" aria-labelledby="weather-heading">
+      <h3 id="weather-heading">Weather</h3>
+
+      <div class="weather-hero">
+        <div>
+          <p class="weather-condition" id="weatherCondition">Loading weather...</p>
+          <p class="weather-location">Hucknall, Nottinghamshire</p>
+        </div>
+        <div class="weather-temperature" id="weatherTemperature">--°</div>
+      </div>
+
+      <div class="weather-grid">
+        <div class="weather-metric">
+          <span>UV Index</span>
+          <span id="weatherUv">--</span>
+        </div>
+        <div class="weather-metric">
+          <span>Dew Point</span>
+          <span id="weatherDewPoint">--°</span>
+        </div>
+        <div class="weather-metric">
+          <span>Humidity</span>
+          <span id="weatherHumidity">--%</span>
+        </div>
+      </div>
+
+      <p class="weather-status" id="weatherStatus">Connecting to AccuWeather...</p>
+      <p class="weather-credit">
+        <a
+          href="https://www.accuweather.com/en/gb/hucknall/ng15-7/current-weather/713055"
+          target="_blank"
+          rel="noopener noreferrer">
+          Full weather on AccuWeather
+        </a>
+      </p>
+    </section>
+
+    <!-- QUICK LINKS -->
+    <section class="box links-box" aria-labelledby="quick-links-heading">
+      <h3 id="quick-links-heading">Quick Links</h3>
+      <nav class="quick-links" aria-label="Quick links">
+        <a
+          class="quick-link"
+          href="https://calendar.google.com/calendar/u/0/r"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Open Google Calendar"
+          title="Google Calendar">
+          <svg viewBox="0 0 32 32" aria-hidden="true" focusable="false">
+            <rect x="4" y="5" width="24" height="23" rx="4" fill="#fff" stroke="#4285f4" stroke-width="2"/>
+            <path d="M4 11h24" stroke="#4285f4" stroke-width="2"/>
+            <path d="M10 3v5M22 3v5" stroke="#34a853" stroke-width="3" stroke-linecap="round"/>
+            <rect x="9" y="15" width="5" height="4" rx="1" fill="#fbbc05"/>
+            <rect x="18" y="15" width="5" height="4" rx="1" fill="#ea4335"/>
+            <rect x="9" y="22" width="5" height="3" rx="1" fill="#4285f4"/>
+          </svg>
+        </a>
+
+        <a
+          class="quick-link"
+          href="https://calendly.com/app/scheduling/meeting_types/user/me"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Open Calendly"
+          title="Calendly">
+          <svg viewBox="0 0 32 32" aria-hidden="true" focusable="false">
+            <circle cx="16" cy="16" r="13" fill="#006bff"/>
+            <circle cx="16" cy="16" r="8" fill="none" stroke="#fff" stroke-width="3"/>
+            <path d="M16 11v5l4 2" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+
+        <a
+          class="quick-link"
+          href="https://app.calendarbridge.com/dashboard"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Open CalendarBridge"
+          title="CalendarBridge">
+          <svg viewBox="0 0 32 32" aria-hidden="true" focusable="false">
+            <rect x="3" y="7" width="11" height="11" rx="3" fill="#647985"/>
+            <rect x="18" y="14" width="11" height="11" rx="3" fill="#9c6b3f"/>
+            <path d="M12 23h5.5l-2-2M20 9h-5.5l2 2" fill="none" stroke="#2d574b" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+
+        <a
+          class="quick-link"
+          href="https://open.spotify.com/"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Open Spotify"
+          title="Spotify">
+          <svg viewBox="0 0 32 32" aria-hidden="true" focusable="false">
+            <circle cx="16" cy="16" r="14" fill="#1ed760"/>
+            <path d="M8.5 12.2c5.4-1.5 11.6-.9 15.2 1.1M9.8 16.7c4.4-1.1 9.5-.6 12.6.9M10.8 20.8c3.5-.8 7.4-.4 10 1" fill="none" stroke="#142018" stroke-width="2.3" stroke-linecap="round"/>
+          </svg>
+        </a>
+
+        <a
+          class="quick-link"
+          href="https://www.accuweather.com/"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Open AccuWeather"
+          title="AccuWeather">
+          <svg viewBox="0 0 32 32" aria-hidden="true" focusable="false">
+            <circle cx="16" cy="16" r="6" fill="#f7921e"/>
+            <path d="M16 3v4M16 25v4M3 16h4M25 16h4M6.8 6.8l2.8 2.8M22.4 22.4l2.8 2.8M25.2 6.8l-2.8 2.8M9.6 22.4l-2.8 2.8" stroke="#f7921e" stroke-width="2.5" stroke-linecap="round"/>
+          </svg>
+        </a>
+      </nav>
+    </section>
+
+  </div>
+
+  <div class="main">
+
+    <!-- Calendar -->
+    <div class="calendar">
+      <iframe
+        src="https://calendar.google.com/calendar/embed?src=tguyler11%40gmail.com&ctz=Europe%2FLondon&mode=AGENDA"
+        style="border: 0"
+        width="100%"
+        height="1200">
+      </iframe>
+    </div>
+
+    <!-- Side Panels -->
+    <div class="side">
+
+      <!-- HEALTH -->
+      <div class="box health">
+        <h3>Health Cut</h3>
+
+        <div class="metric-row">
+          <span>Start</span>
+          <span id="startWeight">--</span>
+        </div>
+
+        <div class="metric-row">
+          <span>Current</span>
+          <span id="currentWeight">--</span>
+        </div>
+
+        <div class="metric-row">
+          <span>Lost</span>
+          <span id="lostWeight">--</span>
+        </div>
+
+        <div class="metric-row">
+          <span>BMI</span>
+          <span id="currentBmi">--</span>
+        </div>
+
+        <div class="metric-row">
+          <span>Checkpoint</span>
+          <span id="checkpointWeight">--</span>
+        </div>
+
+        <div class="metric-row">
+          <span>Final Goal</span>
+          <span id="finalGoalWeight">--</span>
+        </div>
+
+        <div class="progress-wrap">
+          <div class="progress-label">
+            <span>Progress to 100kg</span>
+            <span id="checkpointProgressText">--</span>
+          </div>
+          <div class="progress-bar">
+            <div class="progress-fill" id="checkpointProgressBar"></div>
+          </div>
+        </div>
+
+        <div class="progress-wrap">
+          <div class="progress-label">
+            <span>Progress to 74kg</span>
+            <span id="totalProgressText">--</span>
+          </div>
+          <div class="progress-bar">
+            <div class="progress-fill" id="totalProgressBar"></div>
+          </div>
+        </div>
+
+        <div class="metric-row">
+          <span>Logged</span>
+          <span id="daysLogged">--</span>
+        </div>
+
+        <div class="metric-row">
+          <span>Protein</span>
+          <span id="proteinDays">--</span>
+        </div>
+
+        <div class="metric-row">
+          <span>Workouts</span>
+          <span id="workoutsDone">--</span>
+        </div>
+
+        <div class="metric-row">
+          <span>Sleep</span>
+          <span id="sleepDays">--</span>
+        </div>
+
+        <div class="status-pill" id="accountabilityStatus">
+          Loading health metrics...
+        </div>
+
+        <p class="health-note">
+          Public stewardship. No hiding. No drift. First target: 100kg.
+        </p>
+
+        <p class="last-updated" id="lastUpdated">Last updated: --</p>
+        <p class="data-source" id="dataSource">Source: Google Sheets</p>
+      </div>
+
+      <!-- MONTH -->
+      <div class="box">
+        <h3>This Month (July)</h3>
+        <ul>
+          <li>🎯 Theme: Build Momentum</li>
+          <li>🐍 Harvard: Complete before access is lost on the 23rd of July</li>
+          <li>📊 Work: Rebuild and reinvigorate the Data Strategy</li>
+          <li>⚙️ Reduce one recurring friction in your workflow</li>
+        </ul>
+      </div>
+
+      <!-- YEAR -->
+      <div class="box">
+        <h3>This Year</h3>
+        <ul>
+          <li>🐍 Soft Skills: Work on influencing up, down and sideways</li>
+          <li>📈 Work: Become the go-to for solving data problems</li>
+          <li>⚡ Energy: Protect focus time and reduce reactive days</li>
+          <li>💪 Health: Cut to 100kg first. Abs are earned after obedience.</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+    /*
+      HEALTH CUT DASHBOARD
+      --------------------
+      Source: Google Sheets via Apps Script web app.
+      Fallback: local object below, so the homepage still renders if the endpoint fails.
+    */
+
+    const REMOTE_METRICS_URL = "https://script.google.com/macros/s/AKfycbwihWQw8Frs1acA1Y-CELBw0NmX4O5KFzcqU3f8TbFpSegleKyPM64TkqTyoNyAWhLP/exec";
+
+    /*
+      ACCUWEATHER
+      -----------
+      Set this to a secure proxy endpoint, such as Google Apps Script, that
+      returns AccuWeather's detailed Current Conditions response.
+
+      Keep the AccuWeather API key in the proxy's private configuration. Do not
+      paste it into this public HTML file.
+    */
+    const ACCUWEATHER_DATA_URL = `${REMOTE_METRICS_URL}?view=weather`;
+
+    const fallbackHealthMetrics = {
+      heightM: 1.72,
+      startingWeightKg: 113.2,
+      currentWeightKg: 113.2,
+      checkpointWeightKg: 100,
+      finalGoalKg: 74,
+
+      daysLoggedThisWeek: 0,
+      proteinDaysThisWeek: 0,
+      workoutsThisWeek: 0,
+      workoutTarget: 3,
+      sleepTargetDaysThisWeek: 0,
+
+      lastUpdated: "3 July 2026"
+    };
+
+    function setText(id, value) {
+      const element = document.getElementById(id);
+      if (element) element.textContent = value;
+    }
+
+    function setWidth(id, percent) {
+      const element = document.getElementById(id);
+      if (element) element.style.width = `${percent}%`;
+    }
+
+    function toNumber(value, fallback = 0) {
+      if (value === null || value === undefined || value === "") return fallback;
+      const number = Number(value);
+      return Number.isFinite(number) ? number : fallback;
+    }
+
+    function round(value, decimals = 1) {
+      return Number(value).toFixed(decimals);
+    }
+
+    function clamp(value, min, max) {
+      return Math.min(Math.max(value, min), max);
+    }
+
+    function calculateProgress(startingWeight, currentWeight, targetWeight) {
+      const totalRequiredLoss = startingWeight - targetWeight;
+      const actualLoss = startingWeight - currentWeight;
+
+      if (totalRequiredLoss <= 0) return 0;
+
+      return clamp((actualLoss / totalRequiredLoss) * 100, 0, 100);
+    }
+
+    function calculateBmi(weightKg, heightM) {
+      if (!weightKg || !heightM) return null;
+      return weightKg / (heightM * heightM);
+    }
+
+    function firstDefined(...values) {
+      return values.find(value => value !== undefined && value !== null && value !== "");
+    }
+
+    function normaliseAccuWeatherCondition(rawData) {
+      const payload = firstDefined(
+        rawData?.weather,
+        rawData?.currentConditions,
+        rawData?.conditions,
+        rawData
+      );
+
+      if (Array.isArray(payload)) {
+        return payload[0] || {};
+      }
+
+      return payload || {};
+    }
+
+    function renderAccuWeather(rawData) {
+      const condition = normaliseAccuWeatherCondition(rawData);
+
+      const weatherText = firstDefined(
+        condition.WeatherText,
+        condition.weatherText,
+        condition.condition
+      );
+
+      const temperatureC = firstDefined(
+        condition.Temperature?.Metric?.Value,
+        condition.temperatureC,
+        condition.temperature
+      );
+
+      const uvIndex = firstDefined(
+        condition.UVIndex,
+        condition.uvIndex
+      );
+
+      const dewPointC = firstDefined(
+        condition.DewPoint?.Metric?.Value,
+        condition.dewPointC,
+        condition.dewPoint
+      );
+
+      const humidity = firstDefined(
+        condition.RelativeHumidity,
+        condition.relativeHumidity,
+        condition.humidity
+      );
+
+      const observedAt = firstDefined(
+        condition.LocalObservationDateTime,
+        condition.observedAt,
+        condition.updatedAt
+      );
+
+      if (
+        !weatherText ||
+        temperatureC === undefined ||
+        uvIndex === undefined ||
+        dewPointC === undefined ||
+        humidity === undefined
+      ) {
+        throw new Error("The weather response is missing detailed current conditions.");
+      }
+
+      setText("weatherCondition", weatherText);
+      setText("weatherTemperature", `${round(toNumber(temperatureC), 0)}°`);
+      setText("weatherUv", round(toNumber(uvIndex), 0));
+      setText("weatherDewPoint", `${round(toNumber(dewPointC), 0)}°`);
+      setText("weatherHumidity", `${round(toNumber(humidity), 0)}%`);
+
+      if (observedAt) {
+        const observationDate = new Date(observedAt);
+
+        if (!Number.isNaN(observationDate.getTime())) {
+          const observationTime = observationDate.toLocaleTimeString("en-GB", {
+            hour: "2-digit",
+            minute: "2-digit"
+          });
+
+          setText("weatherStatus", `Observed at ${observationTime} · AccuWeather`);
+          return;
+        }
+      }
+
+      setText("weatherStatus", "Current conditions · AccuWeather");
+    }
+
+    async function initAccuWeather() {
+      if (!ACCUWEATHER_DATA_URL) {
+        setText("weatherCondition", "AccuWeather setup needed");
+        setText("weatherStatus", "Connect the secure AccuWeather feed to load live conditions.");
+        return;
+      }
+
+      try {
+        const response = await fetch(ACCUWEATHER_DATA_URL, {
+          method: "GET",
+          cache: "no-store"
+        });
+
+        if (!response.ok) {
+          throw new Error(`Weather fetch failed: ${response.status}`);
+        }
+
+        const weatherData = await response.json();
+        renderAccuWeather(weatherData);
+      } catch (error) {
+        console.warn("Unable to load AccuWeather conditions:", error);
+        setText("weatherCondition", "Weather unavailable");
+        setText("weatherStatus", "The AccuWeather feed could not be reached.");
+      }
+    }
+
+    function getAccountabilityStatus(data, checkpointProgress) {
+      const logged = toNumber(data.daysLoggedThisWeek);
+      const protein = toNumber(data.proteinDaysThisWeek);
+      const workouts = toNumber(data.workoutsThisWeek);
+      const workoutTarget = toNumber(data.workoutTarget, 3);
+      const sleep = toNumber(data.sleepTargetDaysThisWeek);
+
+      if (logged >= 6 && protein >= 5 && workouts >= workoutTarget && sleep >= 5) {
+        return "Strong week. Keep pressing.";
+      }
+
+      if (logged >= 4 && protein >= 3 && workouts >= 2) {
+        return "Decent week. Tighten the weak link.";
+      }
+
+      if (checkpointProgress > 0 && logged < 4) {
+        return "Weight moved, but logging is weak. No hiding.";
+      }
+
+      return "Today is the reset. Log first. Move next.";
+    }
+
+    function normaliseMetrics(rawData) {
+      /*
+        Supports either:
+        1. Direct JSON object:
+           { "startingWeightKg": 113.2, "currentWeightKg": 112.8, ... }
+
+        2. Key/value shape:
+           { "metrics": { "startingWeightKg": 113.2, ... } }
+
+        3. Array from Public_Output:
+           [
+             { "metric": "startingWeightKg", "value": 113.2 },
+             { "metric": "currentWeightKg", "value": 112.8 }
+           ]
+      */
+
+      if (Array.isArray(rawData)) {
+        return rawData.reduce((accumulator, row) => {
+          const key = row.metric || row.key || row.name;
+          const value = row.value;
+          if (key) accumulator[key] = value;
+          return accumulator;
+        }, {});
+      }
+
+      if (rawData && rawData.metrics) {
+        return rawData.metrics;
+      }
+
+      return rawData || {};
+    }
+
+    async function loadHealthMetrics() {
+      try {
+        const response = await fetch(REMOTE_METRICS_URL, {
+          method: "GET",
+          cache: "no-store"
+        });
+
+        if (!response.ok) {
+          throw new Error(`Metrics fetch failed: ${response.status}`);
+        }
+
+        const rawMetrics = await response.json();
+        const remoteMetrics = normaliseMetrics(rawMetrics);
+
+        setText("dataSource", "Source: Google Sheets");
+
+        return {
+          ...fallbackHealthMetrics,
+          ...remoteMetrics
+        };
+      } catch (error) {
+        console.warn("Using fallback health metrics:", error);
+        setText("dataSource", "Source: fallback metrics — check Apps Script deployment");
+        return fallbackHealthMetrics;
+      }
+    }
+
+    function renderHealthMetrics(data) {
+      const startingWeight = toNumber(data.startingWeightKg);
+      const currentWeight = toNumber(data.currentWeightKg);
+      const checkpointWeight = toNumber(data.checkpointWeightKg);
+      const finalGoalWeight = toNumber(data.finalGoalKg);
+      const heightM = toNumber(data.heightM, 1.72);
+
+      const lostWeight = startingWeight - currentWeight;
+
+      const checkpointProgress = calculateProgress(
+        startingWeight,
+        currentWeight,
+        checkpointWeight
+      );
+
+      const totalProgress = calculateProgress(
+        startingWeight,
+        currentWeight,
+        finalGoalWeight
+      );
+
+      const bmi = calculateBmi(currentWeight, heightM);
+      const accountabilityStatus = getAccountabilityStatus(data, checkpointProgress);
+
+      setText("startWeight", `${round(startingWeight)} kg`);
+      setText("currentWeight", `${round(currentWeight)} kg`);
+      setText("lostWeight", `${round(lostWeight)} kg`);
+      setText("checkpointWeight", `${round(checkpointWeight, 0)} kg`);
+      setText("finalGoalWeight", `${round(finalGoalWeight, 0)} kg`);
+
+      setText("checkpointProgressText", `${round(checkpointProgress, 0)}%`);
+      setWidth("checkpointProgressBar", checkpointProgress);
+
+      setText("totalProgressText", `${round(totalProgress, 0)}%`);
+      setWidth("totalProgressBar", totalProgress);
+
+      setText("daysLogged", `${toNumber(data.daysLoggedThisWeek)} / 7`);
+      setText("proteinDays", `${toNumber(data.proteinDaysThisWeek)} / 7`);
+      setText("workoutsDone", `${toNumber(data.workoutsThisWeek)} / ${toNumber(data.workoutTarget, 3)}`);
+      setText("sleepDays", `${toNumber(data.sleepTargetDaysThisWeek)} / 7`);
+
+      if (bmi) {
+        setText("currentBmi", round(bmi, 1));
+      }
+
+      setText("accountabilityStatus", accountabilityStatus);
+      setText("lastUpdated", `Last updated: ${data.lastUpdated || "unknown"}`);
+    }
+
+    async function initHealthDashboard() {
+      const metrics = await loadHealthMetrics();
+      renderHealthMetrics(metrics);
+    }
+
+    initHealthDashboard();
+    initAccuWeather();
+  </script>
+
+</body>
+</html>
