@@ -44,6 +44,76 @@
     <a href="/HomeScreen/health/">Health</a>
     <a href="/HomeScreen/learn/">Learn</a>
   </nav>
-  <iframe class="page-frame" src="home-content.html" title="HomeScreen home page" allow="fullscreen; autoplay; clipboard-write; encrypted-media; picture-in-picture" allowfullscreen></iframe>
+
+  <iframe
+    class="page-frame"
+    src="home-content.html"
+    title="HomeScreen home page"
+    allow="fullscreen; autoplay; clipboard-write; encrypted-media; picture-in-picture"
+    allowfullscreen>
+  </iframe>
+
+  <script>
+    const homeFrame = document.querySelector('.page-frame');
+    const isAndroid = /Android/i.test(navigator.userAgent);
+
+    function buildAndroidIntent(webUrl, packageName) {
+      const url = new URL(webUrl);
+      const target = `${url.host}${url.pathname}${url.search}${url.hash}`;
+      return `intent://${target}#Intent;scheme=${url.protocol.replace(':', '')};package=${packageName};S.browser_fallback_url=${encodeURIComponent(webUrl)};end`;
+    }
+
+    function enableAppFirst(link, packageName) {
+      if (!link || !packageName || link.dataset.appFirst === 'true') return;
+
+      link.dataset.appFirst = 'true';
+      const webUrl = link.href;
+
+      link.addEventListener('click', event => {
+        if (!isAndroid) return;
+
+        event.preventDefault();
+        window.location.href = buildAndroidIntent(webUrl, packageName);
+      });
+    }
+
+    function addNehemiahLink(documentRef, quickLinks) {
+      let nehemiahLink = documentRef.getElementById('nehemiah-quick-link');
+
+      if (!nehemiahLink) {
+        nehemiahLink = documentRef.createElement('a');
+        nehemiahLink.id = 'nehemiah-quick-link';
+        nehemiahLink.className = 'quick-link';
+        nehemiahLink.href = 'https://chatgpt.com/g/g-6a6f2147a4b48191978025f950045a49-nehemiah';
+        nehemiahLink.target = '_blank';
+        nehemiahLink.rel = 'noopener noreferrer';
+        nehemiahLink.setAttribute('aria-label', 'Open Nehemiah in ChatGPT');
+        nehemiahLink.title = 'Nehemiah';
+        nehemiahLink.innerHTML = `
+          <svg viewBox="0 0 32 32" aria-hidden="true" focusable="false">
+            <circle cx="16" cy="16" r="14" fill="#20282d"/>
+            <path d="M10 23V9h3.3l5.4 8.2V9H22v14h-3.2l-5.5-8.3V23z" fill="#fff"/>
+          </svg>`;
+        quickLinks.appendChild(nehemiahLink);
+      }
+
+      enableAppFirst(nehemiahLink, 'com.openai.chatgpt');
+    }
+
+    homeFrame.addEventListener('load', () => {
+      try {
+        const documentRef = homeFrame.contentDocument;
+        const quickLinks = documentRef?.querySelector('.quick-links');
+        if (!quickLinks) return;
+
+        enableAppFirst(documentRef.querySelector('a[title="Google Calendar"]'), 'com.google.android.calendar');
+        enableAppFirst(documentRef.querySelector('a[title="Spotify"]'), 'com.spotify.music');
+        enableAppFirst(documentRef.querySelector('a[title="AccuWeather"]'), 'com.accuweather.android');
+        addNehemiahLink(documentRef, quickLinks);
+      } catch (error) {
+        console.warn('Unable to enhance HomeScreen quick links:', error);
+      }
+    });
+  </script>
 </body>
 </html>
