@@ -45,5 +45,143 @@
     <a href="/HomeScreen/learn/">Learn</a>
   </nav>
   <iframe class="page-frame" src="content.html" title="Health page" allow="fullscreen; autoplay; clipboard-write; encrypted-media; picture-in-picture" allowfullscreen></iframe>
+
+  <script>
+    const HEALTH_DATA_URL = "https://script.google.com/macros/s/AKfycbwihWQw8Frs1acA1Y-CELBw0NmX4O5KFzcqU3f8TbFpSegleKyPM64TkqTyoNyAWhLP/exec";
+    const healthFrame = document.querySelector('.page-frame');
+
+    function coachItem(label, id, featured = false) {
+      return `
+        <div class="coach-item${featured ? ' coach-item-featured' : ''}">
+          <h3>${label}</h3>
+          <p id="${id}">—</p>
+        </div>`;
+    }
+
+    function injectCoachSection(doc) {
+      if (doc.getElementById('coach-notes')) return;
+
+      const style = doc.createElement('style');
+      style.textContent = `
+        body { align-items: start !important; overflow-y: auto; }
+        .card { margin-block: 0; }
+        .coach-notes {
+          margin-top: 20px;
+          padding-top: 18px;
+          border-top: 1px solid var(--line);
+        }
+        .coach-notes-header {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          gap: 12px;
+          margin-bottom: 12px;
+        }
+        .coach-notes h2 {
+          margin: 0;
+          font-size: 2rem;
+          font-weight: 400;
+        }
+        .coach-badge {
+          padding: 7px 11px;
+          border-radius: 999px;
+          background: rgba(45, 87, 75, 0.12);
+          border: 1px solid rgba(45, 87, 75, 0.24);
+          color: var(--accent);
+          font-size: 1rem;
+        }
+        .coach-grid {
+          display: grid;
+          gap: 10px;
+        }
+        .coach-item {
+          padding: 14px 15px;
+          border: 1px solid var(--line);
+          border-radius: 16px;
+          background: rgba(239, 243, 245, 0.62);
+        }
+        .coach-item-featured {
+          background: rgba(156, 107, 63, 0.10);
+          border-color: rgba(156, 107, 63, 0.28);
+        }
+        .coach-item h3 {
+          margin: 0 0 5px;
+          color: var(--muted);
+          font-size: 1rem;
+          font-weight: 400;
+          letter-spacing: 0.06em;
+          text-transform: uppercase;
+        }
+        .coach-item p {
+          margin: 0;
+          font-size: 1.18rem;
+          line-height: 1.35;
+          white-space: pre-wrap;
+        }
+        .coach-evidence p { font-size: 1rem; color: var(--muted); }
+      `;
+      doc.head.appendChild(style);
+
+      const section = doc.createElement('section');
+      section.className = 'coach-notes';
+      section.id = 'coach-notes';
+      section.setAttribute('aria-labelledby', 'coach-notes-heading');
+      section.innerHTML = `
+        <div class="coach-notes-header">
+          <h2 id="coach-notes-heading">Coach Notes</h2>
+          <span class="coach-badge" id="coach-status">Loading…</span>
+        </div>
+        <div class="coach-grid">
+          ${coachItem('Recommended action', 'coach-action', true)}
+          ${coachItem('Daily analysis', 'coach-analysis')}
+          ${coachItem('Trend summary', 'coach-trend')}
+          ${coachItem('Missing information', 'coach-missing')}
+          ${coachItem('Risk flag', 'coach-risk')}
+          <div class="coach-item coach-evidence">
+            <h3>Evidence</h3>
+            <p id="coach-evidence">—</p>
+          </div>
+        </div>`;
+
+      doc.querySelector('main.card')?.appendChild(section);
+    }
+
+    function setCoachText(doc, id, value, emptyText = 'None recorded.') {
+      const element = doc.getElementById(id);
+      if (element) element.textContent = String(value || '').trim() || emptyText;
+    }
+
+    async function loadCoachNotes(doc) {
+      try {
+        const response = await fetch(`${HEALTH_DATA_URL}?t=${Date.now()}`, { cache: 'no-store' });
+        if (!response.ok) throw new Error(`HTTP ${response.status}`);
+        const payload = await response.json();
+        const data = payload.metrics || payload;
+
+        setCoachText(doc, 'coach-status', data.coachStatus, 'No review yet.');
+        setCoachText(doc, 'coach-action', data.recommendedAction);
+        setCoachText(doc, 'coach-analysis', data.dailyAnalysis);
+        setCoachText(doc, 'coach-trend', data.trendSummary);
+        setCoachText(doc, 'coach-missing', data.missingFields);
+        setCoachText(doc, 'coach-risk', data.riskFlag, 'No risk flagged.');
+        setCoachText(doc, 'coach-evidence', data.evidenceSource);
+      } catch (error) {
+        console.warn('Coach notes failed to load:', error);
+        setCoachText(doc, 'coach-status', 'Unavailable');
+        setCoachText(doc, 'coach-action', 'Coach notes could not be loaded.');
+      }
+    }
+
+    healthFrame.addEventListener('load', () => {
+      try {
+        const doc = healthFrame.contentDocument;
+        if (!doc) return;
+        injectCoachSection(doc);
+        loadCoachNotes(doc);
+      } catch (error) {
+        console.warn('Unable to add Coach Notes:', error);
+      }
+    });
+  </script>
 </body>
 </html>
