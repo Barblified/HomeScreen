@@ -100,6 +100,29 @@
       enableAppFirst(nehemiahLink, 'com.openai.chatgpt');
     }
 
+    function addMyFitnessPalLink(documentRef, quickLinks) {
+      let myFitnessPalLink = documentRef.getElementById('myfitnesspal-quick-link');
+
+      if (!myFitnessPalLink) {
+        myFitnessPalLink = documentRef.createElement('a');
+        myFitnessPalLink.id = 'myfitnesspal-quick-link';
+        myFitnessPalLink.className = 'quick-link';
+        myFitnessPalLink.href = 'https://www.myfitnesspal.com/';
+        myFitnessPalLink.target = '_blank';
+        myFitnessPalLink.rel = 'noopener noreferrer';
+        myFitnessPalLink.setAttribute('aria-label', 'Open MyFitnessPal');
+        myFitnessPalLink.title = 'MyFitnessPal';
+        myFitnessPalLink.innerHTML = `
+          <svg viewBox="0 0 32 32" aria-hidden="true" focusable="false">
+            <circle cx="16" cy="16" r="14" fill="#0066ee"/>
+            <path d="M8.5 21V11h3.2l4.3 5.6 4.3-5.6h3.2v10h-3.4v-5.1L16 21l-4.1-5.1V21z" fill="#fff"/>
+          </svg>`;
+        quickLinks.appendChild(myFitnessPalLink);
+      }
+
+      enableAppFirst(myFitnessPalLink, 'com.myfitnesspal.android');
+    }
+
     homeFrame.addEventListener('load', () => {
       try {
         const documentRef = homeFrame.contentDocument;
@@ -110,6 +133,7 @@
         enableAppFirst(documentRef.querySelector('a[title="Spotify"]'), 'com.spotify.music');
         enableAppFirst(documentRef.querySelector('a[title="AccuWeather"]'), 'com.accuweather.android');
         addNehemiahLink(documentRef, quickLinks);
+        addMyFitnessPalLink(documentRef, quickLinks);
       } catch (error) {
         console.warn('Unable to enhance HomeScreen quick links:', error);
       }
