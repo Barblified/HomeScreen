@@ -77,29 +77,60 @@
       });
     }
 
-    function addQuickLink(documentRef, quickLinks, config) {
-      let link = documentRef.getElementById(config.id);
+    function faviconUrl(webUrl) {
+      return `https://www.google.com/s2/favicons?domain_url=${encodeURIComponent(webUrl)}&sz=64`;
+    }
+
+    function applyIcon(documentRef, link, config) {
+      const fallback = documentRef.createElement('span');
+      fallback.className = 'quick-link-fallback';
+      fallback.textContent = config.fallback;
+      fallback.setAttribute('aria-hidden', 'true');
+
+      const icon = documentRef.createElement('img');
+      icon.src = faviconUrl(config.iconUrl || config.href || link.href);
+      icon.alt = '';
+      icon.loading = 'lazy';
+      icon.referrerPolicy = 'no-referrer';
+      icon.addEventListener('error', () => icon.replaceWith(fallback), { once: true });
+
+      link.replaceChildren(icon);
+    }
+
+    function configureQuickLink(documentRef, quickLinks, config) {
+      let link = config.existingTitle
+        ? quickLinks.querySelector(`a[title="${config.existingTitle}"]`)
+        : documentRef.getElementById(config.id);
 
       if (!link) {
         link = documentRef.createElement('a');
         link.id = config.id;
         link.className = 'quick-link';
-        link.href = config.href;
-        link.target = '_blank';
-        link.rel = 'noopener noreferrer';
-        link.setAttribute('aria-label', config.ariaLabel || `Open ${config.title}`);
-        link.title = config.title;
-        link.innerHTML = `
-          <svg viewBox="0 0 32 32" aria-hidden="true" focusable="false">
-            <circle cx="16" cy="16" r="14" fill="${config.background}"/>
-            <text x="16" y="20.5" text-anchor="middle" font-family="system-ui, sans-serif" font-size="${config.fontSize || 11}" font-weight="700" fill="${config.foreground || '#fff'}">${config.glyph}</text>
-          </svg>`;
         quickLinks.appendChild(link);
       }
+
+      link.href = config.href;
+      link.target = '_blank';
+      link.rel = 'noopener noreferrer';
+      link.title = config.title;
+      link.setAttribute('aria-label', config.ariaLabel || `Open ${config.title}`);
+      link.dataset.sortName = config.title;
+
+      applyIcon(documentRef, link, config);
 
       if (config.packageName) {
         enableAppFirst(link, config.packageName);
       }
+    }
+
+    function alphabetiseQuickLinks(quickLinks) {
+      const links = [...quickLinks.querySelectorAll('a.quick-link')];
+      links.sort((a, b) => {
+        const first = a.dataset.sortName || a.title || '';
+        const second = b.dataset.sortName || b.title || '';
+        return first.localeCompare(second, 'en-GB', { sensitivity: 'base' });
+      });
+      links.forEach(link => quickLinks.appendChild(link));
     }
 
     homeFrame.addEventListener('load', () => {
@@ -108,123 +139,160 @@
         const quickLinks = documentRef?.querySelector('.quick-links');
         if (!quickLinks) return;
 
-        enableAppFirst(documentRef.querySelector('a[title="Google Calendar"]'), 'com.google.android.calendar');
-        enableAppFirst(documentRef.querySelector('a[title="Spotify"]'), 'com.spotify.music');
-        enableAppFirst(documentRef.querySelector('a[title="AccuWeather"]'), 'com.accuweather.android');
+        const iconStyle = documentRef.createElement('style');
+        iconStyle.textContent = `
+          .quick-link img {
+            width: 29px;
+            height: 29px;
+            object-fit: contain;
+            border-radius: 6px;
+          }
+          .quick-link-fallback {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 29px;
+            height: 29px;
+            border-radius: 7px;
+            background: #20282d;
+            color: #fff;
+            font-family: system-ui, sans-serif;
+            font-size: 12px;
+            font-weight: 800;
+            line-height: 1;
+          }
+        `;
+        documentRef.head.appendChild(iconStyle);
 
         const links = [
           {
-            id: 'nehemiah-quick-link',
-            title: 'Nehemiah',
-            href: 'https://chatgpt.com/g/g-6a6f2147a4b48191978025f950045a49-nehemiah',
-            packageName: 'com.openai.chatgpt',
-            background: '#20282d',
-            glyph: 'N',
-            fontSize: 14,
-            ariaLabel: 'Open Nehemiah in ChatGPT'
+            existingTitle: 'AccuWeather',
+            title: 'AccuWeather',
+            href: 'https://www.accuweather.com/',
+            packageName: 'com.accuweather.android',
+            fallback: '☀'
           },
           {
-            id: 'myfitnesspal-quick-link',
-            title: 'MyFitnessPal',
-            href: 'https://www.myfitnesspal.com/',
-            packageName: 'com.myfitnesspal.android',
-            background: '#0066ee',
-            glyph: 'MFP',
-            fontSize: 8
-          },
-          {
-            id: 'whatsapp-quick-link',
-            title: 'WhatsApp',
-            href: 'https://web.whatsapp.com/',
-            packageName: 'com.whatsapp',
-            background: '#25d366',
-            glyph: 'WA',
-            fontSize: 9
-          },
-          {
-            id: 'teams-quick-link',
-            title: 'Microsoft Teams',
-            href: 'https://teams.microsoft.com/',
-            packageName: 'com.microsoft.teams',
-            background: '#6264a7',
-            glyph: 'T',
-            fontSize: 14
-          },
-          {
-            id: 'outlook-quick-link',
-            title: 'Outlook',
-            href: 'https://outlook.office.com/mail/',
-            packageName: 'com.microsoft.office.outlook',
-            background: '#0078d4',
-            glyph: 'O',
-            fontSize: 14
-          },
-          {
-            id: 'gmail-quick-link',
-            title: 'Gmail',
-            href: 'https://mail.google.com/mail/u/0/',
-            packageName: 'com.google.android.gm',
-            background: '#ea4335',
-            glyph: 'G',
-            fontSize: 14
+            id: 'altcodes-quick-link',
+            title: 'Alt Codes',
+            href: 'https://www.alt-codes.net/',
+            fallback: 'Alt'
           },
           {
             id: 'bible-quick-link',
             title: 'Bible.com',
             href: 'https://www.bible.com/',
             packageName: 'com.sirma.mobile.bible.android',
-            background: '#7a4b2a',
-            glyph: 'B',
-            fontSize: 14
+            fallback: '✝'
           },
           {
-            id: 'eggtimer-quick-link',
-            title: 'E.ggTimer',
-            href: 'https://e.ggtimer.com/',
-            background: '#f2b134',
-            foreground: '#20282d',
-            glyph: 'EGG',
-            fontSize: 7
+            existingTitle: 'CalendarBridge',
+            title: 'CalendarBridge',
+            href: 'https://app.calendarbridge.com/dashboard',
+            fallback: 'CB'
           },
           {
-            id: 'altcodes-quick-link',
-            title: 'Alt Codes',
-            href: 'https://www.alt-codes.net/',
-            background: '#4f5b61',
-            glyph: 'ALT',
-            fontSize: 8
+            existingTitle: 'Calendly',
+            title: 'Calendly',
+            href: 'https://calendly.com/app/scheduling/meeting_types/user/me',
+            fallback: 'C'
           },
           {
-            id: 'netflix-quick-link',
-            title: 'Netflix',
-            href: 'https://www.netflix.com/',
-            packageName: 'com.netflix.mediaclient',
-            background: '#000000',
-            foreground: '#e50914',
-            glyph: 'N',
-            fontSize: 15
+            id: 'compass-quick-link',
+            title: 'Compass',
+            href: 'https://leenmillsprimary-uk.compass.education/',
+            packageName: 'com.jdlf.compass',
+            fallback: '🧭'
           },
           {
             id: 'disneyplus-quick-link',
             title: 'Disney+',
             href: 'https://www.disneyplus.com/',
             packageName: 'com.disney.disneyplus',
-            background: '#113ccf',
-            glyph: 'D+',
-            fontSize: 10
+            fallback: 'D+'
+          },
+          {
+            id: 'eggtimer-quick-link',
+            title: 'E.ggTimer',
+            href: 'https://e.ggtimer.com/',
+            fallback: '🥚'
+          },
+          {
+            id: 'gmail-quick-link',
+            title: 'Gmail',
+            href: 'https://mail.google.com/mail/u/0/',
+            packageName: 'com.google.android.gm',
+            fallback: 'G'
+          },
+          {
+            existingTitle: 'Google Calendar',
+            title: 'Google Calendar',
+            href: 'https://calendar.google.com/calendar/u/0/r',
+            packageName: 'com.google.android.calendar',
+            fallback: '31'
+          },
+          {
+            id: 'myfitnesspal-quick-link',
+            title: 'MyFitnessPal',
+            href: 'https://www.myfitnesspal.com/',
+            packageName: 'com.myfitnesspal.android',
+            fallback: 'MFP'
+          },
+          {
+            id: 'nehemiah-quick-link',
+            title: 'Nehemiah',
+            href: 'https://chatgpt.com/g/g-6a6f2147a4b48191978025f950045a49-nehemiah',
+            iconUrl: 'https://chatgpt.com/',
+            packageName: 'com.openai.chatgpt',
+            fallback: 'N',
+            ariaLabel: 'Open Nehemiah in ChatGPT'
+          },
+          {
+            id: 'netflix-quick-link',
+            title: 'Netflix',
+            href: 'https://www.netflix.com/',
+            packageName: 'com.netflix.mediaclient',
+            fallback: 'N'
+          },
+          {
+            id: 'outlook-quick-link',
+            title: 'Outlook',
+            href: 'https://outlook.office.com/mail/',
+            packageName: 'com.microsoft.office.outlook',
+            fallback: 'O'
+          },
+          {
+            existingTitle: 'Spotify',
+            title: 'Spotify',
+            href: 'https://open.spotify.com/',
+            packageName: 'com.spotify.music',
+            fallback: '♪'
+          },
+          {
+            id: 'teams-quick-link',
+            title: 'Teams',
+            href: 'https://teams.microsoft.com/',
+            packageName: 'com.microsoft.teams',
+            fallback: 'T'
+          },
+          {
+            id: 'whatsapp-quick-link',
+            title: 'WhatsApp',
+            href: 'https://web.whatsapp.com/',
+            packageName: 'com.whatsapp',
+            fallback: 'WA'
           },
           {
             id: 'youtube-quick-link',
             title: 'YouTube',
             href: 'https://www.youtube.com/',
             packageName: 'com.google.android.youtube',
-            background: '#ff0000',
-            glyph: '▶',
-            fontSize: 12
+            fallback: '▶'
           }
         ];
 
-        links.forEach(config => addQuickLink(documentRef, quickLinks, config));
+        links.forEach(config => configureQuickLink(documentRef, quickLinks, config));
+        alphabetiseQuickLinks(quickLinks);
       } catch (error) {
         console.warn('Unable to enhance HomeScreen quick links:', error);
       }
