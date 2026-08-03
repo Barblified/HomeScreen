@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="A controlled-serendipity YouTube picker for genuinely useful long-form learning.">
+  <meta name="theme-color" content="#101820">
+  <title>Learn Something New</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Swanky+and+Moo+Moo&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="v2.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to picker</a>
+<div class="shell">
+<header>
+  <div><p class="kicker">Controlled serendipity</p><h1>Learn Something New</h1></div>
+  <button class="icon" id="settingsButton" type="button" aria-label="Open settings">⚙</button>
+</header>
+<main id="main">
+<section class="intro">
+  <h2>One useful long-form video. No feed. No scrolling.</h2>
+  <p>Choose your time and how far outside your normal orbit to travel. The engine filters for learning value before it adds randomness.</p>
+</section>
+<section class="panel picker">
+  <div class="controls">
+    <div><label class="label" for="duration">Time available</label><div class="select"><select id="duration"><option value="20-40">20–40 minutes</option><option value="40-90" selected>40–90 minutes</option><option value="90-240">90 minutes–4 hours</option></select></div></div>
+    <div><label class="label" for="format">Format</label><div class="select"><select id="format"><option value="any" selected>Any worthwhile format</option><option value="lesson">Practical lesson</option><option value="lecture">Lecture or course</option><option value="documentary">Documentary</option><option value="interview">Expert interview</option></select></div></div>
+    <div><label class="label" for="freshness">Publication age</label><div class="select"><select id="freshness"><option value="any" selected>Any age</option><option value="year">Past year</option><option value="fiveYears">Past five years</option></select></div></div>
+  </div>
+  <fieldset><legend class="label" style="margin-top:22px">Discovery mode</legend><div class="modes">
+    <div class="mode"><input type="radio" name="mode" id="useful" value="useful" checked><label for="useful"><strong>Useful</strong><span>Develop a capability or responsibility that matters.</span></label></div>
+    <div class="mode"><input type="radio" name="mode" id="interesting" value="interesting"><label for="interesting"><strong>Interesting</strong><span>Go deeper into a hobby or subject you already enjoy.</span></label></div>
+    <div class="mode"><input type="radio" name="mode" id="stretch" value="stretch"><label for="stretch"><strong>Stretch</strong><span>Use something familiar to enter a new discipline.</span></label></div>
+    <div class="mode"><input type="radio" name="mode" id="surprise" value="surprise"><label for="surprise"><strong>Surprise me</strong><span>Leave your established interests behind completely.</span></label></div>
+  </div></fieldset>
+  <button class="primary" id="discover" type="button">Teach me something</button>
+  <p class="micro">One search uses roughly 1% of a standard daily YouTube search allowance.</p>
+  <p class="status" id="status" role="status" aria-live="polite"></p>
+</section>
+<section class="panel setup" id="setup">
+  <h3>Add a YouTube API key once</h3>
+  <p>The key stays in this browser and is never committed to GitHub. Restrict it in Google Cloud to YouTube Data API v3 and this website’s HTTP referrer.</p>
+  <div class="setup-grid"><label class="sr" for="apiInline">YouTube API key</label><input class="text" id="apiInline" type="password" autocomplete="off" placeholder="Paste API key"><button class="secondary" id="saveInline" type="button">Save key</button></div>
+</section>
+<article class="panel result" id="result">
+  <div class="media"><img id="thumb" alt=""><span class="duration" id="durationBadge"></span></div>
+  <div class="body">
+    <div class="chips"><span class="chip accent" id="topicChip"></span><span class="chip" id="modeChip"></span><span class="chip" id="captionChip" hidden>Captions</span></div>
+    <h3 id="videoTitle"></h3><p class="channel" id="channel"></p><p class="reason" id="reason"></p><div class="metrics" id="metrics"></div>
+    <div class="actions"><a class="watch" id="watch" href="#" target="_blank" rel="noopener noreferrer">Watch on YouTube</a><button class="action" id="another">Another</button><button class="action" id="known">Already know it</button><button class="action" id="reject">Not useful</button></div>
+    <div class="note" id="note"><label class="label" for="learning">What did you learn?</label><div class="note-row"><input class="text" id="learning" maxlength="240" placeholder="One sentence is enough."><button class="save" id="saveLearning">Save note</button></div></div>
+  </div>
+</article>
+<section class="below">
+  <article class="panel small"><h3>What it optimises for</h3><p>Exact duration, substantive titles, captions, credible channels, age-adjusted engagement and novelty. Clickbait, highlights, ambient loops and repeated videos are penalised.</p></article>
+  <article class="panel small"><h3>Topic breadth</h3><details><summary id="topicCount">View the expanded pools</summary><p class="topic-summary" id="topicSummary"></p></details></article>
+  <article class="panel small"><h3>Recent discoveries</h3><p id="historyIntro">Watched and rejected videos will appear here.</p><ul class="history" id="history"></ul></article>
+</section>
+</main>
+<footer>Built to produce learning, not another recommendation feed.</footer>
+</div>
+<dialog id="settings">
+  <div class="dialog-head"><h2>Settings</h2><button class="icon" id="closeSettings" aria-label="Close settings">×</button></div>
+  <div class="dialog-body">
+    <label class="label" for="apiSettings">YouTube API key</label><input class="text" id="apiSettings" type="password" autocomplete="off" placeholder="Paste API key">
+    <p>Your key remains in local browser storage.</p><button class="secondary" id="saveSettings">Save API key</button> <button class="danger" id="removeKey">Remove key</button>
+    <hr style="border:0;border-top:1px solid var(--line);margin:24px 0">
+    <h3>Learning history</h3><p>History is kept only on this device so repetition can be avoided.</p><button class="danger" id="clearHistory">Clear history</button>
+  </div>
+</dialog>
+<script src="v2.js" defer></script>
+</body>
+</html>
