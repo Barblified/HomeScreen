@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-GB">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -16,6 +16,8 @@
       --accent: #2d574b;
       --accent-2: #9c6b3f;
       --steel: #647985;
+      --soft-green: rgba(45, 87, 75, 0.10);
+      --soft-bronze: rgba(156, 107, 63, 0.10);
     }
 
     * {
@@ -37,7 +39,7 @@
     }
 
     .card {
-      width: min(100%, 560px);
+      width: min(100%, 760px);
       background: var(--card);
       border: 1px solid rgba(233, 233, 229, 0.58);
       border-radius: 28px;
@@ -50,7 +52,6 @@
       margin: 0;
       color: var(--muted);
       font-size: 1.1rem;
-      font-weight: 400;
       letter-spacing: 0.08em;
       text-transform: uppercase;
     }
@@ -62,14 +63,20 @@
       font-weight: 400;
     }
 
+    h2 {
+      margin: 0;
+      color: var(--accent);
+      font-size: 2rem;
+      font-weight: 400;
+    }
+
     .status {
       margin: 0 0 22px;
       padding: 14px 16px;
       border-radius: 18px;
-      background: rgba(45, 87, 75, 0.11);
+      background: var(--soft-green);
       border: 1px solid rgba(45, 87, 75, 0.22);
       font-size: 1.35rem;
-      font-weight: 400;
     }
 
     .hero {
@@ -90,7 +97,6 @@
       display: block;
       color: var(--muted);
       font-size: 1.05rem;
-      font-weight: 400;
       letter-spacing: 0.04em;
       text-transform: uppercase;
     }
@@ -110,6 +116,11 @@
       font-size: 1.15rem;
     }
 
+    .metric .imperial-loss {
+      color: var(--accent-2);
+      font-size: 1.35rem;
+    }
+
     .progress-wrap {
       margin: 12px 0 18px;
     }
@@ -120,7 +131,6 @@
       gap: 12px;
       color: var(--muted);
       font-size: 1.08rem;
-      font-weight: 400;
       margin-bottom: 8px;
     }
 
@@ -166,7 +176,94 @@
       margin-top: 3px;
       color: var(--muted);
       font-size: 1.02rem;
+    }
+
+    .coach {
+      margin-top: 22px;
+      padding: 20px;
+      border: 1px solid rgba(156, 107, 63, 0.25);
+      border-radius: 22px;
+      background: var(--soft-bronze);
+    }
+
+    .coach-heading {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 14px;
+      margin-bottom: 14px;
+    }
+
+    .coach-subtitle {
+      margin: 3px 0 0;
+      color: var(--muted);
+      font-size: 1.05rem;
+    }
+
+    .coach-badges {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      gap: 7px;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      min-height: 30px;
+      padding: 5px 10px;
+      border: 1px solid rgba(32, 40, 45, 0.14);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.72);
+      color: var(--ink);
+      font-family: system-ui, sans-serif;
+      font-size: 0.78rem;
+      font-weight: 700;
+    }
+
+    .coach-action {
+      margin: 0 0 12px;
+      padding: 13px 14px;
+      border-left: 5px solid var(--accent-2);
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.62);
+      font-size: 1.25rem;
+      line-height: 1.25;
+    }
+
+    .coach-item {
+      padding: 12px 0;
+      border-top: 1px solid var(--line);
+    }
+
+    .coach-item:first-of-type {
+      border-top: 0;
+    }
+
+    .coach-item h3 {
+      margin: 0 0 4px;
+      color: var(--steel);
+      font-size: 1.15rem;
       font-weight: 400;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .coach-item p {
+      margin: 0;
+      font-size: 1.2rem;
+      line-height: 1.3;
+    }
+
+    .coach-item.evidence p {
+      color: var(--muted);
+      font-size: 1.02rem;
+    }
+
+    .no-coach {
+      margin: 12px 0 0;
+      color: var(--muted);
+      font-size: 1.2rem;
     }
 
     footer {
@@ -180,7 +277,11 @@
       font-size: 1rem;
     }
 
-    @media (max-width: 560px) {
+    [hidden] {
+      display: none !important;
+    }
+
+    @media (max-width: 620px) {
       body {
         padding: 16px;
       }
@@ -198,6 +299,14 @@
         grid-template-columns: repeat(2, 1fr);
       }
 
+      .coach-heading {
+        flex-direction: column;
+      }
+
+      .coach-badges {
+        justify-content: flex-start;
+      }
+
       footer {
         flex-direction: column;
       }
@@ -209,13 +318,14 @@
     <p class="eyebrow">Public accountability</p>
     <h1>Health Cut</h1>
 
-    <p class="status" id="status">Loading the latest numbers now…</p>
+    <p class="status" id="status">Loading today’s numbers…</p>
 
     <section class="hero">
       <div class="metric">
         <small>Total lost</small>
         <strong id="lost">—</strong>
-        <span id="weight-line">Current weight loading…</span>
+        <span class="imperial-loss" id="lost-imperial">—</span>
+        <span id="weight-line">Today’s weight loading…</span>
       </div>
 
       <div class="metric">
@@ -273,6 +383,45 @@
       </div>
     </section>
 
+    <section class="coach" aria-labelledby="coach-heading">
+      <div class="coach-heading">
+        <div>
+          <h2 id="coach-heading">Coach Notes</h2>
+          <p class="coach-subtitle">Only notes attached to today’s row are shown.</p>
+        </div>
+        <div class="coach-badges" id="coach-badges">
+          <span class="badge" id="coach-status">—</span>
+          <span class="badge" id="risk-flag">—</span>
+        </div>
+      </div>
+
+      <div id="coach-details">
+        <p class="coach-action" id="recommended-action">—</p>
+
+        <div class="coach-item">
+          <h3>Daily analysis</h3>
+          <p id="daily-analysis">—</p>
+        </div>
+
+        <div class="coach-item">
+          <h3>Trend summary</h3>
+          <p id="trend-summary">—</p>
+        </div>
+
+        <div class="coach-item">
+          <h3>Missing information</h3>
+          <p id="missing-fields">—</p>
+        </div>
+
+        <div class="coach-item evidence">
+          <h3>Evidence</h3>
+          <p id="evidence-source">—</p>
+        </div>
+      </div>
+
+      <p class="no-coach" id="no-coach" hidden>No coach notes are available for today.</p>
+    </section>
+
     <footer>
       <span id="updated">Updated: —</span>
       <span id="source">Source: Google Sheets</span>
@@ -284,85 +433,69 @@
 
     const fallback = {
       startingWeightKg: 113.2,
-      currentWeightKg: 113.2,
+      currentWeightKg: null,
       checkpointWeightKg: 100,
       finalGoalKg: 74,
       heightM: 1.72,
-      currentBmi: 38.2639,
-      totalLostKg: 0,
-      checkpointProgressPercent: 0,
-      caloriesToday: 0,
-      proteinGramsToday: 0,
-      carbsGramsToday: 0,
-      fatGramsToday: 0,
-      daysLoggedThisWeek: 0,
-      proteinDaysThisWeek: 0,
-      workoutsThisWeek: 0,
+      currentBmi: null,
+      totalLostKg: null,
+      checkpointProgressPercent: null,
+      caloriesToday: null,
+      proteinGramsToday: null,
+      carbsGramsToday: null,
+      fatGramsToday: null,
+      daysLoggedThisWeek: null,
+      proteinDaysThisWeek: null,
+      workoutsThisWeek: null,
       workoutTarget: 3,
-      sleepTargetDaysThisWeek: 0,
-      lastUpdated: "fallback",
+      sleepTargetDaysThisWeek: null,
+      coachStatus: "",
+      missingFields: "",
+      dailyAnalysis: "",
+      trendSummary: "",
+      recommendedAction: "",
+      riskFlag: "",
+      evidenceSource: "",
+      lastUpdated: "Live data unavailable",
       accountabilityStatus: "Live data did not load. Check the Apps Script endpoint."
     };
 
-    function numberOrFallback(value, fallbackValue = 0) {
-      const number = Number(String(value ?? "").replace(/,/g, "").trim());
-      return Number.isFinite(number) ? number : fallbackValue;
+    function hasValue(value) {
+      return value !== null && value !== undefined && String(value).trim() !== "";
     }
 
-    function keySlug(value) {
-      return String(value)
-        .toLowerCase()
-        .replace(/&/g, "and")
-        .replace(/[^a-z0-9]+/g, "");
-    }
-
-    function flattenObject(source, prefix = "", output = {}) {
-      if (!source || typeof source !== "object") return output;
-
-      for (const [key, value] of Object.entries(source)) {
-        const fullKey = prefix ? `${prefix}.${key}` : key;
-
-        if (value && typeof value === "object" && !Array.isArray(value)) {
-          flattenObject(value, fullKey, output);
-        } else {
-          output[fullKey] = value;
-        }
-      }
-
-      return output;
-    }
-
-    function firstNumber(metrics, keys, fallbackValue = 0) {
-      const flatMetrics = flattenObject(metrics);
-      const normalized = {};
-
-      for (const [key, value] of Object.entries(flatMetrics)) {
-        normalized[keySlug(key)] = value;
-      }
-
-      for (const key of keys) {
-        const candidates = [
-          metrics[key],
-          flatMetrics[key],
-          normalized[keySlug(key)]
-        ];
-
-        for (const candidate of candidates) {
-          const number = numberOrFallback(candidate, NaN);
-          if (Number.isFinite(number)) return number;
-        }
-      }
-
-      return fallbackValue;
+    function toNumber(value) {
+      if (!hasValue(value)) return null;
+      const number = Number(String(value).replace(/,/g, "").trim());
+      return Number.isFinite(number) ? number : null;
     }
 
     function formatKg(value) {
-      return `${numberOrFallback(value).toFixed(1)} kg`;
+      const number = toNumber(value);
+      return number === null ? "—" : `${number.toFixed(1)} kg`;
     }
 
     function formatWholeNumber(value, suffix = "") {
-      const number = numberOrFallback(value, 0);
-      return number > 0 ? `${Math.round(number).toLocaleString("en-GB")}${suffix}` : "—";
+      const number = toNumber(value);
+      return number === null
+        ? "—"
+        : `${Math.round(number).toLocaleString("en-GB")}${suffix}`;
+    }
+
+    function formatStonePounds(valueKg) {
+      const kilograms = toNumber(valueKg);
+      if (kilograms === null) return "—";
+
+      const totalPounds = kilograms * 2.2046226218;
+      let stones = Math.floor(totalPounds / 14);
+      let pounds = totalPounds - stones * 14;
+
+      if (pounds >= 13.95) {
+        stones += 1;
+        pounds = 0;
+      }
+
+      return `${stones} st ${pounds.toFixed(1)} lb`;
     }
 
     function clamp(value, min, max) {
@@ -375,55 +508,104 @@
       return fallback;
     }
 
+    function textOrBlank(value) {
+      return hasValue(value) ? String(value).trim() : "";
+    }
+
+    function setText(id, value) {
+      const element = document.getElementById(id);
+      if (element) element.textContent = value;
+    }
+
+    function renderCoachNotes(metrics) {
+      const notes = {
+        status: textOrBlank(metrics.coachStatus),
+        missing: textOrBlank(metrics.missingFields),
+        analysis: textOrBlank(metrics.dailyAnalysis),
+        trend: textOrBlank(metrics.trendSummary),
+        action: textOrBlank(metrics.recommendedAction),
+        risk: textOrBlank(metrics.riskFlag),
+        evidence: textOrBlank(metrics.evidenceSource)
+      };
+
+      const hasCoachNotes = Object.values(notes).some(Boolean);
+      document.getElementById("coach-details").hidden = !hasCoachNotes;
+      document.getElementById("coach-badges").hidden = !hasCoachNotes;
+      document.getElementById("no-coach").hidden = hasCoachNotes;
+
+      if (!hasCoachNotes) return;
+
+      setText("coach-status", notes.status || "No status");
+      setText("risk-flag", `Risk: ${notes.risk || "None"}`);
+      setText("recommended-action", notes.action || "No action recorded for today.");
+      setText("daily-analysis", notes.analysis || "No daily analysis recorded.");
+      setText("trend-summary", notes.trend || "No trend summary recorded.");
+      setText("missing-fields", notes.missing || "None recorded.");
+      setText("evidence-source", notes.evidence || "No evidence source recorded.");
+    }
+
     function render(metrics, sourceLabel = "Google Sheets") {
-      const start = numberOrFallback(metrics.startingWeightKg, 113.2);
-      const current = numberOrFallback(metrics.currentWeightKg, start);
-      const checkpoint = numberOrFallback(metrics.checkpointWeightKg, 100);
-      const lost = numberOrFallback(metrics.totalLostKg, start - current);
-      const bmi = numberOrFallback(metrics.currentBmi, 0);
-      const progress = clamp(numberOrFallback(metrics.checkpointProgressPercent, 0), 0, 100);
-      const caloriesToday = firstNumber(metrics, ["caloriesToday", "todayCalories", "dailyCalories", "caloriesConsumedToday", "kcalToday", "calories", "kcal", "Calories", "Calories Consumed", "Calories consumed", "Calories (kcal)", "Energy", "Energy (kcal)", "today.calories", "today.kcal", "nutrition.calories"]);
-      const proteinToday = firstNumber(metrics, ["proteinGramsToday", "proteinToday", "todayProtein", "dailyProtein", "proteinGToday", "protein", "Protein", "Protein g", "Protein (g)", "Protein grams", "Grams Protein", "today.protein", "today.proteinGrams", "nutrition.protein"]);
-      const carbsToday = firstNumber(metrics, ["carbsGramsToday", "carbsToday", "todayCarbs", "dailyCarbs", "carbohydratesToday", "carbs", "Carbs", "Carbs g", "Carbs (g)", "Carbohydrates", "Carbohydrates (g)", "Carb", "today.carbs", "today.carbsGrams", "nutrition.carbs"]);
-      const fatToday = firstNumber(metrics, ["fatGramsToday", "fatToday", "todayFat", "dailyFat", "fatsToday", "fat", "Fat", "Fat g", "Fat (g)", "Fats", "Fats (g)", "today.fat", "today.fatGrams", "nutrition.fat"]);
+      const start = toNumber(metrics.startingWeightKg);
+      const current = toNumber(metrics.currentWeightKg);
+      const checkpoint = toNumber(metrics.checkpointWeightKg);
+      const bmi = toNumber(metrics.currentBmi);
+      const suppliedLost = toNumber(metrics.totalLostKg);
+      const lost = suppliedLost !== null
+        ? suppliedLost
+        : start !== null && current !== null
+          ? start - current
+          : null;
+      const suppliedProgress = toNumber(metrics.checkpointProgressPercent);
+      const progress = suppliedProgress === null ? null : clamp(suppliedProgress, 0, 100);
+      const todayExists = textOrBlank(metrics.lastUpdated) !== "No entry for today";
 
-      document.getElementById("status").textContent =
-        metrics.accountabilityStatus || "Log first. Move next.";
+      setText(
+        "status",
+        todayExists
+          ? textOrBlank(metrics.accountabilityStatus) || "Today’s health data is live."
+          : "No health entry has been logged for today."
+      );
 
-      document.getElementById("lost").textContent = formatKg(lost);
-      document.getElementById("weight-line").textContent =
-        `Current: ${formatKg(current)} · Start: ${formatKg(start)}`;
+      setText("lost", formatKg(lost));
+      setText("lost-imperial", formatStonePounds(lost));
+      setText(
+        "weight-line",
+        current === null
+          ? `No weight logged for today · Start: ${formatKg(start)}`
+          : `Current: ${formatKg(current)} · Start: ${formatKg(start)}`
+      );
 
-      document.getElementById("bmi").textContent = bmi ? bmi.toFixed(1) : "—";
+      setText("bmi", bmi === null ? "—" : bmi.toFixed(1));
+      setText(
+        "checkpoint-label",
+        checkpoint === null ? "Progress to checkpoint" : `Progress to ${formatKg(checkpoint)} checkpoint`
+      );
+      setText("checkpoint-percent", progress === null ? "—" : `${progress.toFixed(0)}%`);
+      document.getElementById("progress-bar").style.width = `${progress === null ? 0 : progress}%`;
 
-      document.getElementById("checkpoint-label").textContent =
-        `Progress to ${formatKg(checkpoint)} checkpoint`;
-      document.getElementById("checkpoint-percent").textContent =
-        `${progress.toFixed(0)}%`;
-      document.getElementById("progress-bar").style.width = `${progress}%`;
+      setText("calories-today", formatWholeNumber(metrics.caloriesToday));
+      setText("protein-grams-today", formatWholeNumber(metrics.proteinGramsToday, "g"));
+      setText("carbs-grams-today", formatWholeNumber(metrics.carbsGramsToday, "g"));
+      setText("fat-grams-today", formatWholeNumber(metrics.fatGramsToday, "g"));
 
-      document.getElementById("calories-today").textContent =
-        formatWholeNumber(caloriesToday);
-      document.getElementById("protein-grams-today").textContent =
-        formatWholeNumber(proteinToday, "g");
-      document.getElementById("carbs-grams-today").textContent =
-        formatWholeNumber(carbsToday, "g");
-      document.getElementById("fat-grams-today").textContent =
-        formatWholeNumber(fatToday, "g");
+      const daysLogged = toNumber(metrics.daysLoggedThisWeek);
+      const proteinDays = toNumber(metrics.proteinDaysThisWeek);
+      const workouts = toNumber(metrics.workoutsThisWeek);
+      const workoutTarget = toNumber(metrics.workoutTarget);
+      const sleepDays = toNumber(metrics.sleepTargetDaysThisWeek);
 
-      document.getElementById("logged").textContent =
-        `${numberOrFallback(metrics.daysLoggedThisWeek, 0)}/7`;
-      document.getElementById("protein").textContent =
-        `${numberOrFallback(metrics.proteinDaysThisWeek, 0)}/7`;
-      document.getElementById("workouts").textContent =
-        `${numberOrFallback(metrics.workoutsThisWeek, 0)}/${numberOrFallback(metrics.workoutTarget, 3)}`;
-      document.getElementById("sleep").textContent =
-        `${numberOrFallback(metrics.sleepTargetDaysThisWeek, 0)}/7`;
+      setText("logged", daysLogged === null ? "—" : `${daysLogged}/7`);
+      setText("protein", proteinDays === null ? "—" : `${proteinDays}/7`);
+      setText(
+        "workouts",
+        workouts === null ? "—" : `${workouts}/${workoutTarget === null ? 3 : workoutTarget}`
+      );
+      setText("sleep", sleepDays === null ? "—" : `${sleepDays}/7`);
 
-      document.getElementById("updated").textContent =
-        `Updated: ${metrics.lastUpdated || "today"}`;
-      document.getElementById("source").textContent =
-        `Source: ${sourceLabel}`;
+      renderCoachNotes(metrics);
+
+      setText("updated", `Updated: ${textOrBlank(metrics.lastUpdated) || "—"}`);
+      setText("source", `Source: ${sourceLabel}`);
     }
 
     async function loadMetrics() {
@@ -440,7 +622,7 @@
         render(normalizePayload(payload), payload.source || "Google Sheets");
       } catch (error) {
         console.warn("Health Cut metrics failed to load:", error);
-        render(fallback, "Fallback");
+        render(fallback, "Unavailable");
       }
     }
 
