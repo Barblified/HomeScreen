@@ -114,6 +114,25 @@
         .sort((a, b) => a.timestamp - b.timestamp);
     }
 
+    function buildRollingAverageSeries(history, windowDays, minimumReadings) {
+      const windowMs = (windowDays - 1) * 24 * 60 * 60 * 1000;
+
+      return history.map(entry => {
+        const windowStart = entry.timestamp - windowMs;
+        const readings = history.filter(candidate =>
+          candidate.timestamp >= windowStart &&
+          candidate.timestamp <= entry.timestamp
+        );
+
+        if (readings.length < minimumReadings) {
+          return { ...entry, averageKg: null, readingCount: readings.length };
+        }
+
+        const averageKg = readings.reduce((sum, reading) => sum + reading.weightKg, 0) / readings.length;
+        return { ...entry, averageKg, readingCount: readings.length };
+      });
+    }
+
     function formatChartDate(timestamp) {
       return new Intl.DateTimeFormat("en-GB", {
         day: "numeric",
@@ -181,6 +200,33 @@
           margin-top: 2px;
           font-size: 0.92rem;
         }
+        .chart-legend {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 12px 16px;
+          margin: 0 0 10px;
+          color: var(--muted);
+          font-family: system-ui, sans-serif;
+          font-size: 0.78rem;
+          font-weight: 700;
+        }
+        .chart-legend-item {
+          display: inline-flex;
+          align-items: center;
+          gap: 7px;
+        }
+        .chart-legend-line {
+          width: 24px;
+          height: 0;
+          border-top: 3px solid currentColor;
+          border-radius: 999px;
+        }
+        .chart-legend-line.raw {
+          color: #8b959b;
+          border-top-width: 2px;
+        }
+        .chart-legend-line.seven { color: #2563b8; }
+        .chart-legend-line.fourteen { color: #c47a18; }
         .chart-wrap {
           position: relative;
           width: 100%;
@@ -218,7 +264,7 @@
         <div class="chart-heading">
           <div>
             <h2 id="weight-trend-heading">Weight Trend</h2>
-            <p>Every valid weigh-in plotted by date. Blank entries are skipped.</p>
+            <p>Raw weigh-ins with 7-day and 14-day rolling averages. Blank entries are skipped.</p>
           </div>
           <div class="chart-summary" id="weight-trend-summary" hidden>
             <div class="chart-chip">
@@ -235,11 +281,16 @@
             </div>
           </div>
         </div>
+        <div class="chart-legend" aria-label="Chart legend">
+          <span class="chart-legend-item"><span class="chart-legend-line raw"></span>Weight log</span>
+          <span class="chart-legend-item"><span class="chart-legend-line seven"></span>7-day average · 4 readings needed</span>
+          <span class="chart-legend-item"><span class="chart-legend-line fourteen"></span>14-day average · 8 readings needed</span>
+        </div>
         <div class="chart-wrap" id="weight-trend-wrap">
           <canvas
             id="weight-trend-canvas"
             role="img"
-            aria-label="Line chart showing logged weight in kilograms by date">
+            aria-label="Line chart showing logged weight plus 7-day and 14-day rolling averages in kilograms by date">
             Weight history chart.
           </canvas>
           <p class="chart-empty" id="weight-trend-empty" hidden>
@@ -280,6 +331,8 @@
 
       const first = history[0];
       const latest = history[history.length - 1];
+      const sevenDaySeries = buildRollingAverageSeries(history, 7, 4);
+      const fourteenDaySeries = buildRollingAverageSeries(history, 14, 8);
 
       setChartText(doc, "weight-trend-start", formatKg(first.weightKg));
       setChartText(doc, "weight-trend-latest", formatKg(latest.weightKg));
@@ -307,7 +360,11 @@
       const plotWidth = cssWidth - margin.left - margin.right;
       const plotHeight = cssHeight - margin.top - margin.bottom;
 
-      const weights = history.map(entry => entry.weightKg);
+      const weights = [
+        ...history.map(entry => entry.weightKg),
+        ...sevenDaySeries.map(entry => entry.averageKg).filter(value => value !== null),
+        ...fourteenDaySeries.map(entry => entry.averageKg).filter(value => value !== null)
+      ];
       const rawMin = Math.min(...weights);
       const rawMax = Math.max(...weights);
       const rawRange = rawMax - rawMin;
@@ -365,8 +422,8 @@
       }
 
       const gradient = context.createLinearGradient(0, margin.top, 0, margin.top + plotHeight);
-      gradient.addColorStop(0, "rgba(45, 87, 75, 0.22)");
-      gradient.addColorStop(1, "rgba(45, 87, 75, 0.01)");
+      gradient.addColorStop(0, "rgba(139, 149, 155, 0.12)");
+      gradient.addColorStop(1, "rgba(139, 149, 155, 0.01)");
 
       context.beginPath();
       history.forEach((entry, index) => {
@@ -381,18 +438,35 @@
       context.fillStyle = gradient;
       context.fill();
 
-      context.beginPath();
-      history.forEach((entry, index) => {
-        const x = xFor(entry.timestamp);
-        const y = yFor(entry.weightKg);
-        if (index === 0) context.moveTo(x, y);
-        else context.lineTo(x, y);
-      });
-      context.strokeStyle = "#2d574b";
-      context.lineWidth = 3;
-      context.lineJoin = "round";
-      context.lineCap = "round";
-      context.stroke();
+      function drawLineSeries(series, valueKey, strokeStyle, lineWidth) {
+        let drawing = false;
+        context.beginPath();
+
+        series.forEach(entry => {
+          const value = entry[valueKey];
+          if (value === null || value === undefined) {
+            drawing = false;
+            return;
+          }
+
+          const x = xFor(entry.timestamp);
+          const y = yFor(value);
+          if (!drawing) {
+            context.moveTo(x, y);
+            drawing = true;
+          } else {
+            context.lineTo(x, y);
+          }
+        });
+
+        context.strokeStyle = strokeStyle;
+        context.lineWidth = lineWidth;
+        context.lineJoin = "round";
+        context.lineCap = "round";
+        context.stroke();
+      }
+
+      drawLineSeries(history, "weightKg", "#8b959b", 1.6);
 
       history.forEach((entry, index) => {
         const x = xFor(entry.timestamp);
@@ -400,22 +474,47 @@
         const isEndpoint = index === 0 || index === history.length - 1;
 
         context.beginPath();
-        context.arc(x, y, isEndpoint ? 5 : 3.2, 0, Math.PI * 2);
-        context.fillStyle = isEndpoint ? "#9c6b3f" : "#2d574b";
+        context.arc(x, y, isEndpoint ? 4.4 : 2.6, 0, Math.PI * 2);
+        context.fillStyle = isEndpoint ? "#59666d" : "#8b959b";
         context.fill();
-        context.lineWidth = 2;
+        context.lineWidth = 1.5;
         context.strokeStyle = "rgba(250,250,248,0.95)";
         context.stroke();
       });
 
+      drawLineSeries(sevenDaySeries, "averageKg", "#2563b8", 3.2);
+      drawLineSeries(fourteenDaySeries, "averageKg", "#c47a18", 3.2);
+
       context.font = "700 12px system-ui, sans-serif";
-      context.fillStyle = "#20282d";
       context.textAlign = "right";
+      context.fillStyle = "#59666d";
       context.fillText(
         `${latest.weightKg.toFixed(1)} kg`,
         Math.min(cssWidth - margin.right, xFor(latest.timestamp)),
         Math.max(12, yFor(latest.weightKg) - 14)
       );
+
+      const latestSevenDay = sevenDaySeries[sevenDaySeries.length - 1]?.averageKg ?? null;
+      const latestFourteenDay = fourteenDaySeries[fourteenDaySeries.length - 1]?.averageKg ?? null;
+      const labelX = cssWidth - margin.right;
+
+      if (latestSevenDay !== null) {
+        context.fillStyle = "#2563b8";
+        context.fillText(
+          `7d ${latestSevenDay.toFixed(1)}`,
+          labelX,
+          Math.min(cssHeight - margin.bottom - 10, yFor(latestSevenDay) + 14)
+        );
+      }
+
+      if (latestFourteenDay !== null) {
+        context.fillStyle = "#c47a18";
+        context.fillText(
+          `14d ${latestFourteenDay.toFixed(1)}`,
+          labelX,
+          Math.max(margin.top + 10, yFor(latestFourteenDay) - 14)
+        );
+      }
     }
 
     async function loadWeightHistory(doc) {
