@@ -30,7 +30,13 @@
     .site-menu a:hover,
     .site-menu a:focus-visible { background: rgba(255,255,255,.14); }
     .site-menu a[aria-current="page"] { background: #2d574b; }
-    .page-frame { width: 100%; height: calc(100% - 62px); border: 0; display: block; background: #20282d; }
+    .page-frame {
+      width: 100%;
+      height: calc(100% - 62px);
+      border: 0;
+      display: block;
+      background: #20282d;
+    }
     @media (max-width: 480px) {
       .site-menu { height: 56px; gap: 4px; padding: 7px 8px; }
       .site-menu a { padding: 9px 12px; font-size: 14px; }
@@ -44,6 +50,411 @@
     <a href="/HomeScreen/health/" aria-current="page">Health</a>
     <a href="/HomeScreen/learn/">Learn</a>
   </nav>
-  <iframe class="page-frame" src="content.html" title="Health page" allow="fullscreen; autoplay; clipboard-write; encrypted-media; picture-in-picture" allowfullscreen></iframe>
+
+  <iframe
+    class="page-frame"
+    src="content.html"
+    title="Health page"
+    allow="fullscreen; autoplay; clipboard-write; encrypted-media; picture-in-picture"
+    allowfullscreen>
+  </iframe>
+
+  <script>
+    const HEALTH_DATA_URL = "https://script.google.com/macros/s/AKfycbwihWQw8Frs1acA1Y-CELBw0NmX4O5KFzcqU3f8TbFpSegleKyPM64TkqTyoNyAWhLP/exec";
+    const healthFrame = document.querySelector(".page-frame");
+    let currentWeightHistory = [];
+
+    function toNumber(value) {
+      if (value === null || value === undefined || String(value).trim() === "") return null;
+      const number = Number(String(value).replace(/,/g, "").trim());
+      return Number.isFinite(number) ? number : null;
+    }
+
+    function formatKg(value) {
+      const number = toNumber(value);
+      return number === null ? "—" : `${number.toFixed(1)} kg`;
+    }
+
+    function formatSignedKg(value) {
+      const number = toNumber(value);
+      if (number === null) return "—";
+      return `${number > 0 ? "+" : ""}${number.toFixed(1)} kg`;
+    }
+
+    function parseWeightHistory(value) {
+      let history = value;
+
+      if (typeof history === "string") {
+        try {
+          history = JSON.parse(history);
+        } catch (error) {
+          console.warn("Weight history could not be parsed:", error);
+          return [];
+        }
+      }
+
+      if (!Array.isArray(history)) return [];
+
+      return history
+        .map(entry => {
+          const weightKg = toNumber(entry?.weightKg);
+          const timestamp = Date.parse(`${entry?.date || ""}T12:00:00`);
+          return {
+            date: entry?.date || "",
+            timestamp,
+            weightKg
+          };
+        })
+        .filter(entry =>
+          entry.date &&
+          Number.isFinite(entry.timestamp) &&
+          entry.weightKg !== null &&
+          entry.weightKg > 0
+        )
+        .sort((a, b) => a.timestamp - b.timestamp);
+    }
+
+    function formatChartDate(timestamp) {
+      return new Intl.DateTimeFormat("en-GB", {
+        day: "numeric",
+        month: "short"
+      }).format(new Date(timestamp));
+    }
+
+    function injectChart(doc) {
+      if (doc.getElementById("weight-trend-section")) return;
+
+      const style = doc.createElement("style");
+      style.id = "weight-trend-styles";
+      style.textContent = `
+        .chart-card {
+          margin-bottom: 18px;
+          padding: 18px;
+          border: 1px solid rgba(45, 87, 75, 0.24);
+          border-radius: 22px;
+          background: linear-gradient(145deg, rgba(255,255,255,0.82), rgba(239,243,245,0.68));
+          overflow: hidden;
+        }
+        .chart-heading {
+          display: flex;
+          align-items: flex-start;
+          justify-content: space-between;
+          gap: 14px;
+          margin-bottom: 12px;
+        }
+        .chart-heading h2 {
+          margin: 0;
+          color: var(--accent);
+          font-size: 2rem;
+          font-weight: 400;
+        }
+        .chart-heading p {
+          margin: 3px 0 0;
+          color: var(--muted);
+          font-size: 1.05rem;
+        }
+        .chart-summary {
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: flex-end;
+          gap: 7px;
+          font-family: system-ui, sans-serif;
+        }
+        .chart-chip {
+          min-width: 88px;
+          padding: 7px 10px;
+          border: 1px solid var(--line);
+          border-radius: 12px;
+          background: rgba(255,255,255,0.78);
+          text-align: center;
+        }
+        .chart-chip small {
+          display: block;
+          color: var(--muted);
+          font-size: 0.68rem;
+          font-weight: 700;
+          letter-spacing: 0.04em;
+          text-transform: uppercase;
+        }
+        .chart-chip strong {
+          display: block;
+          margin-top: 2px;
+          font-size: 0.92rem;
+        }
+        .chart-wrap {
+          position: relative;
+          width: 100%;
+          height: 310px;
+          border-radius: 16px;
+          background: rgba(250,250,248,0.72);
+        }
+        #weight-trend-canvas {
+          display: block;
+          width: 100%;
+          height: 100%;
+        }
+        .chart-empty {
+          display: grid;
+          place-items: center;
+          min-height: 180px;
+          margin: 0;
+          color: var(--muted);
+          font-size: 1.2rem;
+          text-align: center;
+        }
+        @media (max-width: 620px) {
+          .chart-heading { flex-direction: column; }
+          .chart-summary { justify-content: flex-start; }
+          .chart-wrap { height: 260px; }
+        }
+      `;
+      doc.head.appendChild(style);
+
+      const section = doc.createElement("section");
+      section.id = "weight-trend-section";
+      section.className = "chart-card";
+      section.setAttribute("aria-labelledby", "weight-trend-heading");
+      section.innerHTML = `
+        <div class="chart-heading">
+          <div>
+            <h2 id="weight-trend-heading">Weight Trend</h2>
+            <p>Every valid weigh-in plotted by date. Blank entries are skipped.</p>
+          </div>
+          <div class="chart-summary" id="weight-trend-summary" hidden>
+            <div class="chart-chip">
+              <small>Start</small>
+              <strong id="weight-trend-start">—</strong>
+            </div>
+            <div class="chart-chip">
+              <small>Latest</small>
+              <strong id="weight-trend-latest">—</strong>
+            </div>
+            <div class="chart-chip">
+              <small>Change</small>
+              <strong id="weight-trend-change">—</strong>
+            </div>
+          </div>
+        </div>
+        <div class="chart-wrap" id="weight-trend-wrap">
+          <canvas
+            id="weight-trend-canvas"
+            role="img"
+            aria-label="Line chart showing logged weight in kilograms by date">
+            Weight history chart.
+          </canvas>
+          <p class="chart-empty" id="weight-trend-empty" hidden>
+            Not enough valid weight logs to draw the trend yet.
+          </p>
+        </div>
+      `;
+
+      const hero = doc.querySelector(".hero");
+      if (hero) hero.before(section);
+    }
+
+    function setChartText(doc, id, value) {
+      const element = doc.getElementById(id);
+      if (element) element.textContent = value;
+    }
+
+    function drawWeightChart(doc, history) {
+      currentWeightHistory = history;
+
+      const canvas = doc.getElementById("weight-trend-canvas");
+      const wrap = doc.getElementById("weight-trend-wrap");
+      const empty = doc.getElementById("weight-trend-empty");
+      const summary = doc.getElementById("weight-trend-summary");
+
+      if (!canvas || !wrap || !empty || !summary) return;
+
+      if (history.length < 2) {
+        canvas.hidden = true;
+        empty.hidden = false;
+        summary.hidden = true;
+        return;
+      }
+
+      canvas.hidden = false;
+      empty.hidden = true;
+      summary.hidden = false;
+
+      const first = history[0];
+      const latest = history[history.length - 1];
+
+      setChartText(doc, "weight-trend-start", formatKg(first.weightKg));
+      setChartText(doc, "weight-trend-latest", formatKg(latest.weightKg));
+      setChartText(doc, "weight-trend-change", formatSignedKg(latest.weightKg - first.weightKg));
+
+      const rect = wrap.getBoundingClientRect();
+      const cssWidth = Math.max(320, Math.floor(rect.width));
+      const cssHeight = Math.max(220, Math.floor(rect.height));
+      const pixelRatio = Math.min(doc.defaultView?.devicePixelRatio || 1, 2);
+
+      canvas.width = Math.floor(cssWidth * pixelRatio);
+      canvas.height = Math.floor(cssHeight * pixelRatio);
+
+      const context = canvas.getContext("2d");
+      context.setTransform(pixelRatio, 0, 0, pixelRatio, 0, 0);
+      context.clearRect(0, 0, cssWidth, cssHeight);
+
+      const compact = cssWidth < 520;
+      const margin = {
+        top: 22,
+        right: compact ? 16 : 24,
+        bottom: 44,
+        left: compact ? 48 : 58
+      };
+      const plotWidth = cssWidth - margin.left - margin.right;
+      const plotHeight = cssHeight - margin.top - margin.bottom;
+
+      const weights = history.map(entry => entry.weightKg);
+      const rawMin = Math.min(...weights);
+      const rawMax = Math.max(...weights);
+      const rawRange = rawMax - rawMin;
+      const padding = Math.max(0.5, rawRange * 0.18);
+      const yMin = Math.floor((rawMin - padding) * 2) / 2;
+      const yMax = Math.ceil((rawMax + padding) * 2) / 2;
+      const yRange = Math.max(1, yMax - yMin);
+
+      const startTime = history[0].timestamp;
+      const endTime = history[history.length - 1].timestamp;
+      const timeRange = Math.max(1, endTime - startTime);
+
+      const xFor = timestamp =>
+        margin.left + ((timestamp - startTime) / timeRange) * plotWidth;
+      const yFor = weight =>
+        margin.top + ((yMax - weight) / yRange) * plotHeight;
+
+      context.font = `${compact ? 11 : 12}px system-ui, sans-serif`;
+      context.textBaseline = "middle";
+      context.lineWidth = 1;
+
+      const horizontalLines = 5;
+      for (let index = 0; index <= horizontalLines; index += 1) {
+        const ratio = index / horizontalLines;
+        const y = margin.top + ratio * plotHeight;
+        const value = yMax - ratio * yRange;
+
+        context.beginPath();
+        context.moveTo(margin.left, y);
+        context.lineTo(cssWidth - margin.right, y);
+        context.strokeStyle = "rgba(32, 40, 45, 0.11)";
+        context.stroke();
+
+        context.fillStyle = "#4f5b61";
+        context.textAlign = "right";
+        context.fillText(`${value.toFixed(1)} kg`, margin.left - 8, y);
+      }
+
+      const labelCount = compact ? 3 : 5;
+      for (let index = 0; index < labelCount; index += 1) {
+        const ratio = labelCount === 1 ? 0 : index / (labelCount - 1);
+        const timestamp = startTime + ratio * timeRange;
+        const x = margin.left + ratio * plotWidth;
+
+        context.beginPath();
+        context.moveTo(x, margin.top);
+        context.lineTo(x, margin.top + plotHeight);
+        context.strokeStyle = "rgba(32, 40, 45, 0.055)";
+        context.stroke();
+
+        context.fillStyle = "#4f5b61";
+        context.textAlign =
+          index === 0 ? "left" : index === labelCount - 1 ? "right" : "center";
+        context.fillText(formatChartDate(timestamp), x, cssHeight - margin.bottom + 24);
+      }
+
+      const gradient = context.createLinearGradient(0, margin.top, 0, margin.top + plotHeight);
+      gradient.addColorStop(0, "rgba(45, 87, 75, 0.22)");
+      gradient.addColorStop(1, "rgba(45, 87, 75, 0.01)");
+
+      context.beginPath();
+      history.forEach((entry, index) => {
+        const x = xFor(entry.timestamp);
+        const y = yFor(entry.weightKg);
+        if (index === 0) context.moveTo(x, y);
+        else context.lineTo(x, y);
+      });
+      context.lineTo(xFor(latest.timestamp), margin.top + plotHeight);
+      context.lineTo(xFor(first.timestamp), margin.top + plotHeight);
+      context.closePath();
+      context.fillStyle = gradient;
+      context.fill();
+
+      context.beginPath();
+      history.forEach((entry, index) => {
+        const x = xFor(entry.timestamp);
+        const y = yFor(entry.weightKg);
+        if (index === 0) context.moveTo(x, y);
+        else context.lineTo(x, y);
+      });
+      context.strokeStyle = "#2d574b";
+      context.lineWidth = 3;
+      context.lineJoin = "round";
+      context.lineCap = "round";
+      context.stroke();
+
+      history.forEach((entry, index) => {
+        const x = xFor(entry.timestamp);
+        const y = yFor(entry.weightKg);
+        const isEndpoint = index === 0 || index === history.length - 1;
+
+        context.beginPath();
+        context.arc(x, y, isEndpoint ? 5 : 3.2, 0, Math.PI * 2);
+        context.fillStyle = isEndpoint ? "#9c6b3f" : "#2d574b";
+        context.fill();
+        context.lineWidth = 2;
+        context.strokeStyle = "rgba(250,250,248,0.95)";
+        context.stroke();
+      });
+
+      context.font = "700 12px system-ui, sans-serif";
+      context.fillStyle = "#20282d";
+      context.textAlign = "right";
+      context.fillText(
+        `${latest.weightKg.toFixed(1)} kg`,
+        Math.min(cssWidth - margin.right, xFor(latest.timestamp)),
+        Math.max(12, yFor(latest.weightKg) - 14)
+      );
+    }
+
+    async function loadWeightHistory(doc) {
+      try {
+        const response = await fetch(`${HEALTH_DATA_URL}?t=${Date.now()}`, {
+          cache: "no-store"
+        });
+        if (!response.ok) throw new Error(`HTTP ${response.status}`);
+
+        const payload = await response.json();
+        const data = payload.metrics || payload;
+        drawWeightChart(doc, parseWeightHistory(data.weightHistory));
+      } catch (error) {
+        console.warn("Weight trend failed to load:", error);
+        drawWeightChart(doc, []);
+      }
+    }
+
+    healthFrame.addEventListener("load", () => {
+      try {
+        const doc = healthFrame.contentDocument;
+        if (!doc) return;
+
+        injectChart(doc);
+        loadWeightHistory(doc);
+
+        let resizeFrame;
+        doc.defaultView?.addEventListener("resize", () => {
+          doc.defaultView.cancelAnimationFrame(resizeFrame);
+          resizeFrame = doc.defaultView.requestAnimationFrame(() => {
+            if (currentWeightHistory.length) {
+              drawWeightChart(doc, currentWeightHistory);
+            }
+          });
+        });
+      } catch (error) {
+        console.warn("Unable to add weight trend chart:", error);
+      }
+    });
+  </script>
 </body>
 </html>
