@@ -178,6 +178,48 @@
       font-size: 1.02rem;
     }
 
+    .diary-link-wrap {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      margin-top: 12px;
+      padding: 12px 14px;
+      border: 1px solid rgba(45, 87, 75, 0.20);
+      border-radius: 16px;
+      background: rgba(45, 87, 75, 0.07);
+    }
+
+    .diary-link-wrap span {
+      color: var(--muted);
+      font-size: 1rem;
+      line-height: 1.2;
+    }
+
+    .diary-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex: 0 0 auto;
+      min-height: 40px;
+      padding: 8px 13px;
+      border: 1px solid rgba(45, 87, 75, 0.28);
+      border-radius: 999px;
+      background: var(--accent);
+      color: #fff;
+      font-family: system-ui, sans-serif;
+      font-size: 0.85rem;
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    .diary-link:hover,
+    .diary-link:focus-visible {
+      filter: brightness(1.08);
+      outline: 2px solid rgba(45, 87, 75, 0.28);
+      outline-offset: 2px;
+    }
+
     .coach {
       margin-top: 22px;
       padding: 20px;
@@ -299,6 +341,15 @@
         grid-template-columns: repeat(2, 1fr);
       }
 
+      .diary-link-wrap {
+        align-items: stretch;
+        flex-direction: column;
+      }
+
+      .diary-link {
+        width: 100%;
+      }
+
       .coach-heading {
         flex-direction: column;
       }
@@ -363,6 +414,16 @@
         <span>Fat</span>
       </div>
     </section>
+
+    <div class="diary-link-wrap">
+      <span>Want the detail behind today’s totals? Open the public food diary.</span>
+      <a
+        class="diary-link"
+        href="https://www.myfitnesspal.com/en/food/diary/tomguyler"
+        target="_blank"
+        rel="noopener noreferrer"
+      >View MyFitnessPal diary ↗</a>
+    </div>
 
     <section class="grid" aria-label="Weekly discipline">
       <div class="tile">
