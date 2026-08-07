@@ -63,6 +63,7 @@
     const HEALTH_DATA_URL = "https://script.google.com/macros/s/AKfycbwihWQw8Frs1acA1Y-CELBw0NmX4O5KFzcqU3f8TbFpSegleKyPM64TkqTyoNyAWhLP/exec";
     const healthFrame = document.querySelector(".page-frame");
     let currentWeightHistory = [];
+    let currentChartState = null;
 
     function toNumber(value) {
       if (value === null || value === undefined || String(value).trim() === "") return null;
@@ -73,12 +74,6 @@
     function formatKg(value) {
       const number = toNumber(value);
       return number === null ? "—" : `${number.toFixed(1)} kg`;
-    }
-
-    function formatSignedKg(value) {
-      const number = toNumber(value);
-      if (number === null) return "—";
-      return `${number > 0 ? "+" : ""}${number.toFixed(1)} kg`;
     }
 
     function parseWeightHistory(value) {
@@ -133,10 +128,18 @@
       });
     }
 
-    function formatChartDate(timestamp) {
+    function latestAvailable(series) {
+      for (let index = series.length - 1; index >= 0; index -= 1) {
+        if (series[index].averageKg !== null) return series[index];
+      }
+      return null;
+    }
+
+    function formatChartDate(timestamp, includeYear = false) {
       return new Intl.DateTimeFormat("en-GB", {
         day: "numeric",
-        month: "short"
+        month: "short",
+        ...(includeYear ? { year: "numeric" } : {})
       }).format(new Date(timestamp));
     }
 
@@ -149,17 +152,17 @@
         .chart-card {
           margin-bottom: 18px;
           padding: 18px;
-          border: 1px solid rgba(45, 87, 75, 0.24);
+          border: 1px solid rgba(45, 87, 75, 0.20);
           border-radius: 22px;
-          background: linear-gradient(145deg, rgba(255,255,255,0.82), rgba(239,243,245,0.68));
+          background: rgba(247, 249, 248, 0.82);
           overflow: hidden;
         }
         .chart-heading {
           display: flex;
           align-items: flex-start;
           justify-content: space-between;
-          gap: 14px;
-          margin-bottom: 12px;
+          gap: 18px;
+          margin-bottom: 14px;
         }
         .chart-heading h2 {
           margin: 0;
@@ -173,72 +176,77 @@
           font-size: 1.05rem;
         }
         .chart-summary {
-          display: flex;
-          flex-wrap: wrap;
-          justify-content: flex-end;
+          display: grid;
+          grid-template-columns: repeat(3, minmax(82px, 1fr));
           gap: 7px;
+          min-width: min(100%, 294px);
           font-family: system-ui, sans-serif;
         }
         .chart-chip {
-          min-width: 88px;
-          padding: 7px 10px;
+          padding: 7px 10px 8px;
           border: 1px solid var(--line);
           border-radius: 12px;
-          background: rgba(255,255,255,0.78);
+          background: rgba(255,255,255,0.82);
           text-align: center;
         }
         .chart-chip small {
           display: block;
           color: var(--muted);
-          font-size: 0.68rem;
+          font-size: 0.66rem;
           font-weight: 700;
-          letter-spacing: 0.04em;
+          letter-spacing: 0.045em;
           text-transform: uppercase;
         }
         .chart-chip strong {
           display: block;
           margin-top: 2px;
-          font-size: 0.92rem;
+          color: var(--ink);
+          font-size: 0.94rem;
         }
-        .chart-legend {
-          display: flex;
-          flex-wrap: wrap;
-          gap: 12px 16px;
-          margin: 0 0 10px;
+        .chart-chip.seven strong { color: #2563b8; }
+        .chart-chip.fourteen strong { color: #b8670f; }
+        .chart-note {
+          margin: 0 0 9px;
           color: var(--muted);
           font-family: system-ui, sans-serif;
-          font-size: 0.78rem;
-          font-weight: 700;
+          font-size: 0.76rem;
         }
-        .chart-legend-item {
-          display: inline-flex;
-          align-items: center;
-          gap: 7px;
-        }
-        .chart-legend-line {
-          width: 24px;
-          height: 0;
-          border-top: 3px solid currentColor;
-          border-radius: 999px;
-        }
-        .chart-legend-line.raw {
-          color: #8b959b;
-          border-top-width: 2px;
-        }
-        .chart-legend-line.seven { color: #2563b8; }
-        .chart-legend-line.fourteen { color: #c47a18; }
         .chart-wrap {
           position: relative;
           width: 100%;
           height: 310px;
-          border-radius: 16px;
-          background: rgba(250,250,248,0.72);
+          border-radius: 14px;
+          background: rgba(255,255,255,0.46);
+          overflow: hidden;
         }
         #weight-trend-canvas {
           display: block;
           width: 100%;
           height: 100%;
+          touch-action: manipulation;
         }
+        .chart-tooltip {
+          position: absolute;
+          z-index: 2;
+          min-width: 154px;
+          padding: 9px 11px;
+          border: 1px solid rgba(32,40,45,0.15);
+          border-radius: 11px;
+          background: rgba(250,250,248,0.97);
+          box-shadow: 0 6px 18px rgba(32,40,45,0.13);
+          color: var(--ink);
+          font-family: system-ui, sans-serif;
+          font-size: 0.75rem;
+          line-height: 1.42;
+          pointer-events: none;
+          transform: translate(-50%, calc(-100% - 10px));
+        }
+        .chart-tooltip strong {
+          display: block;
+          margin-bottom: 3px;
+          font-size: 0.8rem;
+        }
+        .chart-tooltip span { display: block; }
         .chart-empty {
           display: grid;
           place-items: center;
@@ -250,8 +258,13 @@
         }
         @media (max-width: 620px) {
           .chart-heading { flex-direction: column; }
-          .chart-summary { justify-content: flex-start; }
-          .chart-wrap { height: 260px; }
+          .chart-summary { width: 100%; min-width: 0; }
+          .chart-wrap { height: 270px; }
+          .chart-card { padding: 16px; }
+        }
+        @media (max-width: 390px) {
+          .chart-chip { padding-inline: 6px; }
+          .chart-chip strong { font-size: 0.86rem; }
         }
       `;
       doc.head.appendChild(style);
@@ -263,36 +276,33 @@
       section.innerHTML = `
         <div class="chart-heading">
           <div>
-            <h2 id="weight-trend-heading">Weight Trend</h2>
-            <p>Raw weigh-ins with 7-day and 14-day rolling averages. Blank entries are skipped.</p>
+            <h2 id="weight-trend-heading">Weight Progress</h2>
+            <p>Daily weigh-ins with short- and medium-term trends.</p>
           </div>
           <div class="chart-summary" id="weight-trend-summary" hidden>
             <div class="chart-chip">
-              <small>Start</small>
-              <strong id="weight-trend-start">—</strong>
+              <small>Current</small>
+              <strong id="weight-trend-current">—</strong>
             </div>
-            <div class="chart-chip">
-              <small>Latest</small>
-              <strong id="weight-trend-latest">—</strong>
+            <div class="chart-chip seven">
+              <small>7-day avg</small>
+              <strong id="weight-trend-seven">—</strong>
             </div>
-            <div class="chart-chip">
-              <small>Change</small>
-              <strong id="weight-trend-change">—</strong>
+            <div class="chart-chip fourteen">
+              <small>14-day avg</small>
+              <strong id="weight-trend-fourteen">—</strong>
             </div>
           </div>
         </div>
-        <div class="chart-legend" aria-label="Chart legend">
-          <span class="chart-legend-item"><span class="chart-legend-line raw"></span>Weight log</span>
-          <span class="chart-legend-item"><span class="chart-legend-line seven"></span>7-day average · 4 readings needed</span>
-          <span class="chart-legend-item"><span class="chart-legend-line fourteen"></span>14-day average · 8 readings needed</span>
-        </div>
+        <p class="chart-note">Grey dots are individual weigh-ins · 7-day average needs 4 readings · 14-day average needs 8.</p>
         <div class="chart-wrap" id="weight-trend-wrap">
           <canvas
             id="weight-trend-canvas"
             role="img"
-            aria-label="Line chart showing logged weight plus 7-day and 14-day rolling averages in kilograms by date">
+            aria-label="Weight progress chart showing individual weigh-ins plus 7-day and 14-day rolling averages in kilograms by date">
             Weight history chart.
           </canvas>
+          <div class="chart-tooltip" id="weight-trend-tooltip" hidden aria-live="polite"></div>
           <p class="chart-empty" id="weight-trend-empty" hidden>
             Not enough valid weight logs to draw the trend yet.
           </p>
@@ -308,6 +318,63 @@
       if (element) element.textContent = value;
     }
 
+    function positionTooltip(doc, point) {
+      const tooltip = doc.getElementById("weight-trend-tooltip");
+      if (!tooltip || !currentChartState) return;
+
+      const { cssWidth, history, sevenDaySeries, fourteenDaySeries } = currentChartState;
+      const index = point.index;
+      const raw = history[index];
+      const seven = sevenDaySeries[index]?.averageKg ?? null;
+      const fourteen = fourteenDaySeries[index]?.averageKg ?? null;
+      const safeX = Math.min(Math.max(point.x, 82), cssWidth - 82);
+
+      tooltip.innerHTML = `
+        <strong>${formatChartDate(raw.timestamp, true)}</strong>
+        <span>Weight: ${formatKg(raw.weightKg)}</span>
+        <span>7-day: ${seven === null ? "Not available" : formatKg(seven)}</span>
+        <span>14-day: ${fourteen === null ? "Not available" : formatKg(fourteen)}</span>
+      `;
+      tooltip.style.left = `${safeX}px`;
+      tooltip.style.top = `${Math.max(58, point.y)}px`;
+      tooltip.hidden = false;
+    }
+
+    function hideTooltip(doc) {
+      const tooltip = doc.getElementById("weight-trend-tooltip");
+      if (tooltip) tooltip.hidden = true;
+    }
+
+    function installChartInteraction(doc) {
+      const canvas = doc.getElementById("weight-trend-canvas");
+      if (!canvas || canvas.dataset.interactionReady === "true") return;
+      canvas.dataset.interactionReady = "true";
+
+      function showNearest(event) {
+        if (!currentChartState?.interactivePoints?.length) return;
+        const rect = canvas.getBoundingClientRect();
+        const x = event.clientX - rect.left;
+        const y = event.clientY - rect.top;
+
+        let nearest = null;
+        let nearestDistance = Infinity;
+        currentChartState.interactivePoints.forEach(point => {
+          const distance = Math.hypot(point.x - x, point.y - y);
+          if (distance < nearestDistance) {
+            nearest = point;
+            nearestDistance = distance;
+          }
+        });
+
+        if (nearest && nearestDistance <= 30) positionTooltip(doc, nearest);
+        else hideTooltip(doc);
+      }
+
+      canvas.addEventListener("pointermove", showNearest);
+      canvas.addEventListener("pointerdown", showNearest);
+      canvas.addEventListener("pointerleave", () => hideTooltip(doc));
+    }
+
     function drawWeightChart(doc, history) {
       currentWeightHistory = history;
 
@@ -318,10 +385,13 @@
 
       if (!canvas || !wrap || !empty || !summary) return;
 
+      hideTooltip(doc);
+
       if (history.length < 2) {
         canvas.hidden = true;
         empty.hidden = false;
         summary.hidden = true;
+        currentChartState = null;
         return;
       }
 
@@ -329,17 +399,18 @@
       empty.hidden = true;
       summary.hidden = false;
 
-      const first = history[0];
       const latest = history[history.length - 1];
       const sevenDaySeries = buildRollingAverageSeries(history, 7, 4);
       const fourteenDaySeries = buildRollingAverageSeries(history, 14, 8);
+      const latestSeven = latestAvailable(sevenDaySeries);
+      const latestFourteen = latestAvailable(fourteenDaySeries);
 
-      setChartText(doc, "weight-trend-start", formatKg(first.weightKg));
-      setChartText(doc, "weight-trend-latest", formatKg(latest.weightKg));
-      setChartText(doc, "weight-trend-change", formatSignedKg(latest.weightKg - first.weightKg));
+      setChartText(doc, "weight-trend-current", formatKg(latest.weightKg));
+      setChartText(doc, "weight-trend-seven", latestSeven ? formatKg(latestSeven.averageKg) : "—");
+      setChartText(doc, "weight-trend-fourteen", latestFourteen ? formatKg(latestFourteen.averageKg) : "—");
 
       const rect = wrap.getBoundingClientRect();
-      const cssWidth = Math.max(320, Math.floor(rect.width));
+      const cssWidth = Math.max(300, Math.floor(rect.width));
       const cssHeight = Math.max(220, Math.floor(rect.height));
       const pixelRatio = Math.min(doc.defaultView?.devicePixelRatio || 1, 2);
 
@@ -352,27 +423,33 @@
 
       const compact = cssWidth < 520;
       const margin = {
-        top: 22,
-        right: compact ? 16 : 24,
-        bottom: 44,
-        left: compact ? 48 : 58
+        top: 18,
+        right: compact ? 66 : 86,
+        bottom: 42,
+        left: compact ? 47 : 56
       };
       const plotWidth = cssWidth - margin.left - margin.right;
       const plotHeight = cssHeight - margin.top - margin.bottom;
 
-      const weights = [
-        ...history.map(entry => entry.weightKg),
-        ...sevenDaySeries.map(entry => entry.averageKg).filter(value => value !== null),
-        ...fourteenDaySeries.map(entry => entry.averageKg).filter(value => value !== null)
-      ];
+      const weights = history.map(entry => entry.weightKg);
       const rawMin = Math.min(...weights);
       const rawMax = Math.max(...weights);
       const rawRange = rawMax - rawMin;
-      const padding = Math.max(0.5, rawRange * 0.18);
-      const yMin = Math.floor((rawMin - padding) * 2) / 2;
-      const yMax = Math.ceil((rawMax + padding) * 2) / 2;
-      const yRange = Math.max(1, yMax - yMin);
+      const desiredSpan = Math.max(4, Math.ceil((rawRange + 1) * 2) / 2);
+      const midpoint = (rawMin + rawMax) / 2;
+      let yMin = Math.floor((midpoint - desiredSpan / 2) * 2) / 2;
+      let yMax = yMin + desiredSpan;
 
+      if (rawMin < yMin + 0.2) {
+        yMin = Math.floor((rawMin - 0.4) * 2) / 2;
+        yMax = yMin + desiredSpan;
+      }
+      if (rawMax > yMax - 0.2) {
+        yMax = Math.ceil((rawMax + 0.4) * 2) / 2;
+        yMin = yMax - desiredSpan;
+      }
+
+      const yRange = Math.max(1, yMax - yMin);
       const startTime = history[0].timestamp;
       const endTime = history[history.length - 1].timestamp;
       const timeRange = Math.max(1, endTime - startTime);
@@ -382,11 +459,11 @@
       const yFor = weight =>
         margin.top + ((yMax - weight) / yRange) * plotHeight;
 
-      context.font = `${compact ? 11 : 12}px system-ui, sans-serif`;
+      context.font = `${compact ? 10 : 11}px system-ui, sans-serif`;
       context.textBaseline = "middle";
       context.lineWidth = 1;
 
-      const horizontalLines = 5;
+      const horizontalLines = 4;
       for (let index = 0; index <= horizontalLines; index += 1) {
         const ratio = index / horizontalLines;
         const y = margin.top + ratio * plotHeight;
@@ -394,53 +471,36 @@
 
         context.beginPath();
         context.moveTo(margin.left, y);
-        context.lineTo(cssWidth - margin.right, y);
-        context.strokeStyle = "rgba(32, 40, 45, 0.11)";
+        context.lineTo(margin.left + plotWidth, y);
+        context.strokeStyle = "rgba(32, 40, 45, 0.085)";
         context.stroke();
 
-        context.fillStyle = "#4f5b61";
+        context.fillStyle = "#617078";
         context.textAlign = "right";
-        context.fillText(`${value.toFixed(1)} kg`, margin.left - 8, y);
+        context.fillText(`${value.toFixed(1)}`, margin.left - 8, y);
       }
 
-      const labelCount = compact ? 3 : 5;
-      for (let index = 0; index < labelCount; index += 1) {
-        const ratio = labelCount === 1 ? 0 : index / (labelCount - 1);
-        const timestamp = startTime + ratio * timeRange;
-        const x = margin.left + ratio * plotWidth;
+      context.fillStyle = "#78858b";
+      context.textAlign = "left";
+      context.fillText("kg", 7, margin.top - 6);
 
-        context.beginPath();
-        context.moveTo(x, margin.top);
-        context.lineTo(x, margin.top + plotHeight);
-        context.strokeStyle = "rgba(32, 40, 45, 0.055)";
-        context.stroke();
-
-        context.fillStyle = "#4f5b61";
-        context.textAlign =
-          index === 0 ? "left" : index === labelCount - 1 ? "right" : "center";
-        context.fillText(formatChartDate(timestamp), x, cssHeight - margin.bottom + 24);
+      const dayMs = 24 * 60 * 60 * 1000;
+      const tickInterval = (compact ? 14 : 7) * dayMs;
+      let tick = startTime;
+      let tickIndex = 0;
+      while (tick <= endTime + dayMs / 2) {
+        const x = xFor(tick);
+        context.fillStyle = "#69777e";
+        context.textAlign = tickIndex === 0 ? "left" : "center";
+        context.fillText(formatChartDate(tick), x, cssHeight - 17);
+        tick += tickInterval;
+        tickIndex += 1;
       }
 
-      const gradient = context.createLinearGradient(0, margin.top, 0, margin.top + plotHeight);
-      gradient.addColorStop(0, "rgba(139, 149, 155, 0.12)");
-      gradient.addColorStop(1, "rgba(139, 149, 155, 0.01)");
-
-      context.beginPath();
-      history.forEach((entry, index) => {
-        const x = xFor(entry.timestamp);
-        const y = yFor(entry.weightKg);
-        if (index === 0) context.moveTo(x, y);
-        else context.lineTo(x, y);
-      });
-      context.lineTo(xFor(latest.timestamp), margin.top + plotHeight);
-      context.lineTo(xFor(first.timestamp), margin.top + plotHeight);
-      context.closePath();
-      context.fillStyle = gradient;
-      context.fill();
-
-      function drawLineSeries(series, valueKey, strokeStyle, lineWidth) {
+      function drawSeries(series, valueKey, strokeStyle, lineWidth, dash = []) {
         let drawing = false;
         context.beginPath();
+        context.setLineDash(dash);
 
         series.forEach(entry => {
           const value = entry[valueKey];
@@ -464,57 +524,68 @@
         context.lineJoin = "round";
         context.lineCap = "round";
         context.stroke();
+        context.setLineDash([]);
       }
 
-      drawLineSeries(history, "weightKg", "#8b959b", 1.6);
+      drawSeries(history, "weightKg", "rgba(112, 126, 134, 0.25)", 1);
 
-      history.forEach((entry, index) => {
+      const interactivePoints = history.map((entry, index) => {
         const x = xFor(entry.timestamp);
         const y = yFor(entry.weightKg);
-        const isEndpoint = index === 0 || index === history.length - 1;
 
         context.beginPath();
-        context.arc(x, y, isEndpoint ? 4.4 : 2.6, 0, Math.PI * 2);
-        context.fillStyle = isEndpoint ? "#59666d" : "#8b959b";
+        context.arc(x, y, index === history.length - 1 ? 4 : 3, 0, Math.PI * 2);
+        context.fillStyle = index === history.length - 1 ? "#59666d" : "#9aa4a9";
         context.fill();
         context.lineWidth = 1.5;
-        context.strokeStyle = "rgba(250,250,248,0.95)";
+        context.strokeStyle = "rgba(250,250,248,0.98)";
         context.stroke();
+
+        return { index, x, y };
       });
 
-      drawLineSeries(sevenDaySeries, "averageKg", "#2563b8", 3.2);
-      drawLineSeries(fourteenDaySeries, "averageKg", "#c47a18", 3.2);
+      drawSeries(sevenDaySeries, "averageKg", "#2563b8", 3.5);
+      drawSeries(fourteenDaySeries, "averageKg", "#b8670f", 2.7, [8, 6]);
 
-      context.font = "700 12px system-ui, sans-serif";
-      context.textAlign = "right";
-      context.fillStyle = "#59666d";
-      context.fillText(
-        `${latest.weightKg.toFixed(1)} kg`,
-        Math.min(cssWidth - margin.right, xFor(latest.timestamp)),
-        Math.max(12, yFor(latest.weightKg) - 14)
+      function directLabel(entry, label, colour, yOffset = 0) {
+        if (!entry) return;
+        const x = xFor(entry.timestamp) + 9;
+        const y = yFor(entry.averageKg) + yOffset;
+        context.font = `700 ${compact ? 10 : 11}px system-ui, sans-serif`;
+        context.fillStyle = colour;
+        context.textAlign = "left";
+        context.fillText(`${label} ${entry.averageKg.toFixed(1)}`, x, y);
+      }
+
+      let sevenOffset = 0;
+      let fourteenOffset = 0;
+      if (latestSeven && latestFourteen) {
+        const separation = Math.abs(yFor(latestSeven.averageKg) - yFor(latestFourteen.averageKg));
+        if (separation < 18) {
+          sevenOffset = -8;
+          fourteenOffset = 9;
+        }
+      }
+
+      directLabel(latestSeven, "7d", "#2563b8", sevenOffset);
+      directLabel(latestFourteen, "14d", "#b8670f", fourteenOffset);
+
+      canvas.setAttribute(
+        "aria-label",
+        `Weight progress. Current ${latest.weightKg.toFixed(1)} kilograms. ` +
+        `7-day average ${latestSeven ? latestSeven.averageKg.toFixed(1) + " kilograms" : "not available"}. ` +
+        `14-day average ${latestFourteen ? latestFourteen.averageKg.toFixed(1) + " kilograms" : "not available"}.`
       );
 
-      const latestSevenDay = sevenDaySeries[sevenDaySeries.length - 1]?.averageKg ?? null;
-      const latestFourteenDay = fourteenDaySeries[fourteenDaySeries.length - 1]?.averageKg ?? null;
-      const labelX = cssWidth - margin.right;
+      currentChartState = {
+        cssWidth,
+        history,
+        sevenDaySeries,
+        fourteenDaySeries,
+        interactivePoints
+      };
 
-      if (latestSevenDay !== null) {
-        context.fillStyle = "#2563b8";
-        context.fillText(
-          `7d ${latestSevenDay.toFixed(1)}`,
-          labelX,
-          Math.min(cssHeight - margin.bottom - 10, yFor(latestSevenDay) + 14)
-        );
-      }
-
-      if (latestFourteenDay !== null) {
-        context.fillStyle = "#c47a18";
-        context.fillText(
-          `14d ${latestFourteenDay.toFixed(1)}`,
-          labelX,
-          Math.max(margin.top + 10, yFor(latestFourteenDay) - 14)
-        );
-      }
+      installChartInteraction(doc);
     }
 
     async function loadWeightHistory(doc) {
@@ -528,7 +599,7 @@
         const data = payload.metrics || payload;
         drawWeightChart(doc, parseWeightHistory(data.weightHistory));
       } catch (error) {
-        console.warn("Weight trend failed to load:", error);
+        console.warn("Weight progress failed to load:", error);
         drawWeightChart(doc, []);
       }
     }
@@ -551,7 +622,7 @@
           });
         });
       } catch (error) {
-        console.warn("Unable to add weight trend chart:", error);
+        console.warn("Unable to add weight progress chart:", error);
       }
     });
   </script>
