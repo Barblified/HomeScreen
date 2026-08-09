@@ -70,6 +70,11 @@
     <h3>Learning history</h3><p>History is kept only on this device so repetition can be avoided.</p><button class="danger" id="clearHistory">Clear history</button>
   </div>
 </dialog>
+<script>
+  if (/Android|iPhone|iPad|iPod/i.test(navigator.userAgent)) {
+    document.getElementById("watch").target = "_top";
+  }
+</script>
 <script src="v2.js" defer></script>
 </body>
 </html>
