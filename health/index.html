@@ -203,8 +203,12 @@
           color: var(--ink);
           font-size: 0.94rem;
         }
-        .chart-chip.seven strong { color: #2563b8; }
-        .chart-chip.fourteen strong { color: #b8670f; }
+        .chart-chip.current { box-shadow: inset 0 3px 0 #647985; }
+        .chart-chip.current strong { color: #647985; }
+        .chart-chip.seven { box-shadow: inset 0 3px 0 #9c6b3f; }
+        .chart-chip.seven strong { color: #9c6b3f; }
+        .chart-chip.fourteen { box-shadow: inset 0 3px 0 #2d574b; }
+        .chart-chip.fourteen strong { color: #2d574b; }
         .chart-note {
           margin: 0 0 9px;
           color: var(--muted);
@@ -280,7 +284,7 @@
             <p>Daily weigh-ins with short- and medium-term trends.</p>
           </div>
           <div class="chart-summary" id="weight-trend-summary" hidden>
-            <div class="chart-chip">
+            <div class="chart-chip current">
               <small>Current</small>
               <strong id="weight-trend-current">—</strong>
             </div>
@@ -294,7 +298,7 @@
             </div>
           </div>
         </div>
-        <p class="chart-note">Grey dots are individual weigh-ins · 7-day average needs 4 readings · 14-day average needs 8.</p>
+        <p class="chart-note">7-day average needs 4 readings · 14-day average needs 8.</p>
         <div class="chart-wrap" id="weight-trend-wrap">
           <canvas
             id="weight-trend-canvas"
@@ -424,7 +428,7 @@
       const compact = cssWidth < 520;
       const margin = {
         top: 18,
-        right: compact ? 66 : 86,
+        right: compact ? 18 : 22,
         bottom: 42,
         left: compact ? 47 : 56
       };
@@ -497,10 +501,10 @@
         tickIndex += 1;
       }
 
-      function drawSeries(series, valueKey, strokeStyle, lineWidth, dash = []) {
+      function drawSeries(series, valueKey, strokeStyle, lineWidth) {
         let drawing = false;
         context.beginPath();
-        context.setLineDash(dash);
+        context.setLineDash([]);
 
         series.forEach(entry => {
           const value = entry[valueKey];
@@ -524,51 +528,25 @@
         context.lineJoin = "round";
         context.lineCap = "round";
         context.stroke();
-        context.setLineDash([]);
       }
-
-      drawSeries(history, "weightKg", "rgba(112, 126, 134, 0.25)", 1);
 
       const interactivePoints = history.map((entry, index) => {
         const x = xFor(entry.timestamp);
         const y = yFor(entry.weightKg);
 
         context.beginPath();
-        context.arc(x, y, index === history.length - 1 ? 4 : 3, 0, Math.PI * 2);
-        context.fillStyle = index === history.length - 1 ? "#59666d" : "#9aa4a9";
+        context.arc(x, y, index === history.length - 1 ? 4.5 : 3.5, 0, Math.PI * 2);
+        context.fillStyle = "#647985";
         context.fill();
-        context.lineWidth = 1.5;
+        context.lineWidth = 1.4;
         context.strokeStyle = "rgba(250,250,248,0.98)";
         context.stroke();
 
         return { index, x, y };
       });
 
-      drawSeries(sevenDaySeries, "averageKg", "#2563b8", 3.5);
-      drawSeries(fourteenDaySeries, "averageKg", "#b8670f", 2.7, [8, 6]);
-
-      function directLabel(entry, label, colour, yOffset = 0) {
-        if (!entry) return;
-        const x = xFor(entry.timestamp) + 9;
-        const y = yFor(entry.averageKg) + yOffset;
-        context.font = `700 ${compact ? 10 : 11}px system-ui, sans-serif`;
-        context.fillStyle = colour;
-        context.textAlign = "left";
-        context.fillText(`${label} ${entry.averageKg.toFixed(1)}`, x, y);
-      }
-
-      let sevenOffset = 0;
-      let fourteenOffset = 0;
-      if (latestSeven && latestFourteen) {
-        const separation = Math.abs(yFor(latestSeven.averageKg) - yFor(latestFourteen.averageKg));
-        if (separation < 18) {
-          sevenOffset = -8;
-          fourteenOffset = 9;
-        }
-      }
-
-      directLabel(latestSeven, "7d", "#2563b8", sevenOffset);
-      directLabel(latestFourteen, "14d", "#b8670f", fourteenOffset);
+      drawSeries(sevenDaySeries, "averageKg", "#9c6b3f", 3);
+      drawSeries(fourteenDaySeries, "averageKg", "#2d574b", 4.5);
 
       canvas.setAttribute(
         "aria-label",
