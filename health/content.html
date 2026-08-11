@@ -547,16 +547,15 @@
       const kilograms = toNumber(valueKg);
       if (kilograms === null) return "—";
 
-      const totalPounds = kilograms * 2.2046226218;
-      let stones = Math.floor(totalPounds / 14);
-      let pounds = totalPounds - stones * 14;
+      const totalOunces = Math.round(kilograms * 2.2046226218 * 16);
+      const ouncesPerStone = 14 * 16;
+      const stones = Math.floor(totalOunces / ouncesPerStone);
+      const ouncesAfterStones = totalOunces - stones * ouncesPerStone;
+      const pounds = Math.floor(ouncesAfterStones / 16);
+      const ounces = ouncesAfterStones - pounds * 16;
+      const poundLabel = pounds === 1 ? "lb" : "lbs";
 
-      if (pounds >= 13.95) {
-        stones += 1;
-        pounds = 0;
-      }
-
-      return `${stones} st ${pounds.toFixed(1)} lb`;
+      return `${stones} st ${pounds} ${poundLabel} ${ounces} oz`;
     }
 
     function clamp(value, min, max) {
