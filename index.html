@@ -81,14 +81,28 @@
       return `https://www.google.com/s2/favicons?domain_url=${encodeURIComponent(webUrl)}&sz=64`;
     }
 
+    function simpleIconUrl(slug) {
+      return `https://cdn.simpleicons.org/${slug}`;
+    }
+
     function applyIcon(documentRef, link, config) {
       const fallback = documentRef.createElement('span');
       fallback.className = 'quick-link-fallback';
       fallback.textContent = config.fallback;
       fallback.setAttribute('aria-hidden', 'true');
 
+      if (config.customLabel) {
+        const custom = documentRef.createElement('span');
+        custom.className = `quick-link-custom${config.customClass ? ` ${config.customClass}` : ''}`;
+        custom.textContent = config.customLabel;
+        custom.setAttribute('aria-hidden', 'true');
+        link.replaceChildren(custom);
+        return;
+      }
+
       const icon = documentRef.createElement('img');
-      icon.src = faviconUrl(config.iconUrl || config.href || link.href);
+      icon.src = config.iconSrc || faviconUrl(config.iconUrl || config.href || link.href);
+      icon.className = config.iconSrc ? 'brand-icon' : 'site-icon';
       icon.alt = '';
       icon.loading = 'lazy';
       icon.referrerPolicy = 'no-referrer';
@@ -179,9 +193,15 @@
             width: 29px;
             height: 29px;
             object-fit: contain;
+          }
+          .quick-link img.site-icon {
             border-radius: 6px;
           }
-          .quick-link-fallback {
+          .quick-link img.brand-icon {
+            border-radius: 0;
+          }
+          .quick-link-fallback,
+          .quick-link-custom {
             display: inline-flex;
             align-items: center;
             justify-content: center;
@@ -194,6 +214,25 @@
             font-size: 12px;
             font-weight: 800;
             line-height: 1;
+          }
+          .quick-link-custom.altcodes {
+            background: #23403D;
+            color: #FFF9F1;
+            font-size: 10px;
+            letter-spacing: .02em;
+          }
+          .quick-link-custom.eggtimer {
+            border: 1px solid rgba(35,64,61,.14);
+            background: #FFF9F1;
+            font-size: 17px;
+          }
+          .quick-link-custom.nehemiah {
+            background: linear-gradient(135deg, #2F7D4A, #2CB5C9);
+            color: #FFF9F1;
+            box-shadow: inset 0 0 0 1px rgba(255,255,255,.28);
+            font-family: 'Swanky and Moo Moo', cursive;
+            font-size: 22px;
+            font-weight: 700;
           }
         `;
         documentRef.head.appendChild(iconStyle);
@@ -210,6 +249,8 @@
             id: 'altcodes-quick-link',
             title: 'Alt Codes',
             href: 'https://www.alt-codes.net/',
+            customLabel: 'Alt',
+            customClass: 'altcodes',
             fallback: 'Alt'
           },
           {
@@ -236,6 +277,7 @@
             existingTitle: 'Calendly',
             title: 'Calendly',
             href: 'https://calendly.com/app/scheduling/meeting_types/user/me',
+            iconSrc: simpleIconUrl('calendly'),
             fallback: 'C'
           },
           {
@@ -250,12 +292,15 @@
             title: 'Disney+',
             href: 'https://www.disneyplus.com/',
             packageName: 'com.disney.disneyplus',
+            iconSrc: simpleIconUrl('disneyplus'),
             fallback: 'D+'
           },
           {
             id: 'eggtimer-quick-link',
             title: 'E.ggTimer',
             href: 'https://e.ggtimer.com/',
+            customLabel: '🥚',
+            customClass: 'eggtimer',
             fallback: '🥚'
           },
           {
@@ -269,6 +314,7 @@
             title: 'Gmail',
             href: 'https://mail.google.com/mail/u/0/',
             packageName: 'com.google.android.gm',
+            iconSrc: simpleIconUrl('gmail'),
             fallback: 'G'
           },
           {
@@ -276,13 +322,14 @@
             title: 'Google Calendar',
             href: 'https://calendar.google.com/calendar/u/0/r',
             packageName: 'com.google.android.calendar',
+            iconSrc: simpleIconUrl('googlecalendar'),
             fallback: '31'
           },
           {
             id: 'google-form-quick-link',
             title: 'Google Form',
             href: 'https://docs.google.com/forms/d/e/1FAIpQLSc2ueNtIKAbUeFeBTWG5Mzopj5nhDQ9InBgz8zCeOI6dbmuuw/viewform',
-            iconUrl: 'https://docs.google.com/forms/',
+            iconSrc: simpleIconUrl('googleforms'),
             fallback: 'GF'
           },
           {
@@ -302,8 +349,9 @@
             id: 'nehemiah-quick-link',
             title: 'Nehemiah',
             href: 'https://chatgpt.com/g/g-6a6f2147a4b48191978025f950045a49-nehemiah',
-            iconUrl: 'https://chatgpt.com/',
             packageName: 'com.openai.chatgpt',
+            customLabel: 'N',
+            customClass: 'nehemiah',
             fallback: 'N',
             ariaLabel: 'Open Nehemiah in ChatGPT'
           },
@@ -312,6 +360,7 @@
             title: 'Netflix',
             href: 'https://www.netflix.com/',
             packageName: 'com.netflix.mediaclient',
+            iconSrc: simpleIconUrl('netflix'),
             fallback: 'N'
           },
           {
@@ -319,6 +368,7 @@
             title: 'Outlook',
             href: 'https://outlook.office.com/mail/',
             packageName: 'com.microsoft.office.outlook',
+            iconSrc: simpleIconUrl('microsoftoutlook'),
             fallback: 'O'
           },
           {
@@ -326,6 +376,7 @@
             title: 'Spotify',
             href: 'https://open.spotify.com/',
             packageName: 'com.spotify.music',
+            iconSrc: simpleIconUrl('spotify'),
             fallback: '♪'
           },
           {
@@ -333,6 +384,7 @@
             title: 'Teams',
             href: 'https://teams.microsoft.com/',
             packageName: 'com.microsoft.teams',
+            iconSrc: simpleIconUrl('microsoftteams'),
             fallback: 'T'
           },
           {
@@ -340,6 +392,7 @@
             title: 'WhatsApp',
             href: 'https://web.whatsapp.com/',
             packageName: 'com.whatsapp',
+            iconSrc: simpleIconUrl('whatsapp'),
             fallback: 'WA'
           },
           {
@@ -347,6 +400,7 @@
             title: 'YouTube',
             href: 'https://www.youtube.com/',
             packageName: 'com.google.android.youtube',
+            iconSrc: simpleIconUrl('youtube'),
             fallback: '▶'
           }
         ];
