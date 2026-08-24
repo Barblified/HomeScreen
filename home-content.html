@@ -88,9 +88,8 @@
     .top-row {
       display: grid;
       grid-template-columns:
-        minmax(0, 1.5fr)
-        minmax(360px, 1.05fr)
-        minmax(260px, 0.75fr);
+        minmax(0, 1.35fr)
+        minmax(360px, 1fr);
       gap: 30px;
       align-items: stretch;
       margin-bottom: 30px;
@@ -185,11 +184,6 @@
       background: var(--forest-paper);
     }
 
-    .weather {
-      border-left: 6px solid var(--steel);
-      background: var(--steel-paper);
-    }
-
     h3 {
       margin-top: 0;
       margin-bottom: 15px;
@@ -203,91 +197,6 @@
     }
 
     .week-banner h3 {
-      color: var(--steel);
-    }
-
-    .weather h3 {
-      color: var(--steel);
-    }
-
-    .weather-hero {
-      display: flex;
-      align-items: flex-end;
-      justify-content: space-between;
-      gap: 18px;
-      padding-bottom: 14px;
-      border-bottom: 1px solid rgba(0, 0, 0, 0.08);
-    }
-
-    .weather-condition {
-      margin: 0;
-      color: var(--ink);
-      font-size: 30px;
-      line-height: 1.05;
-    }
-
-    .weather-location {
-      margin: 5px 0 0;
-      color: var(--muted-ink);
-      font-size: 21px;
-      line-height: 1.1;
-    }
-
-    .weather-temperature {
-      flex: 0 0 auto;
-      color: var(--steel);
-      font-size: 52px;
-      font-weight: bold;
-      line-height: 0.9;
-    }
-
-    .weather-grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 10px;
-      margin-top: 14px;
-    }
-
-    .weather-metric {
-      padding: 10px 8px;
-      border: 1px solid rgba(100, 121, 133, 0.18);
-      border-radius: 10px;
-      background: rgba(255, 255, 255, 0.55);
-      text-align: center;
-    }
-
-    .weather-metric span {
-      display: block;
-    }
-
-    .weather-metric span:first-child {
-      color: var(--muted-ink);
-      font-size: 19px;
-      line-height: 1;
-    }
-
-    .weather-metric span:last-child {
-      margin-top: 6px;
-      color: var(--steel);
-      font-size: 25px;
-      font-weight: bold;
-      line-height: 1;
-    }
-
-    .weather-status {
-      margin: 13px 0 0;
-      color: var(--muted-ink);
-      font-size: 20px;
-      line-height: 1.15;
-    }
-
-    .weather-credit {
-      margin: 7px 0 0;
-      font-size: 18px;
-      line-height: 1.1;
-    }
-
-    .weather-credit a {
       color: var(--steel);
     }
 
@@ -416,7 +325,6 @@
       .calendar iframe {
         height: 700px;
       }
-
     }
 
     @media (max-width: 650px) {
@@ -428,10 +336,6 @@
       .quick-link {
         width: 44px;
         height: 44px;
-      }
-
-      .weather-grid {
-        grid-template-columns: 1fr;
       }
     }
   </style>
@@ -457,44 +361,6 @@
         <li>❣ Trust in God. Trust His peace.</li>
         <li>🦀 At the end of the week, ensure I could tell God I did my absolute best.</li>
       </ul>
-    </section>
-
-    <!-- WEATHER -->
-    <section class="box weather" aria-labelledby="weather-heading">
-      <h3 id="weather-heading">Weather</h3>
-
-      <div class="weather-hero">
-        <div>
-          <p class="weather-condition" id="weatherCondition">Loading weather...</p>
-          <p class="weather-location">Hucknall, Nottinghamshire</p>
-        </div>
-        <div class="weather-temperature" id="weatherTemperature">--°</div>
-      </div>
-
-      <div class="weather-grid">
-        <div class="weather-metric">
-          <span>UV Index</span>
-          <span id="weatherUv">--</span>
-        </div>
-        <div class="weather-metric">
-          <span>Dew Point</span>
-          <span id="weatherDewPoint">--°</span>
-        </div>
-        <div class="weather-metric">
-          <span>Humidity</span>
-          <span id="weatherHumidity">--%</span>
-        </div>
-      </div>
-
-      <p class="weather-status" id="weatherStatus">Connecting to AccuWeather...</p>
-      <p class="weather-credit">
-        <a
-          href="https://www.accuweather.com/en/gb/hucknall/ng15-7/current-weather/713055"
-          target="_blank"
-          rel="noopener noreferrer">
-          Full weather on AccuWeather
-        </a>
-      </p>
     </section>
 
     <!-- QUICK LINKS -->
@@ -711,17 +577,6 @@
 
     const REMOTE_METRICS_URL = "https://script.google.com/macros/s/AKfycbwihWQw8Frs1acA1Y-CELBw0NmX4O5KFzcqU3f8TbFpSegleKyPM64TkqTyoNyAWhLP/exec";
 
-    /*
-      ACCUWEATHER
-      -----------
-      Set this to a secure proxy endpoint, such as Google Apps Script, that
-      returns AccuWeather's detailed Current Conditions response.
-
-      Keep the AccuWeather API key in the proxy's private configuration. Do not
-      paste it into this public HTML file.
-    */
-    const ACCUWEATHER_DATA_URL = `${REMOTE_METRICS_URL}?view=weather`;
-
     const fallbackHealthMetrics = {
       heightM: 1.72,
       startingWeightKg: 113.2,
@@ -774,122 +629,6 @@
     function calculateBmi(weightKg, heightM) {
       if (!weightKg || !heightM) return null;
       return weightKg / (heightM * heightM);
-    }
-
-    function firstDefined(...values) {
-      return values.find(value => value !== undefined && value !== null && value !== "");
-    }
-
-    function normaliseAccuWeatherCondition(rawData) {
-      const payload = firstDefined(
-        rawData?.weather,
-        rawData?.currentConditions,
-        rawData?.conditions,
-        rawData
-      );
-
-      if (Array.isArray(payload)) {
-        return payload[0] || {};
-      }
-
-      return payload || {};
-    }
-
-    function renderAccuWeather(rawData) {
-      const condition = normaliseAccuWeatherCondition(rawData);
-
-      const weatherText = firstDefined(
-        condition.WeatherText,
-        condition.weatherText,
-        condition.condition
-      );
-
-      const temperatureC = firstDefined(
-        condition.Temperature?.Metric?.Value,
-        condition.temperatureC,
-        condition.temperature
-      );
-
-      const uvIndex = firstDefined(
-        condition.UVIndex,
-        condition.uvIndex
-      );
-
-      const dewPointC = firstDefined(
-        condition.DewPoint?.Metric?.Value,
-        condition.dewPointC,
-        condition.dewPoint
-      );
-
-      const humidity = firstDefined(
-        condition.RelativeHumidity,
-        condition.relativeHumidity,
-        condition.humidity
-      );
-
-      const observedAt = firstDefined(
-        condition.LocalObservationDateTime,
-        condition.observedAt,
-        condition.updatedAt
-      );
-
-      if (
-        !weatherText ||
-        temperatureC === undefined ||
-        uvIndex === undefined ||
-        dewPointC === undefined ||
-        humidity === undefined
-      ) {
-        throw new Error("The weather response is missing detailed current conditions.");
-      }
-
-      setText("weatherCondition", weatherText);
-      setText("weatherTemperature", `${round(toNumber(temperatureC), 0)}°`);
-      setText("weatherUv", round(toNumber(uvIndex), 0));
-      setText("weatherDewPoint", `${round(toNumber(dewPointC), 0)}°`);
-      setText("weatherHumidity", `${round(toNumber(humidity), 0)}%`);
-
-      if (observedAt) {
-        const observationDate = new Date(observedAt);
-
-        if (!Number.isNaN(observationDate.getTime())) {
-          const observationTime = observationDate.toLocaleTimeString("en-GB", {
-            hour: "2-digit",
-            minute: "2-digit"
-          });
-
-          setText("weatherStatus", `Observed at ${observationTime} · AccuWeather`);
-          return;
-        }
-      }
-
-      setText("weatherStatus", "Current conditions · AccuWeather");
-    }
-
-    async function initAccuWeather() {
-      if (!ACCUWEATHER_DATA_URL) {
-        setText("weatherCondition", "AccuWeather setup needed");
-        setText("weatherStatus", "Connect the secure AccuWeather feed to load live conditions.");
-        return;
-      }
-
-      try {
-        const response = await fetch(ACCUWEATHER_DATA_URL, {
-          method: "GET",
-          cache: "no-store"
-        });
-
-        if (!response.ok) {
-          throw new Error(`Weather fetch failed: ${response.status}`);
-        }
-
-        const weatherData = await response.json();
-        renderAccuWeather(weatherData);
-      } catch (error) {
-        console.warn("Unable to load AccuWeather conditions:", error);
-        setText("weatherCondition", "Weather unavailable");
-        setText("weatherStatus", "The AccuWeather feed could not be reached.");
-      }
     }
 
     function getAccountabilityStatus(data, checkpointProgress) {
@@ -1028,7 +767,6 @@
     }
 
     initHealthDashboard();
-    initAccuWeather();
   </script>
 
 </body>
