@@ -1,5 +1,22 @@
 {
-  "connected": false,
-  "updatedAt": null,
-  "items": []
+  "connected": true,
+  "updatedAt": "2026-09-04T16:37:00+01:00",
+  "items": [
+    {
+      "severity": "today",
+      "title": "Task backlog needs attention",
+      "summary": "Your latest task digest reports due and overdue items that are worth triaging today.",
+      "source": "Gmail",
+      "when": "Today",
+      "href": "https://mail.google.com/mail/u/0/#inbox"
+    },
+    {
+      "severity": "important",
+      "title": "Automation failure needs review",
+      "summary": "An automated workflow failure notification is waiting in Gmail and may need a quick check.",
+      "source": "Gmail",
+      "when": "When practical",
+      "href": "https://mail.google.com/mail/u/0/#inbox"
+    }
+  ]
 }
