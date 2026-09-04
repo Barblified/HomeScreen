@@ -33,8 +33,15 @@
     }
     .site-menu a:hover,
     .site-menu a:focus-visible { background: #EAF7FA; }
+    .site-menu a:focus-visible { outline: 3px solid rgba(44,181,201,.42); outline-offset: 2px; }
     .site-menu a[aria-current="page"] { background: #2CB5C9; color: #23403D; }
-    .page-frame { width: 100%; height: calc(100% - 62px); border: 0; display: block; background: #FFF9F1; }
+    .page-frame {
+      width: 100%;
+      height: calc(100% - 62px);
+      border: 0;
+      display: block;
+      background: #FFF9F1;
+    }
     @media (max-width: 480px) {
       .site-menu { height: 56px; gap: 4px; padding: 7px 8px; }
       .site-menu a { padding: 7px 12px; font-size: 1.18rem; }
@@ -57,159 +64,6 @@
     allowfullscreen>
   </iframe>
 
-  <script>
-    const homeFrame = document.querySelector('.page-frame');
-    const isAndroid = /Android/i.test(navigator.userAgent);
-    const ICON_SPRITE = '/HomeScreen/assets/quick-links.svg';
-
-    function buildAndroidIntent(webUrl, packageName) {
-      const url = new URL(webUrl);
-      const target = `${url.host}${url.pathname}${url.search}${url.hash}`;
-      return `intent://${target}#Intent;scheme=${url.protocol.replace(':', '')};package=${packageName};S.browser_fallback_url=${encodeURIComponent(webUrl)};end`;
-    }
-
-    function enableAppFirst(link, packageName) {
-      if (!link || !packageName || link.dataset.appFirst === 'true') return;
-      link.dataset.appFirst = 'true';
-      const webUrl = link.href;
-      link.addEventListener('click', event => {
-        if (!isAndroid) return;
-        event.preventDefault();
-        window.location.href = buildAndroidIntent(webUrl, packageName);
-      });
-    }
-
-    function applyLocalIcon(documentRef, link, iconId) {
-      const svg = documentRef.createElementNS('http://www.w3.org/2000/svg', 'svg');
-      const use = documentRef.createElementNS('http://www.w3.org/2000/svg', 'use');
-      const iconRef = `${ICON_SPRITE}#${iconId}`;
-      svg.classList.add('quick-link-icon');
-      svg.setAttribute('viewBox', '0 0 32 32');
-      svg.setAttribute('aria-hidden', 'true');
-      svg.setAttribute('focusable', 'false');
-      use.setAttribute('href', iconRef);
-      use.setAttributeNS('http://www.w3.org/1999/xlink', 'xlink:href', iconRef);
-      svg.appendChild(use);
-      link.replaceChildren(svg);
-    }
-
-    function configureQuickLink(documentRef, quickLinks, config) {
-      let link = config.existingTitle
-        ? quickLinks.querySelector(`a[title="${config.existingTitle}"]`)
-        : documentRef.getElementById(config.id);
-
-      if (!link) {
-        link = documentRef.createElement('a');
-        link.id = config.id;
-        link.className = 'quick-link';
-        quickLinks.appendChild(link);
-      }
-
-      link.href = config.href;
-      link.target = '_blank';
-      link.rel = 'noopener noreferrer';
-      link.title = config.title;
-      link.setAttribute('aria-label', config.ariaLabel || `Open ${config.title}`);
-      link.dataset.sortName = config.title;
-
-      applyLocalIcon(documentRef, link, config.iconId);
-
-      if (config.packageName) enableAppFirst(link, config.packageName);
-    }
-
-    function alphabetiseQuickLinks(quickLinks) {
-      const links = [...quickLinks.querySelectorAll('a.quick-link')];
-      links.sort((a, b) => {
-        const first = a.dataset.sortName || a.title || '';
-        const second = b.dataset.sortName || b.title || '';
-        return first.localeCompare(second, 'en-GB', { sensitivity: 'base' });
-      });
-      links.forEach(link => quickLinks.appendChild(link));
-    }
-
-    homeFrame.addEventListener('load', () => {
-      try {
-        const documentRef = homeFrame.contentDocument;
-        const quickLinks = documentRef?.querySelector('.quick-links');
-        if (!quickLinks) return;
-
-        const themeStyle = documentRef.createElement('style');
-        themeStyle.id = 'meadow-theme';
-        themeStyle.textContent = `
-          :root {
-            --bronze: #FF8A3D;
-            --steel: #2CB5C9;
-            --forest: #2F7D4A;
-            --canvas: #FFF9F1;
-            --ink: #23403D;
-            --muted-ink: #5E7A78;
-            --paper: rgba(255, 255, 255, 0.92);
-            --steel-paper: rgba(234, 247, 250, 0.95);
-            --forest-paper: rgba(239, 251, 234, 0.96);
-            --shadow: 0 6px 18px rgba(35, 64, 61, 0.13);
-          }
-          .wave:nth-child(1) { background: linear-gradient(120deg, #2CB5C9, #7ED6F7); opacity: .38; }
-          .wave:nth-child(2) { background: linear-gradient(120deg, #7ED6F7, #FFF9F1); opacity: .42; }
-          .wave:nth-child(3) { background: linear-gradient(120deg, #FF8A3D, #7BC96F); opacity: .26; }
-          .box { border-left-color: #2CB5C9; }
-          .box h3 { color: #2CB5C9; }
-          .links-box { border-left-color: #FF8A3D; background: rgba(255,249,241,.96); }
-          .links-box h3 { color: #FF8A3D; }
-          .week-banner { border-left-color: #2CB5C9; background: rgba(234,247,250,.95); }
-          .week-banner h3 { color: #2CB5C9; }
-          .health { border-left-color: #2F7D4A; background: rgba(239,251,234,.96); }
-          .health h3, .metric-row span:last-child, .progress-label span:last-child { color: #2F7D4A; }
-          .progress-fill { background: linear-gradient(90deg, #2CB5C9, #FF8A3D); }
-          .status-pill { background: rgba(123,201,111,.16); border-color: rgba(47,125,74,.24); color: #2F7D4A; }
-          .quick-link:focus-visible { outline-color: rgba(44,181,201,.48); }
-        `;
-        documentRef.head.appendChild(themeStyle);
-
-        const iconStyle = documentRef.createElement('style');
-        iconStyle.id = 'local-quick-link-icons';
-        iconStyle.textContent = `
-          .quick-link-icon {
-            display: block;
-            width: 31px;
-            height: 31px;
-            overflow: visible;
-          }
-        `;
-        documentRef.head.appendChild(iconStyle);
-
-        const links = [
-          { existingTitle: 'AccuWeather', title: 'AccuWeather', href: 'https://www.accuweather.com/', packageName: 'com.accuweather.android', iconId: 'accuweather' },
-          { id: 'altcodes-quick-link', title: 'Alt Codes', href: 'https://www.alt-codes.net/', iconId: 'altcodes' },
-          { id: 'athleanx-quick-link', title: 'ATHLEAN-X', href: 'https://portal.athleanx.com/dashboard/index/index/m-ax1/m-allax-12/m-beaxst/m-jacked/m-infshred/m-torched/m-xero', iconId: 'athleanx' },
-          { id: 'bible-quick-link', title: 'Bible.com', href: 'https://www.bible.com/', packageName: 'com.sirma.mobile.bible.android', iconId: 'bible' },
-          { existingTitle: 'CalendarBridge', title: 'CalendarBridge', href: 'https://app.calendarbridge.com/dashboard', iconId: 'calendarbridge' },
-          { existingTitle: 'Calendly', title: 'Calendly', href: 'https://calendly.com/app/scheduling/meeting_types/user/me', iconId: 'calendly' },
-          { id: 'compass-quick-link', title: 'Compass', href: 'https://leenmillsprimary-uk.compass.education/', packageName: 'com.jdlf.compass', iconId: 'compass' },
-          { id: 'disneyplus-quick-link', title: 'Disney+', href: 'https://www.disneyplus.com/', packageName: 'com.disney.disneyplus', iconId: 'disneyplus' },
-          { id: 'eggtimer-quick-link', title: 'E.ggTimer', href: 'https://e.ggtimer.com/', iconId: 'eggtimer' },
-          { id: 'franco-specialty-coffee-quick-link', title: 'Franco Specialty Coffee', href: 'https://www.francospecialty.coffee/', iconId: 'franco' },
-          { id: 'gmail-quick-link', title: 'Gmail', href: 'https://mail.google.com/mail/u/0/', packageName: 'com.google.android.gm', iconId: 'gmail' },
-          { existingTitle: 'Google Calendar', title: 'Google Calendar', href: 'https://calendar.google.com/calendar/u/0/r', packageName: 'com.google.android.calendar', iconId: 'googlecalendar' },
-          { id: 'google-form-quick-link', title: 'Google Form', href: 'https://docs.google.com/forms/d/e/1FAIpQLSc2ueNtIKAbUeFeBTWG5Mzopj5nhDQ9InBgz8zCeOI6dbmuuw/viewform', iconId: 'googleforms' },
-          { id: 'heinnie-haynes-quick-link', title: 'Heinnie Haynes', href: 'https://heinnie.com/', iconId: 'heinnie' },
-          { id: 'myfitnesspal-quick-link', title: 'MyFitnessPal', href: 'https://www.myfitnesspal.com/', packageName: 'com.myfitnesspal.android', iconId: 'myfitnesspal' },
-          { id: 'nehemiah-quick-link', title: 'Nehemiah', href: 'https://chatgpt.com/g/g-6a6f2147a4b48191978025f950045a49-nehemiah', packageName: 'com.openai.chatgpt', iconId: 'nehemiah', ariaLabel: 'Open Nehemiah in ChatGPT' },
-          { id: 'netflix-quick-link', title: 'Netflix', href: 'https://www.netflix.com/', packageName: 'com.netflix.mediaclient', iconId: 'netflix' },
-          { id: 'outlook-quick-link', title: 'Outlook', href: 'https://outlook.office.com/mail/', packageName: 'com.microsoft.office.outlook', iconId: 'outlook' },
-          { existingTitle: 'Spotify', title: 'Spotify', href: 'https://open.spotify.com/', packageName: 'com.spotify.music', iconId: 'spotify' },
-          { id: 'teams-quick-link', title: 'Teams', href: 'https://teams.microsoft.com/', packageName: 'com.microsoft.teams', iconId: 'teams' },
-          { id: 'whatsapp-quick-link', title: 'WhatsApp', href: 'https://web.whatsapp.com/', packageName: 'com.whatsapp', iconId: 'whatsapp' },
-          { id: 'youtube-quick-link', title: 'YouTube', href: 'https://www.youtube.com/', packageName: 'com.google.android.youtube', iconId: 'youtube' }
-        ];
-
-        links.forEach(config => configureQuickLink(documentRef, quickLinks, config));
-        alphabetiseQuickLinks(quickLinks);
-      } catch (error) {
-        console.warn('Unable to enhance HomeScreen quick links:', error);
-      }
-    });
-  </script>
-  <script src="/HomeScreen/assets/quick-links-extra.js"></script>
   <script src="/HomeScreen/assets/home-weight-chart.js"></script>
 </body>
 </html>
