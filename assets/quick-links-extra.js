@@ -60,6 +60,7 @@
         gap: 7px;
         text-decoration: none;
       }
+      .quick-link-labelled .quick-link-icon,
       .quick-link-labelled .quick-link-extra-icon {
         display: block;
         width: 23px;
@@ -85,6 +86,7 @@
           padding: 0 8px;
           gap: 6px;
         }
+        .quick-link-labelled .quick-link-icon,
         .quick-link-labelled .quick-link-extra-icon {
           width: 21px;
           height: 21px;
@@ -120,6 +122,24 @@
     link.replaceChildren(makeIcon(doc, config.iconId), label);
   }
 
+  function labelAllLinks(doc, quickLinks) {
+    [...quickLinks.querySelectorAll('a.quick-link')].forEach(link => {
+      const labelText = link.dataset.sortName || link.title || '';
+      if (!labelText) return;
+
+      link.classList.add('quick-link-labelled');
+      if (!link.dataset.sortName) link.dataset.sortName = labelText;
+
+      let label = link.querySelector('.quick-link-label');
+      if (!label) {
+        label = doc.createElement('span');
+        label.className = 'quick-link-label';
+        label.textContent = labelText;
+        link.appendChild(label);
+      }
+    });
+  }
+
   function alphabetise(quickLinks) {
     const links = [...quickLinks.querySelectorAll('a.quick-link')];
     links.sort((a, b) => {
@@ -143,6 +163,7 @@
         .forEach(link => link.remove());
 
       NEW_LINKS.forEach(config => addOrUpdateLink(doc, quickLinks, config));
+      labelAllLinks(doc, quickLinks);
       alphabetise(quickLinks);
     } catch (error) {
       console.warn('Unable to expand HomeScreen quick links:', error);
