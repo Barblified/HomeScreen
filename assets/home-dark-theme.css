@@ -1,0 +1,201 @@
+:root {
+  --canvas: #07182A !important;
+  --surface: rgba(10, 32, 55, .94) !important;
+  --surface-strong: rgba(14, 42, 70, .98) !important;
+  --mist: #102D49 !important;
+  --sky: #7DB9E8 !important;
+  --teal: #3FE36D !important;
+  --teal-dark: #79F19A !important;
+  --orange: #FF8126 !important;
+  --orange-dark: #FFAD62 !important;
+  --leaf: #6BE784 !important;
+  --green: #45DB70 !important;
+  --ink: #F3F7FB !important;
+  --muted: #B6C9DB !important;
+  --line: rgba(190, 214, 235, .18) !important;
+  --danger: #FF6A6A !important;
+  --warning: #FFAD62 !important;
+  --shadow-1: 0 6px 18px rgba(0, 0, 0, .24) !important;
+  --shadow-2: 0 12px 30px rgba(0, 0, 0, .30) !important;
+}
+
+body,
+.wave-bg {
+  background: var(--canvas) !important;
+}
+
+.wave:nth-child(1) {
+  background: linear-gradient(120deg, #0A2847, #155A74) !important;
+  opacity: .55 !important;
+}
+
+.wave:nth-child(2) {
+  background: linear-gradient(120deg, #0C3558, #07182A) !important;
+  opacity: .52 !important;
+}
+
+.wave:nth-child(3) {
+  background: linear-gradient(120deg, var(--orange), var(--green)) !important;
+  opacity: .12 !important;
+}
+
+h1,
+.card-heading h2,
+.planning-card h3 {
+  color: var(--ink) !important;
+}
+
+.orange .card-heading h2,
+.section-heading h2,
+.planning-card.month h3,
+.link-group summary span,
+.link-group summary::after,
+.discovery-more summary {
+  color: var(--orange-dark) !important;
+}
+
+.green .card-heading h2,
+.planning-card.year h3,
+.health-metric strong,
+.health-link,
+.trend-down {
+  color: var(--green) !important;
+}
+
+.card,
+.main,
+.link-group {
+  background: var(--surface) !important;
+  border-color: var(--line) !important;
+}
+
+.micro-meta span,
+.attention-status,
+.health-trend,
+.trend-flat {
+  background: rgba(16, 45, 73, .92) !important;
+  color: var(--muted) !important;
+  border-color: var(--line) !important;
+}
+
+.attention-status strong {
+  color: var(--ink) !important;
+}
+
+.attention-status.all-clear,
+.trend-down {
+  background: rgba(63, 227, 109, .10) !important;
+}
+
+.attention-item,
+.favourite-link,
+.tool-link,
+.discovery-link,
+.health-metric {
+  background: rgba(15, 43, 70, .96) !important;
+  color: var(--ink) !important;
+  border-color: var(--line) !important;
+  box-shadow: 0 2px 9px rgba(0, 0, 0, .18) !important;
+}
+
+.attention-item:hover,
+.favourite-link:hover,
+.tool-link:hover,
+.discovery-link:hover {
+  background: rgba(22, 58, 91, .98) !important;
+  box-shadow: 0 7px 16px rgba(0, 0, 0, .25) !important;
+}
+
+.link-group summary {
+  background: rgba(11, 36, 61, .98) !important;
+}
+
+.tool-grid,
+.attention-detail,
+.attention-more {
+  border-color: var(--line) !important;
+}
+
+.severity-important {
+  border-left-color: var(--green) !important;
+}
+
+.severity-important .severity-chip {
+  color: var(--green) !important;
+  background: rgba(63, 227, 109, .11) !important;
+}
+
+.severity-today {
+  border-left-color: var(--orange) !important;
+}
+
+.severity-chip,
+.trend-up {
+  color: var(--orange-dark) !important;
+  background: rgba(255, 129, 38, .12) !important;
+}
+
+.attention-detail a,
+.attention-more summary {
+  color: var(--green) !important;
+}
+
+.next-up-frame,
+.calendar-frame {
+  background: #FFFFFF !important;
+  border-radius: 14px !important;
+}
+
+.home-weight-card {
+  background: rgba(10, 32, 55, .95) !important;
+  border-color: rgba(63, 227, 109, .28) !important;
+  border-left-color: var(--green) !important;
+  color: var(--ink) !important;
+  box-shadow: var(--shadow-1) !important;
+}
+
+.home-weight-heading h3 {
+  color: var(--ink) !important;
+}
+
+.home-weight-heading p,
+.home-weight-note,
+.home-weight-empty {
+  color: var(--muted) !important;
+}
+
+.home-weight-chip {
+  background: rgba(15, 43, 70, .96) !important;
+  border-color: var(--line) !important;
+}
+
+.home-weight-chip small {
+  color: var(--muted) !important;
+}
+
+.home-weight-chip.current {
+  box-shadow: inset 0 3px 0 var(--green) !important;
+}
+
+.home-weight-chip.current strong,
+.home-weight-chip.fourteen strong {
+  color: var(--green) !important;
+}
+
+.home-weight-chip.seven {
+  box-shadow: inset 0 3px 0 var(--orange) !important;
+}
+
+.home-weight-chip.seven strong {
+  color: var(--orange-dark) !important;
+}
+
+.home-weight-wrap {
+  background: linear-gradient(180deg, rgba(17, 52, 84, .95), rgba(7, 24, 42, .94)) !important;
+}
+
+.home-weight-tooltip {
+  background: rgba(10, 32, 55, .98) !important;
+  border-color: var(--line) !important;
+  color: var(--ink) !important;
+}
