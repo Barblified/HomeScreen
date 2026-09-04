@@ -1,14 +1,14 @@
 {
   "connected": true,
-  "updatedAt": "2026-09-04T16:37:00+01:00",
+  "updatedAt": "2026-09-04T17:15:00+01:00",
   "items": [
     {
       "severity": "today",
-      "title": "Task backlog needs attention",
-      "summary": "Your latest task digest reports due and overdue items that are worth triaging today.",
-      "source": "Gmail",
-      "when": "Today",
-      "href": "https://mail.google.com/mail/u/0/#inbox"
+      "title": "1 Todoist task due within an hour",
+      "summary": "A timed task is due within the next 60 minutes.",
+      "source": "Todoist",
+      "when": "Within 60 minutes",
+      "href": "https://app.todoist.com/app/today"
     },
     {
       "severity": "important",
