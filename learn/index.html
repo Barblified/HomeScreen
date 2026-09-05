@@ -40,6 +40,31 @@
       .page-frame { height: calc(100% - 56px); }
     }
   </style>
+
+<style id="homepage-shell-palette">
+  html, body { background: #07182A !important; color: #F3F7FB; }
+  .site-menu {
+    background: #0A2037 !important;
+    border-bottom-color: rgba(190,214,235,.18) !important;
+    box-shadow: 0 4px 16px rgba(0,0,0,.28) !important;
+  }
+  .site-menu a { color: #EAF2F8 !important; }
+  .site-menu a:hover,
+  .site-menu a:focus-visible {
+    background: #143754 !important;
+    color: #FFAD62 !important;
+  }
+  .site-menu a:focus-visible {
+    outline: 3px solid rgba(63,227,109,.55) !important;
+    outline-offset: 2px;
+  }
+  .site-menu a[aria-current="page"] {
+    background: #3FE36D !important;
+    color: #07182A !important;
+  }
+  .page-frame { background: #07182A !important; }
+</style>
+
 </head>
 <body>
   <nav class="site-menu" aria-label="Site navigation">

@@ -363,6 +363,85 @@
       }
     }
   </style>
+
+<style id="homepage-health-palette">
+  :root {
+    --bg-1: #07182A;
+    --bg-2: #102D49;
+    --card: rgba(10, 32, 55, .94);
+    --ink: #F3F7FB;
+    --muted: #B6C9DB;
+    --line: rgba(190, 214, 235, .18);
+    --accent: #45DB70;
+    --accent-2: #6BE784;
+    --steel: #7DB9E8;
+    --soft-green: rgba(63, 227, 109, .10);
+    --soft-bronze: rgba(255, 129, 38, .10);
+  }
+  html { background: #07182A !important; }
+  body {
+    background:
+      radial-gradient(circle at 20% 20%, rgba(255,129,38,.12), transparent 30%),
+      radial-gradient(circle at 80% 10%, rgba(125,185,232,.16), transparent 28%),
+      linear-gradient(160deg, #07182A 0%, #0A2037 58%, #102D49 100%) !important;
+  }
+  .card {
+    background: rgba(10,32,55,.94) !important;
+    border-color: var(--line) !important;
+    box-shadow: 0 24px 80px rgba(0,0,0,.30) !important;
+  }
+  h1 { color: #F3F7FB !important; }
+  h2 { color: #45DB70 !important; }
+  .metric,
+  .tile,
+  .badge,
+  .coach-action,
+  .chart-chip {
+    background: rgba(15,43,70,.96) !important;
+    border-color: var(--line) !important;
+    color: var(--ink) !important;
+  }
+  .status,
+  .diary-link-wrap {
+    background: rgba(63,227,109,.10) !important;
+    border-color: rgba(63,227,109,.24) !important;
+  }
+  .coach {
+    background: rgba(255,129,38,.09) !important;
+    border-color: rgba(255,129,38,.30) !important;
+  }
+  .coach h2 { color: #FFAD62 !important; }
+  .coach-item h3 { color: #7DB9E8 !important; }
+  .coach-action { border-left-color: #FF8126 !important; }
+  .diary-link {
+    background: #45DB70 !important;
+    border-color: rgba(69,219,112,.52) !important;
+    color: #07182A !important;
+  }
+  .progress { background: rgba(190,214,235,.14) !important; }
+  .bar { background: linear-gradient(90deg, #3FE36D, #6BE784) !important; }
+  .chart-card {
+    background: rgba(10,32,55,.95) !important;
+    border-color: rgba(63,227,109,.28) !important;
+    color: var(--ink) !important;
+  }
+  .chart-wrap {
+    background: linear-gradient(180deg, rgba(17,52,84,.95), rgba(7,24,42,.94)) !important;
+  }
+  .chart-tooltip {
+    background: rgba(10,32,55,.98) !important;
+    border-color: var(--line) !important;
+    color: var(--ink) !important;
+    box-shadow: 0 8px 20px rgba(0,0,0,.28) !important;
+  }
+  .chart-chip.current { box-shadow: inset 0 3px 0 #45DB70 !important; }
+  .chart-chip.current strong { color: #45DB70 !important; }
+  .chart-chip.seven { box-shadow: inset 0 3px 0 #FF8126 !important; }
+  .chart-chip.seven strong { color: #FFAD62 !important; }
+  .chart-chip.fourteen { box-shadow: inset 0 3px 0 #45DB70 !important; }
+  .chart-chip.fourteen strong { color: #45DB70 !important; }
+</style>
+
 </head>
 <body>
   <main class="card" aria-live="polite">

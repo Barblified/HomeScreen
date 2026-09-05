@@ -47,6 +47,31 @@
       .page-frame { height: calc(100% - 56px); }
     }
   </style>
+
+<style id="homepage-shell-palette">
+  html, body { background: #07182A !important; color: #F3F7FB; }
+  .site-menu {
+    background: #0A2037 !important;
+    border-bottom-color: rgba(190,214,235,.18) !important;
+    box-shadow: 0 4px 16px rgba(0,0,0,.28) !important;
+  }
+  .site-menu a { color: #EAF2F8 !important; }
+  .site-menu a:hover,
+  .site-menu a:focus-visible {
+    background: #143754 !important;
+    color: #FFAD62 !important;
+  }
+  .site-menu a:focus-visible {
+    outline: 3px solid rgba(63,227,109,.55) !important;
+    outline-offset: 2px;
+  }
+  .site-menu a[aria-current="page"] {
+    background: #3FE36D !important;
+    color: #07182A !important;
+  }
+  .page-frame { background: #07182A !important; }
+</style>
+
 </head>
 <body>
   <nav class="site-menu" aria-label="Site navigation">
@@ -480,15 +505,15 @@
         context.beginPath();
         context.moveTo(margin.left, y);
         context.lineTo(margin.left + plotWidth, y);
-        context.strokeStyle = "rgba(35, 64, 61, 0.085)";
+        context.strokeStyle = "rgba(190, 214, 235, 0.12)";
         context.stroke();
 
-        context.fillStyle = "#5E7A78";
+        context.fillStyle = "#B6C9DB";
         context.textAlign = "right";
         context.fillText(`${value.toFixed(1)}`, margin.left - 8, y);
       }
 
-      context.fillStyle = "#5E7A78";
+      context.fillStyle = "#B6C9DB";
       context.textAlign = "left";
       context.fillText("kg", 7, margin.top - 6);
 
@@ -498,7 +523,7 @@
       let tickIndex = 0;
       while (tick <= endTime + dayMs / 2) {
         const x = xFor(tick);
-        context.fillStyle = "#5E7A78";
+        context.fillStyle = "#B6C9DB";
         context.textAlign = tickIndex === 0 ? "left" : "center";
         context.fillText(formatChartDate(tick), x, cssHeight - 17);
         tick += tickInterval;
@@ -540,17 +565,17 @@
 
         context.beginPath();
         context.arc(x, y, index === history.length - 1 ? 4.5 : 3.5, 0, Math.PI * 2);
-        context.fillStyle = "#2CB5C9";
+        context.fillStyle = "#7DB9E8";
         context.fill();
         context.lineWidth = 1.4;
-        context.strokeStyle = "rgba(255,249,241,0.98)";
+        context.strokeStyle = "rgba(7,24,42,0.98)";
         context.stroke();
 
         return { index, x, y };
       });
 
-      drawSeries(sevenDaySeries, "averageKg", "#7BC96F", 3);
-      drawSeries(fourteenDaySeries, "averageKg", "#2F7D4A", 4.5);
+      drawSeries(sevenDaySeries, "averageKg", "#FF8126", 3);
+      drawSeries(fourteenDaySeries, "averageKg", "#45DB70", 4.5);
 
       canvas.setAttribute(
         "aria-label",
