@@ -22,10 +22,14 @@
       description: 'Reasoning, search and specialist research tools.',
       links: [
         { title: 'Claude', href: 'https://claude.ai/', icon: 'claude', sprite: EXTRA_SPRITE },
+        { title: 'Consensus', href: 'https://consensus.app/', icon: 'consensus', sprite: EXTRA_SPRITE },
+        { title: 'NotebookLM', href: 'https://notebooklm.google.com/', icon: 'notebooklm', sprite: EXTRA_SPRITE },
         { title: 'OSINT Framework', href: 'https://osintframework.com/', icon: 'osintframework', sprite: EXTRA_SPRITE },
+        { title: 'Our World in Data', href: 'https://ourworldindata.org/', icon: 'ourworldindata', sprite: EXTRA_SPRITE },
         { title: 'Perplexity', href: 'https://perplexity.ai/', icon: 'perplexity', sprite: EXTRA_SPRITE },
         { title: 'PimEyes', href: 'https://pimeyes.com/', icon: 'pimeyes', sprite: EXTRA_SPRITE },
-        { title: 'Quiver Quant', href: 'https://www.quiverquant.com/', icon: 'quiverquant', sprite: EXTRA_SPRITE }
+        { title: 'Quiver Quant', href: 'https://www.quiverquant.com/', icon: 'quiverquant', sprite: EXTRA_SPRITE },
+        { title: 'ResearchRabbit', href: 'https://www.researchrabbit.ai/', icon: 'researchrabbit', sprite: EXTRA_SPRITE }
       ]
     },
     {
@@ -35,8 +39,12 @@
         { title: 'Alt Codes', href: 'https://www.alt-codes.net/', icon: 'altcodes', sprite: CORE_SPRITE },
         { title: 'CalendarBridge', href: 'https://app.calendarbridge.com/dashboard', icon: 'calendarbridge', sprite: CORE_SPRITE },
         { title: 'Calendly', href: 'https://calendly.com/app/scheduling/meeting_types/user/me', icon: 'calendly', sprite: CORE_SPRITE },
+        { title: 'dbdiagram.io', href: 'https://dbdiagram.io/', icon: 'dbdiagram', sprite: EXTRA_SPRITE },
         { title: 'DeskSpacing', href: 'https://deskspacing.com/', icon: 'deskspacing', sprite: EXTRA_SPRITE },
-        { title: 'Google Form', href: 'https://docs.google.com/forms/d/e/1FAIpQLSc2ueNtIKAbUeFeBTWG5Mzopj5nhDQ9InBgz8zCeOI6dbmuuw/viewform', icon: 'googleforms', sprite: CORE_SPRITE }
+        { title: 'Excalidraw', href: 'https://excalidraw.com/', icon: 'excalidraw', sprite: EXTRA_SPRITE },
+        { title: 'Google Form', href: 'https://docs.google.com/forms/d/e/1FAIpQLSc2ueNtIKAbUeFeBTWG5Mzopj5nhDQ9InBgz8zCeOI6dbmuuw/viewform', icon: 'googleforms', sprite: CORE_SPRITE },
+        { title: 'Mermaid Live Editor', href: 'https://mermaid.live/', icon: 'mermaidlive', sprite: EXTRA_SPRITE },
+        { title: 'Regex101', href: 'https://regex101.com/', icon: 'regex101', sprite: EXTRA_SPRITE }
       ]
     },
     {
@@ -46,17 +54,24 @@
         { title: 'AccuWeather', href: 'https://www.accuweather.com/', icon: 'accuweather', sprite: CORE_SPRITE, packageName: 'com.accuweather.android' },
         { title: 'Booking.com', href: 'https://www.booking.com/', icon: 'booking', sprite: EXTRA_SPRITE },
         { title: 'Flightradar24', href: 'https://www.flightradar24.com/', icon: 'flightradar24', sprite: EXTRA_SPRITE },
+        { title: 'OpenRailwayMap', href: 'https://www.openrailwaymap.org/', icon: 'openrailwaymap', sprite: EXTRA_SPRITE },
         { title: 'Signalbox', href: 'https://signalbox.io/', icon: 'signalbox', sprite: EXTRA_SPRITE },
         { title: 'Skiplagged', href: 'https://skiplagged.com/', icon: 'skiplagged', sprite: EXTRA_SPRITE },
-        { title: 'VesselFinder', href: 'https://www.vesselfinder.com/', icon: 'vesselfinder', sprite: EXTRA_SPRITE }
+        { title: 'The Man in Seat 61', href: 'https://www.seat61.com/', icon: 'seat61', sprite: EXTRA_SPRITE },
+        { title: 'VesselFinder', href: 'https://www.vesselfinder.com/', icon: 'vesselfinder', sprite: EXTRA_SPRITE },
+        { title: 'Windy', href: 'https://www.windy.com/', icon: 'windy', sprite: EXTRA_SPRITE }
       ]
     },
     {
       name: 'Learning & Skills',
       description: 'Structured learning and practical skill-building.',
       links: [
+        { title: 'Brilliant', href: 'https://brilliant.org/', icon: 'brilliant', sprite: EXTRA_SPRITE },
+        { title: 'DataCamp', href: 'https://www.datacamp.com/', icon: 'datacamp', sprite: EXTRA_SPRITE },
         { title: 'edX', href: 'https://www.edx.org/', icon: 'edx', sprite: EXTRA_SPRITE },
+        { title: 'Exercism', href: 'https://exercism.org/', icon: 'exercism', sprite: EXTRA_SPRITE },
         { title: 'Hacksplaining', href: 'https://www.hacksplaining.com/', icon: 'hacksplaining', sprite: EXTRA_SPRITE },
+        { title: 'MIT OpenCourseWare', href: 'https://ocw.mit.edu/', icon: 'mitocw', sprite: EXTRA_SPRITE },
         { title: 'MuscleWiki', href: 'https://musclewiki.com/', icon: 'musclewiki', sprite: EXTRA_SPRITE }
       ]
     },
@@ -64,14 +79,18 @@
       name: 'Life & Leisure',
       description: 'Family, entertainment, hobbies and useful rabbit holes.',
       links: [
+        { title: 'Brickset', href: 'https://brickset.com/', icon: 'brickset', sprite: EXTRA_SPRITE },
         { title: 'Compass', href: 'https://leenmillsprimary-uk.compass.education/', icon: 'compass', sprite: CORE_SPRITE, packageName: 'com.jdlf.compass' },
         { title: 'Disney+', href: 'https://www.disneyplus.com/', icon: 'disneyplus', sprite: CORE_SPRITE, packageName: 'com.disney.disneyplus' },
         { title: 'Explore.org', href: 'https://explore.org/', icon: 'explore', sprite: EXTRA_SPRITE },
         { title: 'Franco Specialty Coffee', href: 'https://www.francospecialty.coffee/', icon: 'franco', sprite: CORE_SPRITE },
         { title: 'GeekPrank', href: 'https://geekprank.com/', icon: 'geekprank', sprite: EXTRA_SPRITE },
         { title: 'Heinnie Haynes', href: 'https://heinnie.com/', icon: 'heinnie', sprite: CORE_SPRITE },
+        { title: 'JustWatch UK', href: 'https://www.justwatch.com/uk', icon: 'justwatch', sprite: EXTRA_SPRITE },
+        { title: 'Letterboxd', href: 'https://letterboxd.com/', icon: 'letterboxd', sprite: EXTRA_SPRITE },
         { title: 'Make Me a Cocktail', href: 'https://makemeacocktail.com/', icon: 'makemeacocktail', sprite: EXTRA_SPRITE },
-        { title: 'myNoise', href: 'https://mynoise.net/', icon: 'mynoise', sprite: EXTRA_SPRITE }
+        { title: 'myNoise', href: 'https://mynoise.net/', icon: 'mynoise', sprite: EXTRA_SPRITE },
+        { title: 'Radio Garden', href: 'https://radio.garden/', icon: 'radiogarden', sprite: EXTRA_SPRITE }
       ]
     }
   ];
