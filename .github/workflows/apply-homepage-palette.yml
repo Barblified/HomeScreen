@@ -1,0 +1,220 @@
+name: Apply HomeScreen homepage palette
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/apply-homepage-palette.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  apply-palette:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Apply homepage palette across site
+        shell: python
+        run: |
+          from pathlib import Path
+
+          shell_theme = r'''
+          <style id="homepage-shell-palette">
+            html, body { background: #07182A !important; color: #F3F7FB; }
+            .site-menu {
+              background: #0A2037 !important;
+              border-bottom-color: rgba(190,214,235,.18) !important;
+              box-shadow: 0 4px 16px rgba(0,0,0,.28) !important;
+            }
+            .site-menu a { color: #EAF2F8 !important; }
+            .site-menu a:hover,
+            .site-menu a:focus-visible {
+              background: #143754 !important;
+              color: #FFAD62 !important;
+            }
+            .site-menu a:focus-visible {
+              outline: 3px solid rgba(63,227,109,.55) !important;
+              outline-offset: 2px;
+            }
+            .site-menu a[aria-current="page"] {
+              background: #3FE36D !important;
+              color: #07182A !important;
+            }
+            .page-frame { background: #07182A !important; }
+          </style>
+          '''
+
+          health_theme = r'''
+          <style id="homepage-health-palette">
+            :root {
+              --bg-1: #07182A;
+              --bg-2: #102D49;
+              --card: rgba(10, 32, 55, .94);
+              --ink: #F3F7FB;
+              --muted: #B6C9DB;
+              --line: rgba(190, 214, 235, .18);
+              --accent: #45DB70;
+              --accent-2: #6BE784;
+              --steel: #7DB9E8;
+              --soft-green: rgba(63, 227, 109, .10);
+              --soft-bronze: rgba(255, 129, 38, .10);
+            }
+            html { background: #07182A !important; }
+            body {
+              background:
+                radial-gradient(circle at 20% 20%, rgba(255,129,38,.12), transparent 30%),
+                radial-gradient(circle at 80% 10%, rgba(125,185,232,.16), transparent 28%),
+                linear-gradient(160deg, #07182A 0%, #0A2037 58%, #102D49 100%) !important;
+            }
+            .card {
+              background: rgba(10,32,55,.94) !important;
+              border-color: var(--line) !important;
+              box-shadow: 0 24px 80px rgba(0,0,0,.30) !important;
+            }
+            h1 { color: #F3F7FB !important; }
+            h2 { color: #45DB70 !important; }
+            .metric,
+            .tile,
+            .badge,
+            .coach-action,
+            .chart-chip {
+              background: rgba(15,43,70,.96) !important;
+              border-color: var(--line) !important;
+              color: var(--ink) !important;
+            }
+            .status,
+            .diary-link-wrap {
+              background: rgba(63,227,109,.10) !important;
+              border-color: rgba(63,227,109,.24) !important;
+            }
+            .coach {
+              background: rgba(255,129,38,.09) !important;
+              border-color: rgba(255,129,38,.30) !important;
+            }
+            .coach h2 { color: #FFAD62 !important; }
+            .coach-item h3 { color: #7DB9E8 !important; }
+            .coach-action { border-left-color: #FF8126 !important; }
+            .diary-link {
+              background: #45DB70 !important;
+              border-color: rgba(69,219,112,.52) !important;
+              color: #07182A !important;
+            }
+            .progress { background: rgba(190,214,235,.14) !important; }
+            .bar { background: linear-gradient(90deg, #3FE36D, #6BE784) !important; }
+            .chart-card {
+              background: rgba(10,32,55,.95) !important;
+              border-color: rgba(63,227,109,.28) !important;
+              color: var(--ink) !important;
+            }
+            .chart-wrap {
+              background: linear-gradient(180deg, rgba(17,52,84,.95), rgba(7,24,42,.94)) !important;
+            }
+            .chart-tooltip {
+              background: rgba(10,32,55,.98) !important;
+              border-color: var(--line) !important;
+              color: var(--ink) !important;
+              box-shadow: 0 8px 20px rgba(0,0,0,.28) !important;
+            }
+            .chart-chip.current { box-shadow: inset 0 3px 0 #45DB70 !important; }
+            .chart-chip.current strong { color: #45DB70 !important; }
+            .chart-chip.seven { box-shadow: inset 0 3px 0 #FF8126 !important; }
+            .chart-chip.seven strong { color: #FFAD62 !important; }
+            .chart-chip.fourteen { box-shadow: inset 0 3px 0 #45DB70 !important; }
+            .chart-chip.fourteen strong { color: #45DB70 !important; }
+          </style>
+          '''
+
+          legacy_learn_theme = r'''
+          <style id="homepage-legacy-learn-palette">
+            :root {
+              color-scheme: dark;
+              --bg: #07182A;
+              --surface: #0A2037;
+              --surface-2: #0F2B46;
+              --surface-3: #163A5B;
+              --text: #F3F7FB;
+              --muted: #B6C9DB;
+              --line: rgba(190,214,235,.18);
+              --accent: #FF8126;
+              --accent-strong: #FFAD62;
+              --accent-ink: #07182A;
+              --good: #45DB70;
+              --danger: #FF6A6A;
+              --focus: #3FE36D;
+              --shadow: 0 20px 60px rgb(0 0 0 / 30%);
+            }
+            body {
+              background:
+                radial-gradient(circle at 12% 8%, rgb(255 129 38 / 12%), transparent 28rem),
+                radial-gradient(circle at 88% 28%, rgb(125 185 232 / 16%), transparent 30rem),
+                linear-gradient(160deg, #07182A 0%, #0A2037 58%, #102D49 100%) !important;
+            }
+            .panel { background: rgb(10 32 55 / 94%) !important; }
+          </style>
+          '''
+
+          def insert_before_head(path, marker, snippet):
+              p = Path(path)
+              text = p.read_text(encoding='utf-8')
+              if marker not in text:
+                  if '</head>' not in text:
+                      raise RuntimeError(f'No </head> in {path}')
+                  text = text.replace('</head>', snippet + '\n</head>', 1)
+                  p.write_text(text, encoding='utf-8')
+
+          insert_before_head('health/index.html', 'homepage-shell-palette', shell_theme)
+          insert_before_head('learn/index.html', 'homepage-shell-palette', shell_theme)
+          insert_before_head('health/content.html', 'homepage-health-palette', health_theme)
+          insert_before_head('learn/content.html', 'homepage-legacy-learn-palette', legacy_learn_theme)
+
+          health_index = Path('health/index.html')
+          text = health_index.read_text(encoding='utf-8')
+          replacements = {
+              'context.strokeStyle = "rgba(35, 64, 61, 0.085)";': 'context.strokeStyle = "rgba(190, 214, 235, 0.12)";',
+              'context.fillStyle = "#5E7A78";': 'context.fillStyle = "#B6C9DB";',
+              'context.fillStyle = "#2CB5C9";': 'context.fillStyle = "#7DB9E8";',
+              'context.strokeStyle = "rgba(255,249,241,0.98)";': 'context.strokeStyle = "rgba(7,24,42,0.98)";',
+              'drawSeries(sevenDaySeries, "averageKg", "#7BC96F", 3);': 'drawSeries(sevenDaySeries, "averageKg", "#FF8126", 3);',
+              'drawSeries(fourteenDaySeries, "averageKg", "#2F7D4A", 4.5);': 'drawSeries(fourteenDaySeries, "averageKg", "#45DB70", 4.5);'
+          }
+          for old, new in replacements.items():
+              text = text.replace(old, new)
+          health_index.write_text(text, encoding='utf-8')
+
+          v2 = Path('learn/v2.css')
+          css = v2.read_text(encoding='utf-8')
+          marker = '/* Homepage palette alignment */'
+          if marker not in css:
+              css += r'''
+
+          /* Homepage palette alignment */
+          :root{color-scheme:dark;--bg:#07182A;--surface:#0A2037;--surface2:#0F2B46;--surface3:#163A5B;--text:#F3F7FB;--muted:#B6C9DB;--line:rgba(190,214,235,.18);--accent:#FF8126;--accent2:#3FE36D;--ink:#07182A;--good:#45DB70;--danger:#FF6A6A;--focus:#3FE36D;--shadow:0 20px 60px rgb(0 0 0/.30)}
+          body{background:radial-gradient(circle at 12% 8%,rgb(255 129 38/.12),transparent 28rem),radial-gradient(circle at 88% 28%,rgb(125 185 232/.16),transparent 30rem),linear-gradient(160deg,#07182A 0%,#0A2037 58%,#102D49 100%)!important}
+          .panel{background:rgb(10 32 55/.94)!important}
+          .chip.accent{border-color:rgb(255 129 38/.55);color:#FFAD62;background:rgb(255 129 38/.10)}
+          .mode input:checked+label{border-color:#FF8126;background:rgb(255 129 38/.12);box-shadow:inset 0 0 0 1px #FF8126}
+          .primary:hover{background:#FFAD62}
+          .reason{border-left-color:#FF8126;background:rgb(255 129 38/.09)}
+          .media{background:#07182A}
+          .duration{background:rgb(7 24 42/.88)}
+          dialog::backdrop{background:rgb(7 24 42/.72)}
+          '''
+              v2.write_text(css, encoding='utf-8')
+
+          for path in ('learn/v2.html', 'learn/content.html'):
+              p = Path(path)
+              text = p.read_text(encoding='utf-8').replace('content="#101820"', 'content="#07182A"')
+              p.write_text(text, encoding='utf-8')
+
+      - name: Commit palette update
+        run: |
+          rm .github/workflows/apply-homepage-palette.yml
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add health/index.html health/content.html learn/index.html learn/v2.css learn/v2.html learn/content.html .github/workflows/apply-homepage-palette.yml
+          git commit -m "Unify site colour palette"
+          git push
