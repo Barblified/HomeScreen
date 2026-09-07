@@ -76,6 +76,20 @@
       ]
     },
     {
+      name: 'Faith',
+      description: 'Scripture, prayer, theology and thoughtful Christian formation.',
+      links: [
+        { title: 'Bible.com', href: 'https://www.bible.com/', icon: 'bible', sprite: CORE_SPRITE, packageName: 'com.sirma.mobile.bible.android' },
+        { title: 'BibleProject', href: 'https://bibleproject.com/', icon: 'bibleproject', sprite: EXTRA_SPRITE },
+        { title: 'STEP Bible', href: 'https://www.stepbible.org/', icon: 'stepbible', sprite: EXTRA_SPRITE },
+        { title: 'Church of England Daily Prayer', href: 'https://www.churchofengland.org/prayer-and-worship/join-us-service-daily-prayer', icon: 'cofdailyprayer', sprite: EXTRA_SPRITE },
+        { title: 'Lectio 365', href: 'https://www.24-7prayer.com/resource/lectio-365/', icon: 'lectio365', sprite: EXTRA_SPRITE },
+        { title: 'Pray As You Go', href: 'https://pray-as-you-go.org/', icon: 'prayasyougo', sprite: EXTRA_SPRITE },
+        { title: 'BioLogos', href: 'https://biologos.org/', icon: 'biologos', sprite: EXTRA_SPRITE },
+        { title: 'Bible Odyssey', href: 'https://www.bibleodyssey.org/', icon: 'bibleodyssey', sprite: EXTRA_SPRITE }
+      ]
+    },
+    {
       name: 'Life & Leisure',
       description: 'Family, entertainment, hobbies and useful rabbit holes.',
       links: [
