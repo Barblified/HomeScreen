@@ -172,7 +172,9 @@
     if (!container) return;
     const mobile = window.matchMedia('(max-width: 760px)').matches;
 
-    categories.forEach(category => {
+    [...categories]
+      .sort((a, b) => a.name.localeCompare(b.name, 'en-GB', { sensitivity: 'base' }))
+      .forEach(category => {
       const details = document.createElement('details');
       details.className = 'link-group';
       if (!mobile) details.open = true;
