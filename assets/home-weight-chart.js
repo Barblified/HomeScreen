@@ -52,6 +52,28 @@
     });
   }
 
+  function buildLinearTrendSeries(history) {
+    if (history.length < 2) return [];
+
+    const dayMs = 24 * 60 * 60 * 1000;
+    const origin = history[0].timestamp;
+    const points = history.map(entry => ({
+      x: (entry.timestamp - origin) / dayMs,
+      y: entry.weightKg
+    }));
+    const meanX = points.reduce((sum, point) => sum + point.x, 0) / points.length;
+    const meanY = points.reduce((sum, point) => sum + point.y, 0) / points.length;
+    const denominator = points.reduce((sum, point) => sum + ((point.x - meanX) ** 2), 0);
+    const numerator = points.reduce((sum, point) => sum + ((point.x - meanX) * (point.y - meanY)), 0);
+    const slope = denominator === 0 ? 0 : numerator / denominator;
+    const intercept = meanY - slope * meanX;
+
+    return history.map(entry => ({
+      ...entry,
+      trendKg: intercept + slope * ((entry.timestamp - origin) / dayMs)
+    }));
+  }
+
   function latestAvailable(series) {
     for (let index = series.length - 1; index >= 0; index -= 1) {
       if (series[index].averageKg !== null) return series[index];
@@ -209,9 +231,9 @@
           <div class="home-weight-chip fourteen"><small>14-day avg</small><strong id="home-weight-fourteen">—</strong></div>
         </div>
       </div>
-      <p class="home-weight-note">7-day average needs 4 readings · 14-day average needs 8.</p>
+      <p class="home-weight-note">7-day average needs 4 readings · 14-day average needs 8 · Thin grey line = overall linear trend.</p>
       <div class="home-weight-wrap" id="home-weight-trend-wrap">
-        <canvas id="home-weight-trend-canvas" role="img" aria-label="Weight progress chart showing individual weigh-ins plus 7-day and 14-day rolling averages in kilograms by date">Weight history chart.</canvas>
+        <canvas id="home-weight-trend-canvas" role="img" aria-label="Weight progress chart showing individual weigh-ins, 7-day and 14-day rolling averages, and an overall linear trend in kilograms by date">Weight history chart.</canvas>
         <div class="home-weight-tooltip" id="home-weight-tooltip" hidden aria-live="polite"></div>
         <p class="home-weight-empty" id="home-weight-empty" hidden>Not enough valid weight logs to draw the trend yet.</p>
       </div>
@@ -302,6 +324,7 @@
     const latest = history[history.length - 1];
     const sevenDaySeries = buildRollingAverageSeries(history, 7, 4);
     const fourteenDaySeries = buildRollingAverageSeries(history, 14, 8);
+    const linearTrendSeries = buildLinearTrendSeries(history);
     const latestSeven = latestAvailable(sevenDaySeries);
     const latestFourteen = latestAvailable(fourteenDaySeries);
 
@@ -325,7 +348,10 @@
     const plotWidth = cssWidth - margin.left - margin.right;
     const plotHeight = cssHeight - margin.top - margin.bottom;
 
-    const weights = history.map(entry => entry.weightKg);
+    const weights = [
+      ...history.map(entry => entry.weightKg),
+      ...linearTrendSeries.map(entry => entry.trendKg)
+    ];
     const rawMin = Math.min(...weights);
     const rawMax = Math.max(...weights);
     const rawRange = rawMax - rawMin;
@@ -410,6 +436,7 @@
       context.stroke();
     }
 
+    drawSeries(linearTrendSeries, 'trendKg', '#7B8988', 2);
     drawSeries(sevenDaySeries, 'averageKg', '#FF8A3D', 3);
     drawSeries(fourteenDaySeries, 'averageKg', '#2F7D4A', 4.5);
 
@@ -428,12 +455,12 @@
 
     canvas.setAttribute(
       'aria-label',
-      `Weight progress. Current ${latest.weightKg.toFixed(1)} kilograms. ` +
+      `Weight progress with overall linear trend. Current ${latest.weightKg.toFixed(1)} kilograms. ` +
       `7-day average ${latestSeven ? latestSeven.averageKg.toFixed(1) + ' kilograms' : 'not available'}. ` +
       `14-day average ${latestFourteen ? latestFourteen.averageKg.toFixed(1) + ' kilograms' : 'not available'}.`
     );
 
-    chartState = { cssWidth, history, sevenDaySeries, fourteenDaySeries, interactivePoints };
+    chartState = { cssWidth, history, sevenDaySeries, fourteenDaySeries, linearTrendSeries, interactivePoints };
     installInteraction(doc);
   }
 
