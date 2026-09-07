@@ -127,7 +127,7 @@
         grid-template-columns: repeat(3, minmax(88px, 1fr));
         gap: 8px;
         min-width: min(100%, 330px);
-        font-family: system-ui, sans-serif;
+        font-family: "Gloria Hallelujah", cursive;
       }
       .home-weight-chip {
         padding: 8px 10px 9px;
@@ -158,7 +158,7 @@
       .home-weight-note {
         margin: 0 0 9px;
         color: #5E7A78;
-        font-family: system-ui, sans-serif;
+        font-family: "Gloria Hallelujah", cursive;
         font-size: 12px;
       }
       .home-weight-wrap {
@@ -185,7 +185,7 @@
         background: rgba(255,249,241,.98);
         box-shadow: 0 6px 18px rgba(35,64,61,.13);
         color: #23403D;
-        font-family: system-ui, sans-serif;
+        font-family: "Gloria Hallelujah", cursive;
         font-size: 12px;
         line-height: 1.42;
         pointer-events: none;
@@ -375,7 +375,7 @@
     const xFor = timestamp => margin.left + ((timestamp - startTime) / timeRange) * plotWidth;
     const yFor = weight => margin.top + ((yMax - weight) / yRange) * plotHeight;
 
-    context.font = `${compact ? 10 : 11}px system-ui, sans-serif`;
+    context.font = `${compact ? 10 : 11}px "Gloria Hallelujah", cursive`;
     context.textBaseline = 'middle';
     context.lineWidth = 1;
 
