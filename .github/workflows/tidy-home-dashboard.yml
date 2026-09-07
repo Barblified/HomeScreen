@@ -1,0 +1,68 @@
+name: Tidy HomeScreen dashboard
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/tidy-home-dashboard.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  tidy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Apply dashboard tidy-up
+        shell: python
+        run: |
+          from pathlib import Path
+
+          dashboard = Path('assets/home-dashboard.js')
+          text = dashboard.read_text(encoding='utf-8')
+          bible = "    { title: 'Bible.com', href: 'https://www.bible.com/', icon: 'bible', sprite: CORE_SPRITE, packageName: 'com.sirma.mobile.bible.android' },\n"
+          if bible not in text:
+              raise RuntimeError('Bible.com favourite line not found')
+          text = text.replace(bible, '', 1)
+          dashboard.write_text(text, encoding='utf-8')
+
+          chart = Path('assets/home-weight-chart.js')
+          text = chart.read_text(encoding='utf-8')
+          replacements = {
+              'Thin grey line = overall linear trend.': 'Sky-blue line = overall linear trend.',
+              "context.strokeStyle = 'rgba(35,64,61,.085)';": "context.strokeStyle = 'rgba(190,214,235,.12)';",
+              "context.fillStyle = '#5E7A78';": "context.fillStyle = '#B6C9DB';",
+              "drawSeries(linearTrendSeries, 'trendKg', '#7B8988', 2);": "drawSeries(linearTrendSeries, 'trendKg', '#7DB9E8', 2);",
+              "drawSeries(sevenDaySeries, 'averageKg', '#FF8A3D', 3);": "drawSeries(sevenDaySeries, 'averageKg', '#FF8126', 3);",
+              "drawSeries(fourteenDaySeries, 'averageKg', '#2F7D4A', 4.5);": "drawSeries(fourteenDaySeries, 'averageKg', '#45DB70', 4.5);",
+              "context.fillStyle = '#2CB5C9';": "context.fillStyle = '#F3F7FB';",
+              "context.strokeStyle = 'rgba(255,249,241,.98)';": "context.strokeStyle = '#7DB9E8';"
+          }
+          for old, new in replacements.items():
+              if old not in text:
+                  raise RuntimeError(f'Expected chart text not found: {old}')
+              text = text.replace(old, new)
+          chart.write_text(text, encoding='utf-8')
+
+          home = Path('home-content.html')
+          text = home.read_text(encoding='utf-8')
+          marker = '    .attention-status strong {'
+          hidden_rule = '    .attention-status[hidden] { display: none !important; }\n\n'
+          if hidden_rule not in text:
+              if marker not in text:
+                  raise RuntimeError('Attention status CSS insertion point not found')
+              text = text.replace(marker, hidden_rule + marker, 1)
+          home.write_text(text, encoding='utf-8')
+
+      - name: Commit tidy-up
+        run: |
+          rm .github/workflows/tidy-home-dashboard.yml
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add assets/home-dashboard.js assets/home-weight-chart.js home-content.html .github/workflows/tidy-home-dashboard.yml
+          git commit -m "Tidy dashboard favourites and chart palette"
+          git push
