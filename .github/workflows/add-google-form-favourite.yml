@@ -1,0 +1,43 @@
+name: Add Google Form to favourites
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/add-google-form-favourite.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  add-favourite:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Add Google Form to favourites
+        shell: python
+        run: |
+          from pathlib import Path
+
+          path = Path('assets/home-dashboard.js')
+          text = path.read_text(encoding='utf-8')
+          favourite = "    { title: 'Google Form', href: 'https://docs.google.com/forms/d/e/1FAIpQLSc2ueNtIKAbUeFeBTWG5Mzopj5nhDQ9InBgz8zCeOI6dbmuuw/viewform?usp=header', icon: 'googleforms', sprite: CORE_SPRITE },\n"
+          marker = "    { title: 'Gmail', href: 'https://mail.google.com/mail/u/0/', icon: 'gmail', sprite: CORE_SPRITE, packageName: 'com.google.android.gm' },\n"
+
+          if favourite not in text:
+              if marker not in text:
+                  raise RuntimeError('Could not find favourites insertion point')
+              text = text.replace(marker, marker + favourite, 1)
+              path.write_text(text, encoding='utf-8')
+
+      - name: Commit favourite update
+        run: |
+          rm .github/workflows/add-google-form-favourite.yml
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add assets/home-dashboard.js .github/workflows/add-google-form-favourite.yml
+          git commit -m "Pin Google Form to favourites"
+          git push
