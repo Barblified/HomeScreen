@@ -1,4 +1,5 @@
 name: Add Faith quick links
+# trigger migration
 on:
   push:
     paths:
