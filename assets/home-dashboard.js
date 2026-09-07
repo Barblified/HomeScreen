@@ -10,7 +10,6 @@
     { title: 'Gmail', href: 'https://mail.google.com/mail/u/0/', icon: 'gmail', sprite: CORE_SPRITE, packageName: 'com.google.android.gm' },
     { title: 'Google Form', href: 'https://docs.google.com/forms/d/e/1FAIpQLSc2ueNtIKAbUeFeBTWG5Mzopj5nhDQ9InBgz8zCeOI6dbmuuw/viewform?usp=header', icon: 'googleforms', sprite: CORE_SPRITE },
     { title: 'WhatsApp', href: 'https://web.whatsapp.com/', icon: 'whatsapp', sprite: CORE_SPRITE, packageName: 'com.whatsapp' },
-    { title: 'Bible.com', href: 'https://www.bible.com/', icon: 'bible', sprite: CORE_SPRITE, packageName: 'com.sirma.mobile.bible.android' },
     { title: 'ATHLEAN-X', href: 'https://portal.athleanx.com/dashboard/index/index/m-ax1/m-allax-12/m-beaxst/m-jacked/m-infshred/m-torched/m-xero', icon: 'athleanx', sprite: CORE_SPRITE },
     { title: 'MyFitnessPal', href: 'https://www.myfitnesspal.com/', icon: 'myfitnesspal', sprite: CORE_SPRITE, packageName: 'com.myfitnesspal.android' },
     { title: 'Spotify', href: 'https://open.spotify.com/', icon: 'spotify', sprite: CORE_SPRITE, packageName: 'com.spotify.music' },

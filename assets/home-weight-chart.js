@@ -231,7 +231,7 @@
           <div class="home-weight-chip fourteen"><small>14-day avg</small><strong id="home-weight-fourteen">—</strong></div>
         </div>
       </div>
-      <p class="home-weight-note">7-day average needs 4 readings · 14-day average needs 8 · Thin grey line = overall linear trend.</p>
+      <p class="home-weight-note">7-day average needs 4 readings · 14-day average needs 8 · Sky-blue line = overall linear trend.</p>
       <div class="home-weight-wrap" id="home-weight-trend-wrap">
         <canvas id="home-weight-trend-canvas" role="img" aria-label="Weight progress chart showing individual weigh-ins, 7-day and 14-day rolling averages, and an overall linear trend in kilograms by date">Weight history chart.</canvas>
         <div class="home-weight-tooltip" id="home-weight-tooltip" hidden aria-live="polite"></div>
@@ -386,14 +386,14 @@
       context.beginPath();
       context.moveTo(margin.left, y);
       context.lineTo(margin.left + plotWidth, y);
-      context.strokeStyle = 'rgba(35,64,61,.085)';
+      context.strokeStyle = 'rgba(190,214,235,.12)';
       context.stroke();
-      context.fillStyle = '#5E7A78';
+      context.fillStyle = '#B6C9DB';
       context.textAlign = 'right';
       context.fillText(value.toFixed(1), margin.left - 8, y);
     }
 
-    context.fillStyle = '#5E7A78';
+    context.fillStyle = '#B6C9DB';
     context.textAlign = 'left';
     context.fillText('kg', 7, margin.top - 6);
 
@@ -403,7 +403,7 @@
     let tickIndex = 0;
     while (tick <= endTime + dayMs / 2) {
       const x = xFor(tick);
-      context.fillStyle = '#5E7A78';
+      context.fillStyle = '#B6C9DB';
       context.textAlign = tickIndex === 0 ? 'left' : 'center';
       context.fillText(formatDate(tick), x, cssHeight - 17);
       tick += tickInterval;
@@ -436,19 +436,19 @@
       context.stroke();
     }
 
-    drawSeries(linearTrendSeries, 'trendKg', '#7B8988', 2);
-    drawSeries(sevenDaySeries, 'averageKg', '#FF8A3D', 3);
-    drawSeries(fourteenDaySeries, 'averageKg', '#2F7D4A', 4.5);
+    drawSeries(linearTrendSeries, 'trendKg', '#7DB9E8', 2);
+    drawSeries(sevenDaySeries, 'averageKg', '#FF8126', 3);
+    drawSeries(fourteenDaySeries, 'averageKg', '#45DB70', 4.5);
 
     const interactivePoints = history.map((entry, index) => {
       const x = xFor(entry.timestamp);
       const y = yFor(entry.weightKg);
       context.beginPath();
       context.arc(x, y, index === history.length - 1 ? 4.5 : 3.5, 0, Math.PI * 2);
-      context.fillStyle = '#2CB5C9';
+      context.fillStyle = '#F3F7FB';
       context.fill();
       context.lineWidth = 1.4;
-      context.strokeStyle = 'rgba(255,249,241,.98)';
+      context.strokeStyle = '#7DB9E8';
       context.stroke();
       return { index, x, y };
     });
