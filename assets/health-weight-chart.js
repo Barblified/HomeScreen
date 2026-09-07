@@ -235,7 +235,7 @@
           <div class="chart-chip fourteen"><small>14-day avg</small><strong id="weight-trend-fourteen">—</strong></div>
         </div>
       </div>
-      <p class="chart-note">7-day average needs 4 readings · 14-day average needs 8 · Thin grey line = overall linear trend.</p>
+      <p class="chart-note">7-day average needs 4 readings · 14-day average needs 8 · Sky-blue line = overall linear trend.</p>
       <div class="chart-wrap" id="weight-trend-wrap">
         <canvas id="weight-trend-canvas" role="img" aria-label="Weight progress chart showing individual weigh-ins, 7-day and 14-day rolling averages, and an overall linear trend in kilograms by date">Weight history chart.</canvas>
         <div class="chart-tooltip" id="weight-trend-tooltip" hidden aria-live="polite"></div>
@@ -460,7 +460,7 @@
       context.stroke();
     }
 
-    drawSeries(linearTrendSeries, 'trendKg', '#C4D3E0', 2);
+    drawSeries(linearTrendSeries, 'trendKg', '#7DB9E8', 2);
 
     const interactivePoints = history.map((entry, index) => {
       const x = xFor(entry.timestamp);

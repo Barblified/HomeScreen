@@ -626,15 +626,16 @@
       const kilograms = toNumber(valueKg);
       if (kilograms === null) return "—";
 
-      const totalOunces = Math.round(kilograms * 2.2046226218 * 16);
+      const sign = kilograms < 0 ? "−" : "";
+      const totalOunces = Math.round(Math.abs(kilograms) * 2.2046226218 * 16);
       const ouncesPerStone = 14 * 16;
       const stones = Math.floor(totalOunces / ouncesPerStone);
-      const ouncesAfterStones = totalOunces - stones * ouncesPerStone;
+      const ouncesAfterStones = totalOunces % ouncesPerStone;
       const pounds = Math.floor(ouncesAfterStones / 16);
-      const ounces = ouncesAfterStones - pounds * 16;
+      const ounces = ouncesAfterStones % 16;
       const poundLabel = pounds === 1 ? "lb" : "lbs";
 
-      return `${stones} st ${pounds} ${poundLabel} ${ounces} oz`;
+      return `${sign}${stones} st ${pounds} ${poundLabel} ${ounces} oz`;
     }
 
     function clamp(value, min, max) {
@@ -687,15 +688,21 @@
       const start = toNumber(metrics.startingWeightKg);
       const current = toNumber(metrics.currentWeightKg);
       const checkpoint = toNumber(metrics.checkpointWeightKg);
-      const bmi = toNumber(metrics.currentBmi);
+      const height = toNumber(metrics.heightM);
+      const suppliedBmi = toNumber(metrics.currentBmi);
+      const bmi = current !== null && height !== null && height > 0
+        ? current / (height ** 2)
+        : suppliedBmi;
       const suppliedLost = toNumber(metrics.totalLostKg);
-      const lost = suppliedLost !== null
-        ? suppliedLost
-        : start !== null && current !== null
-          ? start - current
-          : null;
+      const lost = start !== null && current !== null
+        ? start - current
+        : suppliedLost;
       const suppliedProgress = toNumber(metrics.checkpointProgressPercent);
-      const progress = suppliedProgress === null ? null : clamp(suppliedProgress, 0, 100);
+      const calculatedProgress = start !== null && current !== null && checkpoint !== null && start !== checkpoint
+        ? ((start - current) / (start - checkpoint)) * 100
+        : null;
+      const progressSource = calculatedProgress !== null ? calculatedProgress : suppliedProgress;
+      const progress = progressSource === null ? null : clamp(progressSource, 0, 100);
       const todayExists = textOrBlank(metrics.lastUpdated) !== "No entry for today";
 
       setText(
