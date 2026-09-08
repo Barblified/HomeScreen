@@ -39,8 +39,8 @@ jobs:
           for path in [Path('assets/home-weight-chart.js'), Path('assets/health-weight-chart.js')]:
               text = path.read_text()
 
-              old_font = 'context.font = `${compact ? 10 : 11}px \\"Gloria Hallelujah\\", cursive`;'
-              new_font = 'context.font = `${compact ? 13 : 14}px \\"Atkinson Hyperlegible\\", Arial, sans-serif`;'
+              old_font = 'context.font = `${compact ? 10 : 11}px "Gloria Hallelujah", cursive`;'
+              new_font = 'context.font = `${compact ? 13 : 14}px "Atkinson Hyperlegible", Arial, sans-serif`;'
               if old_font not in text:
                   raise SystemExit(f'{path}: chart font declaration not found')
               text = text.replace(old_font, new_font, 1)
