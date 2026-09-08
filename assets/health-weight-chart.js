@@ -384,7 +384,7 @@
     const xForIndex = index => margin.left + (index / Math.max(1, pointCount - 1)) * plotWidth;
     const yFor = weight => margin.top + ((yMax - weight) / yRange) * plotHeight;
 
-    context.font = `${compact ? 10 : 11}px "Gloria Hallelujah", cursive`;
+    context.font = `${compact ? 13 : 14}px "Atkinson Hyperlegible", Arial, sans-serif`;
     context.textBaseline = 'middle';
     context.lineWidth = 1;
 
@@ -397,15 +397,15 @@
       context.beginPath();
       context.moveTo(margin.left, y);
       context.lineTo(margin.left + plotWidth, y);
-      context.strokeStyle = 'rgba(190, 214, 235, 0.12)';
+      context.strokeStyle = 'rgba(182, 201, 219, 0.18)';
       context.stroke();
 
-      context.fillStyle = '#B6C9DB';
+      context.fillStyle = '#D7E3ED';
       context.textAlign = 'right';
       context.fillText(`${value.toFixed(1)}`, margin.left - 8, y);
     }
 
-    context.fillStyle = '#B6C9DB';
+    context.fillStyle = '#D7E3ED';
     context.textAlign = 'left';
     context.fillText('kg', 7, margin.top - 6);
 
@@ -417,15 +417,15 @@
 
     tickIndices.forEach((historyIndex, tickIndex) => {
       const x = xForIndex(historyIndex);
-      context.fillStyle = '#B6C9DB';
+      context.fillStyle = '#D7E3ED';
       context.textAlign = tickIndex === 0 ? 'left' : historyIndex === pointCount - 1 ? 'right' : 'center';
       context.fillText(formatChartDate(history[historyIndex].timestamp), x, cssHeight - 17);
     });
 
-    function drawSeries(series, valueKey, strokeStyle, lineWidth) {
+    function drawSeries(series, valueKey, strokeStyle, lineWidth, lineDash = []) {
       let drawing = false;
       context.beginPath();
-      context.setLineDash([]);
+      context.setLineDash(lineDash);
 
       series.forEach((entry, index) => {
         const value = entry[valueKey];
@@ -449,9 +449,10 @@
       context.lineJoin = 'round';
       context.lineCap = 'round';
       context.stroke();
+      context.setLineDash([]);
     }
 
-    drawSeries(linearTrendSeries, 'trendKg', '#7DB9E8', 2);
+    drawSeries(linearTrendSeries, 'trendKg', '#7DB9E8', 2.25, [7, 5]);
 
     const interactivePoints = history.map((entry, index) => {
       const x = xForIndex(index);
@@ -459,7 +460,7 @@
 
       context.beginPath();
       context.arc(x, y, index === history.length - 1 ? 4.5 : 3.5, 0, Math.PI * 2);
-      context.fillStyle = '#7DB9E8';
+      context.fillStyle = '#F3F7FB';
       context.fill();
       context.lineWidth = 1.4;
       context.strokeStyle = 'rgba(7,24,42,0.98)';
@@ -468,7 +469,7 @@
       return { index, x, y };
     });
 
-    drawSeries(sevenReadingSeries, 'averageKg', '#FF8126', 3);
+    drawSeries(sevenReadingSeries, 'averageKg', '#FFAD62', 3);
     drawSeries(fourteenReadingSeries, 'averageKg', '#45DB70', 4.5);
 
     canvas.setAttribute(
