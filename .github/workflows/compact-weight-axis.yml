@@ -1,0 +1,158 @@
+name: Compact weight chart axis
+on:
+  push:
+    paths:
+      - '.github/workflows/compact-weight-axis.yml'
+permissions:
+  contents: write
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Remove empty-date spacing from weight charts
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import re
+
+          files = [Path('assets/home-weight-chart.js'), Path('assets/health-weight-chart.js')]
+
+          old_rolling = '''  function buildRollingAverageSeries(history, windowDays, minimumReadings) {
+            const windowMs = (windowDays - 1) * 24 * 60 * 60 * 1000;
+            return history.map(entry => {
+              const windowStart = entry.timestamp - windowMs;
+              const readings = history.filter(candidate =>
+                candidate.timestamp >= windowStart && candidate.timestamp <= entry.timestamp
+              );
+              if (readings.length < minimumReadings) {
+                return { ...entry, averageKg: null, readingCount: readings.length };
+              }
+              const averageKg = readings.reduce((sum, reading) => sum + reading.weightKg, 0) / readings.length;
+              return { ...entry, averageKg, readingCount: readings.length };
+            });
+          }'''.replace('          ', '')
+
+          new_rolling = '''  function buildRollingAverageSeries(history, windowSize, minimumReadings) {
+            return history.map((entry, index) => {
+              const readings = history.slice(Math.max(0, index - windowSize + 1), index + 1);
+              if (readings.length < minimumReadings) {
+                return { ...entry, averageKg: null, readingCount: readings.length };
+              }
+              const averageKg = readings.reduce((sum, reading) => sum + reading.weightKg, 0) / readings.length;
+              return { ...entry, averageKg, readingCount: readings.length };
+            });
+          }'''.replace('          ', '')
+
+          old_linear = '''  function buildLinearTrendSeries(history) {
+            if (history.length < 2) return [];
+
+            const dayMs = 24 * 60 * 60 * 1000;
+            const origin = history[0].timestamp;
+            const points = history.map(entry => ({
+              x: (entry.timestamp - origin) / dayMs,
+              y: entry.weightKg
+            }));
+            const meanX = points.reduce((sum, point) => sum + point.x, 0) / points.length;
+            const meanY = points.reduce((sum, point) => sum + point.y, 0) / points.length;
+            const denominator = points.reduce((sum, point) => sum + ((point.x - meanX) ** 2), 0);
+            const numerator = points.reduce((sum, point) => sum + ((point.x - meanX) * (point.y - meanY)), 0);
+            const slope = denominator === 0 ? 0 : numerator / denominator;
+            const intercept = meanY - slope * meanX;
+
+            return history.map(entry => ({
+              ...entry,
+              trendKg: intercept + slope * ((entry.timestamp - origin) / dayMs)
+            }));
+          }'''.replace('          ', '')
+
+          new_linear = '''  function buildLinearTrendSeries(history) {
+            if (history.length < 2) return [];
+
+            const points = history.map((entry, index) => ({
+              x: index,
+              y: entry.weightKg
+            }));
+            const meanX = points.reduce((sum, point) => sum + point.x, 0) / points.length;
+            const meanY = points.reduce((sum, point) => sum + point.y, 0) / points.length;
+            const denominator = points.reduce((sum, point) => sum + ((point.x - meanX) ** 2), 0);
+            const numerator = points.reduce((sum, point) => sum + ((point.x - meanX) * (point.y - meanY)), 0);
+            const slope = denominator === 0 ? 0 : numerator / denominator;
+            const intercept = meanY - slope * meanX;
+
+            return history.map((entry, index) => ({
+              ...entry,
+              trendKg: intercept + slope * index
+            }));
+          }'''.replace('          ', '')
+
+          axis_re = re.compile(
+              r"    const yRange = Math\.max\(1, yMax - yMin\);\n.*?    const yFor = weight => margin\.top \+ \(\(yMax - weight\) / yRange\) \* plotHeight;",
+              re.S,
+          )
+          new_axis = '''    const yRange = Math.max(1, yMax - yMin);
+            const pointCount = history.length;
+            const xForIndex = index => margin.left + (index / Math.max(1, pointCount - 1)) * plotWidth;
+            const yFor = weight => margin.top + ((yMax - weight) / yRange) * plotHeight;'''.replace('          ', '')
+
+          tick_re = re.compile(
+              r"    const dayMs = 24 \* 60 \* 60 \* 1000;\n.*?\n    function drawSeries\(series, valueKey, strokeStyle, lineWidth\) \{",
+              re.S,
+          )
+          new_ticks = '''    const maxTicks = compact ? 4 : 7;
+            const tickStep = Math.max(1, Math.ceil((pointCount - 1) / Math.max(1, maxTicks - 1)));
+            const tickIndices = [];
+            for (let index = 0; index < pointCount; index += tickStep) tickIndices.push(index);
+            if (tickIndices[tickIndices.length - 1] !== pointCount - 1) tickIndices.push(pointCount - 1);
+
+            tickIndices.forEach((historyIndex, tickIndex) => {
+              const x = xForIndex(historyIndex);
+              context.fillStyle = '#B6C9DB';
+              context.textAlign = tickIndex === 0 ? 'left' : historyIndex === pointCount - 1 ? 'right' : 'center';
+              const labelTimestamp = history[historyIndex].timestamp;
+              context.fillText(FORMAT_DATE(labelTimestamp), x, cssHeight - 17);
+            });
+
+            function drawSeries(series, valueKey, strokeStyle, lineWidth) {'''.replace('          ', '')
+
+          for path in files:
+              text = path.read_text()
+              if old_rolling not in text:
+                  raise SystemExit(f'{path}: rolling-average block not found')
+              if old_linear not in text:
+                  raise SystemExit(f'{path}: linear-trend block not found')
+
+              text = text.replace(old_rolling, new_rolling, 1)
+              text = text.replace(old_linear, new_linear, 1)
+
+              text, count = axis_re.subn(new_axis, text, count=1)
+              if count != 1:
+                  raise SystemExit(f'{path}: axis block replacement failed')
+
+              formatter = 'formatDate' if path.name.startswith('home-') else 'formatChartDate'
+              replacement_ticks = new_ticks.replace('FORMAT_DATE', formatter)
+              text, count = tick_re.subn(replacement_ticks, text, count=1)
+              if count != 1:
+                  raise SystemExit(f'{path}: tick block replacement failed')
+
+              text = text.replace('series.forEach(entry => {', 'series.forEach((entry, index) => {')
+              text = text.replace('const x = xFor(entry.timestamp);', 'const x = xForIndex(index);')
+              text = text.replace('sevenDaySeries', 'sevenReadingSeries')
+              text = text.replace('fourteenDaySeries', 'fourteenReadingSeries')
+              text = text.replace('7-day', '7-log')
+              text = text.replace('14-day', '14-log')
+              text = text.replace('Daily weigh-ins with short- and medium-term trends.', 'Logged weigh-ins with short- and medium-term trends.')
+              text = text.replace('7-log average needs 4 readings · 14-log average needs 8 · Sky-blue line = overall linear trend.', '7-log average starts after 4 readings · 14-log average starts after 8 · Empty dates are removed · Sky-blue line = overall linear trend.')
+              text = text.replace('in kilograms by date', 'in kilograms across logged weigh-ins')
+
+              path.write_text(text)
+          PY
+          node --check assets/home-weight-chart.js
+          node --check assets/health-weight-chart.js
+      - name: Commit chart update
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add assets/home-weight-chart.js assets/health-weight-chart.js
+          git diff --cached --quiet || git commit -m "Remove empty days from weight chart spacing"
+          git push
