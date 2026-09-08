@@ -1,0 +1,99 @@
+@import url('https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Gloria+Hallelujah&family=Swanky+and+Moo+Moo&display=swap');
+
+:root {
+  --font-display: "Swanky and Moo Moo", cursive;
+  --font-accent: "Gloria Hallelujah", cursive;
+  --font-ui: "Atkinson Hyperlegible", Arial, sans-serif;
+  --chart-surface: #0D2741;
+  --chart-grid: rgba(182, 201, 219, .18);
+  --chart-text: #D7E3ED;
+}
+
+/* Functional information should be effortless to scan. */
+html,
+body,
+button,
+input,
+select,
+textarea,
+option,
+label,
+legend,
+summary,
+table,
+th,
+td,
+small,
+.site-menu,
+.tool-link,
+.favourite-link,
+.discovery-link,
+.attention-item,
+.health-metric,
+.chart-summary,
+.home-weight-summary,
+.chart-tooltip,
+.home-weight-tooltip {
+  font-family: var(--font-ui) !important;
+}
+
+/* Brand voice stays handwritten and distinctive. */
+h1,
+h2,
+h3,
+h4,
+.script-title,
+.card-heading h2,
+.planning-card h3,
+.link-group summary > span,
+#home-weight-trend-heading,
+#weight-trend-heading {
+  font-family: var(--font-display) !important;
+  font-weight: 400 !important;
+}
+
+/* Gloria becomes seasoning rather than the reading font. */
+.eyebrow,
+.section-kicker,
+.kicker,
+.home-weight-note,
+.chart-note {
+  font-family: var(--font-accent) !important;
+  font-weight: 400 !important;
+}
+
+/* Data graphics: quiet backdrop, readable labels, restrained accents. */
+.home-weight-wrap,
+.chart-wrap {
+  background: var(--chart-surface) !important;
+}
+
+.home-weight-tooltip,
+.chart-tooltip {
+  font-size: 15px !important;
+  line-height: 1.45 !important;
+}
+
+.home-weight-tooltip strong,
+.chart-tooltip strong {
+  font-family: var(--font-ui) !important;
+  font-weight: 700 !important;
+}
+
+.home-weight-chip,
+.chart-chip {
+  font-family: var(--font-ui) !important;
+}
+
+.home-weight-chip strong,
+.chart-chip strong {
+  font-weight: 700 !important;
+}
+
+/* Keep decorative handwriting comfortably large wherever retained. */
+@media (max-width: 620px) {
+  .home-weight-note,
+  .chart-note {
+    line-height: 1.45;
+  }
+}
