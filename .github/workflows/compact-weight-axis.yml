@@ -18,21 +18,10 @@ jobs:
 
           files = [Path('assets/home-weight-chart.js'), Path('assets/health-weight-chart.js')]
 
-          old_rolling = '''  function buildRollingAverageSeries(history, windowDays, minimumReadings) {
-            const windowMs = (windowDays - 1) * 24 * 60 * 60 * 1000;
-            return history.map(entry => {
-              const windowStart = entry.timestamp - windowMs;
-              const readings = history.filter(candidate =>
-                candidate.timestamp >= windowStart && candidate.timestamp <= entry.timestamp
-              );
-              if (readings.length < minimumReadings) {
-                return { ...entry, averageKg: null, readingCount: readings.length };
-              }
-              const averageKg = readings.reduce((sum, reading) => sum + reading.weightKg, 0) / readings.length;
-              return { ...entry, averageKg, readingCount: readings.length };
-            });
-          }'''.replace('          ', '')
-
+          rolling_re = re.compile(
+              r"  function buildRollingAverageSeries\(history, windowDays, minimumReadings\) \{.*?\n  \}\n\n  function buildLinearTrendSeries",
+              re.S,
+          )
           new_rolling = '''  function buildRollingAverageSeries(history, windowSize, minimumReadings) {
             return history.map((entry, index) => {
               const readings = history.slice(Math.max(0, index - windowSize + 1), index + 1);
@@ -42,30 +31,15 @@ jobs:
               const averageKg = readings.reduce((sum, reading) => sum + reading.weightKg, 0) / readings.length;
               return { ...entry, averageKg, readingCount: readings.length };
             });
-          }'''.replace('          ', '')
+          }
 
-          old_linear = '''  function buildLinearTrendSeries(history) {
-            if (history.length < 2) return [];
+          function buildLinearTrendSeries'''
+          new_rolling = '\n'.join(line[10:] if line.startswith('          ') else line for line in new_rolling.splitlines())
 
-            const dayMs = 24 * 60 * 60 * 1000;
-            const origin = history[0].timestamp;
-            const points = history.map(entry => ({
-              x: (entry.timestamp - origin) / dayMs,
-              y: entry.weightKg
-            }));
-            const meanX = points.reduce((sum, point) => sum + point.x, 0) / points.length;
-            const meanY = points.reduce((sum, point) => sum + point.y, 0) / points.length;
-            const denominator = points.reduce((sum, point) => sum + ((point.x - meanX) ** 2), 0);
-            const numerator = points.reduce((sum, point) => sum + ((point.x - meanX) * (point.y - meanY)), 0);
-            const slope = denominator === 0 ? 0 : numerator / denominator;
-            const intercept = meanY - slope * meanX;
-
-            return history.map(entry => ({
-              ...entry,
-              trendKg: intercept + slope * ((entry.timestamp - origin) / dayMs)
-            }));
-          }'''.replace('          ', '')
-
+          linear_re = re.compile(
+              r"  function buildLinearTrendSeries\(history\) \{.*?\n  \}\n\n  function latestAvailable",
+              re.S,
+          )
           new_linear = '''  function buildLinearTrendSeries(history) {
             if (history.length < 2) return [];
 
@@ -84,54 +58,56 @@ jobs:
               ...entry,
               trendKg: intercept + slope * index
             }));
-          }'''.replace('          ', '')
+          }
+
+          function latestAvailable'''
+          new_linear = '\n'.join(line[10:] if line.startswith('          ') else line for line in new_linear.splitlines())
 
           axis_re = re.compile(
               r"    const yRange = Math\.max\(1, yMax - yMin\);\n.*?    const yFor = weight => margin\.top \+ \(\(yMax - weight\) / yRange\) \* plotHeight;",
               re.S,
           )
           new_axis = '''    const yRange = Math.max(1, yMax - yMin);
-            const pointCount = history.length;
-            const xForIndex = index => margin.left + (index / Math.max(1, pointCount - 1)) * plotWidth;
-            const yFor = weight => margin.top + ((yMax - weight) / yRange) * plotHeight;'''.replace('          ', '')
+    const pointCount = history.length;
+    const xForIndex = index => margin.left + (index / Math.max(1, pointCount - 1)) * plotWidth;
+    const yFor = weight => margin.top + ((yMax - weight) / yRange) * plotHeight;'''
 
           tick_re = re.compile(
               r"    const dayMs = 24 \* 60 \* 60 \* 1000;\n.*?\n    function drawSeries\(series, valueKey, strokeStyle, lineWidth\) \{",
               re.S,
           )
-          new_ticks = '''    const maxTicks = compact ? 4 : 7;
-            const tickStep = Math.max(1, Math.ceil((pointCount - 1) / Math.max(1, maxTicks - 1)));
-            const tickIndices = [];
-            for (let index = 0; index < pointCount; index += tickStep) tickIndices.push(index);
-            if (tickIndices[tickIndices.length - 1] !== pointCount - 1) tickIndices.push(pointCount - 1);
+          tick_template = '''    const maxTicks = compact ? 4 : 7;
+    const tickStep = Math.max(1, Math.ceil((pointCount - 1) / Math.max(1, maxTicks - 1)));
+    const tickIndices = [];
+    for (let index = 0; index < pointCount; index += tickStep) tickIndices.push(index);
+    if (tickIndices[tickIndices.length - 1] !== pointCount - 1) tickIndices.push(pointCount - 1);
 
-            tickIndices.forEach((historyIndex, tickIndex) => {
-              const x = xForIndex(historyIndex);
-              context.fillStyle = '#B6C9DB';
-              context.textAlign = tickIndex === 0 ? 'left' : historyIndex === pointCount - 1 ? 'right' : 'center';
-              const labelTimestamp = history[historyIndex].timestamp;
-              context.fillText(FORMAT_DATE(labelTimestamp), x, cssHeight - 17);
-            });
+    tickIndices.forEach((historyIndex, tickIndex) => {
+      const x = xForIndex(historyIndex);
+      context.fillStyle = '#B6C9DB';
+      context.textAlign = tickIndex === 0 ? 'left' : historyIndex === pointCount - 1 ? 'right' : 'center';
+      context.fillText(FORMATTER(history[historyIndex].timestamp), x, cssHeight - 17);
+    });
 
-            function drawSeries(series, valueKey, strokeStyle, lineWidth) {'''.replace('          ', '')
+    function drawSeries(series, valueKey, strokeStyle, lineWidth) {'''
 
           for path in files:
               text = path.read_text()
-              if old_rolling not in text:
-                  raise SystemExit(f'{path}: rolling-average block not found')
-              if old_linear not in text:
-                  raise SystemExit(f'{path}: linear-trend block not found')
 
-              text = text.replace(old_rolling, new_rolling, 1)
-              text = text.replace(old_linear, new_linear, 1)
+              text, count = rolling_re.subn(new_rolling, text, count=1)
+              if count != 1:
+                  raise SystemExit(f'{path}: rolling-average block replacement failed')
+
+              text, count = linear_re.subn(new_linear, text, count=1)
+              if count != 1:
+                  raise SystemExit(f'{path}: linear-trend block replacement failed')
 
               text, count = axis_re.subn(new_axis, text, count=1)
               if count != 1:
                   raise SystemExit(f'{path}: axis block replacement failed')
 
               formatter = 'formatDate' if path.name.startswith('home-') else 'formatChartDate'
-              replacement_ticks = new_ticks.replace('FORMAT_DATE', formatter)
-              text, count = tick_re.subn(replacement_ticks, text, count=1)
+              text, count = tick_re.subn(tick_template.replace('FORMATTER', formatter), text, count=1)
               if count != 1:
                   raise SystemExit(f'{path}: tick block replacement failed')
 
@@ -142,7 +118,10 @@ jobs:
               text = text.replace('7-day', '7-log')
               text = text.replace('14-day', '14-log')
               text = text.replace('Daily weigh-ins with short- and medium-term trends.', 'Logged weigh-ins with short- and medium-term trends.')
-              text = text.replace('7-log average needs 4 readings · 14-log average needs 8 · Sky-blue line = overall linear trend.', '7-log average starts after 4 readings · 14-log average starts after 8 · Empty dates are removed · Sky-blue line = overall linear trend.')
+              text = text.replace(
+                  '7-log average needs 4 readings · 14-log average needs 8 · Sky-blue line = overall linear trend.',
+                  '7-log average starts after 4 readings · 14-log average starts after 8 · Empty dates are removed · Sky-blue line = overall linear trend.'
+              )
               text = text.replace('in kilograms by date', 'in kilograms across logged weigh-ins')
 
               path.write_text(text)
