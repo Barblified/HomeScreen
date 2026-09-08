@@ -37,13 +37,9 @@
       .sort((a, b) => a.timestamp - b.timestamp);
   }
 
-  function buildRollingAverageSeries(history, windowDays, minimumReadings) {
-    const windowMs = (windowDays - 1) * 24 * 60 * 60 * 1000;
-    return history.map(entry => {
-      const windowStart = entry.timestamp - windowMs;
-      const readings = history.filter(candidate =>
-        candidate.timestamp >= windowStart && candidate.timestamp <= entry.timestamp
-      );
+  function buildRollingAverageSeries(history, windowSize, minimumReadings) {
+    return history.map((entry, index) => {
+      const readings = history.slice(Math.max(0, index - windowSize + 1), index + 1);
       if (readings.length < minimumReadings) {
         return { ...entry, averageKg: null, readingCount: readings.length };
       }
@@ -55,10 +51,8 @@
   function buildLinearTrendSeries(history) {
     if (history.length < 2) return [];
 
-    const dayMs = 24 * 60 * 60 * 1000;
-    const origin = history[0].timestamp;
-    const points = history.map(entry => ({
-      x: (entry.timestamp - origin) / dayMs,
+    const points = history.map((entry, index) => ({
+      x: index,
       y: entry.weightKg
     }));
     const meanX = points.reduce((sum, point) => sum + point.x, 0) / points.length;
@@ -68,9 +62,9 @@
     const slope = denominator === 0 ? 0 : numerator / denominator;
     const intercept = meanY - slope * meanX;
 
-    return history.map(entry => ({
+    return history.map((entry, index) => ({
       ...entry,
-      trendKg: intercept + slope * ((entry.timestamp - origin) / dayMs)
+      trendKg: intercept + slope * index
     }));
   }
 
@@ -227,17 +221,17 @@
       <div class="chart-heading">
         <div>
           <h2 id="weight-trend-heading">Weight Progress</h2>
-          <p>Daily weigh-ins with short- and medium-term trends.</p>
+          <p>Logged weigh-ins with short- and medium-term trends.</p>
         </div>
         <div class="chart-summary" id="weight-trend-summary" hidden>
           <div class="chart-chip current"><small>Current</small><strong id="weight-trend-current">—</strong></div>
-          <div class="chart-chip seven"><small>7-day avg</small><strong id="weight-trend-seven">—</strong></div>
-          <div class="chart-chip fourteen"><small>14-day avg</small><strong id="weight-trend-fourteen">—</strong></div>
+          <div class="chart-chip seven"><small>7-log avg</small><strong id="weight-trend-seven">—</strong></div>
+          <div class="chart-chip fourteen"><small>14-log avg</small><strong id="weight-trend-fourteen">—</strong></div>
         </div>
       </div>
-      <p class="chart-note">7-day average needs 4 readings · 14-day average needs 8 · Sky-blue line = overall linear trend.</p>
+      <p class="chart-note">7-log average starts after 4 readings · 14-log average starts after 8 · Empty dates are removed · Sky-blue line = overall linear trend.</p>
       <div class="chart-wrap" id="weight-trend-wrap">
-        <canvas id="weight-trend-canvas" role="img" aria-label="Weight progress chart showing individual weigh-ins, 7-day and 14-day rolling averages, and an overall linear trend in kilograms by date">Weight history chart.</canvas>
+        <canvas id="weight-trend-canvas" role="img" aria-label="Weight progress chart showing individual weigh-ins, 7-log and 14-log rolling averages, and an overall linear trend in kilograms across logged weigh-ins">Weight history chart.</canvas>
         <div class="chart-tooltip" id="weight-trend-tooltip" hidden aria-live="polite"></div>
         <p class="chart-empty" id="weight-trend-empty" hidden>Not enough valid weight logs to draw the trend yet.</p>
       </div>
@@ -256,18 +250,18 @@
     const tooltip = doc.getElementById('weight-trend-tooltip');
     if (!tooltip || !currentChartState) return;
 
-    const { cssWidth, history, sevenDaySeries, fourteenDaySeries } = currentChartState;
+    const { cssWidth, history, sevenReadingSeries, fourteenReadingSeries } = currentChartState;
     const index = point.index;
     const raw = history[index];
-    const seven = sevenDaySeries[index]?.averageKg ?? null;
-    const fourteen = fourteenDaySeries[index]?.averageKg ?? null;
+    const seven = sevenReadingSeries[index]?.averageKg ?? null;
+    const fourteen = fourteenReadingSeries[index]?.averageKg ?? null;
     const safeX = Math.min(Math.max(point.x, 82), cssWidth - 82);
 
     tooltip.innerHTML = `
       <strong>${formatChartDate(raw.timestamp, true)}</strong>
       <span>Weight: ${formatKg(raw.weightKg)}</span>
-      <span>7-day: ${seven === null ? 'Not available' : formatKg(seven)}</span>
-      <span>14-day: ${fourteen === null ? 'Not available' : formatKg(fourteen)}</span>
+      <span>7-log: ${seven === null ? 'Not available' : formatKg(seven)}</span>
+      <span>14-log: ${fourteen === null ? 'Not available' : formatKg(fourteen)}</span>
     `;
     tooltip.style.left = `${safeX}px`;
     tooltip.style.top = `${Math.max(58, point.y)}px`;
@@ -332,11 +326,11 @@
     summary.hidden = false;
 
     const latest = history[history.length - 1];
-    const sevenDaySeries = buildRollingAverageSeries(history, 7, 4);
-    const fourteenDaySeries = buildRollingAverageSeries(history, 14, 8);
+    const sevenReadingSeries = buildRollingAverageSeries(history, 7, 4);
+    const fourteenReadingSeries = buildRollingAverageSeries(history, 14, 8);
     const linearTrendSeries = buildLinearTrendSeries(history);
-    const latestSeven = latestAvailable(sevenDaySeries);
-    const latestFourteen = latestAvailable(fourteenDaySeries);
+    const latestSeven = latestAvailable(sevenReadingSeries);
+    const latestFourteen = latestAvailable(fourteenReadingSeries);
 
     setChartText(doc, 'weight-trend-current', formatKg(latest.weightKg));
     setChartText(doc, 'weight-trend-seven', latestSeven ? formatKg(latestSeven.averageKg) : '—');
@@ -386,11 +380,8 @@
     }
 
     const yRange = Math.max(1, yMax - yMin);
-    const startTime = history[0].timestamp;
-    const endTime = history[history.length - 1].timestamp;
-    const timeRange = Math.max(1, endTime - startTime);
-
-    const xFor = timestamp => margin.left + ((timestamp - startTime) / timeRange) * plotWidth;
+    const pointCount = history.length;
+    const xForIndex = index => margin.left + (index / Math.max(1, pointCount - 1)) * plotWidth;
     const yFor = weight => margin.top + ((yMax - weight) / yRange) * plotHeight;
 
     context.font = `${compact ? 10 : 11}px "Gloria Hallelujah", cursive`;
@@ -418,32 +409,32 @@
     context.textAlign = 'left';
     context.fillText('kg', 7, margin.top - 6);
 
-    const dayMs = 24 * 60 * 60 * 1000;
-    const tickInterval = (compact ? 14 : 7) * dayMs;
-    let tick = startTime;
-    let tickIndex = 0;
-    while (tick <= endTime + dayMs / 2) {
-      const x = xFor(tick);
+    const maxTicks = compact ? 4 : 7;
+    const tickStep = Math.max(1, Math.ceil((pointCount - 1) / Math.max(1, maxTicks - 1)));
+    const tickIndices = [];
+    for (let index = 0; index < pointCount; index += tickStep) tickIndices.push(index);
+    if (tickIndices[tickIndices.length - 1] !== pointCount - 1) tickIndices.push(pointCount - 1);
+
+    tickIndices.forEach((historyIndex, tickIndex) => {
+      const x = xForIndex(historyIndex);
       context.fillStyle = '#B6C9DB';
-      context.textAlign = tickIndex === 0 ? 'left' : 'center';
-      context.fillText(formatChartDate(tick), x, cssHeight - 17);
-      tick += tickInterval;
-      tickIndex += 1;
-    }
+      context.textAlign = tickIndex === 0 ? 'left' : historyIndex === pointCount - 1 ? 'right' : 'center';
+      context.fillText(formatChartDate(history[historyIndex].timestamp), x, cssHeight - 17);
+    });
 
     function drawSeries(series, valueKey, strokeStyle, lineWidth) {
       let drawing = false;
       context.beginPath();
       context.setLineDash([]);
 
-      series.forEach(entry => {
+      series.forEach((entry, index) => {
         const value = entry[valueKey];
         if (value === null || value === undefined) {
           drawing = false;
           return;
         }
 
-        const x = xFor(entry.timestamp);
+        const x = xForIndex(index);
         const y = yFor(value);
         if (!drawing) {
           context.moveTo(x, y);
@@ -463,7 +454,7 @@
     drawSeries(linearTrendSeries, 'trendKg', '#7DB9E8', 2);
 
     const interactivePoints = history.map((entry, index) => {
-      const x = xFor(entry.timestamp);
+      const x = xForIndex(index);
       const y = yFor(entry.weightKg);
 
       context.beginPath();
@@ -477,21 +468,21 @@
       return { index, x, y };
     });
 
-    drawSeries(sevenDaySeries, 'averageKg', '#FF8126', 3);
-    drawSeries(fourteenDaySeries, 'averageKg', '#45DB70', 4.5);
+    drawSeries(sevenReadingSeries, 'averageKg', '#FF8126', 3);
+    drawSeries(fourteenReadingSeries, 'averageKg', '#45DB70', 4.5);
 
     canvas.setAttribute(
       'aria-label',
       `Weight progress with overall linear trend. Current ${latest.weightKg.toFixed(1)} kilograms. ` +
-      `7-day average ${latestSeven ? latestSeven.averageKg.toFixed(1) + ' kilograms' : 'not available'}. ` +
-      `14-day average ${latestFourteen ? latestFourteen.averageKg.toFixed(1) + ' kilograms' : 'not available'}.`
+      `7-log average ${latestSeven ? latestSeven.averageKg.toFixed(1) + ' kilograms' : 'not available'}. ` +
+      `14-log average ${latestFourteen ? latestFourteen.averageKg.toFixed(1) + ' kilograms' : 'not available'}.`
     );
 
     currentChartState = {
       cssWidth,
       history,
-      sevenDaySeries,
-      fourteenDaySeries,
+      sevenReadingSeries,
+      fourteenReadingSeries,
       linearTrendSeries,
       interactivePoints
     };
