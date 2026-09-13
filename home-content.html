@@ -150,7 +150,7 @@
     }
 
     .dashboard-grid {
-      grid-template-columns: minmax(0, 1.55fr) minmax(390px, 1fr);
+      grid-template-columns: minmax(0, 1fr);
       margin-bottom: var(--s-4);
     }
 
@@ -618,28 +618,7 @@
       <p class="today-label" id="today-label"></p>
     </header>
 
-    <section class="dashboard-grid" aria-label="Live dashboard">
-      <article class="card" aria-labelledby="attention-heading">
-        <div class="card-heading">
-          <div>
-            <p class="section-kicker">Live state</p>
-            <h2 id="attention-heading">Needs Attention</h2>
-          </div>
-          <div class="micro-meta">
-            <span id="attention-count">Unified feed</span>
-            <span id="attention-updated">Action + material alerts</span>
-          </div>
-        </div>
-        <div class="attention-status" id="attention-status">
-          <strong>Loading attention feed…</strong>
-          <span>Checking for anything that materially needs action.</span>
-        </div>
-        <div class="attention-list" id="attention-primary"></div>
-        <details class="attention-more" id="attention-more" hidden>
-          <summary>Show lower-priority actionable items</summary>
-          <div class="attention-list" id="attention-overflow"></div>
-        </details>
-      </article>
+    <section class="dashboard-grid" aria-label="Pinned favourites">
 
       <article class="card orange" aria-labelledby="favourites-heading">
         <div class="card-heading">
