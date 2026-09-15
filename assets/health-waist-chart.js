@@ -463,6 +463,21 @@
       injectChart(doc);
       loadHistory(doc);
 
+      const view = doc.defaultView;
+      if (view && !view.__waistChartLiveRefreshInstalled) {
+        view.__waistChartLiveRefreshInstalled = true;
+
+        const refreshLiveData = () => {
+          if (doc.visibilityState !== 'hidden') loadHistory(doc);
+        };
+
+        view.setInterval(refreshLiveData, 60000);
+        view.addEventListener('focus', refreshLiveData);
+        doc.addEventListener('visibilitychange', () => {
+          if (doc.visibilityState === 'visible') refreshLiveData();
+        });
+      }
+
       let resizeFrame;
       doc.defaultView?.addEventListener('resize', () => {
         doc.defaultView.cancelAnimationFrame(resizeFrame);
