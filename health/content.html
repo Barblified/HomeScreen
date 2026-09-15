@@ -505,14 +505,14 @@
       >View MyFitnessPal diary ↗</a>
     </div>
 
-    <section class="grid" aria-label="Weekly discipline">
+    <section class="grid" aria-label="Health habits">
       <div class="tile">
         <strong id="logged">—</strong>
-        <span>Logged</span>
+        <span>Nutrition Days Logged</span>
       </div>
       <div class="tile">
         <strong id="protein">—</strong>
-        <span>Protein Days Hit</span>
+        <span>Protein Target Days</span>
       </div>
       <div class="tile">
         <strong id="workouts">—</strong>
@@ -520,7 +520,7 @@
       </div>
       <div class="tile">
         <strong id="sleep">—</strong>
-        <span>Sleep</span>
+        <span id="sleep-label">Sleep Today</span>
       </div>
     </section>
 
@@ -589,6 +589,7 @@
       proteinDaysThisWeek: null,
       workoutsThisWeek: null,
       workoutTarget: 3,
+      sleepHoursToday: null,
       sleepTargetDaysThisWeek: null,
       coachStatus: "",
       missingFields: "",
@@ -739,6 +740,7 @@
       const proteinDays = toNumber(metrics.proteinDaysThisWeek);
       const workouts = toNumber(metrics.workoutsThisWeek);
       const workoutTarget = toNumber(metrics.workoutTarget);
+      const sleepHours = toNumber(metrics.sleepHoursToday);
       const sleepDays = toNumber(metrics.sleepTargetDaysThisWeek);
 
       setText("logged", daysLogged === null ? "—" : `${daysLogged}/7`);
@@ -747,7 +749,14 @@
         "workouts",
         workouts === null ? "—" : `${workouts}/${workoutTarget === null ? 3 : workoutTarget}`
       );
-      setText("sleep", sleepDays === null ? "—" : `${sleepDays}/7`);
+      if (sleepHours === null) {
+        setText("sleep", sleepDays === null ? "—" : `${sleepDays}/7`);
+        setText("sleep-label", "Sleep Target Days");
+      } else {
+        const sleepHoursText = Number.isInteger(sleepHours) ? sleepHours.toFixed(0) : sleepHours.toFixed(1);
+        setText("sleep", `${sleepHoursText} h`);
+        setText("sleep-label", `Today · ${sleepDays === null ? "—" : `${sleepDays}/7`} target days`);
+      }
 
       renderCoachNotes(metrics);
 
