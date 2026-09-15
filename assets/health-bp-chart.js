@@ -349,11 +349,8 @@
     const yMin = Math.floor((rawMin - 8) / 10) * 10;
     const yMax = Math.ceil((rawMax + 8) / 10) * 10;
     const yRange = Math.max(20, yMax - yMin);
-    const startTime = history[0].timestamp;
-    const endTime = history[history.length - 1].timestamp;
-    const timeRange = Math.max(1, endTime - startTime);
-
-    const xFor = timestamp => margin.left + ((timestamp - startTime) / timeRange) * plotWidth;
+    const pointCount = history.length;
+    const xForIndex = index => margin.left + (index / Math.max(1, pointCount - 1)) * plotWidth;
     const yFor = value => margin.top + ((yMax - value) / yRange) * plotHeight;
 
     context.font = `${compact ? 10 : 11}px system-ui, sans-serif`;
@@ -379,23 +376,23 @@
     context.textAlign = 'left';
     context.fillText('mmHg', 7, margin.top - 6);
 
-    const dayMs = 24 * 60 * 60 * 1000;
-    const tickInterval = (compact ? 21 : 14) * dayMs;
-    let tick = startTime;
-    let tickIndex = 0;
-    while (tick <= endTime + dayMs / 2) {
-      const x = xFor(tick);
+    const desiredTicks = compact ? 4 : 6;
+    const tickStep = Math.max(1, Math.ceil((pointCount - 1) / Math.max(1, desiredTicks - 1)));
+    const tickIndices = [];
+    for (let index = 0; index < pointCount; index += tickStep) tickIndices.push(index);
+    if (tickIndices[tickIndices.length - 1] !== pointCount - 1) tickIndices.push(pointCount - 1);
+
+    tickIndices.forEach((historyIndex, tickIndex) => {
+      const x = xForIndex(historyIndex);
       context.fillStyle = '#B6C9DB';
-      context.textAlign = tickIndex === 0 ? 'left' : 'center';
-      context.fillText(formatDate(tick), x, cssHeight - 17);
-      tick += tickInterval;
-      tickIndex += 1;
-    }
+      context.textAlign = tickIndex === 0 ? 'left' : historyIndex === pointCount - 1 ? 'right' : 'center';
+      context.fillText(formatDate(history[historyIndex].timestamp), x, cssHeight - 17);
+    });
 
     function drawSeries(key, strokeStyle, lineWidth) {
       context.beginPath();
       history.forEach((entry, index) => {
-        const x = xFor(entry.timestamp);
+        const x = xForIndex(index);
         const y = yFor(entry[key]);
         if (index === 0) context.moveTo(x, y);
         else context.lineTo(x, y);
@@ -411,7 +408,7 @@
     drawSeries('diastolic', '#7DB9E8', 3.5);
 
     const interactivePoints = history.map((entry, index) => {
-      const x = xFor(entry.timestamp);
+      const x = xForIndex(index);
       const systolicY = yFor(entry.systolic);
       const diastolicY = yFor(entry.diastolic);
 

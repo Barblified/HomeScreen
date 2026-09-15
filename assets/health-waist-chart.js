@@ -347,11 +347,10 @@
     const yRange = Math.max(4, yMax - yMin);
     const startTime = series[0].timestamp;
     const endTime = series[series.length - 1].timestamp;
-    const timeRange = Math.max(1, endTime - startTime);
-
-    const xFor = timestamp => series.length === 1
+    const pointCount = series.length;
+    const xForIndex = index => pointCount === 1
       ? margin.left + plotWidth / 2
-      : margin.left + ((timestamp - startTime) / timeRange) * plotWidth;
+      : margin.left + (index / Math.max(1, pointCount - 1)) * plotWidth;
     const yFor = value => margin.top + ((yMax - value) / yRange) * plotHeight;
 
     context.font = `${compact ? 10 : 11}px system-ui, sans-serif`;
@@ -379,14 +378,14 @@
 
     if (series.length === 1) {
       context.textAlign = 'center';
-      context.fillText(formatDate(series[0].timestamp), xFor(series[0].timestamp), cssHeight - 17);
+      context.fillText(formatDate(series[0].timestamp), xForIndex(0), cssHeight - 17);
     } else {
       const totalDays = Math.max(1, Math.round((endTime - startTime) / (24 * 60 * 60 * 1000)));
       const desiredTicks = compact ? 4 : 6;
       const step = Math.max(1, Math.ceil((series.length - 1) / (desiredTicks - 1)));
       series.forEach((entry, index) => {
         if (index % step !== 0 && index !== series.length - 1) return;
-        const x = xFor(entry.timestamp);
+        const x = xForIndex(index);
         context.fillStyle = '#B6C9DB';
         context.textAlign = index === 0 ? 'left' : index === series.length - 1 ? 'right' : 'center';
         context.fillText(formatDate(entry.timestamp, totalDays > 300), x, cssHeight - 17);
@@ -396,10 +395,10 @@
     function drawSeries(key, strokeStyle, lineWidth) {
       let started = false;
       context.beginPath();
-      series.forEach(entry => {
+      series.forEach((entry, index) => {
         const value = entry[key];
         if (!Number.isFinite(value)) return;
-        const x = xFor(entry.timestamp);
+        const x = xForIndex(index);
         const y = yFor(value);
         if (!started) {
           context.moveTo(x, y);
@@ -421,7 +420,7 @@
     drawSeries('avg14', '#45DB70', 3.8);
 
     const interactivePoints = series.map((entry, index) => {
-      const x = xFor(entry.timestamp);
+      const x = xForIndex(index);
       const y = yFor(entry.waistCm);
       context.beginPath();
       context.arc(x, y, index === series.length - 1 ? 4.8 : 3.6, 0, Math.PI * 2);
