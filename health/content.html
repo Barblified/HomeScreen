@@ -766,15 +766,25 @@
 
     async function loadMetrics() {
       try {
-        const response = await fetch(`${REMOTE_METRICS_URL}?t=${Date.now()}`, {
-          cache: "no-store"
-        });
-
-        if (!response.ok) {
-          throw new Error(`HTTP ${response.status}`);
+        let payload;
+        let sharedLoader = null;
+        try {
+          if (window.parent !== window && typeof window.parent.getHealthData === "function") {
+            sharedLoader = window.parent.getHealthData;
+          }
+        } catch (error) {
+          sharedLoader = null;
         }
 
-        const payload = await response.json();
+        if (sharedLoader) {
+          payload = await sharedLoader();
+        } else {
+          const response = await fetch(`${REMOTE_METRICS_URL}?t=${Date.now()}`, {
+            cache: "no-store"
+          });
+          if (!response.ok) throw new Error(`HTTP ${response.status}`);
+          payload = await response.json();
+        }
         render(normalizePayload(payload), payload.source || "Google Sheets");
       } catch (error) {
         console.warn("Health Cut metrics failed to load:", error);

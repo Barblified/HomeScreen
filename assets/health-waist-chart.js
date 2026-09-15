@@ -444,9 +444,14 @@
 
   async function loadHistory(doc) {
     try {
-      const response = await fetch(`${HEALTH_DATA_URL}?t=${Date.now()}`, { cache: 'no-store' });
-      if (!response.ok) throw new Error(`HTTP ${response.status}`);
-      const payload = await response.json();
+      let payload;
+      if (typeof window.getHealthData === 'function') {
+        payload = await window.getHealthData();
+      } else {
+        const response = await fetch(`${HEALTH_DATA_URL}?t=${Date.now()}`, { cache: 'no-store' });
+        if (!response.ok) throw new Error(`HTTP ${response.status}`);
+        payload = await response.json();
+      }
       const data = payload.metrics || payload;
       drawChart(doc, parseHistory(data.waistHistory), data);
     } catch (error) {

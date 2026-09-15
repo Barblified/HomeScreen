@@ -74,7 +74,60 @@
     }
     .page-frame { background: #07182A !important; }
   </style>
-  <link rel="stylesheet" href="../assets/type-system.css?v=20260915-0920">
+  <link rel="stylesheet" href="../assets/type-system.css?v=20260915-0930">
+  <script>
+    (() => {
+      const HEALTH_DATA_URL = "https://script.google.com/macros/s/AKfycbwihWQw8Frs1acA1Y-CELBw0NmX4O5KFzcqU3f8TbFpSegleKyPM64TkqTyoNyAWhLP/exec";
+      const CACHE_MS = 30000;
+      const TIMEOUT_MS = 12000;
+      let cachedPayload = null;
+      let cachedAt = 0;
+      let inFlight = null;
+
+      async function requestPayload() {
+        const controller = new AbortController();
+        const timer = setTimeout(() => controller.abort(), TIMEOUT_MS);
+        try {
+          const response = await fetch(`${HEALTH_DATA_URL}?t=${Date.now()}`, {
+            cache: "no-store",
+            signal: controller.signal
+          });
+          if (!response.ok) throw new Error(`HTTP ${response.status}`);
+          return await response.json();
+        } finally {
+          clearTimeout(timer);
+        }
+      }
+
+      window.getHealthData = async ({ force = false } = {}) => {
+        const now = Date.now();
+        if (!force && cachedPayload && now - cachedAt < CACHE_MS) return cachedPayload;
+        if (inFlight) return inFlight;
+
+        inFlight = (async () => {
+          let lastError;
+          for (let attempt = 0; attempt < 2; attempt += 1) {
+            try {
+              const payload = await requestPayload();
+              cachedPayload = payload;
+              cachedAt = Date.now();
+              return payload;
+            } catch (error) {
+              lastError = error;
+              if (attempt === 0) await new Promise(resolve => setTimeout(resolve, 750));
+            }
+          }
+          throw lastError;
+        })();
+
+        try {
+          return await inFlight;
+        } finally {
+          inFlight = null;
+        }
+      };
+    })();
+  </script>
 </head>
 <body>
   <nav class="site-menu" aria-label="Site navigation">
@@ -85,15 +138,15 @@
 
   <iframe
     class="page-frame"
-    src="content.html?v=20260915-0920"
+    src="content.html?v=20260915-0930"
     title="Health page"
     allow="fullscreen; autoplay; clipboard-write; encrypted-media; picture-in-picture"
     allowfullscreen>
   </iframe>
 
-  <script src="/HomeScreen/assets/health-weight-chart.js?v=20260915-0920"></script>
-  <script src="/HomeScreen/assets/health-evidence-links.js?v=20260915-0920"></script>
-  <script src="/HomeScreen/assets/health-bp-chart.js?v=20260915-0920"></script>
-  <script src="/HomeScreen/assets/health-waist-chart.js?v=20260915-0920"></script>
+  <script src="/HomeScreen/assets/health-weight-chart.js?v=20260915-0930"></script>
+  <script src="/HomeScreen/assets/health-evidence-links.js?v=20260915-0930"></script>
+  <script src="/HomeScreen/assets/health-bp-chart.js?v=20260915-0930"></script>
+  <script src="/HomeScreen/assets/health-waist-chart.js?v=20260915-0930"></script>
 </body>
 </html>
