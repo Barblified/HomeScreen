@@ -14,12 +14,11 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Patch BP and waist charts
-        shell: python
         run: |
+          python - <<'PY'
           from pathlib import Path
           import re
 
-          # Blood pressure: use logged-reading positions, not elapsed calendar time.
           p = Path('assets/health-bp-chart.js')
           text = p.read_text()
           old = """    const startTime = history[0].timestamp;
@@ -34,7 +33,6 @@ jobs:
           if old not in text:
               raise SystemExit('BP x-axis source block not found')
           text = text.replace(old, new, 1)
-
           pattern = re.compile(r"    const dayMs = 24 \* 60 \* 60 \* 1000;.*?\n    function drawSeries", re.S)
           tick_block = """    const desiredTicks = compact ? 4 : 6;
     const tickStep = Math.max(1, Math.ceil((pointCount - 1) / Math.max(1, desiredTicks - 1)));
@@ -56,7 +54,6 @@ jobs:
           text = text.replace('const x = xFor(entry.timestamp);', 'const x = xForIndex(index);')
           p.write_text(text)
 
-          # Waist: same logged-reading spacing. Keep actual dates for labels/tooltips.
           p = Path('assets/health-waist-chart.js')
           text = p.read_text()
           old = """    const startTime = series[0].timestamp;
@@ -81,7 +78,7 @@ jobs:
           text = text.replace('series.forEach(entry => {\n        const value = entry[key];', 'series.forEach((entry, index) => {\n        const value = entry[key];')
           text = text.replace('const x = xFor(entry.timestamp);', 'const x = xForIndex(index);')
           p.write_text(text)
-
+          PY
       - name: Commit changes and remove workflow
         run: |
           rm .github/workflows/fix-health-x-axis.yml
