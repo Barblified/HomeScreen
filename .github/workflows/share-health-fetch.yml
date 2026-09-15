@@ -1,0 +1,26 @@
+name: Share health data fetch
+
+on:
+  push:
+    paths:
+      - '.github/workflows/share-health-fetch.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Share endpoint request across health components
+        run: python .github/scripts/share_health_fetch.py
+      - name: Commit changes and remove temporary files
+        run: |
+          rm .github/workflows/share-health-fetch.yml
+          rm .github/scripts/share_health_fetch.py
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add health/index.html health/content.html assets/health-weight-chart.js assets/health-bp-chart.js assets/health-waist-chart.js .github/workflows/share-health-fetch.yml .github/scripts/share_health_fetch.py
+          git commit -m "Share Health endpoint request"
+          git push
