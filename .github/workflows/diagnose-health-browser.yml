@@ -1,0 +1,23 @@
+name: Diagnose health browser
+
+on:
+  push:
+    paths:
+      - '.github/workflows/diagnose-health-browser.yml'
+
+jobs:
+  diagnose:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Find browser and render health content
+        run: |
+          BROWSER="$(command -v google-chrome || command -v chromium || command -v chromium-browser || true)"
+          echo "Browser: $BROWSER"
+          if [ -z "$BROWSER" ]; then exit 2; fi
+          "$BROWSER" --headless --no-sandbox --disable-gpu --virtual-time-budget=8000 --enable-logging=stderr --v=0 --dump-dom 'https://barblified.github.io/HomeScreen/health/content.html' > /tmp/dom.html 2> /tmp/browser.log || true
+          echo '--- RENDERED KEY TEXT ---'
+          grep -Eo 'Loading today[^<]*|Live data did not load[^<]*|Current: [^<]*|Updated: [^<]*|Source: [^<]*' /tmp/dom.html | head -20 || true
+          echo '--- CONSOLE/NETWORK ERRORS ---'
+          grep -Ei 'error|failed|cors|blocked|script.google' /tmp/browser.log | tail -80 || true
+          echo '--- DOM SIZE ---'
+          wc -c /tmp/dom.html
