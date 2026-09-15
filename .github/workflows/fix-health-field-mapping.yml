@@ -14,56 +14,13 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Patch health display mappings
-        run: |
-          python - <<'PY'
-          from pathlib import Path
-
-          path = Path('health/content.html')
-          text = path.read_text()
-
-          replacements = [
-            ('<section class="grid" aria-label="Weekly discipline">', '<section class="grid" aria-label="Health habits">'),
-            ('<span>Logged</span>', '<span>Nutrition Days Logged</span>'),
-            ('<span>Protein Days Hit</span>', '<span>Protein Target Days</span>'),
-            ('<span>Sleep</span>', '<span id="sleep-label">Sleep Today</span>'),
-            ('      sleepTargetDaysThisWeek: null,\n', '      sleepHoursToday: null,\n      sleepTargetDaysThisWeek: null,\n'),
-            ('      const sleepDays = toNumber(metrics.sleepTargetDaysThisWeek);\n', '      const sleepHours = toNumber(metrics.sleepHoursToday);\n      const sleepDays = toNumber(metrics.sleepTargetDaysThisWeek);\n'),
-            ('      setText("sleep", sleepDays === null ? "—" : `${sleepDays}/7`);\n', '''      if (sleepHours === null) {
-        setText("sleep", sleepDays === null ? "—" : `${sleepDays}/7`);
-        setText("sleep-label", "Sleep Target Days");
-      } else {
-        const sleepHoursText = Number.isInteger(sleepHours) ? sleepHours.toFixed(0) : sleepHours.toFixed(1);
-        setText("sleep", `${sleepHoursText} h`);
-        setText("sleep-label", `Today · ${sleepDays === null ? "—" : `${sleepDays}/7`} target days`);
-      }
-''')
-          ]
-
-          for old, new in replacements:
-            if old not in text:
-              raise SystemExit(f'Expected health/content.html block not found: {old[:80]}')
-            text = text.replace(old, new, 1)
-
-          path.write_text(text)
-          PY
-
-      - name: Bump health cache version
-        run: |
-          python - <<'PY'
-          from pathlib import Path
-          path = Path('health/index.html')
-          text = path.read_text()
-          if '20260915-0905' not in text:
-            raise SystemExit('Expected cache version not found')
-          text = text.replace('20260915-0905', '20260915-0920')
-          path.write_text(text)
-          PY
-
-      - name: Commit changes and remove workflow
+        run: python .github/scripts/fix_health_field_mapping.py
+      - name: Commit changes and remove temporary files
         run: |
           rm .github/workflows/fix-health-field-mapping.yml
+          rm .github/scripts/fix_health_field_mapping.py
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add health/content.html health/index.html .github/workflows/fix-health-field-mapping.yml
+          git add health/content.html health/index.html .github/workflows/fix-health-field-mapping.yml .github/scripts/fix_health_field_mapping.py
           git commit -m "Fix health field mappings"
           git push
