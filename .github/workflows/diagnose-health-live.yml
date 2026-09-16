@@ -1,0 +1,79 @@
+name: Diagnose health live feed
+
+on:
+  push:
+    paths:
+      - '.github/workflows/diagnose-health-live.yml'
+
+jobs:
+  diagnose:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check Apps Script endpoint
+        run: |
+          url='https://script.google.com/macros/s/AKfycbwihWQw8Frs1acA1Y-CELBw0NmX4O5KFzcqU3f8TbFpSegleKyPM64TkqTyoNyAWhLP/exec'
+          code=$(curl -L -sS --max-time 45 -o /tmp/health.json -w '%{http_code}' "$url")
+          echo "HTTP=$code"
+          echo "BYTES=$(wc -c < /tmp/health.json)"
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          p=Path('/tmp/health.json')
+          try:
+              data=json.loads(p.read_text())
+              print('JSON_OK=true')
+              root=data.get('metrics', data) if isinstance(data, dict) else {}
+              print('ROOT_TYPE='+type(data).__name__)
+              print('KEY_COUNT='+str(len(root) if isinstance(root, dict) else 0))
+              print('HAS_WEIGHT_HISTORY='+str(isinstance(root,dict) and 'weightHistory' in root).lower())
+              print('HAS_BP_HISTORY='+str(isinstance(root,dict) and 'bpHistory' in root).lower())
+              print('HAS_WAIST_HISTORY='+str(isinstance(root,dict) and 'waistHistory' in root).lower())
+          except Exception as e:
+              print('JSON_OK=false')
+              print('PARSE_ERROR='+type(e).__name__+': '+str(e)[:200])
+          PY
+      - name: Check deployed page in browser
+        run: |
+          python -m pip install selenium --quiet
+          python - <<'PY'
+          from selenium import webdriver
+          from selenium.webdriver.common.by import By
+          from selenium.webdriver.chrome.options import Options
+          import json, time
+
+          opts=Options()
+          opts.add_argument('--headless=new')
+          opts.add_argument('--no-sandbox')
+          opts.add_argument('--disable-gpu')
+          opts.add_argument('--window-size=900,1800')
+          opts.set_capability('goog:loggingPrefs', {'browser':'ALL'})
+          driver=webdriver.Chrome(options=opts)
+          driver.set_script_timeout(50)
+          try:
+              driver.get('https://barblified.github.io/HomeScreen/health/?diag=20260916-0752')
+              time.sleep(5)
+              result=driver.execute_async_script('''
+                const done = arguments[0];
+                if (typeof window.getHealthData !== 'function') {
+                  done({ok:false,error:'getHealthData missing'}); return;
+                }
+                window.getHealthData({force:true}).then(payload => {
+                  const root = payload && payload.metrics ? payload.metrics : payload;
+                  done({ok:true,keyCount:root && typeof root === 'object' ? Object.keys(root).length : 0,
+                        hasWeight:!!(root && Object.prototype.hasOwnProperty.call(root,'weightHistory')),
+                        hasBP:!!(root && Object.prototype.hasOwnProperty.call(root,'bpHistory')),
+                        hasWaist:!!(root && Object.prototype.hasOwnProperty.call(root,'waistHistory'))});
+                }).catch(e => done({ok:false,name:e && e.name || '',error:e && e.message || String(e)}));
+              ''')
+              print('LOADER_RESULT='+json.dumps(result))
+              frame=driver.find_element(By.CSS_SELECTOR,'iframe.page-frame')
+              driver.switch_to.frame(frame)
+              status=driver.find_element(By.ID,'status').text if driver.find_elements(By.ID,'status') else '<missing>'
+              print('STATUS_TEXT='+status)
+              driver.switch_to.default_content()
+              for row in driver.get_log('browser'):
+                  if row.get('level') in ('SEVERE','WARNING'):
+                      print('BROWSER_'+row.get('level','')+'='+row.get('message','')[:800])
+          finally:
+              driver.quit()
+          PY
