@@ -52,14 +52,11 @@
 
       const previous = stitched[stitched.length - 1];
 
-      // Repair decimals that the original parser split into separate list items,
-      // e.g. "112." + "6 kg" => "112.6 kg" and "7." + "5 h" => "7.5 h".
       if (/\d\.$/.test(previous) && /^\d+(?:\s*(?:kg|g|h|cm|mm|kcal|%|mg)\b|\s|$)/i.test(item)) {
         stitched[stitched.length - 1] = previous + item;
         return;
       }
 
-      // Repair citation punctuation such as "et al." + ", 2024).".
       if (/\bet al\.$/i.test(previous) && /^,\s*\d{4}\b/.test(item)) {
         stitched[stitched.length - 1] = previous + item;
         return;
@@ -96,6 +93,59 @@
 
     list.replaceChildren(fragment);
     list.dataset.repairedSource = joined;
+  }
+
+  function installCitationStyle(doc) {
+    if (doc.getElementById('nehemiah-inline-citation-style')) return;
+
+    const style = doc.createElement('style');
+    style.id = 'nehemiah-inline-citation-style';
+    style.textContent = `
+      .inline-citation {
+        color: #FFAD62;
+        font-weight: 700;
+      }
+    `;
+    doc.head.appendChild(style);
+  }
+
+  function highlightCitationText(doc, element) {
+    if (!element) return;
+    const text = element.textContent || '';
+    if (!text.trim()) return;
+    if (element.dataset.citationSource === text) return;
+
+    const pattern = /\(([^()]*(?:\b(?:19|20)\d{2}\b|\bet al\.\b|\bNICE\b|\bNHS\b|\bSACN\b|\bWHO\b|\bACSM\b)[^()]*)\)/gi;
+    const fragment = doc.createDocumentFragment();
+    let cursor = 0;
+    let match;
+    let found = false;
+
+    while ((match = pattern.exec(text)) !== null) {
+      found = true;
+      if (match.index > cursor) fragment.append(doc.createTextNode(text.slice(cursor, match.index)));
+
+      const citation = doc.createElement('span');
+      citation.className = 'inline-citation';
+      citation.textContent = match[0];
+      fragment.append(citation);
+      cursor = match.index + match[0].length;
+    }
+
+    if (!found) {
+      element.dataset.citationSource = text;
+      return;
+    }
+
+    if (cursor < text.length) fragment.append(doc.createTextNode(text.slice(cursor)));
+    element.replaceChildren(fragment);
+    element.dataset.citationSource = text;
+  }
+
+  function highlightInlineCitations(doc) {
+    doc.querySelectorAll(
+      '#daily-analysis > li, #recommended-action > li, .trend-card p, #missing-fields'
+    ).forEach(element => highlightCitationText(doc, element));
   }
 
   function installChartPalette(doc) {
@@ -140,6 +190,7 @@
 
   function install(doc) {
     installChartPalette(doc);
+    installCitationStyle(doc);
 
     const list = doc.getElementById('daily-analysis');
     if (!list || list.dataset.readabilityObserver === 'true') return;
@@ -151,12 +202,14 @@
       repairing = true;
       try {
         repairDailyAnalysis(doc);
+        highlightInlineCitations(doc);
       } finally {
         repairing = false;
       }
     });
     observer.observe(list, { childList: true, subtree: true, characterData: true });
     repairDailyAnalysis(doc);
+    highlightInlineCitations(doc);
   }
 
   function onFrameReady() {
