@@ -41,6 +41,36 @@
     return sentences;
   }
 
+  function stitchParserFragments(items) {
+    const stitched = [];
+
+    items.forEach(item => {
+      if (!stitched.length) {
+        stitched.push(item);
+        return;
+      }
+
+      const previous = stitched[stitched.length - 1];
+
+      // Repair decimals that the original parser split into separate list items,
+      // e.g. "112." + "6 kg" => "112.6 kg" and "7." + "5 h" => "7.5 h".
+      if (/\d\.$/.test(previous) && /^\d+(?:\s*(?:kg|g|h|cm|mm|kcal|%|mg)\b|\s|$)/i.test(item)) {
+        stitched[stitched.length - 1] = previous + item;
+        return;
+      }
+
+      // Repair citation punctuation such as "et al." + ", 2024).".
+      if (/\bet al\.$/i.test(previous) && /^,\s*\d{4}\b/.test(item)) {
+        stitched[stitched.length - 1] = previous + item;
+        return;
+      }
+
+      stitched.push(item);
+    });
+
+    return stitched;
+  }
+
   function repairDailyAnalysis(doc) {
     const list = doc.getElementById('daily-analysis');
     if (!list) return;
@@ -50,7 +80,8 @@
       .filter(Boolean);
     if (!items.length) return;
 
-    const joined = items.join(' ').replace(/\s+([,.;:!?])/g, '$1');
+    const stitched = stitchParserFragments(items);
+    const joined = stitched.join(' ').replace(/\s+([,.;:!?])/g, '$1');
     if (list.dataset.repairedSource === joined) return;
 
     const sentences = splitSentencesSafely(joined);
@@ -64,10 +95,52 @@
     });
 
     list.replaceChildren(fragment);
-    list.dataset.repairedSource = sentences.join(' ');
+    list.dataset.repairedSource = joined;
+  }
+
+  function installChartPalette(doc) {
+    if (doc.getElementById('nehemiah-chart-palette-fix')) return;
+
+    const style = doc.createElement('style');
+    style.id = 'nehemiah-chart-palette-fix';
+    style.textContent = `
+      .chart-card {
+        background: rgba(10,32,55,.95) !important;
+        border-color: rgba(63,227,109,.28) !important;
+        color: #F3F7FB !important;
+      }
+      .chart-heading h2 { color: #45DB70 !important; }
+      .chart-heading p,
+      .chart-note,
+      .chart-empty { color: #B6C9DB !important; }
+      .chart-wrap {
+        background: linear-gradient(180deg, rgba(17,52,84,.95), rgba(7,24,42,.94)) !important;
+      }
+      .chart-chip {
+        background: rgba(15,43,70,.96) !important;
+        border-color: rgba(190,214,235,.18) !important;
+        color: #F3F7FB !important;
+      }
+      .chart-chip small { color: #B6C9DB !important; }
+      .chart-chip.current { box-shadow: inset 0 3px 0 #45DB70 !important; }
+      .chart-chip.current strong { color: #45DB70 !important; }
+      .chart-chip.seven { box-shadow: inset 0 3px 0 #FF8126 !important; }
+      .chart-chip.seven strong { color: #FFAD62 !important; }
+      .chart-chip.fourteen { box-shadow: inset 0 3px 0 #45DB70 !important; }
+      .chart-chip.fourteen strong { color: #45DB70 !important; }
+      .chart-tooltip {
+        background: rgba(10,32,55,.98) !important;
+        border-color: rgba(190,214,235,.18) !important;
+        color: #F3F7FB !important;
+        box-shadow: 0 8px 20px rgba(0,0,0,.28) !important;
+      }
+    `;
+    doc.head.appendChild(style);
   }
 
   function install(doc) {
+    installChartPalette(doc);
+
     const list = doc.getElementById('daily-analysis');
     if (!list || list.dataset.readabilityObserver === 'true') return;
 
