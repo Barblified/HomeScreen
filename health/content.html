@@ -5,99 +5,101 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Obryn Health Cut</title>
   <link href="https://fonts.googleapis.com/css2?family=Gloria+Hallelujah&family=Swanky+and+Moo+Moo&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/type-system.css">
   <style>
     :root {
-      --bg-1: #7ED6F7;
-      --bg-2: #7BC96F;
-      --card: rgba(255, 249, 241, 0.96);
-      --ink: #23403D;
-      --muted: #5E7A78;
-      --line: rgba(35, 64, 61, 0.14);
-      --accent: #2F7D4A;
-      --accent-2: #7BC96F;
-      --steel: #2CB5C9;
-      --soft-green: rgba(123, 201, 111, 0.14);
-      --soft-bronze: rgba(255, 138, 61, 0.10);
+      --bg-1: #07182A;
+      --bg-2: #102D49;
+      --card: rgba(10, 32, 55, .94);
+      --panel: rgba(15, 43, 70, .96);
+      --panel-soft: rgba(17, 52, 84, .64);
+      --ink: #F3F7FB;
+      --muted: #B6C9DB;
+      --line: rgba(190, 214, 235, .18);
+      --green: #45DB70;
+      --green-2: #6BE784;
+      --blue: #7DB9E8;
+      --orange: #FF8126;
+      --orange-soft: #FFAD62;
+      --danger: #FF8A7A;
     }
 
-    * {
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; }
+
+    html { background: var(--bg-1); }
 
     body {
       margin: 0;
       min-height: 100vh;
-      display: grid;
-      place-items: center;
       padding: 24px;
       color: var(--ink);
       background:
-        radial-gradient(circle at 20% 20%, rgba(255, 138, 61, 0.30), transparent 30%),
-        radial-gradient(circle at 80% 10%, rgba(44, 181, 201, 0.24), transparent 26%),
-        linear-gradient(135deg, var(--bg-1), var(--bg-2));
+        radial-gradient(circle at 20% 20%, rgba(255,129,38,.12), transparent 30%),
+        radial-gradient(circle at 80% 10%, rgba(125,185,232,.16), transparent 28%),
+        linear-gradient(160deg, var(--bg-1) 0%, #0A2037 58%, var(--bg-2) 100%);
       font-family: "Swanky and Moo Moo", cursive;
     }
 
     .card {
-      width: min(100%, 760px);
-      background: var(--card);
-      border: 1px solid rgba(255, 255, 255, 0.62);
-      border-radius: 28px;
+      width: min(100%, 860px);
+      margin: 0 auto;
       padding: 26px;
-      box-shadow: 0 24px 80px rgba(35, 64, 61, 0.22);
-      backdrop-filter: blur(8px);
+      border: 1px solid var(--line);
+      border-radius: 28px;
+      background: var(--card);
+      box-shadow: 0 24px 80px rgba(0,0,0,.30);
     }
 
     .eyebrow {
       margin: 0;
       color: var(--muted);
-      font-size: 1.1rem;
-      letter-spacing: 0.08em;
+      font-size: 1.05rem;
+      letter-spacing: .08em;
       text-transform: uppercase;
     }
 
     h1 {
       margin: 4px 0 16px;
       font-size: clamp(3.1rem, 12vw, 5.2rem);
-      line-height: 0.9;
+      line-height: .9;
       font-weight: 400;
     }
 
-    h2 {
-      margin: 0;
-      color: var(--accent);
-      font-size: 2rem;
-      font-weight: 400;
-    }
+    h2, h3, h4 { font-weight: 400; }
 
     .status {
       margin: 0 0 22px;
       padding: 14px 16px;
+      border: 1px solid rgba(69,219,112,.24);
       border-radius: 18px;
-      background: var(--soft-green);
-      border: 1px solid rgba(47, 125, 74, 0.22);
-      font-size: 1.35rem;
+      background: rgba(63,227,109,.10);
+      font-size: 1.3rem;
     }
 
     .hero {
       display: grid;
-      grid-template-columns: 1.15fr 0.85fr;
+      grid-template-columns: 1.15fr .85fr;
       gap: 14px;
       margin-bottom: 16px;
+    }
+
+    .metric, .tile {
+      border: 1px solid var(--line);
+      background: var(--panel);
+      color: var(--ink);
     }
 
     .metric {
       padding: 16px;
       border-radius: 20px;
-      background: rgba(234, 247, 250, 0.72);
-      border: 1px solid var(--line);
     }
+
+    .metric small, .metric span, .tile span { color: var(--muted); }
 
     .metric small {
       display: block;
-      color: var(--muted);
-      font-size: 1.05rem;
-      letter-spacing: 0.04em;
+      font-size: 1.02rem;
+      letter-spacing: .04em;
       text-transform: uppercase;
     }
 
@@ -109,44 +111,25 @@
       font-weight: 400;
     }
 
-    .metric span {
-      display: block;
-      margin-top: 6px;
-      color: var(--muted);
-      font-size: 1.15rem;
-    }
+    .metric span { display: block; margin-top: 6px; font-size: 1.12rem; }
+    .metric .imperial-loss { color: var(--green-2); font-size: 1.3rem; }
 
-    .metric .imperial-loss {
-      color: var(--accent-2);
-      font-size: 1.35rem;
-    }
-
-    .progress-wrap {
-      margin: 12px 0 18px;
-    }
-
+    .progress-wrap { margin: 12px 0 18px; }
     .progress-label {
       display: flex;
       justify-content: space-between;
       gap: 12px;
-      color: var(--muted);
-      font-size: 1.08rem;
       margin-bottom: 8px;
+      color: var(--muted);
+      font-size: 1.06rem;
     }
-
     .progress {
-      width: 100%;
-      height: 14px;
-      overflow: hidden;
-      border-radius: 999px;
-      background: rgba(35, 64, 61, 0.12);
+      width: 100%; height: 14px; overflow: hidden;
+      border-radius: 999px; background: rgba(190,214,235,.14);
     }
-
     .bar {
-      width: 0%;
-      height: 100%;
-      border-radius: inherit;
-      background: linear-gradient(90deg, var(--accent), var(--accent-2));
+      width: 0%; height: 100%; border-radius: inherit;
+      background: linear-gradient(90deg, var(--green), var(--green-2));
       transition: width 600ms ease;
     }
 
@@ -156,27 +139,13 @@
       gap: 10px;
       margin-top: 16px;
     }
-
     .tile {
       padding: 12px 10px;
       text-align: center;
       border-radius: 16px;
-      background: rgba(255, 255, 255, 0.60);
-      border: 1px solid var(--line);
     }
-
-    .tile strong {
-      display: block;
-      font-size: 1.75rem;
-      font-weight: 400;
-    }
-
-    .tile span {
-      display: block;
-      margin-top: 3px;
-      color: var(--muted);
-      font-size: 1.02rem;
-    }
+    .tile strong { display: block; font-size: 1.75rem; font-weight: 400; }
+    .tile span { display: block; margin-top: 3px; font-size: 1rem; }
 
     .diary-link-wrap {
       display: flex;
@@ -185,47 +154,32 @@
       gap: 14px;
       margin-top: 12px;
       padding: 12px 14px;
-      border: 1px solid rgba(47, 125, 74, 0.20);
+      border: 1px solid rgba(69,219,112,.24);
       border-radius: 16px;
-      background: rgba(123, 201, 111, 0.10);
+      background: rgba(63,227,109,.10);
     }
-
-    .diary-link-wrap span {
-      color: var(--muted);
-      font-size: 1rem;
-      line-height: 1.2;
-    }
-
+    .diary-link-wrap span { color: var(--muted); font-size: 1rem; line-height: 1.2; }
     .diary-link {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      flex: 0 0 auto;
       min-height: 40px;
       padding: 8px 13px;
-      border: 1px solid rgba(47, 125, 74, 0.28);
       border-radius: 999px;
-      background: var(--accent);
-      color: #fff;
+      background: var(--green);
+      color: var(--bg-1);
       font-family: "Gloria Hallelujah", cursive;
-      font-size: 0.85rem;
+      font-size: .82rem;
       font-weight: 700;
       text-decoration: none;
-    }
-
-    .diary-link:hover,
-    .diary-link:focus-visible {
-      filter: brightness(1.08);
-      outline: 2px solid rgba(44, 181, 201, 0.36);
-      outline-offset: 2px;
     }
 
     .coach {
       margin-top: 22px;
       padding: 20px;
-      border: 1px solid rgba(255, 138, 61, 0.28);
+      border: 1px solid rgba(255,129,38,.30);
       border-radius: 22px;
-      background: var(--soft-bronze);
+      background: rgba(255,129,38,.09);
     }
 
     .coach-heading {
@@ -233,80 +187,122 @@
       align-items: flex-start;
       justify-content: space-between;
       gap: 14px;
-      margin-bottom: 14px;
+      margin-bottom: 16px;
     }
-
-    .coach-subtitle {
-      margin: 3px 0 0;
-      color: var(--muted);
-      font-size: 1.05rem;
-    }
-
-    .coach-badges {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: flex-end;
-      gap: 7px;
-    }
-
+    .coach-heading h2 { margin: 0; color: var(--orange-soft); font-size: 2rem; }
+    .coach-subtitle { margin: 3px 0 0; color: var(--muted); font-size: 1.02rem; }
+    .coach-badges { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 7px; }
     .badge {
       display: inline-flex;
       align-items: center;
       min-height: 30px;
       padding: 5px 10px;
-      border: 1px solid rgba(35, 64, 61, 0.14);
+      border: 1px solid var(--line);
       border-radius: 999px;
-      background: rgba(255, 255, 255, 0.72);
+      background: var(--panel);
       color: var(--ink);
       font-family: "Gloria Hallelujah", cursive;
-      font-size: 0.78rem;
+      font-size: .76rem;
       font-weight: 700;
     }
 
-    .coach-action {
-      margin: 0 0 12px;
-      padding: 13px 14px;
-      border-left: 5px solid #FF8A3D;
-      border-radius: 12px;
-      background: rgba(255, 255, 255, 0.62);
-      font-size: 1.25rem;
-      line-height: 1.25;
+    .coach-section {
+      margin-top: 12px;
+      padding: 15px 16px;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background: rgba(10,32,55,.58);
     }
-
-    .coach-item {
-      padding: 12px 0;
-      border-top: 1px solid var(--line);
-    }
-
-    .coach-item:first-of-type {
-      border-top: 0;
-    }
-
-    .coach-item h3 {
-      margin: 0 0 4px;
-      color: var(--steel);
-      font-size: 1.15rem;
-      font-weight: 400;
-      letter-spacing: 0.04em;
+    .coach-section:first-of-type { margin-top: 0; }
+    .coach-section h3 {
+      margin: 0 0 9px;
+      color: var(--blue);
+      font-size: 1.08rem;
+      letter-spacing: .055em;
       text-transform: uppercase;
     }
+    .coach-section.action {
+      border-left: 5px solid var(--orange);
+      background: rgba(255,129,38,.08);
+    }
+    .coach-section.action h3 { color: var(--orange-soft); }
 
-    .coach-item p {
+    .readable-list,
+    .action-list,
+    .source-list,
+    .bibliography-list {
       margin: 0;
-      font-size: 1.2rem;
-      line-height: 1.3;
+      padding-left: 1.25rem;
+      font-family: "Gloria Hallelujah", cursive;
+      line-height: 1.55;
+    }
+    .readable-list { font-size: .92rem; }
+    .action-list { font-size: .96rem; }
+    .readable-list li,
+    .action-list li,
+    .source-list li,
+    .bibliography-list li { margin: 0 0 8px; }
+    .readable-list li:last-child,
+    .action-list li:last-child,
+    .source-list li:last-child,
+    .bibliography-list li:last-child { margin-bottom: 0; }
+
+    .trend-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+    .trend-card {
+      padding: 12px;
+      border: 1px solid var(--line);
+      border-radius: 13px;
+      background: var(--panel-soft);
+    }
+    .trend-card h4 {
+      margin: 0 0 5px;
+      color: var(--green-2);
+      font-size: 1rem;
+      text-transform: uppercase;
+      letter-spacing: .04em;
+    }
+    .trend-card p { margin: 0; font-family: "Gloria Hallelujah", cursive; font-size: .88rem; line-height: 1.5; }
+
+    .missing-note {
+      margin: 0;
+      color: var(--muted);
+      font-family: "Gloria Hallelujah", cursive;
+      font-size: .88rem;
+      line-height: 1.5;
     }
 
-    .coach-item.evidence p {
-      color: var(--muted);
-      font-size: 1.02rem;
+    .sources-panel {
+      margin-top: 14px;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background: rgba(7,24,42,.52);
+      overflow: hidden;
     }
+    .sources-panel summary {
+      cursor: pointer;
+      padding: 13px 15px;
+      color: var(--blue);
+      font-family: "Gloria Hallelujah", cursive;
+      font-size: .9rem;
+      font-weight: 700;
+      list-style-position: inside;
+    }
+    .sources-inner { padding: 0 15px 15px; }
+    .sources-block { padding-top: 12px; border-top: 1px solid var(--line); }
+    .sources-block + .sources-block { margin-top: 12px; }
+    .sources-block h4 { margin: 0 0 8px; color: var(--green-2); font-size: 1.05rem; }
+    .source-list, .bibliography-list {
+      color: var(--muted);
+      font-size: .78rem;
+    }
+    .bibliography-list { padding-left: 1.4rem; }
+    .source-link { color: var(--blue); text-decoration: underline; text-underline-offset: 2px; }
 
-    .no-coach {
-      margin: 12px 0 0;
-      color: var(--muted);
-      font-size: 1.2rem;
-    }
+    .no-coach { margin: 12px 0 0; color: var(--muted); font-size: 1.15rem; }
 
     footer {
       display: flex;
@@ -316,133 +312,24 @@
       padding-top: 14px;
       border-top: 1px solid var(--line);
       color: var(--muted);
-      font-size: 1rem;
+      font-size: .95rem;
     }
 
-    [hidden] {
-      display: none !important;
-    }
+    [hidden] { display: none !important; }
 
-    @media (max-width: 620px) {
-      body {
-        padding: 16px;
-      }
-
-      .card {
-        border-radius: 22px;
-        padding: 20px;
-      }
-
-      .hero {
-        grid-template-columns: 1fr;
-      }
-
-      .grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-
-      .diary-link-wrap {
-        align-items: stretch;
-        flex-direction: column;
-      }
-
-      .diary-link {
-        width: 100%;
-      }
-
-      .coach-heading {
-        flex-direction: column;
-      }
-
-      .coach-badges {
-        justify-content: flex-start;
-      }
-
-      footer {
-        flex-direction: column;
-      }
+    @media (max-width: 680px) {
+      body { padding: 16px; }
+      .card { padding: 20px; border-radius: 22px; }
+      .hero { grid-template-columns: 1fr; }
+      .grid { grid-template-columns: repeat(2, 1fr); }
+      .diary-link-wrap { align-items: stretch; flex-direction: column; }
+      .diary-link { width: 100%; }
+      .coach-heading { flex-direction: column; }
+      .coach-badges { justify-content: flex-start; }
+      .trend-grid { grid-template-columns: 1fr; }
+      footer { flex-direction: column; }
     }
   </style>
-
-<style id="homepage-health-palette">
-  :root {
-    --bg-1: #07182A;
-    --bg-2: #102D49;
-    --card: rgba(10, 32, 55, .94);
-    --ink: #F3F7FB;
-    --muted: #B6C9DB;
-    --line: rgba(190, 214, 235, .18);
-    --accent: #45DB70;
-    --accent-2: #6BE784;
-    --steel: #7DB9E8;
-    --soft-green: rgba(63, 227, 109, .10);
-    --soft-bronze: rgba(255, 129, 38, .10);
-  }
-  html { background: #07182A !important; }
-  body {
-    background:
-      radial-gradient(circle at 20% 20%, rgba(255,129,38,.12), transparent 30%),
-      radial-gradient(circle at 80% 10%, rgba(125,185,232,.16), transparent 28%),
-      linear-gradient(160deg, #07182A 0%, #0A2037 58%, #102D49 100%) !important;
-  }
-  .card {
-    background: rgba(10,32,55,.94) !important;
-    border-color: var(--line) !important;
-    box-shadow: 0 24px 80px rgba(0,0,0,.30) !important;
-  }
-  h1 { color: #F3F7FB !important; }
-  h2 { color: #45DB70 !important; }
-  .metric,
-  .tile,
-  .badge,
-  .coach-action,
-  .chart-chip {
-    background: rgba(15,43,70,.96) !important;
-    border-color: var(--line) !important;
-    color: var(--ink) !important;
-  }
-  .status,
-  .diary-link-wrap {
-    background: rgba(63,227,109,.10) !important;
-    border-color: rgba(63,227,109,.24) !important;
-  }
-  .coach {
-    background: rgba(255,129,38,.09) !important;
-    border-color: rgba(255,129,38,.30) !important;
-  }
-  .coach h2 { color: #FFAD62 !important; }
-  .coach-item h3 { color: #7DB9E8 !important; }
-  .coach-action { border-left-color: #FF8126 !important; }
-  .diary-link {
-    background: #45DB70 !important;
-    border-color: rgba(69,219,112,.52) !important;
-    color: #07182A !important;
-  }
-  .progress { background: rgba(190,214,235,.14) !important; }
-  .bar { background: linear-gradient(90deg, #3FE36D, #6BE784) !important; }
-  .chart-card {
-    background: rgba(10,32,55,.95) !important;
-    border-color: rgba(63,227,109,.28) !important;
-    color: var(--ink) !important;
-  }
-  .chart-wrap {
-    background: linear-gradient(180deg, rgba(17,52,84,.95), rgba(7,24,42,.94)) !important;
-  }
-  .chart-tooltip {
-    background: rgba(10,32,55,.98) !important;
-    border-color: var(--line) !important;
-    color: var(--ink) !important;
-    box-shadow: 0 8px 20px rgba(0,0,0,.28) !important;
-  }
-  .chart-chip.current { box-shadow: inset 0 3px 0 #45DB70 !important; }
-  .chart-chip.current strong { color: #45DB70 !important; }
-  .chart-chip.seven { box-shadow: inset 0 3px 0 #FF8126 !important; }
-  .chart-chip.seven strong { color: #FFAD62 !important; }
-  .chart-chip.fourteen { box-shadow: inset 0 3px 0 #45DB70 !important; }
-  .chart-chip.fourteen strong { color: #45DB70 !important; }
-</style>
-
-  <link rel="stylesheet" href="../assets/type-system.css">
 </head>
 <body>
   <main class="card" aria-live="polite">
@@ -458,7 +345,6 @@
         <span class="imperial-loss" id="lost-imperial">—</span>
         <span id="weight-line">Today’s weight loading…</span>
       </div>
-
       <div class="metric">
         <small>BMI</small>
         <strong id="bmi">—</strong>
@@ -471,64 +357,33 @@
         <span id="checkpoint-label">Progress to checkpoint</span>
         <span id="checkpoint-percent">—</span>
       </div>
-      <div class="progress">
-        <div class="bar" id="progress-bar"></div>
-      </div>
+      <div class="progress"><div class="bar" id="progress-bar"></div></div>
     </section>
 
     <section class="grid" aria-label="Today's nutrition">
-      <div class="tile">
-        <strong id="calories-today">—</strong>
-        <span>Calories</span>
-      </div>
-      <div class="tile">
-        <strong id="protein-grams-today">—</strong>
-        <span>Protein</span>
-      </div>
-      <div class="tile">
-        <strong id="carbs-grams-today">—</strong>
-        <span>Carbs</span>
-      </div>
-      <div class="tile">
-        <strong id="fat-grams-today">—</strong>
-        <span>Fat</span>
-      </div>
+      <div class="tile"><strong id="calories-today">—</strong><span>Calories</span></div>
+      <div class="tile"><strong id="protein-grams-today">—</strong><span>Protein</span></div>
+      <div class="tile"><strong id="carbs-grams-today">—</strong><span>Carbs</span></div>
+      <div class="tile"><strong id="fat-grams-today">—</strong><span>Fat</span></div>
     </section>
 
     <div class="diary-link-wrap">
       <span>Want the detail behind today’s totals? Open the public food diary.</span>
-      <a
-        class="diary-link"
-        href="https://www.myfitnesspal.com/en/food/diary/tomguyler"
-        target="_blank"
-        rel="noopener noreferrer"
-      >View MyFitnessPal diary ↗</a>
+      <a class="diary-link" href="https://www.myfitnesspal.com/en/food/diary/tomguyler" target="_blank" rel="noopener noreferrer">View MyFitnessPal diary ↗</a>
     </div>
 
     <section class="grid" aria-label="Health habits">
-      <div class="tile">
-        <strong id="logged">—</strong>
-        <span>Nutrition Days Logged</span>
-      </div>
-      <div class="tile">
-        <strong id="protein">—</strong>
-        <span>Protein Target Days</span>
-      </div>
-      <div class="tile">
-        <strong id="workouts">—</strong>
-        <span>Workouts</span>
-      </div>
-      <div class="tile">
-        <strong id="sleep">—</strong>
-        <span id="sleep-label">Sleep Today</span>
-      </div>
+      <div class="tile"><strong id="logged">—</strong><span>Nutrition Days Logged</span></div>
+      <div class="tile"><strong id="protein">—</strong><span>Protein Target Days</span></div>
+      <div class="tile"><strong id="workouts">—</strong><span>Workouts</span></div>
+      <div class="tile"><strong id="sleep">—</strong><span id="sleep-label">Sleep Today</span></div>
     </section>
 
     <section class="coach" aria-labelledby="coach-heading">
       <div class="coach-heading">
         <div>
-          <h2 id="coach-heading">Coach Notes</h2>
-          <p class="coach-subtitle">Only notes attached to today’s row are shown.</p>
+          <h2 id="coach-heading">Nehemiah Check</h2>
+          <p class="coach-subtitle">Daily coaching first. Sources and methodology stay available without overwhelming the page.</p>
         </div>
         <div class="coach-badges" id="coach-badges">
           <span class="badge" id="coach-status">—</span>
@@ -537,27 +392,43 @@
       </div>
 
       <div id="coach-details">
-        <p class="coach-action" id="recommended-action">—</p>
+        <section class="coach-section action">
+          <h3>What to do</h3>
+          <ol class="action-list" id="recommended-action"></ol>
+        </section>
 
-        <div class="coach-item">
-          <h3>Daily analysis</h3>
-          <p id="daily-analysis">—</p>
-        </div>
+        <section class="coach-section">
+          <h3>What the data says</h3>
+          <ul class="readable-list" id="daily-analysis"></ul>
+        </section>
 
-        <div class="coach-item">
-          <h3>Trend summary</h3>
-          <p id="trend-summary">—</p>
-        </div>
+        <section class="coach-section">
+          <h3>Trend & interpretation</h3>
+          <div class="trend-grid" id="trend-summary"></div>
+        </section>
 
-        <div class="coach-item">
-          <h3>Missing information</h3>
-          <p id="missing-fields">—</p>
-        </div>
+        <section class="coach-section" id="missing-section">
+          <h3>Data still missing</h3>
+          <p class="missing-note" id="missing-fields">—</p>
+        </section>
 
-        <div class="coach-item evidence">
-          <h3>Evidence</h3>
-          <p id="evidence-source">—</p>
-        </div>
+        <details class="sources-panel" id="sources-panel">
+          <summary>Sources & method</summary>
+          <div class="sources-inner">
+            <section class="sources-block">
+              <h4>Data sources</h4>
+              <ul class="source-list" id="data-sources"></ul>
+            </section>
+            <section class="sources-block">
+              <h4>Bibliography</h4>
+              <ol class="bibliography-list" id="bibliography"></ol>
+            </section>
+            <section class="sources-block">
+              <h4>House rules / method</h4>
+              <ul class="source-list" id="implementation-rules"></ul>
+            </section>
+          </div>
+        </details>
       </div>
 
       <p class="no-coach" id="no-coach" hidden>No coach notes are available for today.</p>
@@ -573,11 +444,11 @@
     const REMOTE_METRICS_URL = "https://script.google.com/macros/s/AKfycbwihWQw8Frs1acA1Y-CELBw0NmX4O5KFzcqU3f8TbFpSegleKyPM64TkqTyoNyAWhLP/exec";
 
     const fallback = {
-      startingWeightKg: 113.2,
+      startingWeightKg: null,
       currentWeightKg: null,
-      checkpointWeightKg: 100,
-      finalGoalKg: 74,
-      heightM: 1.72,
+      checkpointWeightKg: null,
+      finalGoalKg: null,
+      heightM: null,
       currentBmi: null,
       totalLostKg: null,
       checkpointProgressPercent: null,
@@ -588,7 +459,7 @@
       daysLoggedThisWeek: null,
       proteinDaysThisWeek: null,
       workoutsThisWeek: null,
-      workoutTarget: 3,
+      workoutTarget: null,
       sleepHoursToday: null,
       sleepTargetDaysThisWeek: null,
       coachStatus: "",
@@ -598,6 +469,9 @@
       recommendedAction: "",
       riskFlag: "",
       evidenceSource: "",
+      bibliography: "",
+      dataSources: "",
+      implementationRules: "",
       lastUpdated: "Live data unavailable",
       accountabilityStatus: "Live data did not load. Check the Apps Script endpoint."
     };
@@ -612,44 +486,6 @@
       return Number.isFinite(number) ? number : null;
     }
 
-    function formatKg(value) {
-      const number = toNumber(value);
-      return number === null ? "—" : `${number.toFixed(1)} kg`;
-    }
-
-    function formatWholeNumber(value, suffix = "") {
-      const number = toNumber(value);
-      return number === null
-        ? "—"
-        : `${Math.round(number).toLocaleString("en-GB")}${suffix}`;
-    }
-
-    function formatStonePounds(valueKg) {
-      const kilograms = toNumber(valueKg);
-      if (kilograms === null) return "—";
-
-      const sign = kilograms < 0 ? "−" : "";
-      const totalOunces = Math.round(Math.abs(kilograms) * 2.2046226218 * 16);
-      const ouncesPerStone = 14 * 16;
-      const stones = Math.floor(totalOunces / ouncesPerStone);
-      const ouncesAfterStones = totalOunces % ouncesPerStone;
-      const pounds = Math.floor(ouncesAfterStones / 16);
-      const ounces = ouncesAfterStones % 16;
-      const poundLabel = pounds === 1 ? "lb" : "lbs";
-
-      return `${sign}${stones} st ${pounds} ${poundLabel} ${ounces} oz`;
-    }
-
-    function clamp(value, min, max) {
-      return Math.min(Math.max(value, min), max);
-    }
-
-    function normalizePayload(payload) {
-      if (payload && payload.metrics) return payload.metrics;
-      if (payload && typeof payload === "object") return payload;
-      return fallback;
-    }
-
     function textOrBlank(value) {
       return hasValue(value) ? String(value).trim() : "";
     }
@@ -657,6 +493,119 @@
     function setText(id, value) {
       const element = document.getElementById(id);
       if (element) element.textContent = value;
+    }
+
+    function formatKg(value) {
+      const number = toNumber(value);
+      return number === null ? "—" : `${number.toFixed(1)} kg`;
+    }
+
+    function formatWholeNumber(value, suffix = "") {
+      const number = toNumber(value);
+      return number === null ? "—" : `${Math.round(number).toLocaleString("en-GB")}${suffix}`;
+    }
+
+    function formatStonePounds(valueKg) {
+      const kilograms = toNumber(valueKg);
+      if (kilograms === null) return "—";
+      const sign = kilograms < 0 ? "−" : "";
+      const totalOunces = Math.round(Math.abs(kilograms) * 2.2046226218 * 16);
+      const stones = Math.floor(totalOunces / 224);
+      const remainder = totalOunces % 224;
+      const pounds = Math.floor(remainder / 16);
+      const ounces = remainder % 16;
+      return `${sign}${stones} st ${pounds} ${pounds === 1 ? "lb" : "lbs"} ${ounces} oz`;
+    }
+
+    function clamp(value, min, max) { return Math.min(Math.max(value, min), max); }
+
+    function normalizePayload(payload) {
+      if (payload && payload.metrics) return payload.metrics;
+      if (payload && typeof payload === "object") return payload;
+      return fallback;
+    }
+
+    function splitNumberedActions(text) {
+      const value = textOrBlank(text);
+      if (!value) return [];
+      const numbered = value.split(/\s*\(\d+\)\s*/).map(item => item.trim()).filter(Boolean);
+      if (numbered.length > 1) return numbered;
+      return value.split(/\n+/).map(item => item.replace(/^[-•]\s*/, "").trim()).filter(Boolean);
+    }
+
+    function splitReadableSentences(text) {
+      const value = textOrBlank(text);
+      if (!value) return [];
+      const lines = value.split(/\n+/).map(item => item.trim()).filter(Boolean);
+      if (lines.length > 1) return lines;
+      const sentences = value.match(/[^.!?]+(?:[.!?]+|$)/g) || [value];
+      return sentences.map(item => item.trim()).filter(Boolean);
+    }
+
+    function splitLines(text) {
+      return textOrBlank(text).split(/\n+/).map(item => item.replace(/^\[\d+\]\s*/, "").trim()).filter(Boolean);
+    }
+
+    function addLinkedText(container, text) {
+      const pattern = /(https?:\/\/[^\s]+|doi:10\.\d{4,9}\/[-._;()/:A-Z0-9]+)/ig;
+      let cursor = 0;
+      let match;
+      while ((match = pattern.exec(text)) !== null) {
+        if (match.index > cursor) container.append(document.createTextNode(text.slice(cursor, match.index)));
+        const raw = match[0];
+        const link = document.createElement("a");
+        link.className = "source-link";
+        link.href = raw.toLowerCase().startsWith("doi:") ? `https://doi.org/${raw.slice(4)}` : raw.replace(/[.,;)]$/, "");
+        link.textContent = raw;
+        link.target = "_blank";
+        link.rel = "noopener noreferrer";
+        container.append(link);
+        cursor = match.index + raw.length;
+      }
+      if (cursor < text.length) container.append(document.createTextNode(text.slice(cursor)));
+    }
+
+    function renderList(id, items, emptyText, linked = false) {
+      const list = document.getElementById(id);
+      if (!list) return;
+      list.replaceChildren();
+      const values = items.length ? items : [emptyText];
+      values.forEach(item => {
+        const li = document.createElement("li");
+        if (linked) addLinkedText(li, item); else li.textContent = item;
+        list.append(li);
+      });
+    }
+
+    function parseTrend(text) {
+      const value = textOrBlank(text);
+      if (!value) return [];
+      const observationMatch = value.match(/Observation:\s*([\s\S]*?)(?=\s*Interpretation:|$)/i);
+      const interpretationMatch = value.match(/Interpretation:\s*([\s\S]*)$/i);
+      if (observationMatch || interpretationMatch) {
+        const blocks = [];
+        if (observationMatch?.[1]?.trim()) blocks.push(["Observation", observationMatch[1].trim()]);
+        if (interpretationMatch?.[1]?.trim()) blocks.push(["Interpretation", interpretationMatch[1].trim()]);
+        return blocks;
+      }
+      return [["Trend", value]];
+    }
+
+    function renderTrend(text) {
+      const target = document.getElementById("trend-summary");
+      if (!target) return;
+      target.replaceChildren();
+      const blocks = parseTrend(text);
+      (blocks.length ? blocks : [["Trend", "No trend summary recorded."]]).forEach(([title, body]) => {
+        const card = document.createElement("div");
+        card.className = "trend-card";
+        const heading = document.createElement("h4");
+        heading.textContent = title;
+        const paragraph = document.createElement("p");
+        paragraph.textContent = body;
+        card.append(heading, paragraph);
+        target.append(card);
+      });
     }
 
     function renderCoachNotes(metrics) {
@@ -667,23 +616,26 @@
         trend: textOrBlank(metrics.trendSummary),
         action: textOrBlank(metrics.recommendedAction),
         risk: textOrBlank(metrics.riskFlag),
-        evidence: textOrBlank(metrics.evidenceSource)
+        bibliography: textOrBlank(metrics.bibliography) || textOrBlank(metrics.evidenceSource),
+        dataSources: textOrBlank(metrics.dataSources),
+        implementationRules: textOrBlank(metrics.implementationRules)
       };
 
-      const hasCoachNotes = Object.values(notes).some(Boolean);
+      const hasCoachNotes = [notes.status, notes.missing, notes.analysis, notes.trend, notes.action, notes.risk].some(Boolean);
       document.getElementById("coach-details").hidden = !hasCoachNotes;
       document.getElementById("coach-badges").hidden = !hasCoachNotes;
       document.getElementById("no-coach").hidden = hasCoachNotes;
-
       if (!hasCoachNotes) return;
 
       setText("coach-status", notes.status || "No status");
       setText("risk-flag", `Risk: ${notes.risk || "None"}`);
-      setText("recommended-action", notes.action || "No action recorded for today.");
-      setText("daily-analysis", notes.analysis || "No daily analysis recorded.");
-      setText("trend-summary", notes.trend || "No trend summary recorded.");
+      renderList("recommended-action", splitNumberedActions(notes.action), "No action recorded for today.");
+      renderList("daily-analysis", splitReadableSentences(notes.analysis), "No daily analysis recorded.");
+      renderTrend(notes.trend);
       setText("missing-fields", notes.missing || "None recorded.");
-      setText("evidence-source", notes.evidence || "No evidence source recorded.");
+      renderList("data-sources", splitLines(notes.dataSources), "Data provenance not supplied.", true);
+      renderList("bibliography", splitLines(notes.bibliography), "No bibliography recorded for this run.", true);
+      renderList("implementation-rules", splitLines(notes.implementationRules), "No additional house rules recorded.", true);
     }
 
     function render(metrics, sourceLabel = "Google Sheets") {
@@ -692,13 +644,9 @@
       const checkpoint = toNumber(metrics.checkpointWeightKg);
       const height = toNumber(metrics.heightM);
       const suppliedBmi = toNumber(metrics.currentBmi);
-      const bmi = current !== null && height !== null && height > 0
-        ? current / (height ** 2)
-        : suppliedBmi;
+      const bmi = current !== null && height !== null && height > 0 ? current / (height ** 2) : suppliedBmi;
       const suppliedLost = toNumber(metrics.totalLostKg);
-      const lost = start !== null && current !== null
-        ? start - current
-        : suppliedLost;
+      const lost = start !== null && current !== null ? start - current : suppliedLost;
       const suppliedProgress = toNumber(metrics.checkpointProgressPercent);
       const calculatedProgress = start !== null && current !== null && checkpoint !== null && start !== checkpoint
         ? ((start - current) / (start - checkpoint)) * 100
@@ -707,27 +655,17 @@
       const progress = progressSource === null ? null : clamp(progressSource, 0, 100);
       const todayExists = textOrBlank(metrics.lastUpdated) !== "No entry for today";
 
-      setText(
-        "status",
-        todayExists
-          ? textOrBlank(metrics.accountabilityStatus) || "Today’s health data is live."
-          : "No health entry has been logged for today."
-      );
+      setText("status", todayExists
+        ? textOrBlank(metrics.accountabilityStatus) || "Today’s health data is live."
+        : "No health entry has been logged for today.");
 
       setText("lost", formatKg(lost));
       setText("lost-imperial", formatStonePounds(lost));
-      setText(
-        "weight-line",
-        current === null
-          ? `No weight logged for today · Start: ${formatKg(start)}`
-          : `Current: ${formatKg(current)} · Start: ${formatKg(start)}`
-      );
-
+      setText("weight-line", current === null
+        ? `No weight logged for today · Start: ${formatKg(start)}`
+        : `Current: ${formatKg(current)} · Start: ${formatKg(start)}`);
       setText("bmi", bmi === null ? "—" : bmi.toFixed(1));
-      setText(
-        "checkpoint-label",
-        checkpoint === null ? "Progress to checkpoint" : `Progress to ${formatKg(checkpoint)} checkpoint`
-      );
+      setText("checkpoint-label", checkpoint === null ? "Progress to checkpoint" : `Progress to ${formatKg(checkpoint)} checkpoint`);
       setText("checkpoint-percent", progress === null ? "—" : `${progress.toFixed(0)}%`);
       document.getElementById("progress-bar").style.width = `${progress === null ? 0 : progress}%`;
 
@@ -745,21 +683,17 @@
 
       setText("logged", daysLogged === null ? "—" : `${daysLogged}/7`);
       setText("protein", proteinDays === null ? "—" : `${proteinDays}/7`);
-      setText(
-        "workouts",
-        workouts === null ? "—" : `${workouts}/${workoutTarget === null ? 3 : workoutTarget}`
-      );
+      setText("workouts", workouts === null ? "—" : `${workouts}/${workoutTarget === null ? "—" : workoutTarget}`);
       if (sleepHours === null) {
         setText("sleep", sleepDays === null ? "—" : `${sleepDays}/7`);
         setText("sleep-label", "Sleep Target Days");
       } else {
-        const sleepHoursText = Number.isInteger(sleepHours) ? sleepHours.toFixed(0) : sleepHours.toFixed(1);
-        setText("sleep", `${sleepHoursText} h`);
+        const sleepText = Number.isInteger(sleepHours) ? sleepHours.toFixed(0) : sleepHours.toFixed(1);
+        setText("sleep", `${sleepText} h`);
         setText("sleep-label", `Today · ${sleepDays === null ? "—" : `${sleepDays}/7`} target days`);
       }
 
       renderCoachNotes(metrics);
-
       setText("updated", `Updated: ${textOrBlank(metrics.lastUpdated) || "—"}`);
       setText("source", `Source: ${sourceLabel}`);
     }
@@ -769,19 +703,13 @@
         let payload;
         let sharedLoader = null;
         try {
-          if (window.parent !== window && typeof window.parent.getHealthData === "function") {
-            sharedLoader = window.parent.getHealthData;
-          }
-        } catch (error) {
-          sharedLoader = null;
-        }
+          if (window.parent !== window && typeof window.parent.getHealthData === "function") sharedLoader = window.parent.getHealthData;
+        } catch (error) { sharedLoader = null; }
 
         if (sharedLoader) {
-          payload = await sharedLoader();
+          payload = await sharedLoader({ force: true });
         } else {
-          const response = await fetch(`${REMOTE_METRICS_URL}?t=${Date.now()}`, {
-            cache: "no-store"
-          });
+          const response = await fetch(`${REMOTE_METRICS_URL}?t=${Date.now()}`, { cache: "no-store" });
           if (!response.ok) throw new Error(`HTTP ${response.status}`);
           payload = await response.json();
         }
