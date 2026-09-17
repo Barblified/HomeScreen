@@ -1,0 +1,64 @@
+name: Swap health Apps Script endpoint
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/swap-health-endpoint.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  swap-endpoint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Replace old endpoint everywhere
+        shell: python
+        run: |
+          from pathlib import Path
+
+          old = "https://script.google.com/macros/s/AKfycbwihWQw8Frs1acA1Y-CELBw0NmX4O5KFzcqU3f8TbFpSegleKyPM64TkqTyoNyAWhLP/exec"
+          new = "https://script.google.com/macros/s/AKfycbyrHTYuDx6upQC9dXzhE3rK_UMYeFi8J-eRyguKzHlcI2V8742rnn-DcK0AChlXzoYc/exec"
+
+          changed = []
+          for path in Path('.').rglob('*'):
+              if not path.is_file() or '.git' in path.parts:
+                  continue
+              try:
+                  text = path.read_text(encoding='utf-8')
+              except (UnicodeDecodeError, OSError):
+                  continue
+              if old in text:
+                  path.write_text(text.replace(old, new), encoding='utf-8')
+                  changed.append(str(path))
+
+          expected = {
+              'health/index.html',
+              'health/content.html',
+              'assets/health-bp-chart.js',
+              'assets/home-dashboard.js',
+              'assets/home-weight-chart.js',
+              'assets/health-waist-chart.js',
+              'assets/health-weight-chart.js',
+          }
+          changed_set = set(changed)
+          missing = expected - changed_set
+          if missing:
+              raise SystemExit(f'Expected endpoint references not changed: {sorted(missing)}')
+          print('Changed:', *sorted(changed), sep='\n- ')
+
+      - name: Remove installer workflow
+        run: rm .github/workflows/swap-health-endpoint.yml
+
+      - name: Commit endpoint swap
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "Swap health Apps Script endpoint"
+          git push
