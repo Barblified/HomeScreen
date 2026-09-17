@@ -1,0 +1,163 @@
+name: Full health endpoint retest
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/full-health-retest.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  retest:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Test new Apps Script health endpoint
+        shell: bash
+        run: |
+          set -euo pipefail
+          ENDPOINT='https://script.google.com/macros/s/AKfycbyrHTYuDx6upQC9dXzhE3rK_UMYeFi8J-eRyguKzHlcI2V8742rnn-DcK0AChlXzoYc/exec'
+          START=$(date +%s%3N)
+          curl -fLsS --retry 2 --retry-delay 1 --max-time 45 "${ENDPOINT}?t=$(date +%s)" -o /tmp/health.json
+          END=$(date +%s%3N)
+          LATENCY_MS=$((END-START))
+          echo "Health endpoint latency: ${LATENCY_MS} ms"
+          if [ "$LATENCY_MS" -ge 30000 ]; then
+            echo "Endpoint exceeded the website's 30 second request timeout"
+            exit 1
+          fi
+
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          payload = json.loads(Path('/tmp/health.json').read_text())
+          assert payload.get('success') is True, payload
+          assert payload.get('source') == 'Google Sheets', payload.get('source')
+          metrics = payload.get('metrics')
+          assert isinstance(metrics, dict), type(metrics)
+
+          required = [
+              'currentWeightKg', 'currentBmi', 'weightHistory',
+              'bpHistory', 'waistHistory', 'waist7dAvg', 'waist14dAvg'
+          ]
+          missing = [key for key in required if key not in metrics]
+          assert not missing, f'Missing health metrics: {missing}'
+
+          def history(key):
+              value = metrics[key]
+              if isinstance(value, str):
+                  value = json.loads(value)
+              assert isinstance(value, list), f'{key} is not a list'
+              return value
+
+          weight = history('weightHistory')
+          bp = history('bpHistory')
+          waist = history('waistHistory')
+          assert weight, 'weightHistory is empty'
+          assert bp, 'bpHistory is empty'
+          assert waist, 'waistHistory is empty'
+
+          today_waist = [x for x in waist if x.get('date') == '2026-09-17']
+          assert today_waist, '17 Sep waist measurement missing from public endpoint'
+          assert abs(float(today_waist[-1].get('waistCm')) - 116.5) < 1e-9, today_waist[-1]
+
+          today_bp = [x for x in bp if x.get('date') == '2026-09-17']
+          assert today_bp, '17 Sep BP measurement missing from public endpoint'
+
+          today_weight = [x for x in weight if x.get('date') == '2026-09-17']
+          assert today_weight, '17 Sep weight measurement missing from public endpoint'
+
+          print('Health JSON: PASS')
+          print('currentWeightKg:', metrics.get('currentWeightKg'))
+          print('currentBmi:', metrics.get('currentBmi'))
+          print('weightHistory readings:', len(weight), 'latest:', weight[-1])
+          print('bpHistory readings:', len(bp), 'latest:', bp[-1])
+          print('waistHistory readings:', len(waist), 'latest:', waist[-1])
+          print('waist7dAvg:', metrics.get('waist7dAvg'))
+          print('waist14dAvg:', metrics.get('waist14dAvg'))
+          PY
+
+      - name: Test Apps Script weather view
+        shell: bash
+        run: |
+          set -euo pipefail
+          ENDPOINT='https://script.google.com/macros/s/AKfycbyrHTYuDx6upQC9dXzhE3rK_UMYeFi8J-eRyguKzHlcI2V8742rnn-DcK0AChlXzoYc/exec'
+          curl -fLsS --retry 2 --retry-delay 1 --max-time 45 "${ENDPOINT}?view=weather&t=$(date +%s)" -o /tmp/weather.json
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          payload = json.loads(Path('/tmp/weather.json').read_text())
+          assert payload.get('success') is True, payload
+          assert payload.get('source') == 'AccuWeather', payload.get('source')
+          weather = payload.get('weather')
+          assert isinstance(weather, dict), type(weather)
+          for key in ('WeatherText', 'Temperature', 'RelativeHumidity'):
+              assert key in weather, f'Missing weather field: {key}'
+          print('Weather JSON: PASS')
+          print('WeatherText:', weather.get('WeatherText'))
+          print('RelativeHumidity:', weather.get('RelativeHumidity'))
+          PY
+
+      - name: Test deployed Home and Health files
+        shell: bash
+        run: |
+          set -euo pipefail
+          BASE='https://barblified.github.io/HomeScreen'
+          NEW='AKfycbyrHTYuDx6upQC9dXzhE3rK_UMYeFi8J-eRyguKzHlcI2V8742rnn-DcK0AChlXzoYc'
+          OLD='AKfycbwihWQw8Frs1acA1Y-CELBw0NmX4O5KFzcqU3f8TbFpSegleKyPM64TkqTyoNyAWhLP'
+
+          paths=(
+            'health/'
+            'health/content.html'
+            'assets/health-weight-chart.js'
+            'assets/health-bp-chart.js'
+            'assets/health-waist-chart.js'
+            'assets/home-dashboard.js'
+            'assets/home-weight-chart.js'
+          )
+
+          for path in "${paths[@]}"; do
+            file="/tmp/$(echo "$path" | tr '/.' '__')"
+            curl -fLsS --retry 2 --retry-delay 1 --max-time 30 "${BASE}/${path}?t=$(date +%s%N)" -o "$file"
+            grep -q "$NEW" "$file" || { echo "New endpoint missing from deployed ${path}"; exit 1; }
+            if grep -q "$OLD" "$file"; then
+              echo "Old endpoint still present in deployed ${path}"
+              exit 1
+            fi
+            echo "${path}: PASS"
+          done
+
+          curl -fLsS --max-time 30 "${BASE}/?t=$(date +%s%N)" -o /tmp/home.html
+          curl -fLsS --max-time 30 "${BASE}/health/?t=$(date +%s%N)" -o /tmp/health-page.html
+          grep -q '<title' /tmp/home.html
+          grep -q 'Obryn Health Cut' /tmp/health-page.html
+          echo 'Home route: PASS'
+          echo 'Health route: PASS'
+
+      - name: Check deployed chart JavaScript syntax and BMI badge
+        shell: bash
+        run: |
+          set -euo pipefail
+          BASE='https://barblified.github.io/HomeScreen/assets'
+          for asset in health-weight-chart.js health-bp-chart.js health-waist-chart.js home-dashboard.js home-weight-chart.js health-bmi-category.js; do
+            curl -fLsS --max-time 30 "${BASE}/${asset}?t=$(date +%s%N)" -o "/tmp/${asset}"
+            node --check "/tmp/${asset}"
+            echo "${asset} syntax: PASS"
+          done
+          grep -q 'Obesity class II' /tmp/health-bmi-category.js
+          grep -q 'Obesity class III' /tmp/health-bmi-category.js
+          echo 'BMI category asset: PASS'
+
+      - name: Remove temporary retest workflow
+        if: success()
+        run: |
+          rm .github/workflows/full-health-retest.yml
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "Remove health retest workflow"
+          git push
