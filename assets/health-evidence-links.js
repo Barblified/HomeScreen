@@ -52,7 +52,22 @@
 
       const previous = stitched[stitched.length - 1];
 
+      // Rejoin ordinary decimal measurements split by the primary sentence parser,
+      // e.g. "111." + "6 kg" -> "111.6 kg".
       if (/\d\.$/.test(previous) && /^\d+(?:\s*(?:kg|g|h|cm|mm|kcal|%|mg)\b|\s|$)/i.test(item)) {
+        stitched[stitched.length - 1] = previous + item;
+        return;
+      }
+
+      // Rejoin BP pairs with decimal components,
+      // e.g. "BP average is 134." + "5/72." + "5; ..."
+      // -> "BP average is 134.5/72.5; ...".
+      if (/\b(?:bp|blood pressure)[^.!?]*\d+\.$/i.test(previous) && /^\d+\/\d+\.$/.test(item)) {
+        stitched[stitched.length - 1] = previous + item;
+        return;
+      }
+
+      if (/\b(?:bp|blood pressure)[^!?]*\d+\.\d+\/\d+\.$/i.test(previous) && /^\d+(?=\s|[;,.:]|$)/.test(item)) {
         stitched[stitched.length - 1] = previous + item;
         return;
       }
