@@ -6,8 +6,8 @@
   const isAndroid = /Android/i.test(navigator.userAgent);
 
   const favourites = [
-    { title: 'ChatGPT', href: 'https://chatgpt.com/', icon: 'chatgpt', sprite: EXTRA_SPRITE, packageName: 'com.openai.chatgpt' },
-    { title: 'Gmail', href: 'https://mail.google.com/mail/u/0/', icon: 'gmail', sprite: CORE_SPRITE, packageName: 'com.google.android.gm' },
+    { title: 'Fantasy Premier League', href: 'https://fantasy.premierleague.com/', icon: 'fpl', sprite: EXTRA_SPRITE },
+    { title: 'myNoise', href: 'https://mynoise.net/', icon: 'mynoise', sprite: EXTRA_SPRITE },
     { title: 'Google Form', href: 'https://docs.google.com/forms/d/e/1FAIpQLSc2ueNtIKAbUeFeBTWG5Mzopj5nhDQ9InBgz8zCeOI6dbmuuw/viewform?usp=header', icon: 'googleforms', sprite: CORE_SPRITE },
     { title: 'WhatsApp', href: 'https://web.whatsapp.com/', icon: 'whatsapp', sprite: CORE_SPRITE, packageName: 'com.whatsapp' },
     { title: 'ATHLEAN-X', href: 'https://portal.athleanx.com/dashboard/index/index/m-ax1/m-allax-12/m-beaxst/m-jacked/m-infshred/m-torched/m-xero', icon: 'athleanx', sprite: CORE_SPRITE },
