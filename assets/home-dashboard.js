@@ -164,7 +164,9 @@
   function renderFavourites() {
     const container = document.getElementById('favourites-grid');
     if (!container) return;
-    favourites.forEach(link => container.append(makeLink(link, 'favourite-link')));
+    [...favourites]
+      .sort((a, b) => a.title.localeCompare(b.title, 'en-GB', { sensitivity: 'base' }))
+      .forEach(link => container.append(makeLink(link, 'favourite-link')));
   }
 
   function renderCategories() {
