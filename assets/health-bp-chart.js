@@ -389,6 +389,19 @@
       context.fillText(formatDate(history[historyIndex].timestamp), x, cssHeight - 17);
     });
 
+    history.forEach((entry, index) => {
+      const x = xForIndex(index);
+      const systolicY = yFor(entry.systolic);
+      const diastolicY = yFor(entry.diastolic);
+      context.beginPath();
+      context.moveTo(x, systolicY);
+      context.lineTo(x, diastolicY);
+      context.strokeStyle = 'rgba(182,201,219,.30)';
+      context.lineWidth = compact ? 1.25 : 1.5;
+      context.lineCap = 'round';
+      context.stroke();
+    });
+
     function drawSeries(key, strokeStyle, lineWidth) {
       context.beginPath();
       history.forEach((entry, index) => {
