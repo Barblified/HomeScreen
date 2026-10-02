@@ -194,8 +194,9 @@
         return new Intl.DateTimeFormat("en-GB", { day: "numeric", month: "short", year: "numeric", timeZone: "UTC" })
           .format(new Date(Date.UTC(Number(parts[0]), Number(parts[1]) - 1, Number(parts[2]))));
       };
-      const one = value => Number.isFinite(Number(value)) ? Number(value).toFixed(1) : "—";
-      const two = value => Number.isFinite(Number(value)) ? Number(value).toFixed(2) : "—";
+      const isNum = value => value !== null && value !== "" && value !== undefined && Number.isFinite(Number(value));
+      const one = value => isNum(value) ? Number(value).toFixed(1) : "—";
+      const two = value => isNum(value) ? Number(value).toFixed(2) : "—";
       const esc = value => String(value ?? "").replace(/[&<>"']/g, char => ({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[char]));
 
       function makeChart(target, rows, series, options = {}) {
@@ -206,8 +207,8 @@
         const clean = rows.filter(row => row && row.date);
         const values = [];
         clean.forEach(row => series.forEach(item => {
-          const n = Number(row[item.key]);
-          if (Number.isFinite(n)) values.push(n);
+          const raw = row[item.key];
+          if (isNum(raw)) values.push(Number(raw));
         }));
         if (!clean.length || !values.length) {
           target.innerHTML = '<div class="loading">No chart data available.</div>';
@@ -236,14 +237,15 @@
         series.forEach(item => {
           let d = "", drawing = false;
           clean.forEach((row, index) => {
-            const value = Number(row[item.key]);
-            if (!Number.isFinite(value)) { drawing = false; return; }
+            const raw = row[item.key];
+            if (!isNum(raw)) { drawing = false; return; }
+            const value = Number(raw);
             d += (drawing ? " L " : " M ") + x(index).toFixed(2) + " " + y(value).toFixed(2);
             drawing = true;
           });
           const dash = item.dash ? ' stroke-dasharray="'+item.dash+'"' : "";
           svg += '<path d="'+d+'" fill="none" stroke="'+item.color+'" stroke-width="'+(item.width||3)+'" stroke-linecap="round" stroke-linejoin="round"'+dash+'/>';
-          const latestIndex = [...clean].map((row,index)=>({row,index})).reverse().find(entry=>Number.isFinite(Number(entry.row[item.key])));
+          const latestIndex = [...clean].map((row,index)=>({row,index})).reverse().find(entry=>isNum(entry.row[item.key]));
           if (latestIndex) {
             const val = Number(latestIndex.row[item.key]);
             svg += '<circle cx="'+x(latestIndex.index)+'" cy="'+y(val)+'" r="4" fill="'+item.color+'"><title>'+esc(item.label+": "+(options.pointFormat?options.pointFormat(val):val)+" on "+fmtDate(latestIndex.row.date))+'</title></circle>';
