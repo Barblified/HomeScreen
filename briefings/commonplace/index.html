@@ -1,0 +1,286 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <meta name="robots" content="noindex">
+  <title>Commonplace Discovery</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Libre+Baskerville:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --navy: #07182a;
+      --navy-2: #0a2037;
+      --green: #237a43;
+      --green-soft: #eaf6ee;
+      --cream: #fff9f1;
+      --paper: #fffefb;
+      --ink: #182b3b;
+      --muted: #607181;
+      --line: #d7e0e7;
+      --gold: #b7791f;
+      --gold-soft: #fff2d4;
+      --shadow: 0 10px 30px rgba(24,43,59,.09);
+    }
+    * { box-sizing: border-box; }
+    html { background: var(--cream); }
+    body {
+      margin: 0;
+      background:
+        radial-gradient(circle at 88% 3%, rgba(183,121,31,.10), transparent 24rem),
+        var(--cream);
+      color: var(--ink);
+      font-family: "Atkinson Hyperlegible", Arial, sans-serif;
+      line-height: 1.55;
+    }
+    a { color: #075e78; text-underline-offset: 3px; }
+    a:hover { color: var(--green); }
+    :focus-visible { outline: 3px solid rgba(35,122,67,.45); outline-offset: 3px; }
+    main { width: min(980px, calc(100% - 28px)); margin: 0 auto; padding: 20px 0 54px; }
+    .hero {
+      position: relative;
+      overflow: hidden;
+      padding: 30px;
+      border-radius: 20px;
+      background: var(--navy);
+      color: #f3f7fb;
+      box-shadow: 0 12px 30px rgba(7,24,42,.19);
+    }
+    .hero::after {
+      content: "“";
+      position: absolute;
+      right: 24px;
+      top: -34px;
+      color: rgba(255,255,255,.07);
+      font-family: Georgia, serif;
+      font-size: 13rem;
+      line-height: 1;
+    }
+    .kicker {
+      margin: 0 0 7px;
+      color: #78ec98;
+      font-size: .76rem;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+    h1, h2, h3 { font-family: "Libre Baskerville", Georgia, serif; }
+    h1 { max-width: 720px; margin: 0; font-size: clamp(2rem, 5vw, 3.35rem); line-height: 1.07; }
+    .hero-sub { max-width: 720px; margin: 12px 0 0; color: #c7d4e0; }
+    .meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 18px;
+    }
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      min-height: 30px;
+      padding: 5px 10px;
+      border: 1px solid rgba(255,255,255,.17);
+      border-radius: 999px;
+      background: rgba(255,255,255,.08);
+      color: #eef5fa;
+      font-size: .78rem;
+      font-weight: 700;
+    }
+    .paper {
+      margin-top: 16px;
+      padding: clamp(20px, 4vw, 38px);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: var(--paper);
+      box-shadow: var(--shadow);
+    }
+    .eyebrow {
+      margin: 0 0 8px;
+      color: var(--green);
+      font-size: .75rem;
+      font-weight: 700;
+      letter-spacing: .105em;
+      text-transform: uppercase;
+    }
+    .discovery-title { margin: 0; color: var(--navy-2); font-size: clamp(1.65rem, 4vw, 2.6rem); line-height: 1.18; }
+    .source-line { margin: 10px 0 0; color: var(--muted); }
+    .source-line strong { color: var(--ink); }
+    .lead {
+      margin: 25px 0 0;
+      padding: 19px 21px;
+      border-left: 5px solid var(--gold);
+      border-radius: 4px 12px 12px 4px;
+      background: var(--gold-soft);
+      color: #49320c;
+      font-family: "Libre Baskerville", Georgia, serif;
+      font-size: 1.08rem;
+      line-height: 1.65;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 16px;
+    }
+    .note {
+      min-width: 0;
+      padding: 18px;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: #fff;
+    }
+    .note h3 { margin: 0 0 8px; color: var(--navy-2); font-size: 1rem; }
+    .note p { margin: 0; }
+    .notebook {
+      margin-top: 16px;
+      padding: 20px;
+      border: 1px solid #bfdbc8;
+      border-radius: 14px;
+      background: var(--green-soft);
+    }
+    .notebook h3 { margin: 0 0 8px; color: #14572e; font-size: 1.05rem; }
+    .notebook p { margin: 0; }
+    .carry {
+      margin-top: 16px;
+      padding: 17px 19px;
+      border-radius: 14px;
+      background: var(--navy-2);
+      color: white;
+    }
+    .carry strong { color: #78ec98; }
+    .links { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 18px; }
+    .link-button {
+      display: inline-flex;
+      align-items: center;
+      min-height: 38px;
+      padding: 8px 12px;
+      border: 1px solid #b8c9d5;
+      border-radius: 10px;
+      background: #fff;
+      color: #075e78;
+      font-weight: 700;
+      text-decoration: none;
+    }
+    .link-button.primary { border-color: var(--green); background: var(--green); color: #fff; }
+    .archive { margin-top: 26px; }
+    .archive-head { display: flex; align-items: end; justify-content: space-between; gap: 16px; margin-bottom: 10px; }
+    .archive-head h2 { margin: 0; color: var(--navy-2); font-size: 1.35rem; }
+    .archive-head p { margin: 0; color: var(--muted); font-size: .82rem; }
+    details {
+      margin-top: 9px;
+      border: 1px solid var(--line);
+      border-radius: 13px;
+      background: rgba(255,255,255,.82);
+    }
+    summary {
+      display: grid;
+      grid-template-columns: 120px minmax(0,1fr) auto;
+      gap: 12px;
+      align-items: center;
+      padding: 14px 16px;
+      cursor: pointer;
+      list-style: none;
+    }
+    summary::-webkit-details-marker { display: none; }
+    summary::after { content: "+"; color: var(--green); font-size: 1.3rem; font-weight: 700; }
+    details[open] summary::after { content: "−"; }
+    .archive-date { color: var(--muted); font-size: .82rem; }
+    .archive-name { color: var(--navy-2); font-weight: 700; }
+    .archive-body { padding: 0 16px 16px 148px; color: var(--ink); }
+    .archive-body p { margin: 8px 0 0; }
+    .empty, .error {
+      min-height: 380px;
+      display: grid;
+      place-items: center;
+      padding: 30px;
+      text-align: center;
+      color: var(--muted);
+    }
+    .error { color: #963838; }
+    footer {
+      margin-top: 18px;
+      padding: 14px 4px;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: .8rem;
+    }
+    @media (max-width: 690px) {
+      main { width: min(100% - 16px, 980px); padding-top: 8px; }
+      .hero { padding: 21px; border-radius: 14px; }
+      .paper { padding: 18px; border-radius: 14px; }
+      .grid { grid-template-columns: 1fr; }
+      summary { grid-template-columns: 92px minmax(0,1fr) auto; gap: 8px; padding: 12px; }
+      .archive-body { padding: 0 12px 14px; }
+    }
+  </style>
+</head>
+<body>
+  <main id="app">
+    <div class="empty">Opening today's commonplace discovery…</div>
+  </main>
+  <script>
+    (() => {
+      const app = document.getElementById("app");
+      const esc = value => String(value ?? "").replace(/[&<>"']/g, char => ({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[char]));
+      const safeUrl = value => {
+        try {
+          const url = new URL(String(value || ""));
+          return url.protocol === "https:" ? url.href : "";
+        } catch (_) { return ""; }
+      };
+      const fmtDate = value => {
+        if (!value) return "Date unavailable";
+        const parts = String(value).split("-");
+        if (parts.length !== 3) return String(value);
+        return new Intl.DateTimeFormat("en-GB", { day: "numeric", month: "long", year: "numeric", timeZone: "UTC" })
+          .format(new Date(Date.UTC(Number(parts[0]), Number(parts[1]) - 1, Number(parts[2]))));
+      };
+      const link = (url, label, primary) => {
+        const safe = safeUrl(url);
+        return safe ? '<a class="link-button'+(primary?' primary':'')+'" href="'+esc(safe)+'" target="_blank" rel="noopener noreferrer">'+esc(label)+'</a>' : "";
+      };
+      const renderArchive = entry => {
+        const source = safeUrl(entry.sourceUrl);
+        return '<details><summary><span class="archive-date">'+esc(fmtDate(entry.date))+'</span><span class="archive-name">'+esc(entry.title)+'</span></summary>'+
+          '<div class="archive-body"><p>'+esc(entry.centralIdea)+'</p>'+
+          (source ? '<p><a href="'+esc(source)+'" target="_blank" rel="noopener noreferrer">Open source</a></p>' : '')+
+          '</div></details>';
+      };
+      async function load() {
+        try {
+          const response = await fetch("data.json?t="+Date.now(), { cache: "no-store" });
+          if (!response.ok) throw new Error("HTTP "+response.status);
+          const data = await response.json();
+          const entries = Array.isArray(data.entries) ? data.entries : [];
+          if (!entries.length) {
+            app.innerHTML = '<header class="hero"><p class="kicker">Daily at 06:30</p><h1>Commonplace Discovery</h1><p class="hero-sub">One substantial idea, source or curiosity worth retaining.</p></header><div class="empty"><p><strong>The page is ready.</strong><br>The first discovery is being prepared.</p></div>';
+            return;
+          }
+          const latest = entries[0] || {};
+          const extra = Array.isArray(latest.additionalSources) ? latest.additionalSources : [];
+          const links = link(latest.sourceUrl, "Open the original source ↗", true) + extra.map(item => link(item.url, item.label || "Supporting source", false)).join("");
+          app.innerHTML =
+            '<header class="hero"><p class="kicker">Daily at 06:30 · one thing worth retaining</p><h1>Commonplace Discovery</h1><p class="hero-sub">A single, well-sourced rabbit hole chosen for depth, usefulness or surprise—not a feed to keep up with.</p>'+
+              '<div class="meta"><span class="pill">'+esc(latest.type || "Discovery")+'</span><span class="pill">'+esc(fmtDate(latest.date))+'</span></div></header>'+
+            '<article class="paper">'+
+              '<p class="eyebrow">Today’s discovery</p><h2 class="discovery-title">'+esc(latest.title)+'</h2>'+
+              '<p class="source-line">'+(latest.creator ? '<strong>'+esc(latest.creator)+'</strong> · ' : '')+esc(latest.sourceLabel || "Original source")+'</p>'+
+              '<p class="lead">'+esc(latest.centralIdea)+'</p>'+
+              '<div class="grid"><section class="note"><h3>Why it may interest you</h3><p>'+esc(latest.whyItMayInterestYou)+'</p></section>'+
+              '<section class="note"><h3>Evidence & uncertainty</h3><p>'+esc(latest.evidenceNote || "Source checked; interpretive judgements are labelled.")+'</p></section></div>'+
+              '<section class="notebook"><h3>Worth writing down</h3><p>'+esc(latest.commonplaceEntry)+'</p></section>'+
+              '<p class="carry"><strong>Question to carry:</strong> '+esc(latest.questionToCarry)+'</p>'+
+              '<div class="links">'+links+'</div>'+
+            '</article>'+
+            (entries.length > 1 ? '<section class="archive"><div class="archive-head"><h2>Earlier discoveries</h2><p>'+esc(entries.length-1)+' retained</p></div>'+entries.slice(1).map(renderArchive).join("")+'</section>' : '')+
+            '<footer>Published '+esc(data.publishedAtDisplay || "recently")+'. Public-safe by design. The archive keeps the latest 30 discoveries.</footer>';
+        } catch (error) {
+          app.innerHTML = '<div class="error"><p><strong>The discovery could not be loaded.</strong><br>'+esc(error.message)+'</p></div>';
+        }
+      }
+      load();
+    })();
+  </script>
+</body>
+</html>
