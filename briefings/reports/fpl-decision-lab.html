@@ -4,22 +4,114 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="robots" content="noindex">
-  <title>FPL Decision Lab</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&display=swap" rel="stylesheet">
+  <title>FPL Decision Lab — 2 October 2026</title>
   <link rel="stylesheet" href="../report.css">
+  <style>
+    body{background:#f6f2e8;color:#22272b}main{max-width:980px;margin:auto;padding:1rem}.hero{background:#17324d;color:#fff;border-radius:18px;padding:1.25rem 1.4rem}.hero p{margin:.3rem 0}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem}.card{background:#fff;border:1px solid #d9d5ca;border-radius:14px;padding:1rem;margin:1rem 0}.status{display:inline-block;background:#2f5d50;color:#fff;border-radius:999px;padding:.35rem .7rem;font-weight:700}.warn{background:#8a3f45}.muted{color:#5c6770}.rule{border-top:3px solid #b78a3e;padding-top:.8rem}table{width:100%;border-collapse:collapse;font-size:.93rem}th,td{text-align:left;padding:.48rem;border-bottom:1px solid #ddd8cd}th{color:#17324d}.scroll{overflow-x:auto}h2,h3{color:#17324d}a{color:#174f78}.big{font-size:1.2rem;font-weight:700}@media(max-width:600px){main{padding:.65rem}.hero,.card{border-radius:10px}th,td{padding:.4rem .3rem;font-size:.84rem}}
+  </style>
 </head>
-<body>
-  <main>
-    <header class="report-header">
-      <p class="kicker">Scheduled briefing</p>
-      <h1>FPL Decision Lab</h1>
-      <p class="report-meta"><span>Daily at 09:00 and 90 minutes before verified deadlines</span><span>Status: awaiting first website publication</span></p>
-    </header>
-    <section class="card awaiting">
-      <p><strong>No published report yet.</strong><span>The next completed FPL Decision Lab run will replace this page.</span></p>
-    </section>
-  </main>
-</body>
-</html>
+<body><main>
+  <header class="hero">
+    <p>FANTASY PREMIER LEAGUE · DECISION SUPPORT</p>
+    <h1>FPL Decision Lab</h1>
+    <p><strong>Friday 2 October 2026 · generated 17:06 BST</strong></p>
+    <p>Official API freshness: bootstrap-static and fixtures retrieved 17:06 BST; 562 selectable player element-summary histories retrieved and validated during this run.</p>
+  </header>
+
+  <section class="card">
+    <span class="status">HOLD / WAIT</span>
+    <h2>Decision status</h2>
+    <p class="big">Do not force a personalised move eight days before the GW6 deadline.</p>
+    <p>The numerical feed is working and a legal league-wide benchmark has now been produced. The remaining blocker is different: no verified live private squad, bank, free-transfer count, sale prices or chip state was recoverable. That makes a personalised transfer-EV comparison unsafe. International duty continues until 6 October and several relevant injury and minutes states remain unresolved, so waiting retains positive information value.</p>
+  </section>
+
+  <section class="grid">
+    <article class="card"><h3>GW+1</h3><p><strong>GW6 · deadline 11:00 BST, 10 Oct</strong></p><p>Arsenal, Brighton, Manchester City and Newcastle all place multiple assets in the model benchmark. State uncertainty remains the main constraint.</p></article>
+    <article class="card"><h3>GW+3</h3><p><strong>GW6–8</strong></p><p>Brighton output remains strong, but rotation risk rises as congestion begins. The model is deliberately shrunk because five completed Gameweeks are not enough to treat early rates as stable talent estimates.</p></article>
+    <article class="card"><h3>GW+5</h3><p><strong>GW6–10</strong></p><p>Haaland remains in the legal optimum despite his price. Cheap midfield production means his opportunity cost is lower than a simple “points per million” comparison implies.</p></article>
+  </section>
+
+  <section class="card rule">
+    <h2>Verified current state and material changes</h2>
+    <ul>
+      <li>The official API identifies GW5 as current and complete, GW6 as next, and the GW6 deadline as <strong>10:00 UTC / 11:00 BST on Saturday 10 October</strong>.</li>
+      <li>The 2 October official price bulletin records no overnight rises or falls. Groß leads GW6 transfers in at 794,781; João Pedro leads transfers out at 396,186.</li>
+      <li>Official analysis continues to flag João Pedro, Palmer, Isak and other premium-relevant players as injury doubts. This is state uncertainty, not ordinary match variance.</li>
+      <li>Official premium analysis ranks Haaland first: five goals, 39 points, nine big chances and 73% ownership through five Gameweeks. The model independently retains him in the benchmark squad.</li>
+    </ul>
+  </section>
+
+  <section class="card">
+    <h2>League-wide legal benchmark</h2>
+    <p><strong>Squad cost: £98.0m.</strong> The optimiser enforced £100.0m budget, exact 2/5/5/3 squad positions, no more than three players per club, and a legal 4-4-2 starting formation. GW6 XI xPts before captaincy and autosubs is <strong>63.0</strong>. The joint simulation, including captaincy, vice fallback, availability, ordered legal autosubs, over-dispersed scoring and within-team covariance, gives <strong>70.2 mean points</strong> and an <strong>80% predictive interval of 48–95</strong>.</p>
+    <div class="scroll"><table><thead><tr><th>Role</th><th>Player</th><th>Club</th><th>Price</th><th>GW6 xPts</th><th>GW6–8</th><th>GW6–10</th></tr></thead><tbody>
+      <tr><td>GK</td><td>Konstantinos Tzolakis</td><td>HUL</td><td>£4.7m</td><td>5.38</td><td>16.13</td><td>26.24</td></tr>
+      <tr><td>DEF</td><td>Maxim De Cuyper</td><td>BHA</td><td>£5.0m</td><td>5.70</td><td>17.03</td><td>27.17</td></tr>
+      <tr><td>DEF</td><td>James Tarkowski</td><td>EVE</td><td>£6.2m</td><td>7.02</td><td>17.67</td><td>31.07</td></tr>
+      <tr><td>DEF</td><td>Joško Gvardiol</td><td>MCI</td><td>£5.7m</td><td>5.12</td><td>17.21</td><td>28.72</td></tr>
+      <tr><td>DEF</td><td>Lewis Hall</td><td>NEW</td><td>£5.3m</td><td>5.54</td><td>15.61</td><td>25.69</td></tr>
+      <tr><td>MID</td><td>Bukayo Saka</td><td>ARS</td><td>£9.5m</td><td>5.31</td><td>15.94</td><td>26.51</td></tr>
+      <tr><td>MID · C</td><td>Pascal Groß</td><td>BHA</td><td>£5.8m</td><td>7.04</td><td>21.05</td><td>33.58</td></tr>
+      <tr><td>MID</td><td>Kevin Schade</td><td>BRE</td><td>£6.2m</td><td>6.16</td><td>18.42</td><td>30.06</td></tr>
+      <tr><td>MID</td><td>Harvey Barnes</td><td>NEW</td><td>£6.1m</td><td>5.42</td><td>15.28</td><td>25.14</td></tr>
+      <tr><td>FWD</td><td>Charalampos Kostoulas</td><td>BHA</td><td>£5.6m</td><td>4.87</td><td>14.57</td><td>23.24</td></tr>
+      <tr><td>FWD</td><td>Erling Haaland</td><td>MCI</td><td>£15.6m</td><td>5.47</td><td>18.37</td><td>30.65</td></tr>
+    </tbody></table></div>
+    <h3>Bench order</h3>
+    <p><strong>1 Emersonn</strong> (IPS, FWD, £5.5m, 4.61) · <strong>2 Alex Scott</strong> (BOU, MID, £6.1m, 4.59) · <strong>3 Jayden Bogle</strong> (LEE, DEF, £4.6m, 4.29) · <strong>GK David Raya</strong> (ARS, £6.1m, 4.93). Vice-captain: <strong>James Tarkowski</strong>.</p>
+    <p class="muted">This is a model benchmark, not a transfer prescription. Groß captain and Tarkowski vice are outputs of the deliberately narrow current-season model; both are sensitive to minutes/rotation and early defensive-return regression. Model stability is therefore only moderate-low despite high-quality input data.</p>
+  </section>
+
+  <section class="card">
+    <h2>Method actually used</h2>
+    <p>For each player, Gameweek-level points and minutes from GW1–5 were converted to a points-per-90 rate and shrunk toward a weak position-level prior estimated only from 2026/27 regulars. Expected minutes blend the last three Gameweeks with the season mean. Fixture difficulty modifies each event forecast, while explicit availability probabilities model injury/doubt state.</p>
+    <p>The five-Gameweek forecast is:</p>
+    <p><strong>xPts<sub>i,g</sub> = shrunk P90<sub>i</sub> × expected minutes<sub>i,g</sub>/90 × availability<sub>i,g</sub> × fixture multiplier<sub>i,g</sub>.</strong></p>
+    <p>The joint Monte Carlo then samples availability separately from an over-dispersed Gamma–Poisson scoring process and applies a shared club shock for within-team covariance. It also applies legal autosubs, captain and vice-captain fallback. Ordinary bench points are not added unless an autosub occurs.</p>
+    <h3>Walk-forward check</h3>
+    <p>Using only information available before each target week, the same architecture produced player-level MAE of <strong>1.42 points for GW4</strong> (Spearman ρ 0.647; bias −0.14) and <strong>1.32 for GW5</strong> (ρ 0.687; bias −0.22). This is encouraging ranking signal, but only two validation weeks: it does not justify high model confidence.</p>
+  </section>
+
+  <section class="card">
+    <h2>Personal decision layer</h2>
+    <div class="scroll"><table><thead><tr><th>Action</th><th>Horizon</th><th>Net E[Δ] vs HOLD</th><th>P(Δ&gt;0)</th><th>Decision</th></tr></thead><tbody>
+      <tr><td>HOLD / preserve options</td><td>GW+1/+3/+5</td><td>Baseline</td><td>Not applicable</td><td><strong>Supported</strong></td></tr>
+      <tr><td>Any transfer path</td><td>GW+1/+3/+5</td><td>Withheld</td><td>Withheld</td><td>Needs live squad, bank, FT count and sale prices</td></tr>
+    </tbody></table></div>
+    <p><strong>Our XI, captaincy and chip decisions: unavailable, not guessed.</strong> The public API/model can optimise the league-wide pool, but it cannot infer the user's live private state. Wildcard, Free Hit, Bench Boost and Triple Captain are therefore all marked <strong>UNAVAILABLE FOR PERSONALISED DECISION</strong> in this run.</p>
+    <p><strong>Flip conditions:</strong> produce a move only after the live team state is verified and the move beats the best attainable HOLD after hits, sale prices and option value; downgrade Groß if credible evidence indicates managed league minutes; revise João Pedro/Palmer/Isak paths when club training and press-conference evidence resolves availability.</p>
+  </section>
+
+  <section class="card">
+    <h2>Confidence and uncertainty</h2>
+    <ul>
+      <li><strong>Evidence quality: high.</strong> Official FPL APIs and Premier League reporting are live and internally consistent.</li>
+      <li><strong>Model stability: moderate-low.</strong> Five completed Gameweeks and two walk-forward validation points leave substantial epistemic uncertainty.</li>
+      <li><strong>Outcome uncertainty: high.</strong> The 48–95 interval is deliberately broad; football scoring remains highly aleatoric.</li>
+      <li><strong>Dominant uncertainty: state.</strong> International duty, fitness and Brighton minutes management can change the decision before 10 October.</li>
+    </ul>
+  </section>
+
+  <section class="card rule">
+    <h2>Pre-deadline plan</h2>
+    <ol>
+      <li>Keep the team unchanged now.</li>
+      <li>After international duty ends on 6 October, verify injuries, training, expected minutes and the live squad state.</li>
+      <li>Re-run the personalised HOLD-versus-transfer tree at 09:30 BST on 10 October, 90 minutes before the official deadline.</li>
+    </ol>
+  </section>
+
+  <section class="card">
+    <h2>Sources</h2>
+    <ol>
+      <li><a href="https://fantasy.premierleague.com/api/bootstrap-static/">Official FPL bootstrap-static API</a>, retrieved 2 October 2026.</li>
+      <li><a href="https://fantasy.premierleague.com/api/fixtures/">Official FPL fixtures API</a>, retrieved 2 October 2026.</li>
+      <li><a href="https://fantasy.premierleague.com/api/element-summary/124/">Official FPL element-summary example (Pascal Groß)</a>; corresponding ID-resolved endpoints were retrieved for the modelled pool.</li>
+      <li><a href="https://www.premierleague.com/en/news/2884829/fpl-player-price-changes-risers-fallers-and-top-transfers-for-gameweek-6">Premier League, “FPL player price changes”, 2 October 2026</a>.</li>
+      <li><a href="https://www.premierleague.com/en/news/4729007/the-scout-ranks-the-best-premium-priced-fantasy-players">Premier League, “The Scout ranks the best premium-priced Fantasy players”, 2 October 2026</a>.</li>
+      <li><a href="https://www.premierleague.com/en/news/4727332/why-fpl-managers-need-to-monitor-injury-chaos">Premier League, “Why FPL managers need to monitor injury chaos”, 28 September 2026</a>.</li>
+      <li><a href="https://www.premierleague.com/en/news/4689113/when-are-the-international-breaks-for-202627">Premier League, 2026/27 international-break dates</a>.</li>
+    </ol>
+  </section>
+  <footer class="muted"><p>Decision support only. No transfers, lineup changes, captaincy changes or chips were executed.</p></footer>
+</main></body></html>
