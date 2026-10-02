@@ -1,0 +1,325 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <meta name="robots" content="noindex">
+  <title>Petrol Price Ledger</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --navy: #07182A;
+      --navy-2: #0A2037;
+      --green: #237A43;
+      --green-soft: #EAF6EE;
+      --teal: #126A82;
+      --orange: #B86B24;
+      --amber: #8A5B12;
+      --amber-soft: #FFF1D8;
+      --red: #A53838;
+      --cream: #FFF9F1;
+      --white: #FFFFFF;
+      --ink: #182B3B;
+      --muted: #607181;
+      --line: #D7E0E7;
+      --shadow: 0 7px 24px rgba(24,43,59,.09);
+    }
+    * { box-sizing: border-box; }
+    html { background: var(--cream); }
+    body {
+      margin: 0;
+      background: var(--cream);
+      color: var(--ink);
+      font-family: "Atkinson Hyperlegible", Arial, sans-serif;
+      line-height: 1.45;
+    }
+    main { width: min(1380px, calc(100% - 24px)); margin: 0 auto; padding: 20px 0 48px; }
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 18px;
+      align-items: center;
+      padding: 24px;
+      border-radius: 18px;
+      background: var(--navy);
+      color: #F3F7FB;
+      box-shadow: 0 10px 28px rgba(7,24,42,.18);
+    }
+    .kicker {
+      margin: 0 0 5px;
+      color: #78EC98;
+      font-size: .75rem;
+      font-weight: 700;
+      letter-spacing: .11em;
+      text-transform: uppercase;
+    }
+    h1 { margin: 0; font-size: clamp(2rem, 5vw, 3.15rem); line-height: 1; }
+    .hero p:last-child { margin: 10px 0 0; color: #C7D4E0; }
+    .run-badge {
+      display: inline-grid;
+      gap: 3px;
+      min-width: 150px;
+      padding: 12px 14px;
+      border: 1px solid rgba(255,255,255,.18);
+      border-radius: 13px;
+      background: rgba(255,255,255,.08);
+      text-align: right;
+    }
+    .run-badge strong { font-size: 1.05rem; color: #FFD188; }
+    .run-badge span { color: #C7D4E0; font-size: .78rem; }
+    .notice {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 12px;
+      align-items: start;
+      margin-top: 15px;
+      padding: 14px 16px;
+      border: 1px solid #E4C98E;
+      border-radius: 13px;
+      background: var(--amber-soft);
+      color: #533708;
+    }
+    .notice strong { white-space: nowrap; }
+    .notice p { margin: 0; }
+    .metrics {
+      display: grid;
+      grid-template-columns: repeat(6, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 15px;
+    }
+    .metric {
+      min-width: 0;
+      padding: 15px;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: var(--white);
+      box-shadow: var(--shadow);
+    }
+    .metric small {
+      display: block;
+      color: var(--muted);
+      font-size: .7rem;
+      font-weight: 700;
+      letter-spacing: .055em;
+      text-transform: uppercase;
+    }
+    .metric strong { display: block; margin-top: 4px; color: var(--navy-2); font-size: 1.45rem; line-height: 1.05; }
+    .metric span { display: block; margin-top: 5px; color: var(--muted); font-size: .78rem; }
+    .charts {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 15px;
+      margin-top: 15px;
+    }
+    .chart-card {
+      min-width: 0;
+      padding: 18px;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background: var(--white);
+      box-shadow: var(--shadow);
+    }
+    .chart-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: start;
+      margin-bottom: 10px;
+    }
+    .chart-head h2 { margin: 0; color: var(--navy-2); font-size: 1.22rem; }
+    .chart-head p { margin: 3px 0 0; color: var(--muted); font-size: .8rem; }
+    .freshness {
+      flex: 0 0 auto;
+      padding: 4px 8px;
+      border-radius: 999px;
+      background: var(--green-soft);
+      color: var(--green);
+      font-size: .72rem;
+      font-weight: 700;
+    }
+    .chart-wrap { width: 100%; min-height: 255px; }
+    .chart-wrap svg { width: 100%; height: auto; display: block; overflow: visible; }
+    .chart-legend { display: flex; flex-wrap: wrap; gap: 8px 14px; margin-top: 7px; color: var(--muted); font-size: .78rem; }
+    .legend-item { display: inline-flex; align-items: center; gap: 6px; }
+    .legend-swatch { width: 18px; height: 3px; border-radius: 2px; }
+    .footer {
+      margin-top: 16px;
+      padding: 14px 16px;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: .8rem;
+    }
+    .loading, .error {
+      min-height: 360px;
+      display: grid;
+      place-items: center;
+      color: var(--muted);
+      text-align: center;
+    }
+    .error { color: var(--red); }
+    @media (max-width: 1100px) {
+      .metrics { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    }
+    @media (max-width: 760px) {
+      main { width: min(100% - 16px, 1380px); padding-top: 8px; }
+      .hero { grid-template-columns: 1fr; padding: 18px; border-radius: 13px; }
+      .run-badge { min-width: 0; text-align: left; }
+      .notice { grid-template-columns: 1fr; }
+      .notice strong { white-space: normal; }
+      .metrics { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+      .metric { padding: 12px; }
+      .metric strong { font-size: 1.2rem; }
+      .charts { grid-template-columns: 1fr; gap: 10px; }
+      .chart-card { padding: 13px; }
+      .chart-head { display: block; }
+      .freshness { display: inline-block; margin-top: 7px; }
+    }
+  </style>
+</head>
+<body>
+  <main id="app">
+    <div class="loading">Loading the latest public-safe ledger snapshot…</div>
+  </main>
+
+  <script>
+    (() => {
+      const app = document.getElementById("app");
+      const fmtDate = value => {
+        if (!value) return "Unavailable";
+        const parts = String(value).split("-");
+        if (parts.length !== 3) return String(value);
+        return new Intl.DateTimeFormat("en-GB", { day: "numeric", month: "short", year: "numeric", timeZone: "UTC" })
+          .format(new Date(Date.UTC(Number(parts[0]), Number(parts[1]) - 1, Number(parts[2]))));
+      };
+      const one = value => Number.isFinite(Number(value)) ? Number(value).toFixed(1) : "—";
+      const two = value => Number.isFinite(Number(value)) ? Number(value).toFixed(2) : "—";
+      const esc = value => String(value ?? "").replace(/[&<>"']/g, char => ({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[char]));
+
+      function makeChart(target, rows, series, options = {}) {
+        const width = 900, height = 340;
+        const margin = { top: 18, right: 24, bottom: 48, left: 60 };
+        const plotW = width - margin.left - margin.right;
+        const plotH = height - margin.top - margin.bottom;
+        const clean = rows.filter(row => row && row.date);
+        const values = [];
+        clean.forEach(row => series.forEach(item => {
+          const n = Number(row[item.key]);
+          if (Number.isFinite(n)) values.push(n);
+        }));
+        if (!clean.length || !values.length) {
+          target.innerHTML = '<div class="loading">No chart data available.</div>';
+          return;
+        }
+        let yMin = options.yMin != null ? options.yMin : Math.min(...values);
+        let yMax = options.yMax != null ? options.yMax : Math.max(...values);
+        const span = Math.max(1, yMax - yMin);
+        if (options.yMin == null) yMin -= span * .08;
+        if (options.yMax == null) yMax += span * .08;
+        const x = index => margin.left + (clean.length === 1 ? plotW / 2 : index * plotW / (clean.length - 1));
+        const y = value => margin.top + (yMax - value) * plotH / (yMax - yMin);
+        const ticks = 5;
+        let svg = '<svg viewBox="0 0 '+width+' '+height+'" role="img" aria-label="'+esc(options.ariaLabel || "Time series chart")+'">';
+        svg += '<title>'+esc(options.ariaLabel || "Time series chart")+'</title>';
+        for (let i = 0; i <= ticks; i++) {
+          const value = yMin + (yMax - yMin) * i / ticks;
+          const yy = y(value);
+          svg += '<line x1="'+margin.left+'" y1="'+yy+'" x2="'+(width-margin.right)+'" y2="'+yy+'" stroke="#D7E0E7" stroke-width="1"/>';
+          svg += '<text x="'+(margin.left-9)+'" y="'+(yy+4)+'" text-anchor="end" fill="#607181" font-size="13">'+esc(options.yFormat ? options.yFormat(value) : value.toFixed(1))+'</text>';
+        }
+        const labelIndexes = [...new Set([0, Math.floor((clean.length-1)/3), Math.floor((clean.length-1)*2/3), clean.length-1])];
+        labelIndexes.forEach(index => {
+          svg += '<text x="'+x(index)+'" y="'+(height-16)+'" text-anchor="middle" fill="#607181" font-size="13">'+esc(fmtDate(clean[index].date).replace(" 2026",""))+'</text>';
+        });
+        series.forEach(item => {
+          let d = "", drawing = false;
+          clean.forEach((row, index) => {
+            const value = Number(row[item.key]);
+            if (!Number.isFinite(value)) { drawing = false; return; }
+            d += (drawing ? " L " : " M ") + x(index).toFixed(2) + " " + y(value).toFixed(2);
+            drawing = true;
+          });
+          const dash = item.dash ? ' stroke-dasharray="'+item.dash+'"' : "";
+          svg += '<path d="'+d+'" fill="none" stroke="'+item.color+'" stroke-width="'+(item.width||3)+'" stroke-linecap="round" stroke-linejoin="round"'+dash+'/>';
+          const latestIndex = [...clean].map((row,index)=>({row,index})).reverse().find(entry=>Number.isFinite(Number(entry.row[item.key])));
+          if (latestIndex) {
+            const val = Number(latestIndex.row[item.key]);
+            svg += '<circle cx="'+x(latestIndex.index)+'" cy="'+y(val)+'" r="4" fill="'+item.color+'"><title>'+esc(item.label+": "+(options.pointFormat?options.pointFormat(val):val)+" on "+fmtDate(latestIndex.row.date))+'</title></circle>';
+          }
+        });
+        svg += '</svg>';
+        target.innerHTML = svg;
+      }
+
+      function legend(series) {
+        return series.map(item => '<span class="legend-item"><i class="legend-swatch" style="background:'+item.color+'"></i>'+esc(item.label)+'</span>').join("");
+      }
+
+      async function load() {
+        try {
+          const response = await fetch("data.json?t=" + Date.now(), { cache: "no-store" });
+          if (!response.ok) throw new Error("HTTP " + response.status);
+          const data = await response.json();
+          const p = data.latest.petrol || {};
+          const o = data.latest.oil || {};
+          const w = data.latest.weather || {};
+          const u = data.latest.ukWeekly || {};
+          const partial = data.runStatus.status === "PARTIAL";
+          app.innerHTML =
+            '<header class="hero">'+
+              '<div><p class="kicker">Public-safe aggregate dashboard</p><h1>Petrol Price Ledger</h1><p>Local unleaded, oil, temperature context and the UK weekly benchmark.</p></div>'+
+              '<div class="run-badge"><strong>'+esc(data.runStatus.status)+'</strong><span>Last task run '+esc(data.runStatus.lastRun)+'</span></div>'+
+            '</header>'+
+            (partial ? '<section class="notice"><strong>Petrol feed delayed</strong><p>The station-level transaction is verified only through <b>'+esc(fmtDate(data.runStatus.petrolCheckpoint))+'</b>. The unresolved backlog covers '+esc(fmtDate(data.runStatus.backlogStart))+' to '+esc(fmtDate(data.runStatus.backlogThrough))+'. Oil, weather and the UK benchmark continue independently.</p></section>' : '')+
+            '<section class="metrics" aria-label="Latest ledger figures">'+
+              '<article class="metric"><small>Local minimum</small><strong>'+one(p.min)+' p/L</strong><span>'+esc(fmtDate(p.date))+'</span></article>'+
+              '<article class="metric"><small>Local average</small><strong>'+one(p.average)+' p/L</strong><span>'+esc(p.stations||"—")+' stations</span></article>'+
+              '<article class="metric"><small>Local maximum</small><strong>'+one(p.max)+' p/L</strong><span>'+esc(fmtDate(p.date))+'</span></article>'+
+              '<article class="metric"><small>Brent / WTI</small><strong>$'+two(o.brent)+' / $'+two(o.wti)+'</strong><span>'+esc(fmtDate(o.date))+'</span></article>'+
+              '<article class="metric"><small>Temperatures</small><strong>'+one(w.hucknall)+'° / '+one(w.rotherham)+'°</strong><span>Hucknall / Rotherham · '+esc(fmtDate(w.date))+'</span></article>'+
+              '<article class="metric"><small>UK weekly</small><strong>'+two(u.unleaded)+' p/L</strong><span>Week commencing '+esc(fmtDate(u.date))+'</span></article>'+
+            '</section>'+
+            '<section class="charts">'+
+              '<article class="chart-card"><div class="chart-head"><div><h2>Daily unleaded price range</h2><p>Unique local stations · pence per litre</p></div><span class="freshness">Through '+esc(fmtDate(data.freshness.petrol))+'</span></div><div class="chart-wrap" id="petrol-chart"></div><div class="chart-legend" id="petrol-legend"></div></article>'+
+              '<article class="chart-card"><div class="chart-head"><div><h2>Brent vs WTI crude</h2><p>Daily settlement or clearly labelled market-closed context · USD/bbl</p></div><span class="freshness">Through '+esc(fmtDate(data.freshness.oil))+'</span></div><div class="chart-wrap" id="oil-chart"></div><div class="chart-legend" id="oil-legend"></div></article>'+
+              '<article class="chart-card"><div class="chart-head"><div><h2>Daily temperature context</h2><p>Hucknall and Rotherham versus 15°C reference</p></div><span class="freshness">Through '+esc(fmtDate(data.freshness.weather))+'</span></div><div class="chart-wrap" id="weather-chart"></div><div class="chart-legend" id="weather-legend"></div></article>'+
+              '<article class="chart-card"><div class="chart-head"><div><h2>UK weekly unleaded benchmark</h2><p>Official national weekly average · pence per litre</p></div><span class="freshness">Through '+esc(fmtDate(data.freshness.ukWeekly))+'</span></div><div class="chart-wrap" id="weekly-chart"></div><div class="chart-legend" id="weekly-legend"></div></article>'+
+            '</section>'+
+            '<footer class="footer">Published '+esc(data.publishedAtDisplay)+'. This public view contains aggregates only; station names, addresses, inbox data, source URLs and workbook identifiers are deliberately excluded.</footer>';
+
+          const petrolSeries=[
+            {key:"min",label:"Minimum",color:"#237A43"},
+            {key:"average",label:"Average",color:"#126A82",width:4},
+            {key:"max",label:"Maximum",color:"#B86B24"}
+          ];
+          const oilSeries=[
+            {key:"brent",label:"Brent",color:"#237A43",width:4},
+            {key:"wti",label:"WTI",color:"#B86B24"}
+          ];
+          const weatherSeries=[
+            {key:"hucknall",label:"Hucknall",color:"#126A82",width:4},
+            {key:"rotherham",label:"Rotherham",color:"#9C4D7F",width:4},
+            {key:"reference",label:"15°C reference",color:"#747D87",dash:"8 7",width:2}
+          ];
+          const weeklySeries=[{key:"unleaded",label:"UK average",color:"#237A43",width:4}];
+
+          makeChart(document.getElementById("petrol-chart"), data.series.petrol, petrolSeries, {ariaLabel:"Daily local unleaded minimum, average and maximum in pence per litre",pointFormat:value=>value.toFixed(1)+" p/L"});
+          makeChart(document.getElementById("oil-chart"), data.series.oil, oilSeries, {ariaLabel:"Daily Brent and WTI crude prices in US dollars per barrel",pointFormat:value=>"$"+value.toFixed(2)});
+          makeChart(document.getElementById("weather-chart"), data.series.weather, weatherSeries, {ariaLabel:"Daily Hucknall and Rotherham temperatures compared with fifteen degrees Celsius",pointFormat:value=>value.toFixed(1)+"°C"});
+          makeChart(document.getElementById("weekly-chart"), data.series.ukWeekly, weeklySeries, {ariaLabel:"United Kingdom weekly unleaded average in pence per litre",pointFormat:value=>value.toFixed(2)+" p/L"});
+
+          document.getElementById("petrol-legend").innerHTML=legend(petrolSeries);
+          document.getElementById("oil-legend").innerHTML=legend(oilSeries);
+          document.getElementById("weather-legend").innerHTML=legend(weatherSeries);
+          document.getElementById("weekly-legend").innerHTML=legend(weeklySeries);
+        } catch (error) {
+          app.innerHTML='<div class="error"><p><strong>Ledger data could not be loaded.</strong><br>'+esc(error.message)+'</p></div>';
+        }
+      }
+      load();
+    })();
+  </script>
+</body>
+</html>
