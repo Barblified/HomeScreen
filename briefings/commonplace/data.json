@@ -1,6 +1,30 @@
 {
   "schemaVersion": 1,
-  "publishedAtUtc": null,
-  "publishedAtDisplay": "Waiting for the first 06:30 discovery",
-  "entries": []
+  "publishedAtUtc": "2026-10-02T17:04:38.309Z",
+  "publishedAtDisplay": "2 October 2026 at 18:04 Europe/London",
+  "entries": [
+    {
+      "date": "2026-10-02",
+      "type": "Mathematics",
+      "title": "Why does mathematics fit the world so well?",
+      "creator": "Eugene P. Wigner",
+      "sourceLabel": "Wigner’s 1960 essay in Communications on Pure and Applied Mathematics",
+      "sourceUrl": "https://onlinelibrary.wiley.com/doi/abs/10.1002/cpa.3160130102",
+      "centralIdea": "In 1960, physicist Eugene Wigner asked why mathematical structures so often describe nature with precision far beyond their origins. Concepts such as complex numbers, linear operators and matrix algebra were developed largely through internal mathematical questions and aesthetic judgement; later they became indispensable in physics. For Wigner, the puzzle is not merely that calculation is useful. It is that compact abstractions can expose regularities, unify apparently different phenomena and sometimes predict features of the world before observation catches up. The essay does not settle whether mathematics is discovered, invented, selected from many failed formalisms, or effective because science focuses on mathematically tractable aspects of reality. Its lasting value is the question itself: when a model works remarkably well, what exactly is doing the work—the structure of nature, the architecture of human thought, or the disciplined selection of useful representations?",
+      "whyItMayInterestYou": "It connects mathematics, modelling, data and philosophy. The practical sting is that model accuracy is never merely technical: choosing an abstraction determines what can be seen, predicted and ignored. Wigner’s puzzle invites both wonder at elegant structure and suspicion toward models that look mathematically impressive without earning contact with reality.",
+      "commonplaceEntry": "A mathematical model is a wager that some structure matters more than the surrounding detail. Its success can be astonishing: an abstraction invented for elegance may later describe the physical world with extraordinary precision. But predictive success alone does not tell us why the fit exists. Perhaps nature is deeply mathematical; perhaps human minds and scientific methods select the small part of reality that yields to mathematics; perhaps both are true. The proper response is neither blind reverence nor cynicism. Use mathematics boldly, then keep asking which features of reality were preserved, which were discarded, and whether the model still works beyond the conditions that made it look convincing.",
+      "questionToCarry": "When a model predicts well, how can we tell whether it has captured a real structure rather than merely fitted the slice of reality we chose to measure?",
+      "evidenceNote": "Established: Wiley records the work as Wigner’s Richard Courant lecture, delivered at New York University on 11 May 1959 and published in February 1960, pages 1–14. Wigner gives historical examples and frames mathematical applicability as a puzzle. Interpretive: applying that puzzle to data and organisational models is an analogy, not Wigner’s demonstrated result. Uncertain: there is no agreed philosophical explanation; realist, structuralist, instrumentalist and selection-effect accounts remain contested.",
+      "additionalSources": [
+        {
+          "label": "Full essay PDF · University of Edinburgh",
+          "url": "https://webhomes.maths.ed.ac.uk/~v1ranick/papers/wigner.pdf"
+        },
+        {
+          "label": "Scientific representation · Stanford Encyclopedia of Philosophy",
+          "url": "https://plato.stanford.edu/entries/scientific-representation/"
+        }
+      ]
+    }
+  ]
 }
