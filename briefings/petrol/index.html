@@ -238,7 +238,7 @@
           let d = "", drawing = false;
           clean.forEach((row, index) => {
             const raw = row[item.key];
-            if (!isNum(raw)) { drawing = false; return; }
+            if (!isNum(raw)) return;
             const value = Number(raw);
             d += (drawing ? " L " : " M ") + x(index).toFixed(2) + " " + y(value).toFixed(2);
             drawing = true;
