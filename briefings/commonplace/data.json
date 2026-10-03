@@ -1,8 +1,31 @@
 {
   "schemaVersion": 1,
-  "publishedAtUtc": "2026-10-02T17:04:38.309Z",
-  "publishedAtDisplay": "2 October 2026 at 18:04 Europe/London",
+  "publishedAtUtc": "2026-10-03T05:31:20.367Z",
+  "publishedAtDisplay": "3 October 2026 at 06:31 Europe/London",
   "entries": [
+    {
+      "date": "2026-10-03",
+      "type": "Book",
+      "title": "Seeing Like a State: How Certain Schemes to Improve the Human Condition Have Failed",
+      "creator": "James C. Scott",
+      "sourceLabel": "Yale University Press book page",
+      "sourceUrl": "https://yalebooks.yale.edu/book/9780300078152/seeing-like-a-state/",
+      "centralIdea": "James C. Scott argues that large institutions cannot act on a complex society until they render it legible: standard names, cadastral maps, uniform measures, simplified forests and planned cities. Legibility creates administrative power and can deliver real benefits, but it also discards tacit relationships and local skills—what Scott calls mētis. Disaster becomes likely when four features combine: administrative simplification, high-modernist confidence, coercive power and weak civil society. The deeper lesson is not that planning or measurement is inherently wrong. It is that a representation designed for control can be mistaken for the thing represented. A clean schema may reveal patterns while hiding the dependencies that keep a system alive. Good governance therefore needs feedback, reversibility, local knowledge and the humility to treat the map as an instrument, not reality itself.",
+      "whyItMayInterestYou": "This is a bridge between data, organisational design, leadership and political philosophy. It explains why a technically tidy system can become less truthful as it becomes easier to administer—and why the people closest to the work often hold knowledge that no central dashboard has captured.",
+      "commonplaceEntry": "Legibility is useful, but it is never neutral. To manage a forest, city, organisation or population from the centre, we simplify it into categories that can be counted and compared. The resulting map may be accurate for its purpose while still omitting the relationships that make the real system function. Failure begins when the map is mistaken for reality and local knowledge is treated as noise. The corrective is not to reject standards or planning, but to combine them with practical knowledge, dissent, feedback and reversible experiments. A good system should remain governable without making reality disappear merely because reality is awkward to encode.",
+      "questionToCarry": "What valuable local knowledge becomes invisible when a system is redesigned to be clean, comparable and centrally manageable?",
+      "evidenceNote": "Established: Yale University Press identifies Scott’s book and summarises its comparative case against authoritarian high-modernist planning, including four recurring conditions in planning disasters. Those conditions are Scott’s argued framework, not a universal causal law. A scholarly counterpoint from anthropologist Michael Herzfeld says Scott overgeneralises resistance, understates how bureaucrats and local populations modify schemes together, and lacks ethnographic specificity. The safest use is therefore as a diagnostic lens, not proof that central coordination must fail.",
+      "additionalSources": [
+        {
+          "label": "Scholarly counterpoint · American Anthropologist",
+          "url": "https://anthrosource.onlinelibrary.wiley.com/doi/abs/10.1525/aa.2005.107.3.369"
+        },
+        {
+          "label": "Contemporary academic review · Cambridge Core",
+          "url": "https://www.cambridge.org/core/journals/comparative-studies-in-society-and-history/article/abs/james-c-scott-seeing-like-a-state-how-certain-schemes-to-improve-the-human-condition-have-failed-new-haven-and-london-yale-agrarian-studies-yale-university-press-1998/562F8C3310E11202AA8ABCDB19064AB4"
+        }
+      ]
+    },
     {
       "date": "2026-10-02",
       "type": "Mathematics",
