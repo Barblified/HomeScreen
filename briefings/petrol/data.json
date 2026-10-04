@@ -1,41 +1,41 @@
 {
   "schemaVersion": 1,
-  "publishedAtUtc": "2026-10-03T02:04:52.436Z",
-  "publishedAtDisplay": "03/10/2026 03:04:52 BST",
+  "publishedAtUtc": "2026-10-04T02:02:06.335Z",
+  "publishedAtDisplay": "2026-10-04 03:02:06 BST",
   "runStatus": {
     "status": "SUCCESS",
-    "lastRun": "2026-10-03 03:02 UK",
-    "petrolCheckpoint": "2026-10-02",
+    "lastRun": "2026-10-04 03:00 UK",
+    "petrolCheckpoint": "2026-10-03",
     "backlogStart": null,
     "backlogThrough": null,
-    "note": "2 October petrol, oil and weather context published; Rotherham weather remains provisional."
+    "note": "3 October petrol snapshot verified; Saturday oil is market-closed context and weather remains provisional."
   },
   "freshness": {
-    "petrol": "2026-10-02",
-    "oil": "2026-10-02",
-    "weather": "2026-10-02",
+    "petrol": "2026-10-03",
+    "oil": "2026-10-03",
+    "weather": "2026-10-03",
     "ukWeekly": "2026-09-28"
   },
   "latest": {
     "petrol": {
-      "date": "2026-10-02",
+      "date": "2026-10-03",
       "min": 166.9,
-      "average": 170.2,
-      "max": 171.9,
+      "average": 170.8,
+      "max": 172.9,
       "stations": 10
     },
     "oil": {
-      "date": "2026-10-02",
+      "date": "2026-10-03",
       "brent": 102.25,
       "wti": 91.11,
-      "status": "Settlement"
+      "status": "Market closed — latest prior settlement"
     },
     "weather": {
-      "date": "2026-10-02",
-      "hucknall": 15.6,
-      "rotherham": 14.5,
+      "date": "2026-10-03",
+      "hucknall": 10,
+      "rotherham": 11,
       "reference": 15,
-      "status": "Provisional — Nottingham observed mean; Sheffield regional high/low midpoint for Rotherham"
+      "status": "Provisional — high/low midpoint; finalized observed daily means not yet accessible"
     },
     "ukWeekly": {
       "date": "2026-09-28",
@@ -631,6 +631,13 @@
         "average": 170.2,
         "max": 171.9,
         "stations": 10
+      },
+      {
+        "date": "2026-10-03",
+        "min": 166.9,
+        "average": 170.8,
+        "max": 172.9,
+        "stations": 10
       }
     ],
     "oil": [
@@ -1125,6 +1132,12 @@
         "brent": 102.25,
         "wti": 91.11,
         "status": "Settlement"
+      },
+      {
+        "date": "2026-10-03",
+        "brent": 102.25,
+        "wti": 91.11,
+        "status": "Market closed — latest prior settlement"
       }
     ],
     "weather": [
@@ -1694,6 +1707,13 @@
         "rotherham": 14.5,
         "reference": 15,
         "status": "Provisional — Nottingham observed mean; Sheffield regional high/low midpoint for Rotherham"
+      },
+      {
+        "date": "2026-10-03",
+        "hucknall": 10,
+        "rotherham": 11,
+        "reference": 15,
+        "status": "Provisional — high/low midpoint; finalized observed daily means not yet accessible"
       }
     ],
     "ukWeekly": [
