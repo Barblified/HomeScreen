@@ -1,8 +1,27 @@
 {
   "schemaVersion": 1,
-  "publishedAtUtc": "2026-10-03T05:31:20.367Z",
-  "publishedAtDisplay": "3 October 2026 at 06:31 Europe/London",
+  "publishedAtUtc": "2026-10-04T05:32:05.690Z",
+  "publishedAtDisplay": "4 October 2026 at 06:32 Europe/London",
   "entries": [
+    {
+      "date": "2026-10-04",
+      "type": "Theology",
+      "title": "Psalm 13: lament is faith without camouflage",
+      "creator": "The Book of Psalms",
+      "sourceLabel": "Psalm 13 · English Standard Version on Bible.com",
+      "sourceUrl": "https://www.bible.com/bible/59/PSA.13.ESV",
+      "centralIdea": "Psalm 13 begins with four repetitions of “How long?” The speaker does not disguise the felt absence of God, inner sorrow or external threat. The poem then moves from complaint in verses 1–2, to a direct petition in verses 3–4, and finally to trust and promised praise in verses 5–6. Crucially, the text does not report that the circumstances changed between those movements. The change happens within the prayer: suffering is named, help is requested, and trust is placed in God’s steadfast love without pretending the pain was unreal. Lament is therefore not the opposite of faith. It is faith refusing both silence and performance—continuing to address God honestly when easy reassurance would be false. The psalm permits anguish to speak while denying it the final word.",
+      "whyItMayInterestYou": "The psalm offers a disciplined pattern for truthful thought as well as prayer: describe reality without euphemism, ask plainly for what is needed, then decide what deeper truth current conditions cannot cancel. It avoids both forced positivity and hopelessness.",
+      "commonplaceEntry": "Biblical lament is faith speaking without camouflage. Psalm 13 does not begin by minimising absence; it addresses God, names sorrow and asks for an answer. Its closing trust is not supported by a narrated rescue. Trust, then, is not pretending the circumstances have changed. It is refusing to let present experience exhaust what can truthfully be said of God. Complaint, petition, trust and praise belong inside one honest prayer. The lesson is not that pain must quickly resolve into cheerfulness, but that pain may be brought into relationship rather than hidden. Lament remains prayer because it continues addressing God when silence feels more plausible.",
+      "questionToCarry": "What would change if truthful complaint were treated as an act of faith rather than evidence that faith is failing?",
+      "evidenceNote": "Established by the text: Psalm 13 repeats “How long?”, petitions God to answer, then declares trust and intended praise. The psalm supplies no historical setting beyond its attribution to David and does not narrate an external change before the closing declaration. Interpretation: describing the sequence as complaint, petition, trust and praise is a literary reading; describing the internal shift as trust without denial is an inference from that sequence. BibleProject places lament and praise within the broader design of Psalms and argues that biblical prayer neither ignores pain nor lets pain determine life’s meaning.",
+      "additionalSources": [
+        {
+          "label": "Psalms guide · BibleProject",
+          "url": "https://bibleproject.com/guides/book-of-psalms/"
+        }
+      ]
+    },
     {
       "date": "2026-10-03",
       "type": "Book",
