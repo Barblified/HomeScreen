@@ -1,8 +1,31 @@
 {
   "schemaVersion": 1,
-  "publishedAtUtc": "2026-10-04T05:32:05.690Z",
-  "publishedAtDisplay": "4 October 2026 at 06:32 Europe/London",
+  "publishedAtUtc": "2026-10-05T05:30:35.488Z",
+  "publishedAtDisplay": "5 October 2026 at 06:30 Europe/London",
   "entries": [
+    {
+      "date": "2026-10-05",
+      "type": "Craft",
+      "title": "Wood never stops moving: designing with the grain",
+      "creator": "USDA Forest Products Laboratory",
+      "sourceLabel": "Wood Handbook, Chapter 4 · Moisture relations and physical properties of wood",
+      "sourceUrl": "https://research.fs.usda.gov/treesearch/62243",
+      "centralIdea": "Wood is not inert stock but a humidity-responsive biological composite. It is hygroscopic: it exchanges moisture with the surrounding air, tending toward an equilibrium set largely by relative humidity and temperature. As moisture changes, wood does not move equally in every direction. From green to oven-dry, the Forest Products Laboratory gives typical shrinkage ranges of only 0.1–0.2% along the grain, 2–6% radially across growth rings, and 7–12% tangentially along them. That asymmetry explains why ring orientation can turn an invisible moisture change into cupping, gaps or split joints. Durable craft therefore does not try to overpower wood with more glue or rigidity. It uses grain orientation and joinery that restrain where necessary while allowing predictable movement elsewhere. The deeper principle is elegant: longevity often comes from respecting a material’s permitted degrees of freedom.",
+      "whyItMayInterestYou": "This turns an everyday material into an exercise in geometry, measurement and humility. A board carries the history of a cylinder, and good design succeeds by reading that hidden structure rather than treating every direction as equivalent.",
+      "commonplaceEntry": "Wood remembers that it was once a tree. Even after drying and machining, it continues exchanging moisture with the air, and its growth-ring geometry determines how it responds. Movement along the grain is small; movement across it is larger and unequal. This is why a broad board may cup while barely changing length, and why traditional frame-and-panel construction lets a panel float instead of pinning it rigidly. The craft lesson reaches beyond timber: do not demand stillness from a material whose nature includes movement. Identify the directions in which change will occur, constrain only what must be constrained, and give the rest somewhere harmless to go.",
+      "questionToCarry": "Where am I treating a predictable degree of movement as a defect, when the better design would accommodate it?",
+      "evidenceNote": "Established: the Forest Products Laboratory describes wood as hygroscopic and reports typical green-to-oven-dry shrinkage of 0.1–0.2% longitudinally, 2–6% radially and 7–12% tangentially. It also notes that moisture exchange depends on relative humidity, temperature and current moisture content. Values vary by species, density, board geometry, drying history and conditions; green-to-oven-dry ranges are not the same as ordinary seasonal movement in a finished object. Interpretation: the claim that durable design should provide controlled freedom is a craft principle inferred from the documented material behaviour, not a universal engineering rule.",
+      "additionalSources": [
+        {
+          "label": "Forest Products Laboratory FAQ · wood shrinkage ranges",
+          "url": "https://research.fs.usda.gov/fpl/faq"
+        },
+        {
+          "label": "Wood Handbook, Chapter 13 · drying and dimensional change",
+          "url": "https://research.fs.usda.gov/treesearch/62261"
+        }
+      ]
+    },
     {
       "date": "2026-10-04",
       "type": "Theology",
