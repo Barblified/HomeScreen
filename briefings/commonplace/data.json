@@ -1,8 +1,31 @@
 {
   "schemaVersion": 1,
-  "publishedAtUtc": "2026-10-05T05:30:35.488Z",
-  "publishedAtDisplay": "5 October 2026 at 06:30 Europe/London",
+  "publishedAtUtc": "2026-10-06T05:27:51.779Z",
+  "publishedAtDisplay": "6 October 2026 at 06:27 Europe/London",
   "entries": [
+    {
+      "date": "2026-10-06",
+      "type": "Theory",
+      "title": "The illusion of explanatory depth: explanation as a confidence test",
+      "creator": "Leonid Rozenblit and Frank Keil",
+      "sourceLabel": "The misunderstood limits of folk science · Cognitive Science (2002)",
+      "sourceUrl": "https://onlinelibrary.wiley.com/doi/10.1207/s15516709cog2605_1",
+      "centralIdea": "Recognising a system is not the same as possessing a causal model of it. Rozenblit and Keil asked participants to rate how well they understood familiar devices, attempt detailed step-by-step explanations, answer mechanism questions and then rate themselves again. Confidence fell after the attempt to explain. The effect was strongest for causally complex devices and natural phenomena, and weaker for facts, procedures and narratives. Visible parts, familiar labels and easy access to information may create a feeling of understanding that is mistaken for an explanation held in the mind. The practical test is generative rather than recognitional: before trusting confidence, try to state each causal step, identify what triggers the next one and mark every missing link. Explanation turns a comfortable impression into something inspectable—and exposes precisely where learning must begin.",
+      "whyItMayInterestYou": "It offers a compact bridge between learning, analysis and intellectual humility. Asking for a mechanism is more diagnostic than asking whether something “makes sense,” because fluent recognition can survive while genuine understanding is absent.",
+      "commonplaceEntry": "The feeling that an idea makes sense is weak evidence that I understand it. Familiar vocabulary, visible components and an available expert community can all be borrowed as if their knowledge were already mine. A better calibration test is simple: explain the mechanism without hiding behind a label. What happens first? What causes the next step? Which claim connects the stages? Where does prediction become guesswork? Failure here is useful; it converts undifferentiated confidence into a map of specific ignorance. The aim is not permanent self-doubt. It is confidence that has survived an attempt to generate the explanation, rather than confidence produced merely by recognising its parts.",
+      "questionToCarry": "If I had to explain this step by step without using its usual labels, where would my account first become vague?",
+      "evidenceNote": "Established: the 2002 paper reports twelve studies and found that attempts to explain familiar mechanisms reduced participants’ self-rated understanding; the effect differed across knowledge domains. The authors also compared later ratings with independent judgements and argued that the shift reflected improved calibration. Limits: much of the evidence relies on self-ratings and convenience samples, and a later study notes that participants may partly change what they mean by “understanding” after being asked for a causal chain. That study also says the duration of the debiasing effect remains unclear. Interpretation: using step-by-step explanation as a practical confidence test is a reasonable application of the findings, not proof that every failed explanation reveals false belief.",
+      "additionalSources": [
+        {
+          "label": "Author-hosted full paper · Yale Cognition and Development Lab",
+          "url": "https://cogdevlab.yale.edu/sites/default/files/files/rozenblit%20%26%20keil%20%202002.pdf"
+        },
+        {
+          "label": "Broad effects and limitations · Judgment and Decision Making (2023)",
+          "url": "https://doi.org/10.1017/jdm.2023.24"
+        }
+      ]
+    },
     {
       "date": "2026-10-05",
       "type": "Craft",
