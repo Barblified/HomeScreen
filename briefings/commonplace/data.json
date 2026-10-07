@@ -1,8 +1,35 @@
 {
   "schemaVersion": 1,
-  "publishedAtUtc": "2026-10-06T05:27:51.779Z",
-  "publishedAtDisplay": "6 October 2026 at 06:27 Europe/London",
+  "publishedAtUtc": "2026-10-07T05:34:00.912Z",
+  "publishedAtDisplay": "7 October 2026 at 06:34 Europe/London",
   "entries": [
+    {
+      "date": "2026-10-07",
+      "type": "Book",
+      "title": "John Locke’s two-page index for a growing commonplace book",
+      "creator": "John Locke",
+      "sourceLabel": "A New Method of Making Common-Place-Books · 1706 edition scan",
+      "sourceUrl": "https://archive.org/details/13925922180LockeCommonplaceBook",
+      "centralIdea": "A bound notebook creates a stubborn information problem: topics grow unpredictably, but its pages cannot be rearranged. John Locke’s method avoided reserving wasteful blocks for subjects. He placed a compact grid at the front, combining each initial letter with the first vowel that followed it in a chosen heading. A note headed “Epistola,” for example, belonged under E–i. That cell recorded the page where the heading began; if its page filled, the subject continued on the next available blank page and the index gained another pointer. Notes could therefore be written into available space while remaining recoverable by topic. The important invention is architectural rather than merely alphabetical: capture order and retrieval order are separated. A small, stable index can govern a body of notes whose subjects, proportions and connections cannot be predicted in advance.",
+      "whyItMayInterestYou": "Locke’s notebook behaves like a tiny analogue database: sparse index, dynamic allocation and pointers to distributed records. It shows that useful knowledge systems need not predict future categories perfectly; they need a dependable route back.",
+      "commonplaceEntry": "A commonplace book becomes valuable only when an earlier thought can be recovered at the moment it matters. Locke’s answer was not to perfect the taxonomy before writing. He let notes occupy the next useful space, then maintained a compact index that pointed to them. The durable principle is separation: storage may be chronological or opportunistic while retrieval remains topical. This reduces the penalty for guessing wrong about how much room a subject deserves. Yet an indexing system must remain lighter than the practice it supports. The best structure is not the most ingenious one; it is the smallest one that future-you will actually maintain and trust.",
+      "questionToCarry": "What is the smallest index that would let a future reader recover this note without remembering when or where it was written?",
+      "evidenceNote": "Established: the surviving 1706 English edition contains a two-page index and explains classification by a heading’s initial letter and first following vowel, with page references for later retrieval. The edition is a posthumous English translation of Locke’s earlier method. Historical scholarship places it within existing systematic, alphabetical and sequential commonplacing traditions, so “invention” should not imply creation from nothing; Locke’s contribution was a flexible synthesis refined through long use. Harvard’s example of a later Locke-style notebook also shows that users did not always follow or maintain the scheme. Interpretation: describing the system as analogue database architecture is a modern analogy, and its practical superiority depends on the keeper’s habits.",
+      "additionalSources": [
+        {
+          "label": "Publication record · Google Books",
+          "url": "https://books.google.com/books/about/A_New_Method_of_Making_Common_place_book.html?id=lduf0QEACAAJ"
+        },
+        {
+          "label": "A later Locke-style notebook in practice · Harvard Library",
+          "url": "https://takenote.library.harvard.edu/38-precepts-put-practice"
+        },
+        {
+          "label": "Historical analysis · Early Science and Medicine",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/25581993/"
+        }
+      ]
+    },
     {
       "date": "2026-10-06",
       "type": "Theory",
