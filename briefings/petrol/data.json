@@ -1,45 +1,45 @@
 {
   "schemaVersion": 1,
-  "publishedAtUtc": "2026-10-06T02:11:57.828Z",
-  "publishedAtDisplay": "2026-10-06 03:11 BST",
+  "publishedAtUtc": "2026-10-07T02:00:23Z",
+  "publishedAtDisplay": "2026-10-07 03:00 BST",
   "runStatus": {
     "status": "SUCCESS",
-    "lastRun": "2026-10-06 03:05 UK",
-    "petrolCheckpoint": "2026-10-05",
+    "lastRun": "2026-10-07 03:00 UK",
+    "petrolCheckpoint": "2026-10-06",
     "backlogStart": null,
     "backlogThrough": null,
-    "note": "Workbook refresh verified through 2026-10-05; one local petrol price movement was recorded."
+    "note": "Workbook refresh verified through 2026-10-06; no repeated-station petrol price movements were recorded."
   },
   "freshness": {
-    "petrol": "2026-10-05",
-    "oil": "2026-10-05",
-    "weather": "2026-10-05",
-    "ukWeekly": "2026-09-28"
+    "petrol": "2026-10-06",
+    "oil": "2026-10-06",
+    "weather": "2026-10-06",
+    "ukWeekly": "2026-10-05"
   },
   "latest": {
     "petrol": {
-      "date": "2026-10-05",
+      "date": "2026-10-06",
       "min": 165.9,
-      "average": 170.6,
+      "average": 170.4,
       "max": 171.9,
       "stations": 10
     },
     "oil": {
-      "date": "2026-10-05",
-      "brent": 100.32,
-      "wti": 89.43,
+      "date": "2026-10-06",
+      "brent": 100.58,
+      "wti": 89.44,
       "status": "Settlement"
     },
     "weather": {
-      "date": "2026-10-05",
-      "hucknall": 16,
-      "rotherham": 16,
+      "date": "2026-10-06",
+      "hucknall": 17.5,
+      "rotherham": 13,
       "reference": 15,
-      "status": "Finalized — reported observed daily means"
+      "status": "Provisional — last-resort high/low midpoint"
     },
     "ukWeekly": {
-      "date": "2026-09-28",
-      "unleaded": 173.46
+      "date": "2026-10-05",
+      "unleaded": 174.88
     }
   },
   "series": {
@@ -652,6 +652,13 @@
         "average": 170.6,
         "max": 171.9,
         "stations": 10
+      },
+      {
+        "date": "2026-10-06",
+        "min": 165.9,
+        "average": 170.4,
+        "max": 171.9,
+        "stations": 10
       }
     ],
     "oil": [
@@ -1163,6 +1170,12 @@
         "date": "2026-10-05",
         "brent": 100.32,
         "wti": 89.43,
+        "status": "Settlement"
+      },
+      {
+        "date": "2026-10-06",
+        "brent": 100.58,
+        "wti": 89.44,
         "status": "Settlement"
       }
     ],
@@ -1754,6 +1767,13 @@
         "rotherham": 16,
         "reference": 15,
         "status": "Finalized — reported observed daily means"
+      },
+      {
+        "date": "2026-10-06",
+        "hucknall": 17.5,
+        "rotherham": 13,
+        "reference": 15,
+        "status": "Provisional — last-resort high/low midpoint"
       }
     ],
     "ukWeekly": [
@@ -1912,6 +1932,10 @@
       {
         "date": "2026-09-28",
         "unleaded": 173.46
+      },
+      {
+        "date": "2026-10-05",
+        "unleaded": 174.88
       }
     ]
   }
