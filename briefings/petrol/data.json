@@ -1,41 +1,41 @@
 {
   "schemaVersion": 1,
-  "publishedAtUtc": "2026-10-07T02:00:23Z",
-  "publishedAtDisplay": "2026-10-07 03:00 BST",
+  "publishedAtUtc": "2026-10-08T02:03:30Z",
+  "publishedAtDisplay": "2026-10-08 03:03 BST",
   "runStatus": {
     "status": "SUCCESS",
-    "lastRun": "2026-10-07 03:00 UK",
-    "petrolCheckpoint": "2026-10-06",
+    "lastRun": "2026-10-08 03:03 UK",
+    "petrolCheckpoint": "2026-10-07",
     "backlogStart": null,
     "backlogThrough": null,
-    "note": "Workbook refresh verified through 2026-10-06; no repeated-station petrol price movements were recorded."
+    "note": "Workbook refresh verified through 2026-10-07; one local petrol price movement was recorded."
   },
   "freshness": {
-    "petrol": "2026-10-06",
-    "oil": "2026-10-06",
-    "weather": "2026-10-06",
+    "petrol": "2026-10-07",
+    "oil": "2026-10-07",
+    "weather": "2026-10-07",
     "ukWeekly": "2026-10-05"
   },
   "latest": {
     "petrol": {
-      "date": "2026-10-06",
+      "date": "2026-10-07",
       "min": 165.9,
-      "average": 170.4,
+      "average": 170.3,
       "max": 171.9,
       "stations": 10
     },
     "oil": {
-      "date": "2026-10-06",
-      "brent": 100.58,
-      "wti": 89.44,
+      "date": "2026-10-07",
+      "brent": 100.2,
+      "wti": 88.28,
       "status": "Settlement"
     },
     "weather": {
-      "date": "2026-10-06",
-      "hucknall": 17.5,
-      "rotherham": 13,
+      "date": "2026-10-07",
+      "hucknall": 11.8,
+      "rotherham": 11,
       "reference": 15,
-      "status": "Provisional — last-resort high/low midpoint"
+      "status": "Provisional — mixed 3-hourly and reported regional mean"
     },
     "ukWeekly": {
       "date": "2026-10-05",
@@ -659,6 +659,13 @@
         "average": 170.4,
         "max": 171.9,
         "stations": 10
+      },
+      {
+        "date": "2026-10-07",
+        "min": 165.9,
+        "average": 170.3,
+        "max": 171.9,
+        "stations": 10
       }
     ],
     "oil": [
@@ -1176,6 +1183,12 @@
         "date": "2026-10-06",
         "brent": 100.58,
         "wti": 89.44,
+        "status": "Settlement"
+      },
+      {
+        "date": "2026-10-07",
+        "brent": 100.2,
+        "wti": 88.28,
         "status": "Settlement"
       }
     ],
@@ -1770,10 +1783,17 @@
       },
       {
         "date": "2026-10-06",
-        "hucknall": 17.5,
-        "rotherham": 13,
+        "hucknall": 16.5,
+        "rotherham": 15.8,
         "reference": 15,
-        "status": "Provisional — last-resort high/low midpoint"
+        "status": "Finalized — mean of evenly spaced historical 3-hourly temperatures"
+      },
+      {
+        "date": "2026-10-07",
+        "hucknall": 11.8,
+        "rotherham": 11,
+        "reference": 15,
+        "status": "Provisional — mixed 3-hourly and reported regional mean"
       }
     ],
     "ukWeekly": [
