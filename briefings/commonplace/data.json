@@ -1,8 +1,35 @@
 {
   "schemaVersion": 1,
-  "publishedAtUtc": "2026-10-07T05:34:00.912Z",
-  "publishedAtDisplay": "7 October 2026 at 06:34 Europe/London",
+  "publishedAtUtc": "2026-10-08T05:28:34.055Z",
+  "publishedAtDisplay": "8 October 2026 at 06:28 Europe/London",
   "entries": [
+    {
+      "date": "2026-10-08",
+      "type": "Craft",
+      "title": "The co-axial escapement: redesign the contact, not the lubricant",
+      "creator": "George Daniels",
+      "sourceLabel": "George Daniels’s escapement patent · EP0018796B1",
+      "sourceUrl": "https://patents.google.com/patent/EP0018796B1/en",
+      "centralIdea": "A mechanical watch’s escapement repeatedly locks and releases the gear train while giving the balance wheel tiny impulses. In the conventional lever escapement, inclined pallet surfaces help perform both locking and impulsing, producing sliding contact that depends on lubrication. George Daniels changed the geometry and separated those functions. His patented arrangement uses distinct locking and impulse pallets, with concentric rings of escape-wheel teeth operating in parallel planes. On alternating swings, one impulse reaches the balance directly and the other passes through the lever; the impulse faces are arranged radially and their contact areas kept small. The aim was not stronger oil but far less need for oil at the critical interface. This preserved the practical virtues of a wristwatch escapement—bidirectional impulse and self-starting—while attacking a source of friction, lubricant ageing and rate instability through architecture.",
+      "whyItMayInterestYou": "It is miniature systems engineering expressed in metal: one troublesome interface was decomposed into separate responsibilities. The lesson travels well—when maintenance remains stubborn, inspect whether a component is being asked to perform conflicting functions.",
+      "commonplaceEntry": "Daniels’s co-axial escapement is a lesson in removing a problem at the level of geometry. Traditional escapements tolerated sliding friction and managed it with lubricant. Daniels asked whether locking and energy transfer had been bundled into the same contact unnecessarily. By separating them and redirecting the impulse, he reduced dependence on that sliding interface. The general principle is powerful: recurring maintenance may be evidence not of inadequate upkeep, but of an architecture that continually recreates the fault. Before optimising the oil, schedule or workaround, inspect the contact itself. A durable design often emerges when restraint, transmission and release are each given a form suited to their own job.",
+      "questionToCarry": "Which recurring maintenance problem exists because one interface is being asked both to restrain movement and transmit energy?",
+      "evidenceNote": "Established by Daniels’s European patent: the design separates locking and impulsing, applies alternating impulses directly and through the lever, uses radial impulse surfaces, remains self-starting and was intended to avoid pallet lubrication. The Science Museum describes its working model as having virtually no sliding friction and requiring minimal lubrication; Omega began series use in 1999. Qualification: “co-axial” does not mean an entire watch runs without friction or oil, and production implementations differ from the patent embodiments. Omega’s claims of longer servicing needs and greater long-term precision are manufacturer claims rather than proof that the escapement alone causes every reported benefit. Interpretation: treating the mechanism as a general lesson in separating conflicting functions is an engineering analogy.",
+      "additionalSources": [
+        {
+          "label": "Working model · Science Museum Group",
+          "url": "https://collection.sciencemuseumgroup.org.uk/objects/co8614318/working-model-of-the-co-axial-escapement-built-by-george-daniels"
+        },
+        {
+          "label": "Series-production history · Swatch Group archive",
+          "url": "https://www.swatchgroup.com/en/services/archive/2010/omegas-co-axial-story"
+        },
+        {
+          "label": "George Daniels official archive",
+          "url": "https://www.danielslondon.com/"
+        }
+      ]
+    },
     {
       "date": "2026-10-07",
       "type": "Book",
