@@ -1,8 +1,27 @@
 {
   "schemaVersion": 1,
-  "publishedAtUtc": "2026-10-08T05:28:34.055Z",
-  "publishedAtDisplay": "8 October 2026 at 06:28 Europe/London",
+  "publishedAtUtc": "2026-10-09T05:33:51.768Z",
+  "publishedAtDisplay": "9 October 2026 at 06:33 Europe/London",
   "entries": [
+    {
+      "date": "2026-10-09",
+      "type": "Philosophy",
+      "title": "Negative capability: resisting premature certainty",
+      "creator": "John Keats",
+      "sourceLabel": "The negative capability letter · Mapping Keats’s Progress",
+      "sourceUrl": "https://johnkeats.uvic.ca/1817-12-27.html",
+      "centralIdea": "John Keats coined “negative capability” in an 1817 letter while asking what enabled Shakespearean achievement. He valued the capacity to remain with uncertainty, mystery and incomplete knowledge without rushing to force a conclusion. In its original setting this is an artistic quality: the poet does not flatten experience into a single explanatory system before its contradictions have done their work. The idea need not oppose evidence or reason. A useful modern reading is temporal: reason has a proper moment, but premature closure can destroy information, imagination and alternative hypotheses. Negative capability is therefore not passive indecision. It is disciplined suspension—holding several live possibilities, observing what each explains, and delaying commitment until the evidence or the work genuinely requires it. The difficult skill is distinguishing uncertainty that should be investigated from uncertainty that should not yet be eliminated.",
+      "whyItMayInterestYou": "This joins creativity with rigorous judgement: poets and analysts alike can damage reality by resolving ambiguity too quickly. It names the patience required to let a pattern emerge without mistaking discomfort for a demand to decide.",
+      "commonplaceEntry": "Not every uncertainty is a defect in the model; sometimes it is faithful representation of the situation. Negative capability means resisting the emotional pressure to close a question before its evidence has matured. The discipline is not to celebrate vagueness, but to keep rival explanations alive long enough to learn what each reveals. A rushed answer may feel cleaner while discarding the very tension that contains the insight. Remain open, gather detail, and decide when action truly requires decision. Intellectual maturity includes both powers: the courage to conclude and the restraint to leave a question unresolved when certainty would be counterfeit.",
+      "questionToCarry": "Which uncertainty am I trying to eliminate because it is uncomfortable rather than because the evidence now supports a conclusion?",
+      "evidenceNote": "Established: the phrase appears in the surviving transcript tradition of Keats’s December 1817 letter to his brothers George and Tom, where it concerns literary achievement and Shakespeare. Interpretation: applying it to analysis, decisions and hypothesis management extends beyond Keats’s explicit argument. Uncertainty: the letter is conventionally dated 21 and possibly 27 December. Cambridge scholarship notes that the wording reaches us through John Jeffrey’s 1845 transcript rather than a surviving autograph; comparisons with Jeffrey’s other transcripts show that he could alter or omit material. The precise wording should therefore not be treated as an unquestionable manuscript reading, and the concept supplies no rule for how long judgement should be suspended.",
+      "additionalSources": [
+        {
+          "label": "Textual history of the surviving transcript · Cambridge University Press",
+          "url": "https://www.cambridge.org/core/books/abs/keatss-negative-capability/john-keatss-jeffreys-negative-capability-or-accidentally-undermining-keats/0185BCAA06A38998C5ADF508CBF31765"
+        }
+      ]
+    },
     {
       "date": "2026-10-08",
       "type": "Craft",
