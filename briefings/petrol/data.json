@@ -1,41 +1,41 @@
 {
   "schemaVersion": 1,
-  "publishedAtUtc": "2026-10-09T01:57:42Z",
-  "publishedAtDisplay": "2026-10-09 02:57 BST",
+  "publishedAtUtc": "2026-10-10T02:04:22Z",
+  "publishedAtDisplay": "2026-10-10 03:04 BST",
   "runStatus": {
     "status": "SUCCESS",
-    "lastRun": "2026-10-09 02:57 UK",
-    "petrolCheckpoint": "2026-10-08",
+    "lastRun": "2026-10-10 03:04 UK",
+    "petrolCheckpoint": "2026-10-09",
     "backlogStart": null,
     "backlogThrough": null,
-    "note": "Workbook refresh verified through 2026-10-08; one local petrol price movement was recorded."
+    "note": "Workbook refresh verified through 2026-10-09; local petrol prices were unchanged."
   },
   "freshness": {
-    "petrol": "2026-10-08",
-    "oil": "2026-10-08",
-    "weather": "2026-10-08",
+    "petrol": "2026-10-09",
+    "oil": "2026-10-09",
+    "weather": "2026-10-09",
     "ukWeekly": "2026-10-05"
   },
   "latest": {
     "petrol": {
-      "date": "2026-10-08",
+      "date": "2026-10-09",
       "min": 165.9,
       "average": 170.1,
       "max": 171.9,
       "stations": 10
     },
     "oil": {
-      "date": "2026-10-08",
-      "brent": 104.28,
-      "wti": 91.49,
+      "date": "2026-10-09",
+      "brent": 104.72,
+      "wti": 91.85,
       "status": "Settlement"
     },
     "weather": {
-      "date": "2026-10-08",
-      "hucknall": 12.8,
-      "rotherham": 13.9,
+      "date": "2026-10-09",
+      "hucknall": 13.6,
+      "rotherham": 13.8,
       "reference": 15,
-      "status": "Finalized — mean of evenly spaced historical 3-hourly temperatures"
+      "status": "Provisional — Nottingham high/low midpoint; Sheffield observed daily mean"
     },
     "ukWeekly": {
       "date": "2026-10-05",
@@ -673,6 +673,13 @@
         "average": 170.1,
         "max": 171.9,
         "stations": 10
+      },
+      {
+        "date": "2026-10-09",
+        "min": 165.9,
+        "average": 170.1,
+        "max": 171.9,
+        "stations": 10
       }
     ],
     "oil": [
@@ -1202,6 +1209,12 @@
         "date": "2026-10-08",
         "brent": 104.28,
         "wti": 91.49,
+        "status": "Settlement"
+      },
+      {
+        "date": "2026-10-09",
+        "brent": 104.72,
+        "wti": 91.85,
         "status": "Settlement"
       }
     ],
@@ -1757,63 +1770,70 @@
         "hucknall": 12.8,
         "rotherham": 12.8,
         "reference": 15,
-        "status": ""
+        "status": "Finalized — reported observed regional daily mean proxies"
       },
       {
         "date": "2026-10-01",
         "hucknall": 13.1,
         "rotherham": 14.5,
         "reference": 15,
-        "status": ""
+        "status": "Finalized observed daily mean — station proxies"
       },
       {
         "date": "2026-10-02",
         "hucknall": 15.6,
         "rotherham": 14.6,
         "reference": 15,
-        "status": "Finalized — reported observed regional daily mean proxies"
+        "status": "Finalized observed daily mean — regional station proxies"
       },
       {
         "date": "2026-10-03",
         "hucknall": 14.1,
         "rotherham": 12,
         "reference": 15,
-        "status": "Finalized observed daily mean — station proxies"
+        "status": "Finalized — mean of evenly spaced observed 3-hourly temperatures"
       },
       {
         "date": "2026-10-04",
         "hucknall": 11.4,
         "rotherham": 12.2,
         "reference": 15,
-        "status": "Finalized observed daily mean — regional station proxies"
+        "status": "Finalized observed hourly/daily mean — regional station proxies"
       },
       {
         "date": "2026-10-05",
         "hucknall": 16,
         "rotherham": 16,
         "reference": 15,
-        "status": "Finalized — mean of evenly spaced observed 3-hourly temperatures"
+        "status": "Finalized — reported observed daily means"
       },
       {
         "date": "2026-10-06",
         "hucknall": 16.5,
         "rotherham": 15.8,
         "reference": 15,
-        "status": "Finalized observed hourly/daily mean — regional station proxies"
+        "status": "Finalized — mean of evenly spaced historical 3-hourly temperatures"
       },
       {
         "date": "2026-10-07",
         "hucknall": 11,
         "rotherham": 11.2,
         "reference": 15,
-        "status": "Finalized — reported observed daily means"
+        "status": "Finalized — historical reported/3-hourly regional means"
       },
       {
         "date": "2026-10-08",
         "hucknall": 12.8,
         "rotherham": 13.9,
         "reference": 15,
-        "status": "Finalized — mean of evenly spaced historical 3-hourly temperatures"
+        "status": "Finalized — reported observed regional daily means"
+      },
+      {
+        "date": "2026-10-09",
+        "hucknall": 13.6,
+        "rotherham": 13.8,
+        "reference": 15,
+        "status": "Provisional — Nottingham high/low midpoint; Sheffield observed daily mean"
       }
     ],
     "ukWeekly": [
