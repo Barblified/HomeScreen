@@ -1,8 +1,35 @@
 {
   "schemaVersion": 1,
-  "publishedAtUtc": "2026-10-09T05:33:51.768Z",
-  "publishedAtDisplay": "9 October 2026 at 06:33 Europe/London",
+  "publishedAtUtc": "2026-10-10T05:31:16.700Z",
+  "publishedAtDisplay": "10 October 2026 at 06:31 Europe/London",
   "entries": [
+    {
+      "date": "2026-10-10",
+      "type": "Data",
+      "title": "The hot hand’s hidden denominator: when a fair coin looks anti-streaky",
+      "creator": "Joshua B. Miller and Adam Sanjurjo",
+      "sourceLabel": "Surprised by the Hot Hand Fallacy? · Econometrica (2018)",
+      "sourceUrl": "https://arxiv.org/abs/1902.01265",
+      "centralIdea": "Miller and Sanjurjo found a selection bias in a familiar streak test. Suppose a fair coin is flipped three times. Within each sequence, record the proportion of heads among flips immediately following a head, discarding sequences with no eligible flip. The average of those sequence-level proportions is not one-half but 5/12. The conditioning rule changes the sample: the result used to identify an eligible position also constrains the finite sequence being measured, while overlapping streaks intensify the effect. The bias shrinks as sequences lengthen but grows with the chosen streak length. This mattered because classic hot-hand studies compared basketball shooting after runs of hits using a downward-biased measure, making positive dependence look smaller or absent. After correcting it and re-analysing the original data, the authors found significant evidence of streak shooting. A neutral process can look anti-streaky when the observation rule quietly manufactures its own baseline.",
+      "whyItMayInterestYou": "It is a compact warning for data work and sport alike: conditioning can change the expected value before any real effect appears. A denominator may look innocent while encoding the very selection process the analysis is meant to test.",
+      "commonplaceEntry": "The dataset does not begin after collection; it begins when a rule decides which observations count. In streak analysis, selecting only outcomes that follow prior successes creates a finite-sample baseline below the underlying success rate. Compare the observed result with one-half and real persistence can disappear. The error is subtle because every included observation is genuine—the distortion lives in eligibility and averaging, not fabrication. Before interpreting a conditional percentage, ask what had to happen for an observation to enter its denominator, what sequences were excluded, and what the estimator would report under a neutral process. A fair comparison requires the null distribution of the procedure, not merely the intuitive baseline of the phenomenon.",
+      "questionToCarry": "What would this selection-and-averaging rule report if the underlying process contained no effect at all?",
+      "evidenceNote": "Established: Miller and Sanjurjo prove that, for finite independent binary sequences, the within-sequence proportion of successes immediately following a success streak is downward-biased; for three fair flips after one head, its conditional expectation is 5/12 rather than one-half. They show that the bias generally falls with sequence length and rises with streak length. Their bias-corrected reanalysis of the 1985 Gilovich–Vallone–Tversky shooting data found significant streak effects with large estimated magnitudes. Qualification: this overturns the claim that the original analysis established a universal hot-hand fallacy; it does not prove that every observed run is a changing performance state, nor that observers judge streaks accurately. Interpretation: treating denominator design as the wider lesson is an analytical generalisation from the theorem.",
+      "additionalSources": [
+        {
+          "label": "Published article DOI · Econometric Society",
+          "url": "https://doi.org/10.3982/ECTA14943"
+        },
+        {
+          "label": "NBA Three-Point Contest application · Bocconi IGIER",
+          "url": "https://igier.unibocconi.eu/publications/working-papers/it-fallacy-believe-hot-hand-nba-three-point-contest"
+        },
+        {
+          "label": "Controlled-shooting evidence · MIT Press",
+          "url": "https://direct.mit.edu/rest/article/106/6/1607/125154/A-Cold-Shower-for-the-Hot-Hand-Fallacy-Robust"
+        }
+      ]
+    },
     {
       "date": "2026-10-09",
       "type": "Philosophy",
