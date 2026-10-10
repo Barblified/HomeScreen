@@ -1,178 +1,90 @@
 <!doctype html>
-<html lang="en-GB">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="robots" content="noindex">
-  <title>FPL Decision Lab — 9 October 2026</title>
-  <link rel="stylesheet" href="../report.css">
-  <style>
-    body{background:#f6f2e8;color:#22272b}main{max-width:1040px;margin:auto;padding:1rem}.hero{background:#17324d;color:#fff;border-radius:18px;padding:1.25rem 1.4rem}.hero p{margin:.3rem 0}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem}.card{background:#fff;border:1px solid #d9d5ca;border-radius:14px;padding:1rem;margin:1rem 0}.status{display:inline-block;background:#8a3f45;color:#fff;border-radius:999px;padding:.35rem .7rem;font-weight:700}.good{background:#2f5d50}.muted{color:#5c6770}.rule{border-top:3px solid #b78a3e;padding-top:.8rem}table{width:100%;border-collapse:collapse;font-size:.91rem}th,td{text-align:left;padding:.46rem;border-bottom:1px solid #ddd8cd;vertical-align:top}th{color:#17324d}.scroll{overflow-x:auto}h2,h3{color:#17324d}a{color:#174f78}.big{font-size:1.2rem;font-weight:700}@media(max-width:600px){main{padding:.65rem}.hero,.card{border-radius:10px}th,td{padding:.4rem .3rem;font-size:.82rem}}
-  </style>
-</head>
+<html lang="en-GB"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>FPL Decision Lab — GW6 final call</title><link rel="stylesheet" href="../report.css"></head>
 <body><main>
-  <header class="hero">
-    <p>FANTASY PREMIER LEAGUE · DECISION SUPPORT</p>
-    <h1>FPL Decision Lab</h1>
-    <p><strong>Friday 9 October 2026 · generated 09:05 BST</strong></p>
-    <p>Official API freshness: bootstrap-static retrieved 09:00 BST and fixtures at 09:00 BST; all 562 selectable element-summary histories refreshed and validated by 09:03 BST; personalised model completed 09:04 BST. No numerical endpoint was blocked.</p>
-  </header>
+<header><p class="eyebrow">Fantasy Premier League · 2026/27</p><h1>Decision Lab — GW6 final call</h1>
+<p><strong>Generated:</strong> Saturday 10 October 2026, 09:05 Europe/London · <strong>Deadline:</strong> 11:00 BST today · Decision support only; no transfer, lineup, captaincy or chip action was executed.</p></header>
 
-  <section class="card">
-    <span class="status">RESTRUCTURE · HAALAND OUT</span>
-    <h2>Decision status</h2>
-    <p class="big">Preserve the deliberate Haaland-out constraint, but do not leave the current Wildcard draft unchanged.</p>
-    <p>The verified state is the 6 October screenshot: Wildcard active, £0.0m bank, and the 15-player squad listed below. The correct objective is to maximise squad Points-EV with Erling Haaland excluded, then report the exclusion's opportunity cost against an unrestricted control. On that basis the experiment remains viable: the expected Haaland penalty is small over GW+1 and modest over GW+3/GW+5, while the current draft can be improved materially inside the same Haaland-less structure.</p>
-  </section>
+<section class="card"><h2>Bottom line</h2>
+<p><strong>The late evidence strengthens the current draft, but it remains below the model-optimal Wildcard.</strong> Chelsea and the live FPL feed now clear Palmer and João Pedro. If preserving the chosen XV, start Verbruggen; start Thomas over Szoboszlai; captain Bruno Fernandes with Hall vice. That best-attainable HOLD projects <strong>57.5 GW6 points</strong>, versus approximately <strong>54.5</strong> for the pictured XI with Wissa captain.</p>
+<p>The preferred core-preserving restructure projects <strong>68.8 GW6 points</strong>: +10.4 expected over best HOLD, with a 69.7% simulated chance of winning. The 80% delta interval is −12 to +34, so this is a strong model signal, not a promise.</p></section>
 
-  <section class="grid">
-    <article class="card"><h3>GW+1</h3><p><strong>GW6 · deadline 11:00 BST, 10 Oct</strong></p><p>Best Haaland-out mean 70.33; current draft 57.30. Haaland exclusion cost versus the unrestricted control: only 0.33 xPts.</p></article>
-    <article class="card"><h3>GW+3</h3><p><strong>GW6–8</strong></p><p>Best Haaland-out mean 208.13; current draft 170.41. Exclusion cost: 2.74 xPts, with a wide −20 to +25 80% interval.</p></article>
-    <article class="card"><h3>GW+5</h3><p><strong>GW6–10</strong></p><p>Best Haaland-out mean 343.22; current draft 280.48. Exclusion cost: 7.41 xPts; meaningful but not enough to abandon the strategy automatically.</p></article>
-  </section>
+<section class="card"><h2>Verified state and material change</h2><ul>
+<li>The 08:55 screenshot verifies Wildcard active; Triple Captain used GW3; Free Hit used GW4; Bench Boost unavailable. All 15 players and the £99.3m selling-price budget match live element IDs.</li>
+<li>Pictured XI: Kelleher; Calafiori, Hall, Mykolenko; Bruno (vice), Saka, Mbeumo, Palmer, Szoboszlai; João Pedro, Wissa (captain). Bench: Verbruggen, Gonzalo, Thomas, Konsa.</li>
+<li><strong>Change:</strong> Chelsea say Palmer and João Pedro trained and are “ready to go”; live FPL now lists both available at 100%. <a href="https://www.chelseafc.com/en/news/article/xabi-alonso-confirms-chelsea-team-news-for-bournemouth">Chelsea team news</a></li>
+<li>Mykolenko remains a 75% FPL doubt; Moyes says he “has a chance”. Konsa is also 75% after an international injury. <a href="https://www.premierleague.com/en/news/4730320">Official MW6 line-up report</a></li>
+</ul></section>
 
-  <section class="card rule">
-    <h2>Verified state and new evidence</h2>
-    <ul>
-      <li><strong>Verified personal state:</strong> Kelleher, Verbruggen; Calafiori, Hall, Mykolenko, Bobby Thomas, Konsa; Bruno Fernandes, Saka, Mbeumo, Palmer, Szoboszlai; João Pedro, Wissa, Gonzalo García. Wildcard active; Haaland intentionally excluded.</li>
-      <li><strong>Identity validation:</strong> each name was resolved against today's bootstrap by element ID, full name, club and position. In particular: Cole Palmer is Chelsea's midfielder, not Ipswich goalkeeper Alex Palmer; Bobby Thomas is Coventry's defender.</li>
-      <li>The official 8 October price bulletin recorded no rises; Groß remained the most-bought player and João Pedro the most-sold. The model conservatively retains the screenshot's £99.3m acquisition-value budget because exact individual sale prices are not exposed publicly.</li>
-      <li>Bruno remains highly involved for Manchester United: 19 shots, eight in the box and five big-chance involvements. Szoboszlai has only one box shot and Liverpool's next-five FDR average is 3.4. This makes Szoboszlai the clearer sale.</li>
-      <li>Palmer, João Pedro, Mykolenko and Konsa remain availability risks in the live API. Haaland is unflagged; his Norway substitution was discussed in advance and produced no visible treatment.</li>
-      <li>The official injury register was last updated at 16:55 BST on 8 October. No definitive club clearance for Palmer or João Pedro had been published by this model cut-off.</li>
-      <li>The official 7 October transfer radar supports retaining Gonzalo García: Fulham face Ipswich, Hull and Coventry next, and Gonzalo leads his club for shots, box shots and xG. This is supporting evidence, not an input imported into the empirical model.</li>
-      <li>GW6 remains the next event with an official deadline of <strong>10:00 UTC / 11:00 BST on Saturday 10 October</strong>.</li>
-    </ul>
-  </section>
+<section class="card"><h2>Data freshness and validation</h2><table><thead><tr><th>Input</th><th>Freshness / validation</th></tr></thead><tbody>
+<tr><td>Official FPL bootstrap-static</td><td>10 Oct 2026 08:58:40 BST; 562 players; GW5 current/finished, GW6 next.</td></tr>
+<tr><td>Official FPL fixtures</td><td>08:58:43 BST; GW6 deadline 10:00 UTC / 11:00 BST.</td></tr>
+<tr><td>Element summaries</td><td>562/562 successful; 2,692 current-season history rows; no missing personalised summaries.</td></tr>
+<tr><td>Private state</td><td>Screenshot 08:55 BST; identities, positions and selling prices reconciled.</td></tr>
+<tr><td>Team news</td><td>Official club and Premier League updates published 9 Oct, checked this morning.</td></tr>
+</tbody></table><p><strong>Blocked inputs:</strong> none material. No previous-season player performance was used.</p></section>
 
-  <section class="card">
-    <h2>Current Wildcard draft: best XI if unchanged</h2>
-    <p><strong>4-5-1 · Bruno captain · Hall vice.</strong> Raw XI xPts is <strong>49.63</strong>; with captaincy it is <strong>55.42</strong>. The joint simulation including availability, captain fallback and legal autosubs gives <strong>57.30 mean points</strong> with an <strong>80% predictive interval of 39–78</strong>.</p>
-    <div class="scroll"><table><thead><tr><th>Role</th><th>Player</th><th>Club</th><th>Verified cost basis</th><th>GW6 xPts</th><th>Status</th></tr></thead><tbody>
-      <tr><td>GK</td><td>Bart Verbruggen</td><td>BHA</td><td>£4.5m</td><td>4.16</td><td>Start</td></tr>
-      <tr><td>DEF</td><td>Riccardo Calafiori</td><td>ARS</td><td>£5.7m</td><td>4.61</td><td>Start</td></tr>
-      <tr><td>DEF</td><td>Lewis Hall</td><td>NEW</td><td>£5.2m</td><td>5.54</td><td>Start · VC</td></tr>
-      <tr><td>DEF</td><td>Vitalii Mykolenko</td><td>EVE</td><td>£4.5m</td><td>3.80</td><td>Start · 75%</td></tr>
-      <tr><td>DEF</td><td>Bobby Thomas</td><td>COV</td><td>£4.0m</td><td>4.29</td><td>Start</td></tr>
-      <tr><td>MID</td><td>Bruno Fernandes</td><td>MUN</td><td>£11.9m</td><td>5.79</td><td>Start · C</td></tr>
-      <tr><td>MID</td><td>Bukayo Saka</td><td>ARS</td><td>£9.5m</td><td>5.31</td><td>Start</td></tr>
-      <tr><td>MID</td><td>Bryan Mbeumo</td><td>MUN</td><td>£7.9m</td><td>5.06</td><td>Start</td></tr>
-      <tr><td>MID</td><td>Cole Palmer</td><td>CHE</td><td>£9.7m</td><td>3.71</td><td>Start · 75%</td></tr>
-      <tr><td>MID</td><td>Dominik Szoboszlai</td><td>LIV</td><td>£6.9m</td><td>3.52</td><td>Start</td></tr>
-      <tr><td>FWD</td><td>Yoane Wissa</td><td>NEW</td><td>£6.2m</td><td>3.84</td><td>Start</td></tr>
-    </tbody></table></div>
-    <p><strong>Bench order:</strong> Gonzalo García, João Pedro, Ezri Konsa; Caoimhín Kelleher. Ordinary bench points are excluded unless a legal autosub occurs.</p>
-  </section>
+<section class="card"><h2>Forecast windows</h2><table><thead><tr><th>Horizon</th><th>Window</th><th>Decision use</th></tr></thead><tbody>
+<tr><td>GW+1</td><td>GW6</td><td>Immediate XI, captain and Wildcard payoff</td></tr>
+<tr><td>GW+3</td><td>GW6–8</td><td>Near-term path value</td></tr>
+<tr><td>GW+5</td><td>GW6–10</td><td>Structure and option value</td></tr>
+</tbody></table></section>
 
-  <section class="card">
-    <span class="status good">WORKING TARGET</span>
-    <h2>Recommended robust Haaland-out Wildcard</h2>
-    <p>This option preserves the intended expensive-midfield engine—<strong>Saka, Bruno, Mbeumo and Palmer</strong>—plus Gonzalo, while fixing the weaker marginal slots. It sacrifices 8.85 simulated points across five weeks versus the raw model optimum but avoids blindly replacing the whole strategic core after only five completed Gameweeks.</p>
-    <p><strong>Squad cost assumption: £98.4m.</strong> Because the screenshot did not expose each player's exact sale price, treat the spare £0.9m as a safety margin rather than confirmed bank.</p>
-    <div class="scroll"><table><thead><tr><th>Role</th><th>Player</th><th>Club</th><th>Cost</th><th>GW6</th><th>GW6–8</th><th>GW6–10</th></tr></thead><tbody>
-      <tr><td>GK</td><td>Konstantinos Tzolakis</td><td>HUL</td><td>£4.7m</td><td>5.38</td><td>16.13</td><td>26.24</td></tr>
-      <tr><td>DEF</td><td>Maxim De Cuyper</td><td>BHA</td><td>£5.0m</td><td>5.70</td><td>17.03</td><td>27.17</td></tr>
-      <tr><td>DEF</td><td>James Tarkowski</td><td>EVE</td><td>£6.2m</td><td>7.02</td><td>17.67</td><td>31.07</td></tr>
-      <tr><td>DEF</td><td>Joško Gvardiol</td><td>MCI</td><td>£5.7m</td><td>5.12</td><td>17.21</td><td>28.72</td></tr>
-      <tr><td>DEF</td><td>Lewis Hall</td><td>NEW</td><td>£5.2m</td><td>5.54</td><td>15.61</td><td>25.69</td></tr>
-      <tr><td>MID</td><td>Bukayo Saka</td><td>ARS</td><td>£9.5m</td><td>5.31</td><td>15.94</td><td>26.51</td></tr>
-      <tr><td>MID · C</td><td>Pascal Groß</td><td>BHA</td><td>£5.9m</td><td>7.04</td><td>21.05</td><td>33.58</td></tr>
-      <tr><td>MID</td><td>Bruno Fernandes</td><td>MUN</td><td>£11.9m</td><td>5.79</td><td>16.31</td><td>26.26</td></tr>
-      <tr><td>MID</td><td>Bryan Mbeumo</td><td>MUN</td><td>£7.9m</td><td>5.06</td><td>14.25</td><td>22.93</td></tr>
-      <tr><td>FWD</td><td>Charalampos Kostoulas</td><td>BHA</td><td>£5.6m</td><td>4.87</td><td>14.57</td><td>23.24</td></tr>
-      <tr><td>FWD</td><td>Emersonn</td><td>IPS</td><td>£5.5m</td><td>4.61</td><td>12.06</td><td>20.85</td></tr>
-    </tbody></table></div>
-    <p><strong>GW6 XI: 4-4-2.</strong> Tzolakis; De Cuyper, Tarkowski, Gvardiol, Hall; Saka, Groß, Bruno, Mbeumo; Kostoulas, Emersonn. <strong>Captain Groß; vice Tarkowski.</strong> Raw XI xPts 61.43; 68.47 including captaincy.</p>
-    <p><strong>Points-EV across the requested windows:</strong> 68.47 for GW+1, 202.37 for GW+3 and 334.84 for GW+5 before stochastic autosub effects; simulated means are 68.57, 203.18 and 335.52. Captaincy is selected on Points-EV, not ownership.</p>
-    <p><strong>Bench:</strong> Bogle first, Palmer second while flagged, Gonzalo third; Trafford reserve goalkeeper. If Palmer is cleared, he starts and Emersonn moves to the bench.</p>
-    <p><strong>Fitness sensitivity:</strong> rerunning the model with every current-squad doubt treated as fully available still selects the same core-preserving XV. Palmer enters the GW6 XI, while the recommendation to restructure rather than leave the draft unchanged survives at +9.78 / +30.72 / +53.19 expected points over GW+1/+3/+5.</p>
-    <p><strong>Provisional moves:</strong> Kelleher → Trafford; Verbruggen → Tzolakis; Calafiori → Gvardiol; Mykolenko → Tarkowski; Thomas → Bogle; Konsa → De Cuyper; Szoboszlai → Groß; João Pedro → Kostoulas; Wissa → Emersonn. Keep Hall, Saka, Bruno, Mbeumo, Palmer and Gonzalo.</p>
-  </section>
+<section class="card"><h2>Evidence and model</h2>
+<p>Each future player-game uses current-season-only, position-shrunk points per 90, a minutes/starting-state distribution, opponent/home adjustment and explicit availability. The joint Monte Carlo then samples availability, minutes, player scoring variance and shared team-match shocks before applying legal formations, captain fallback and autosubs. Ordinary bench points are excluded unless an autosub occurs.</p>
+<p><strong>Uncertainty:</strong> aleatoric match variance drives the broad intervals; epistemic uncertainty remains high after only five gameweeks; state uncertainty is concentrated in selection/minutes and the 75% Mykolenko/Konsa flags.</p>
+<p><strong>Walk-forward validation:</strong> GW4 MAE 1.42, rank correlation 0.647, bias −0.14 points/player; GW5 MAE 1.32, correlation 0.687, bias −0.22. Rankings are useful; individual scores are not precise.</p></section>
 
-  <section class="card">
-    <h2>Action comparison versus the current Wildcard draft</h2>
-    <div class="scroll"><table><thead><tr><th>Action</th><th>Horizon</th><th>Net E[Δ]</th><th>P(Δ&gt;0)</th><th>80% interval for Δ</th><th>Confidence / downside</th></tr></thead><tbody>
-      <tr><td>Current draft unchanged</td><td>GW+1/+3/+5</td><td>Baseline</td><td>—</td><td>—</td><td>High state risk; Szoboszlai schedule; injury-loaded bench</td></tr>
-      <tr><td>Core-preserving Haaland-out</td><td>GW+1</td><td>+11.26</td><td>71.0%</td><td>−12 to +36</td><td>Moderate-low model confidence; Brighton concentration</td></tr>
-      <tr><td>Core-preserving Haaland-out</td><td>GW+3</td><td>+32.77</td><td>83.9%</td><td>−8 to +76</td><td>Minutes/fitness state dominates</td></tr>
-      <tr><td>Core-preserving Haaland-out</td><td>GW+5</td><td>+55.04</td><td>90.2%</td><td>+1 to +110</td><td>Early-rate regression could materially reduce the edge</td></tr>
-      <tr><td>Pure model Haaland-out optimum</td><td>GW+1</td><td>+13.03</td><td>72.6%</td><td>−12 to +40</td><td>Higher expected value, lower robustness</td></tr>
-      <tr><td>Pure model Haaland-out optimum</td><td>GW+3</td><td>+37.72</td><td>85.8%</td><td>−6 to +83</td><td>Includes aggressive early-season outliers</td></tr>
-      <tr><td>Pure model Haaland-out optimum</td><td>GW+5</td><td>+62.74</td><td>92.3%</td><td>+6 to +120</td><td>Includes currently flagged Isak as a bench option</td></tr>
-    </tbody></table></div>
-    <p>The probabilities are produced by a joint simulation with common random draws across alternatives; they are not subjective confidence scores. Wildcard transfers have no points hit, no FT cost and no post-deadline option value, although waiting for team news retains information value until 11:00 BST Saturday.</p>
-  </section>
+<section class="card"><h2>League-wide legal optimum — control</h2>
+<p><strong>Cost £99.3m · XV:</strong> Raya, Tzolakis; De Cuyper, Tarkowski, Bogle, Gvardiol, Hall; Saka, Schade, Janelt, Groß, Semenyo; Kostoulas, Emersonn, Haaland.</p>
+<p><strong>GW6 XI (4-4-2):</strong> Tzolakis; De Cuyper, Tarkowski, Gvardiol, Hall; Saka, Schade, Janelt, Groß; Kostoulas, Haaland. <strong>C</strong> Groß, <strong>VC</strong> Tarkowski. Bench: Emersonn, Bogle, Semenyo; Raya. <strong>Raw XI 62.5; captain-inclusive 69.6 xPts.</strong></p>
+<p>This unrestricted benchmark is not the recommendation because it violates the deliberate Haaland-out constraint.</p></section>
 
-  <section class="card">
-    <h2>What does excluding Haaland cost?</h2>
-    <div class="scroll"><table><thead><tr><th>Horizon</th><th>Haaland-out mean</th><th>Unrestricted mean</th><th>Expected exclusion cost</th><th>P(exclusion costs points)</th><th>80% interval</th></tr></thead><tbody>
-      <tr><td>GW+1</td><td>70.33</td><td>70.66</td><td>0.33</td><td>48.7%</td><td>−10 to +11</td></tr>
-      <tr><td>GW+3</td><td>208.13</td><td>210.86</td><td>2.74</td><td>55.4%</td><td>−20 to +25</td></tr>
-      <tr><td>GW+5</td><td>343.22</td><td>350.63</td><td>7.41</td><td>61.9%</td><td>−20 to +35</td></tr>
-    </tbody></table></div>
-    <p><strong>Interpretation:</strong> the model expects Haaland-out to trail over five weeks, principally through captaincy opportunity, but the estimate is neither large nor stable enough to overturn the user's explicit strategy. The hypothesis is viable; it should be monitored as a measured opportunity cost rather than quietly abandoned.</p>
-  </section>
+<section class="card"><h2>Our optimal Haaland-out, core-preserving Wildcard</h2>
+<p><strong>Cost £98.5m · preserved core:</strong> Saka, Bruno Fernandes, Mbeumo, Palmer, Gonzalo.</p>
+<p><strong>XV:</strong> Tzolakis, Trafford; De Cuyper, Tarkowski, Gvardiol, Hall, Bogle; Saka, Groß, Bruno Fernandes, Mbeumo, Palmer; Kostoulas, Emersonn, Gonzalo.</p>
+<p><strong>GW6 XI (4-5-1):</strong> Tzolakis; De Cuyper, Tarkowski, Gvardiol, Hall; Saka, Groß, Bruno, Mbeumo, Palmer; Kostoulas. <strong>C</strong> Groß, <strong>VC</strong> Tarkowski. Bench: Emersonn, Bogle, Gonzalo; Trafford. <strong>Raw XI 61.8; captain-inclusive 68.8 xPts.</strong></p></section>
 
-  <section class="card">
-    <h2>Pure Haaland-out model optimum</h2>
-    <p><strong>£97.3m · GW6 4-5-1 · Groß captain · Tarkowski vice.</strong> Tzolakis; De Cuyper, Tarkowski, Gvardiol, Hall; Saka, Schade, Groß, Bruno, Barnes; Kostoulas. Bench: Emersonn, Bogle, Isak; Raya.</p>
-    <p>This raw optimum is retained as the numerical ceiling, not the preferred lock-in. It replaces Mbeumo and Palmer with early-season value assets and holds flagged Isak for later fixtures. That is too sensitive to five-week rates and availability assumptions to recommend without final club updates.</p>
-  </section>
+<section class="card"><h2>Best attainable HOLD of the pictured XV</h2>
+<p><strong>GW6 XI (4-4-2):</strong> Verbruggen; Calafiori, Hall, Mykolenko, Thomas; Bruno, Saka, Mbeumo, Palmer; João Pedro, Wissa. <strong>C</strong> Bruno, <strong>VC</strong> Hall. Bench: Szoboszlai, Gonzalo, Konsa; Kelleher. <strong>Raw XI 51.7; captain-inclusive 57.5 xPts.</strong> Simulated mean with autosubs 58.4; 80% team-score interval 39–79.</p>
+<p>The pictured setup is about 54.5 xPts. Bruno’s Points-EV is 5.79 versus Wissa’s 3.84; Verbruggen adds ~0.34 over Kelleher, and Thomas is a better eleventh starter than Szoboszlai.</p></section>
 
-  <section class="card">
-    <h2>League-wide legal control</h2>
-    <p>The unrestricted £100m optimiser uses current market prices and enforces 2/5/5/3, maximum three per club and legal weekly formations. Cost: <strong>£99.4m</strong>.</p>
-    <p><strong>GW6 XI (4-4-2):</strong> Tzolakis; De Cuyper, Tarkowski, Gvardiol, Hall; Saka, Schade, Janelt, Groß; Kostoulas, Haaland. Captain Groß; vice Tarkowski. Raw XI xPts 62.54; 69.58 including captaincy.</p>
-    <p><strong>Bench:</strong> Emersonn, Bogle, Semenyo; Raya. The full XV is Raya, Tzolakis; De Cuyper, Tarkowski, Bogle, Gvardiol, Hall; Saka, Schade, Janelt, Groß, Semenyo; Kostoulas, Emersonn, Haaland.</p>
-    <p><strong>GW+1/+3/+5 XI-and-captain Points-EV:</strong> 69.58 / 210.89 / 350.12. These are deterministic expected-point totals for the same H5-optimised XV; they are not guaranteed scores.</p>
-  </section>
+<section class="card"><h2>Action comparison versus best HOLD</h2><table><thead><tr><th>Action</th><th>Horizon</th><th>Net E[Δ]</th><th>P(Δ&gt;0)</th><th>80% delta interval</th><th>Confidence / downside</th></tr></thead><tbody>
+<tr><td>HOLD XV; optimise XI/C</td><td>GW6</td><td>0.0</td><td>—</td><td>Team 39…79</td><td>Evidence high; model medium-low. Flagged defenders.</td></tr>
+<tr><td>Core-preserving restructure</td><td>GW6</td><td>+10.4</td><td>69.7%</td><td>−12…+34</td><td>Late wholesale change; Brighton/Everton concentration.</td></tr>
+<tr><td>Core-preserving restructure</td><td>GW6–8</td><td>+31.7</td><td>83.1%</td><td>−9…+74</td><td>State uncertainty compounds.</td></tr>
+<tr><td>Core-preserving restructure</td><td>GW6–10</td><td>+55.1</td><td>90.5%</td><td>+2…+110</td><td>Strongest signal; highest epistemic risk.</td></tr>
+<tr><td>Unconstrained Haaland-out</td><td>1 / 3 / 5 GW</td><td>+11.9 / +36.3 / +64.3</td><td>70.8 / 85.1 / 92.1%</td><td>−13…39 / −8…82 / 7…124</td><td>Control; discards more chosen core.</td></tr>
+</tbody></table>
+<p>No hits apply on an active Wildcard. Verified selling prices—not public market prices—were used. The preferred squad retains £0.8m as future option value.</p></section>
 
-  <section class="card">
-    <h2>Method actually used</h2>
-    <p>Only 2026/27 observations were used. Each player's GW1–5 points-per-90 rate was shrunk toward a weak current-season positional prior. Expected minutes blend the last three events with the season mean. Fixture difficulty and explicit availability state then generate player-event means:</p>
-    <p><strong>xPts<sub>i,g</sub> = shrunk P90<sub>i</sub> × expected minutes<sub>i,g</sub>/90 × availability<sub>i,g</sub> × fixture multiplier<sub>i,g</sub>.</strong></p>
-    <p>The squad optimisation jointly selects a legal XV, each week's legal XI and Points-EV captain; unused bench value receives only an 8% option/autosub weight. The 10,000-draw joint simulation then samples availability separately from an over-dispersed Gamma–Poisson scoring process, applies shared club shocks, ordered legal autosubs and vice-captain fallback. Ordinary bench points are never counted unless autosubbed.</p>
-    <h3>Walk-forward validation</h3>
-    <p>GW4: MAE 1.42, Spearman ρ 0.647, bias −0.14. GW5: MAE 1.32, ρ 0.687, bias −0.22. Ranking signal is encouraging, but two validation weeks cannot support high model confidence.</p>
-  </section>
+<section class="card"><h2>Decision and flip conditions</h2>
+<p><strong>Recommendation: make the core-preserving restructure.</strong> Its five-week edge survives the manager’s core and Haaland-out constraints. The Palmer/João Pedro clearance removes a material Chelsea-availability objection.</p>
+<p><strong>If conviction in the selected XV outweighs the model:</strong> HOLD is defensible, but change the pictured lineup: Kelleher → Verbruggen, Szoboszlai → Thomas, Wissa captain → Bruno captain, Hall vice.</p>
+<p><strong>Flip to HOLD</strong> if trusted late news doubts Groß, Tarkowski or multiple Brighton assets, or live prices make the £98.5m build illegal. Remove Mykolenko from the HOLD XI if ruled out; Konsa is already a poor first reserve while flagged.</p></section>
 
-  <section class="card">
-    <h2>Chips, confidence and uncertainties</h2>
-    <ul>
-      <li><strong>Wildcard: PLAY / ACTIVE.</strong> This is the verified live chip state.</li>
-      <li><strong>Free Hit, Triple Captain, Bench Boost: UNAVAILABLE in GW6</strong> because only one chip can be used in a Gameweek. Their inventory beyond the known previously used chips is not inferred here.</li>
-      <li><strong>Evidence quality: high.</strong> Official APIs, official reporting and the supplied screenshot are mutually consistent.</li>
-      <li><strong>Model stability: moderate-low.</strong> Five completed Gameweeks make Groß, Tarkowski and other early leaders especially vulnerable to regression.</li>
-      <li><strong>Aleatoric uncertainty: high.</strong> Even the preferred core-preserving option has a GW6 80% range of 46–93; that is outcome spread, not a statement that the evidence is weak.</li>
-      <li><strong>Dominant uncertainty: state.</strong> Palmer, João Pedro, Mykolenko and Konsa need club-level fitness resolution.</li>
-      <li><strong>Budget uncertainty:</strong> exact sale prices remain blocked; the £99.3m acquisition-value assumption is conservative but should be checked in the transfer screen before locking the Wildcard.</li>
-    </ul>
-  </section>
+<section class="card"><h2>Chip decisions</h2><table><thead><tr><th>Chip</th><th>Decision</th><th>Reason</th></tr></thead><tbody>
+<tr><td>Wildcard</td><td><strong>PLAY — ACTIVE</strong></td><td>Already activated; complete the structure.</td></tr>
+<tr><td>Bench Boost</td><td><strong>UNAVAILABLE</strong></td><td>Verified unavailable.</td></tr>
+<tr><td>Triple Captain</td><td><strong>UNAVAILABLE</strong></td><td>Used GW3.</td></tr>
+<tr><td>Free Hit</td><td><strong>UNAVAILABLE</strong></td><td>Used GW4.</td></tr>
+</tbody></table></section>
 
-  <section class="card rule">
-    <h2>Pre-deadline plan</h2>
-    <ol>
-      <li>Keep Haaland excluded and use the core-preserving squad as the working Wildcard draft.</li>
-      <li>Prioritise Szoboszlai → Groß; preserve Saka, Bruno and Mbeumo. Hold Palmer provisionally pending Chelsea news.</li>
-      <li>Verify exact sale prices and final injury/training updates on Friday and again at 09:30 BST Saturday.</li>
-      <li>Flip from the working draft only if Palmer/João Pedro availability or confirmed selling value materially changes the legal optimum. Do not activate another chip.</li>
-    </ol>
-  </section>
+<section class="card"><h2>Confidence</h2>
+<p><strong>Evidence quality: high.</strong> Official API, 562 histories, current screenshot and primary club news agree. <strong>Model stability: medium-low.</strong> Five gameweeks and promoted/new-player samples remain thin. <strong>Outcome probability:</strong> the preferred GW6 move still loses to HOLD in ~30% of simulations; that reflects match randomness, not contradictory evidence.</p></section>
 
-  <section class="card">
-    <h2>Sources</h2>
-    <ol>
-      <li><a href="https://fantasy.premierleague.com/api/bootstrap-static/">Official FPL bootstrap-static API</a>, retrieved 9 October 2026 at 09:00 BST.</li>
-      <li><a href="https://fantasy.premierleague.com/api/fixtures/">Official FPL fixtures API</a>, retrieved 9 October 2026 at 09:00 BST.</li>
-      <li><a href="https://fantasy.premierleague.com/api/element-summary/426/">Official element-summary example: Bruno Fernandes</a>; ID-resolved endpoints were refreshed for all 562 selectable players.</li>
-      <li><a href="https://www.premierleague.com/en/news/4729738">Premier League: “What to do with Fernandes and Szoboszlai in FPL?”, 6 October 2026</a>.</li>
-      <li><a href="https://www.premierleague.com/en/news/4726681/the-scouts-gameweek-6-wildcard-squad">Premier League: The Scout's GW6 Wildcard squad, updated 6 October 2026</a>.</li>
-      <li><a href="https://www.premierleague.com/en/news/4727332/why-fpl-managers-need-to-monitor-injury-chaos">Premier League: GW6 injury analysis, updated 6 October 2026</a>.</li>
-      <li><a href="https://www.premierleague.com/en/news/4730017">Premier League: The Scout's GW6 transfer radar, 7 October 2026</a>.</li>
-      <li><a href="https://www.premierleague.com/en/latest-player-injuries">Premier League: official injury register, updated 16:55 BST on 8 October 2026</a>.</li>
-      <li><a href="https://www.premierleague.com/en/news/2884829/fpl-player-price-changes-risers-fallers-and-top-transfers-for-gameweek-6">Premier League: official GW6 price changes, updated 8 October 2026</a>.</li>
-      <li><a href="https://www.premierleague.com/en/news/4679879/whats-happening-with-fpl-chips-in-202627">Premier League: 2026/27 chip rules</a>.</li>
-    </ol>
-  </section>
-  <footer class="muted"><p>Decision support only. No transfers, lineup changes, captaincy changes or chips were executed.</p></footer>
+<section class="card"><h2>Pre-deadline plan</h2><ol>
+<li>By 10:45, recheck only fresh official team news and live prices.</li>
+<li>If clear, complete the core-preserving XV; set Groß captain, Tarkowski vice.</li>
+<li>If retaining the current XV, use the optimised HOLD XI and Bruno captain.</li>
+<li>Confirm all 15, captain, vice and bench order before 11:00; no action after deadline.</li>
+</ol></section>
+
+<section class="card"><h2>Sources</h2><ul>
+<li><a href="https://fantasy.premierleague.com/api/bootstrap-static/">Official FPL bootstrap-static</a></li>
+<li><a href="https://fantasy.premierleague.com/api/fixtures/">Official FPL fixtures</a></li>
+<li><a href="https://fantasy.premierleague.com/api/element-summary/154/">Palmer summary</a> · <a href="https://fantasy.premierleague.com/api/element-summary/165/">João Pedro summary</a></li>
+<li><a href="https://www.chelseafc.com/en/news/article/xabi-alonso-confirms-chelsea-team-news-for-bournemouth">Chelsea team news</a>, checked 10 Oct 2026</li>
+<li><a href="https://www.premierleague.com/en/news/4730320">Premier League MW6 predicted line-ups</a>, 9 Oct 2026</li>
+</ul></section>
 </main></body></html>
