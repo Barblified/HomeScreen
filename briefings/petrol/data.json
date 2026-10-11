@@ -1,41 +1,41 @@
 {
   "schemaVersion": 1,
-  "publishedAtUtc": "2026-10-10T02:04:22Z",
-  "publishedAtDisplay": "2026-10-10 03:04 BST",
+  "publishedAtUtc": "2026-10-11T01:57:04Z",
+  "publishedAtDisplay": "2026-10-11 02:57 BST",
   "runStatus": {
     "status": "SUCCESS",
-    "lastRun": "2026-10-10 03:04 UK",
-    "petrolCheckpoint": "2026-10-09",
+    "lastRun": "2026-10-11 02:57 UK",
+    "petrolCheckpoint": "2026-10-10",
     "backlogStart": null,
     "backlogThrough": null,
-    "note": "Workbook refresh verified through 2026-10-09; local petrol prices were unchanged."
+    "note": "Workbook refresh verified through 2026-10-10; local petrol prices were unchanged."
   },
   "freshness": {
-    "petrol": "2026-10-09",
-    "oil": "2026-10-09",
-    "weather": "2026-10-09",
+    "petrol": "2026-10-10",
+    "oil": "2026-10-10",
+    "weather": "2026-10-10",
     "ukWeekly": "2026-10-05"
   },
   "latest": {
     "petrol": {
-      "date": "2026-10-09",
+      "date": "2026-10-10",
       "min": 165.9,
-      "average": 170.1,
+      "average": 170,
       "max": 171.9,
       "stations": 10
     },
     "oil": {
-      "date": "2026-10-09",
+      "date": "2026-10-10",
       "brent": 104.72,
       "wti": 91.85,
-      "status": "Settlement"
+      "status": "Market closed — latest prior settlement"
     },
     "weather": {
-      "date": "2026-10-09",
-      "hucknall": 13.6,
-      "rotherham": 13.8,
+      "date": "2026-10-10",
+      "hucknall": 11.4,
+      "rotherham": 11.7,
       "reference": 15,
-      "status": "Provisional — Nottingham high/low midpoint; Sheffield observed daily mean"
+      "status": "Finalized — reported historical daily mean regional proxies"
     },
     "ukWeekly": {
       "date": "2026-10-05",
@@ -680,6 +680,13 @@
         "average": 170.1,
         "max": 171.9,
         "stations": 10
+      },
+      {
+        "date": "2026-10-10",
+        "min": 165.9,
+        "average": 170,
+        "max": 171.9,
+        "stations": 10
       }
     ],
     "oil": [
@@ -1216,6 +1223,12 @@
         "brent": 104.72,
         "wti": 91.85,
         "status": "Settlement"
+      },
+      {
+        "date": "2026-10-10",
+        "brent": 104.72,
+        "wti": 91.85,
+        "status": "Market closed — latest prior settlement"
       }
     ],
     "weather": [
@@ -1830,10 +1843,17 @@
       },
       {
         "date": "2026-10-09",
-        "hucknall": 13.6,
-        "rotherham": 13.8,
+        "hucknall": 14.2,
+        "rotherham": 13.6,
         "reference": 15,
-        "status": "Provisional — Nottingham high/low midpoint; Sheffield observed daily mean"
+        "status": "Finalized — reported historical daily mean proxies"
+      },
+      {
+        "date": "2026-10-10",
+        "hucknall": 11.4,
+        "rotherham": 11.7,
+        "reference": 15,
+        "status": "Finalized — reported historical daily mean regional proxies"
       }
     ],
     "ukWeekly": [
