@@ -1,8 +1,31 @@
 {
   "schemaVersion": 1,
-  "publishedAtUtc": "2026-10-10T05:31:16.700Z",
-  "publishedAtDisplay": "10 October 2026 at 06:31 Europe/London",
+  "publishedAtUtc": "2026-10-11T05:29:08.043Z",
+  "publishedAtDisplay": "11 October 2026 at 06:29 Europe/London",
   "entries": [
+    {
+      "date": "2026-10-11",
+      "type": "Theology",
+      "title": "Ecclesiastes 11: sow because you do not know",
+      "creator": "The Book of Ecclesiastes",
+      "sourceLabel": "Ecclesiastes 11:1–6 · English Standard Version on Bible.com",
+      "sourceUrl": "https://www.bible.com/bible/59/ECC.11.1-6.ESV",
+      "centralIdea": "Ecclesiastes 11:1–6 repeats one hard fact: you do not know. You do not know what disaster may occur, how life forms in the womb, or which sowing will prosper. Yet the Teacher’s answer is not retreat. Bread is sent on waters, portions are divided among seven or eight, and seed is sown morning and evening. The watcher who waits for perfect wind never sows. Interpretations of the opening images vary—generosity, trade and agriculture are all defended—so the passage is not a simple investment manual. Its coherent movement is from uncertainty to distributed, persistent action. Human beings cannot master God’s work or secure the future; they can refuse to let incomplete knowledge become paralysis. Wisdom here is neither certainty nor recklessness. It is acting within creaturely limits: spread exposure, keep working, accept that outcomes remain contingent, and leave room for more than one effort to prosper.",
+      "whyItMayInterestYou": "This is a rare meeting of theology and decision theory. The text neither promises control nor glorifies ignorance; it treats diversification and continued action as sensible responses to a world whose outcomes remain partly hidden.",
+      "commonplaceEntry": "“You do not know” is not Ecclesiastes’ argument for doing nothing. It is the reason to sow again, to avoid resting everything on one outcome and to stop waiting for conditions without risk. Perfect foresight is unavailable; responsible action is still possible. The passage does not guarantee that diligence will produce the preferred result, nor does it baptise every gamble as faith. It locates wisdom between control and paralysis: act with what can be known, distribute what can be lost, continue the work, and receive the outcome without pretending it was ever fully yours to command. Creaturely limitation is not failure. It is the truthful boundary within which faithfulness operates.",
+      "questionToCarry": "Where am I treating the absence of certainty as permission not to sow at all?",
+      "evidenceNote": "Established by the text: Ecclesiastes 11:1–6 repeatedly states that the reader does not know future disaster, God’s work or which sowing will succeed; it nevertheless commands giving portions, sowing and not withholding the hand. Verse 4 explicitly warns that watching wind and clouds can prevent action. Interpretive uncertainty: “cast your bread upon the waters” has been read as generosity, maritime trade or agricultural imagery, and the precise relationship among verses 1–2 remains debated. Christopher Whitwell argues that variation in nature links the passage and that repeated sowing reduces risk. Theological interpretation: describing this as faithful action within creaturely limits draws on verse 5 and the book’s wider concern with limited control; the text does not promise that diversification or diligence guarantees success.",
+      "additionalSources": [
+        {
+          "label": "The variation of nature in Ecclesiastes 11 · Journal for the Study of the Old Testament",
+          "url": "https://journals.sagepub.com/doi/10.1177/0309089209346354"
+        },
+        {
+          "label": "Book of Ecclesiastes guide · BibleProject",
+          "url": "https://bibleproject.com/guides/book-of-ecclesiastes/"
+        }
+      ]
+    },
     {
       "date": "2026-10-10",
       "type": "Data",
