@@ -1,39 +1,39 @@
 {
   "schemaVersion": 1,
-  "publishedAtUtc": "2026-10-11T01:57:04Z",
-  "publishedAtDisplay": "2026-10-11 02:57 BST",
+  "publishedAtUtc": "2026-10-12T02:01:26Z",
+  "publishedAtDisplay": "2026-10-12 03:01 BST",
   "runStatus": {
     "status": "SUCCESS",
-    "lastRun": "2026-10-11 02:57 UK",
-    "petrolCheckpoint": "2026-10-10",
+    "lastRun": "2026-10-12 03:01 UK",
+    "petrolCheckpoint": "2026-10-11",
     "backlogStart": null,
     "backlogThrough": null,
-    "note": "Workbook refresh verified through 2026-10-10; local petrol prices were unchanged."
+    "note": "Workbook refresh verified through 2026-10-11; one local petrol price change was recorded."
   },
   "freshness": {
-    "petrol": "2026-10-10",
-    "oil": "2026-10-10",
-    "weather": "2026-10-10",
+    "petrol": "2026-10-11",
+    "oil": "2026-10-11",
+    "weather": "2026-10-11",
     "ukWeekly": "2026-10-05"
   },
   "latest": {
     "petrol": {
-      "date": "2026-10-10",
+      "date": "2026-10-11",
       "min": 165.9,
-      "average": 170,
+      "average": 169.7,
       "max": 171.9,
       "stations": 10
     },
     "oil": {
-      "date": "2026-10-10",
+      "date": "2026-10-11",
       "brent": 104.72,
       "wti": 91.85,
       "status": "Market closed — latest prior settlement"
     },
     "weather": {
-      "date": "2026-10-10",
-      "hucknall": 11.4,
-      "rotherham": 11.7,
+      "date": "2026-10-11",
+      "hucknall": 10.2,
+      "rotherham": 11.2,
       "reference": 15,
       "status": "Finalized — reported historical daily mean regional proxies"
     },
@@ -687,6 +687,13 @@
         "average": 170,
         "max": 171.9,
         "stations": 10
+      },
+      {
+        "date": "2026-10-11",
+        "min": 165.9,
+        "average": 169.7,
+        "max": 171.9,
+        "stations": 10
       }
     ],
     "oil": [
@@ -1226,6 +1233,12 @@
       },
       {
         "date": "2026-10-10",
+        "brent": 104.72,
+        "wti": 91.85,
+        "status": "Market closed — latest prior settlement"
+      },
+      {
+        "date": "2026-10-11",
         "brent": 104.72,
         "wti": 91.85,
         "status": "Market closed — latest prior settlement"
@@ -1852,6 +1865,13 @@
         "date": "2026-10-10",
         "hucknall": 11.4,
         "rotherham": 11.7,
+        "reference": 15,
+        "status": "Finalized — reported historical daily mean regional proxies"
+      },
+      {
+        "date": "2026-10-11",
+        "hucknall": 10.2,
+        "rotherham": 11.2,
         "reference": 15,
         "status": "Finalized — reported historical daily mean regional proxies"
       }
