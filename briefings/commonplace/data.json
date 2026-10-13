@@ -1,8 +1,31 @@
 {
   "schemaVersion": 1,
-  "publishedAtUtc": "2026-10-12T05:27:22.691Z",
-  "publishedAtDisplay": "12 October 2026 at 06:27 Europe/London",
+  "publishedAtUtc": "2026-10-13T05:31:54.359Z",
+  "publishedAtDisplay": "13 October 2026 at 06:31 Europe/London",
   "entries": [
+    {
+      "date": "2026-10-13",
+      "type": "Theory",
+      "title": "The dollar auction: when quitting costs more than continuing",
+      "creator": "Martin Shubik",
+      "sourceLabel": "The Dollar Auction Game · Journal of Conflict Resolution (1971)",
+      "sourceUrl": "https://journals.sagepub.com/doi/10.1177/002200277101500111",
+      "centralIdea": "In Martin Shubik’s dollar auction, a dollar bill goes to the highest bidder, but the highest and second-highest bidders must both pay their final bids. Entry looks cheap. Once two players remain, each faces an ugly comparison: quit and crystallise a loss, or bid slightly more for a chance to win and reduce it. When bids approach or exceed the prize, continuing can still look locally preferable even though the joint outcome keeps worsening. The game compresses escalation of commitment, competition and irrecoverable cost into a few rules. It should not be misread as proof that fully rational players must spiral forever: later formal analysis shows that, with specified budgets and assumptions, strategic players can avoid the contest. Its lasting force is structural. A sequence of individually defensible next steps can carry participants far beyond a boundary they would have rejected before the first bid.",
+      "whyItMayInterestYou": "This tiny game illuminates project overruns, bidding wars, arms races and arguments pursued chiefly because conceding now feels worse than paying once more. It separates the rationality of the next move from the rationality of the path.",
+      "commonplaceEntry": "Escalation survives by changing the comparison. Before entering, the question is whether the prize justifies the contest. After losses accumulate, the question becomes whether one more payment is cheaper than admitting defeat. That narrower calculation can be locally coherent while the total position becomes absurd. Sunk cost matters strategically when an opponent knows that withdrawal is painful, but it should not be mistaken for value. A useful reset is to erase the history temporarily: if I owned none of the prior bids, would I enter this exact game now, at this price, under these rules? If not, continuing needs a reason stronger than the desire to make the past come out differently.",
+      "questionToCarry": "If I had made none of the previous bids, would I willingly enter this contest at its current position?",
+      "evidenceNote": "Established: Shubik’s 1971 game awards the dollar to the highest bidder while requiring both the highest and second-highest bidders to pay; he presented it as a simple experimental model of escalation. Qualification: the auction is not an inescapable theorem of irrationality. Barry O’Neill’s 1986 finite-budget analysis derived strategies under which rational players avoid bidding against one another and argued that the game exploits some irrationality rather than forming an innate trap. Behavioural evidence remains strong: three 2018 experiments involving 1,229 participants found that most people, including experienced managers, escalated without intervention. Direct experience with structurally similar escalation and observing others’ consequences reduced later escalation; a pre-set exit-limit intervention did not. Applying the game to projects, conflict or relationships is analogical because their payoffs, information and stopping rules are less clean.",
+      "additionalSources": [
+        {
+          "label": "Competitive escalation and interventions · Journal of Behavioral Decision Making (2018)",
+          "url": "https://onlinelibrary.wiley.com/doi/10.1002/bdm.2084"
+        },
+        {
+          "label": "International escalation and the dollar auction · Journal of Conflict Resolution (1986)",
+          "url": "https://journals.sagepub.com/doi/10.1177/0022002786030001003"
+        }
+      ]
+    },
     {
       "date": "2026-10-12",
       "type": "Theory",
