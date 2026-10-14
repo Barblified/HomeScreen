@@ -1,45 +1,45 @@
 {
   "schemaVersion": 1,
-  "publishedAtUtc": "2026-10-13T02:00:32Z",
-  "publishedAtDisplay": "2026-10-13 03:00 BST",
+  "publishedAtUtc": "2026-10-14T02:02:00Z",
+  "publishedAtDisplay": "2026-10-14 03:02 BST",
   "runStatus": {
     "status": "SUCCESS",
-    "lastRun": "2026-10-13 03:00 UK",
-    "petrolCheckpoint": "2026-10-12",
+    "lastRun": "2026-10-14 03:02 UK",
+    "petrolCheckpoint": "2026-10-13",
     "backlogStart": null,
     "backlogThrough": null,
-    "note": "Workbook refresh verified through 2026-10-12; one local petrol price change was recorded."
+    "note": "Workbook refresh verified through 2026-10-13; five local petrol price changes were recorded."
   },
   "freshness": {
-    "petrol": "2026-10-12",
-    "oil": "2026-10-12",
-    "weather": "2026-10-12",
-    "ukWeekly": "2026-10-05"
+    "petrol": "2026-10-13",
+    "oil": "2026-10-13",
+    "weather": "2026-10-13",
+    "ukWeekly": "2026-10-12"
   },
   "latest": {
     "petrol": {
-      "date": "2026-10-12",
-      "min": 165.9,
-      "average": 169.6,
+      "date": "2026-10-13",
+      "min": 166.9,
+      "average": 169.40000000000003,
       "max": 170.9,
       "stations": 10
     },
     "oil": {
-      "date": "2026-10-12",
-      "brent": 106.65,
-      "wti": 93.74,
+      "date": "2026-10-13",
+      "brent": 105.69,
+      "wti": 94.14,
       "status": "Settlement"
     },
     "weather": {
-      "date": "2026-10-12",
-      "hucknall": 11.5,
-      "rotherham": 12.3,
+      "date": "2026-10-13",
+      "hucknall": 15.1,
+      "rotherham": 15.7,
       "reference": 15,
-      "status": "Mixed — Hucknall provisional high/low midpoint; Rotherham finalized daily mean"
+      "status": "Finalized — reported historical daily mean regional proxies"
     },
     "ukWeekly": {
-      "date": "2026-10-05",
-      "unleaded": 174.88
+      "date": "2026-10-12",
+      "unleaded": 175.28
     }
   },
   "series": {
@@ -159,35 +159,35 @@
       {
         "date": "2026-07-27",
         "min": 149.9,
-        "average": 153.2,
+        "average": 153.20000000000002,
         "max": 154.9,
         "stations": 10
       },
       {
         "date": "2026-07-28",
         "min": 149.9,
-        "average": 153.7,
+        "average": 153.70000000000002,
         "max": 157.9,
         "stations": 10
       },
       {
         "date": "2026-07-29",
         "min": 149.9,
-        "average": 154,
+        "average": 154.00000000000003,
         "max": 157.9,
         "stations": 10
       },
       {
         "date": "2026-07-30",
         "min": 150.9,
-        "average": 154.7,
+        "average": 154.70000000000002,
         "max": 159.9,
         "stations": 10
       },
       {
         "date": "2026-07-31",
         "min": 150.9,
-        "average": 155.2,
+        "average": 155.20000000000002,
         "max": 159.9,
         "stations": 10
       },
@@ -208,84 +208,84 @@
       {
         "date": "2026-08-03",
         "min": 152.9,
-        "average": 156.9,
+        "average": 156.90000000000003,
         "max": 159.9,
         "stations": 10
       },
       {
         "date": "2026-08-04",
         "min": 152.9,
-        "average": 157.6,
+        "average": 157.60000000000002,
         "max": 161.9,
         "stations": 10
       },
       {
         "date": "2026-08-05",
         "min": 154.9,
-        "average": 158.1,
+        "average": 158.10000000000002,
         "max": 161.9,
         "stations": 10
       },
       {
         "date": "2026-08-06",
         "min": 154.9,
-        "average": 158.1,
+        "average": 158.10000000000002,
         "max": 161.9,
         "stations": 10
       },
       {
         "date": "2026-08-07",
         "min": 154.9,
-        "average": 158.2,
+        "average": 158.20000000000002,
         "max": 161.9,
         "stations": 10
       },
       {
         "date": "2026-08-08",
         "min": 154.9,
-        "average": 158.5,
+        "average": 158.50000000000003,
         "max": 161.9,
         "stations": 10
       },
       {
         "date": "2026-08-09",
         "min": 154.9,
-        "average": 158.5,
+        "average": 158.50000000000003,
         "max": 161.9,
         "stations": 10
       },
       {
         "date": "2026-08-10",
         "min": 154.9,
-        "average": 158.5,
+        "average": 158.50000000000003,
         "max": 161.9,
         "stations": 10
       },
       {
         "date": "2026-08-11",
         "min": 149.9,
-        "average": 157.6,
+        "average": 157.60000000000002,
         "max": 161.9,
         "stations": 10
       },
       {
         "date": "2026-08-12",
         "min": 149.9,
-        "average": 157.6,
+        "average": 157.60000000000002,
         "max": 161.9,
         "stations": 10
       },
       {
         "date": "2026-08-13",
         "min": 149.9,
-        "average": 157.5,
+        "average": 157.50000000000003,
         "max": 161.9,
         "stations": 10
       },
       {
         "date": "2026-08-14",
         "min": 149.9,
-        "average": 156.9,
+        "average": 156.90000000000003,
         "max": 159.9,
         "stations": 10
       },
@@ -306,7 +306,7 @@
       {
         "date": "2026-08-17",
         "min": 154.9,
-        "average": 157.4,
+        "average": 157.40000000000003,
         "max": 159.9,
         "stations": 10
       },
@@ -327,91 +327,91 @@
       {
         "date": "2026-08-20",
         "min": 154.9,
-        "average": 157.1,
+        "average": 157.10000000000002,
         "max": 159.9,
         "stations": 10
       },
       {
         "date": "2026-08-21",
         "min": 154.9,
-        "average": 157.1,
+        "average": 157.10000000000002,
         "max": 159.9,
         "stations": 10
       },
       {
         "date": "2026-08-22",
         "min": 153.9,
-        "average": 157,
+        "average": 157.00000000000003,
         "max": 159.9,
         "stations": 10
       },
       {
         "date": "2026-08-23",
         "min": 153.9,
-        "average": 157,
+        "average": 157.00000000000003,
         "max": 159.9,
         "stations": 10
       },
       {
         "date": "2026-08-24",
         "min": 153.9,
-        "average": 157.1,
+        "average": 157.10000000000002,
         "max": 159.9,
         "stations": 10
       },
       {
         "date": "2026-08-25",
         "min": 153.9,
-        "average": 157.2,
+        "average": 157.20000000000002,
         "max": 159.9,
         "stations": 10
       },
       {
         "date": "2026-08-26",
         "min": 153.9,
-        "average": 157.1,
+        "average": 157.10000000000002,
         "max": 159.9,
         "stations": 10
       },
       {
         "date": "2026-08-27",
         "min": 153.9,
-        "average": 157.1,
+        "average": 157.10000000000002,
         "max": 159.9,
         "stations": 10
       },
       {
         "date": "2026-08-28",
         "min": 153.9,
-        "average": 157.1,
+        "average": 157.10000000000002,
         "max": 159.9,
         "stations": 10
       },
       {
         "date": "2026-08-29",
         "min": 153.9,
-        "average": 157.1,
+        "average": 157.10000000000002,
         "max": 159.9,
         "stations": 10
       },
       {
         "date": "2026-08-30",
         "min": 153.9,
-        "average": 157.1,
+        "average": 157.10000000000002,
         "max": 159.9,
         "stations": 10
       },
       {
         "date": "2026-08-31",
         "min": 153.9,
-        "average": 157.1,
+        "average": 157.10000000000002,
         "max": 159.9,
         "stations": 10
       },
       {
         "date": "2026-09-01",
         "min": 153.9,
-        "average": 157.1,
+        "average": 157.10000000000002,
         "max": 159.9,
         "stations": 10
       },
@@ -439,7 +439,7 @@
       {
         "date": "2026-09-05",
         "min": 155.7,
-        "average": 156.84,
+        "average": 156.84000000000003,
         "max": 157.9,
         "stations": 10
       },
@@ -453,14 +453,14 @@
       {
         "date": "2026-09-07",
         "min": 155.9,
-        "average": 158.38,
+        "average": 158.38000000000002,
         "max": 159.9,
         "stations": 10
       },
       {
         "date": "2026-09-08",
         "min": 155.9,
-        "average": 158.48,
+        "average": 158.48000000000002,
         "max": 159.9,
         "stations": 10
       },
@@ -474,21 +474,21 @@
       {
         "date": "2026-09-10",
         "min": 154.9,
-        "average": 159,
+        "average": 159.00000000000003,
         "max": 159.9,
         "stations": 10
       },
       {
         "date": "2026-09-11",
         "min": 154.9,
-        "average": 160,
+        "average": 160.00000000000003,
         "max": 161.9,
         "stations": 10
       },
       {
         "date": "2026-09-12",
         "min": 154.9,
-        "average": 161,
+        "average": 161.00000000000003,
         "max": 162.9,
         "stations": 10
       },
@@ -509,7 +509,7 @@
       {
         "date": "2026-09-15",
         "min": 154.9,
-        "average": 162.48,
+        "average": 162.48000000000002,
         "max": 165.7,
         "stations": 10
       },
@@ -523,21 +523,21 @@
       {
         "date": "2026-09-17",
         "min": 157.9,
-        "average": 163.4,
+        "average": 163.40000000000003,
         "max": 166.9,
         "stations": 10
       },
       {
         "date": "2026-09-18",
         "min": 155.9,
-        "average": 163,
+        "average": 163.00000000000003,
         "max": 166.9,
         "stations": 10
       },
       {
         "date": "2026-09-19",
         "min": 155.9,
-        "average": 162.9,
+        "average": 162.90000000000003,
         "max": 166.9,
         "stations": 10
       },
@@ -551,21 +551,21 @@
       {
         "date": "2026-09-21",
         "min": 155.9,
-        "average": 164,
+        "average": 164.00000000000003,
         "max": 167.9,
         "stations": 10
       },
       {
         "date": "2026-09-22",
         "min": 154.9,
-        "average": 163.7,
+        "average": 163.70000000000002,
         "max": 167.9,
         "stations": 10
       },
       {
         "date": "2026-09-23",
         "min": 157.9,
-        "average": 166.28,
+        "average": 166.28000000000003,
         "max": 167.9,
         "stations": 10
       },
@@ -579,7 +579,7 @@
       {
         "date": "2026-09-25",
         "min": 163.9,
-        "average": 168.1,
+        "average": 168.10000000000002,
         "max": 169.9,
         "stations": 10
       },
@@ -593,42 +593,42 @@
       {
         "date": "2026-09-27",
         "min": 164.9,
-        "average": 169,
+        "average": 169.00000000000003,
         "max": 170.9,
         "stations": 10
       },
       {
         "date": "2026-09-28",
         "min": 164.9,
-        "average": 169.2,
+        "average": 169.20000000000002,
         "max": 171.9,
         "stations": 10
       },
       {
         "date": "2026-09-29",
         "min": 164.9,
-        "average": 169.7,
+        "average": 169.70000000000002,
         "max": 171.9,
         "stations": 10
       },
       {
         "date": "2026-09-30",
         "min": 166.9,
-        "average": 170.1,
+        "average": 170.10000000000002,
         "max": 171.9,
         "stations": 10
       },
       {
         "date": "2026-10-01",
         "min": 166.9,
-        "average": 170.2,
+        "average": 170.20000000000002,
         "max": 171.9,
         "stations": 10
       },
       {
         "date": "2026-10-02",
         "min": 166.9,
-        "average": 170.2,
+        "average": 170.20000000000002,
         "max": 171.9,
         "stations": 10
       },
@@ -649,14 +649,14 @@
       {
         "date": "2026-10-05",
         "min": 165.9,
-        "average": 170.6,
+        "average": 170.60000000000002,
         "max": 171.9,
         "stations": 10
       },
       {
         "date": "2026-10-06",
         "min": 165.9,
-        "average": 170.4,
+        "average": 170.40000000000003,
         "max": 171.9,
         "stations": 10
       },
@@ -670,35 +670,42 @@
       {
         "date": "2026-10-08",
         "min": 165.9,
-        "average": 170.1,
+        "average": 170.10000000000002,
         "max": 171.9,
         "stations": 10
       },
       {
         "date": "2026-10-09",
         "min": 165.9,
-        "average": 170.1,
+        "average": 170.10000000000002,
         "max": 171.9,
         "stations": 10
       },
       {
         "date": "2026-10-10",
         "min": 165.9,
-        "average": 170,
+        "average": 170.00000000000003,
         "max": 171.9,
         "stations": 10
       },
       {
         "date": "2026-10-11",
         "min": 165.9,
-        "average": 169.7,
+        "average": 169.70000000000002,
         "max": 171.9,
         "stations": 10
       },
       {
         "date": "2026-10-12",
         "min": 165.9,
-        "average": 169.6,
+        "average": 169.60000000000002,
+        "max": 170.9,
+        "stations": 10
+      },
+      {
+        "date": "2026-10-13",
+        "min": 166.9,
+        "average": 169.40000000000003,
         "max": 170.9,
         "stations": 10
       }
@@ -1254,6 +1261,12 @@
         "date": "2026-10-12",
         "brent": 106.65,
         "wti": 93.74,
+        "status": "Settlement"
+      },
+      {
+        "date": "2026-10-13",
+        "brent": 105.69,
+        "wti": 94.14,
         "status": "Settlement"
       }
     ],
@@ -1890,10 +1903,17 @@
       },
       {
         "date": "2026-10-12",
-        "hucknall": 11.5,
+        "hucknall": 11.8,
         "rotherham": 12.3,
         "reference": 15,
-        "status": "Mixed — Hucknall provisional high/low midpoint; Rotherham finalized daily mean"
+        "status": "Finalized — reported historical daily mean regional proxies"
+      },
+      {
+        "date": "2026-10-13",
+        "hucknall": 15.1,
+        "rotherham": 15.7,
+        "reference": 15,
+        "status": "Finalized — reported historical daily mean regional proxies"
       }
     ],
     "ukWeekly": [
@@ -2056,6 +2076,10 @@
       {
         "date": "2026-10-05",
         "unleaded": 174.88
+      },
+      {
+        "date": "2026-10-12",
+        "unleaded": 175.28
       }
     ]
   }
