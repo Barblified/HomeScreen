@@ -1,8 +1,31 @@
 {
   "schemaVersion": 1,
-  "publishedAtUtc": "2026-10-13T05:31:54.359Z",
-  "publishedAtDisplay": "13 October 2026 at 06:31 Europe/London",
+  "publishedAtUtc": "2026-10-14T05:28:12.590Z",
+  "publishedAtDisplay": "14 October 2026 at 06:28 Europe/London",
   "entries": [
+    {
+      "date": "2026-10-14",
+      "type": "Wildcard",
+      "title": "The repeated-bout effect: why the second shock lands softer",
+      "creator": "Robert D. Hyldahl, Trevor C. Chen and Kazunori Nosaka",
+      "sourceLabel": "Mechanisms and Mediators of the Skeletal Muscle Repeated Bout Effect · Exercise and Sport Sciences Reviews",
+      "sourceUrl": "https://pubmed.ncbi.nlm.nih.gov/27782911/",
+      "centralIdea": "Unfamiliar eccentric exercise—producing force while a muscle lengthens, as when lowering a weight or walking downhill—can cause temporary strength loss, soreness and other markers of muscle damage. Repeat a similar bout later and the disturbance is usually smaller: the repeated-bout effect. Remarkably, one exposure can begin this protection. It is not merely increased pain tolerance. Studies report attenuated soreness, swelling and blood markers, with faster recovery of strength and range of motion. No single mechanism explains it. Reviews point to interacting neural changes, altered mechanical properties, remodelling of muscle and extracellular matrix, and modified inflammatory signalling. The adaptation is specific enough that a radically different task may not inherit the same protection, yet broad enough to show that muscle does more than rebuild what was disrupted: it changes how later stress is distributed and repaired. The first bout is therefore information as well as load.",
+      "whyItMayInterestYou": "It is a concrete example of biological learning: exposure changes not only capacity but the cost of repeating the same stress. It also explains why an unfamiliar session can feel disproportionately punishing without proving that the session was unusually productive.",
+      "commonplaceEntry": "The body can become more resistant to a stress after meeting it once. In the repeated-bout effect, the same eccentric work produces less disruption on later exposure because muscle, connective structure, neural recruitment and inflammatory signalling have adapted together. The useful lesson is not to chase damage. Soreness is an imperfect signal, and reduced soreness does not mean that training has stopped working. Adaptation often looks like the disappearance of the very disturbance that first made progress visible. A system may be improving when the same input causes less chaos, quicker recovery and better preserved function. Measure capability and recovery, not merely how dramatic the stress felt.",
+      "questionToCarry": "Where am I mistaking a smaller disturbance on repetition for a weaker stimulus rather than evidence that the system has adapted?",
+      "evidenceNote": "Established: repeated similar eccentric exercise usually produces less soreness, swelling and leakage of muscle proteins into blood, with smaller losses of strength and range of motion—the repeated-bout effect. Reviews group proposed explanations into neural, mechanical and cellular adaptations; later work emphasises that extracellular-matrix remodelling and biochemical or inflammatory signalling probably interact with them. Uncertain: there is no single accepted mechanism, and the relative contribution of each pathway varies with the protocol. Limits: the strongest evidence concerns eccentric, muscle-damaging exercise; protection depends on the similarity, timing and intensity of later work and is not immunity from strain or injury. “Biological learning” and the wider systems analogy are interpretations.",
+      "additionalSources": [
+        {
+          "label": "Foundational synthesis of neural, mechanical and cellular explanations · Scandinavian Journal of Medicine & Science in Sports",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/12641640/"
+        },
+        {
+          "label": "Markers, risks and benefits of eccentric contractions · Frontiers in Physiology",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6510035/"
+        }
+      ]
+    },
     {
       "date": "2026-10-13",
       "type": "Theory",
