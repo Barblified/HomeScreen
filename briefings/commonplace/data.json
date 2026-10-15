@@ -1,8 +1,31 @@
 {
   "schemaVersion": 1,
-  "publishedAtUtc": "2026-10-14T05:28:12.590Z",
-  "publishedAtDisplay": "14 October 2026 at 06:28 Europe/London",
+  "publishedAtUtc": "2026-10-15T05:29:07.836Z",
+  "publishedAtDisplay": "15 October 2026 at 06:29 Europe/London",
   "entries": [
+    {
+      "date": "2026-10-15",
+      "type": "Mathematics",
+      "title": "Braess’s paradox: when a new road makes every journey slower",
+      "creator": "Dietrich Braess",
+      "sourceLabel": "On a Paradox of Traffic Planning · Transportation Science",
+      "sourceUrl": "https://pubsonline.informs.org/doi/10.1287/trsc.1050.0127",
+      "centralIdea": "Dietrich Braess showed that more capacity need not mean better performance when users independently choose the quickest route. In his constructed network, two routes initially divide traffic. Add a fast connector and each driver has an incentive to use it; those individually sensible switches load the same congestion-sensitive links. At the new equilibrium no one can improve by changing route alone, yet everyone travels more slowly than before. The road has not physically harmed the network. It has changed the incentives governing how the network is used. This is an instance of the “price of anarchy”: decentralized optimisation can settle at a state worse than coordinated allocation. Removing, restricting or pricing a link can therefore improve total flow—but only where topology, demand and delay functions create the required structure. The paradox is not that roads are bad. It is that options alter behaviour, and local improvement does not necessarily compose into system improvement.",
+      "whyItMayInterestYou": "This turns infrastructure design into game theory. A lane, workflow, dashboard or shortcut may be locally attractive yet systemically harmful after everyone adapts to it. The correct comparison is not capacity before behaviour changes, but the equilibrium reached afterwards.",
+      "commonplaceEntry": "Adding a choice changes more than the menu; it changes the game. Braess’s paradox shows a network in which a fast new link attracts rational users onto the same congestion-sensitive edges. No individual can improve by deviating from the resulting equilibrium, yet every journey is slower than it was without the link. The design error is judging a resource in isolation. Its value depends on the behaviour it induces across the whole system. Before adding a shortcut, permission or channel, ask what happens if everyone follows the incentive it creates. Sometimes subtraction, friction or coordination raises total performance—not because less is inherently better, but because the unmanaged equilibrium was the bottleneck.",
+      "questionToCarry": "If everyone adopts the locally best response to this new option, what equilibrium does the whole system settle into?",
+      "evidenceNote": "Established mathematically: Braess’s 1968 paper constructs road-network conditions under which adding a link redistributes user-optimised flow and raises individual travel times; INFORMS published an English translation in 2005. Stanford lecture notes show that the canonical affine-cost augmented network has a price of anarchy of 4/3. Evidence beyond the toy network: a 2008 Physical Review Letters simulation of several major-city road networks found that blocking selected streets could improve modelled traffic conditions. Qualification: this is simulation and model evidence, not proof of a universal field effect. The paradox depends on network topology, fixed or modelled demand, congestion-sensitive delay functions and route-choice assumptions; most added capacity need not worsen performance. Applying the result to organisational workflows or dashboards is an interpretive analogy.",
+      "additionalSources": [
+        {
+          "label": "Selfish Routing and the Price of Anarchy · Stanford CS364A lecture notes",
+          "url": "https://theory.stanford.edu/~tim/f13/l/l11.pdf"
+        },
+        {
+          "label": "Price of Anarchy in Transportation Networks · Physical Review Letters",
+          "url": "https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.101.128701"
+        }
+      ]
+    },
     {
       "date": "2026-10-14",
       "type": "Wildcard",
