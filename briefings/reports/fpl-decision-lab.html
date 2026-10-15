@@ -4,25 +4,26 @@
 <title>FPL Decision Lab — GW7 finalised-data hold</title><link rel="stylesheet" href="../report.css"></head>
 <body><main>
 <header><p class="eyebrow">Fantasy Premier League · 2026/27</p><h1>Decision Lab — GW7 finalised-data hold</h1>
-<p><strong>Generated:</strong> Wednesday 14 October 2026, 09:13 Europe/London · <strong>GW7 deadline:</strong> Saturday 17 October, 11:00 BST · Decision support only; no transfer, lineup, captaincy or chip action was executed.</p></header>
+<p><strong>Generated:</strong> Thursday 15 October 2026, 09:06 Europe/London · <strong>GW7 deadline:</strong> Saturday 17 October, 11:00 BST · Decision support only; no transfer, lineup, captaincy or chip action was executed.</p></header>
 
 <section class="card"><h2>Bottom line</h2>
-<p><strong>HOLD: make no further GW7 transfer.</strong> Szoboszlai → Tavernier is complete, leaving zero free transfers and £0.8m bank. With GW6 now officially finalised, the best extra move becomes Mykolenko → De Cuyper for a −4, but it beats HOLD in only 47.5% of one-week simulations. Preserve the hit and the value of Friday information.</p>
+<p><strong>HOLD: make no further GW7 transfer.</strong> Szoboszlai → Tavernier is complete, leaving zero free transfers and £0.8m bank. The best extra move remains Mykolenko → De Cuyper for a −4, but it beats HOLD in only 47.8% of one-week simulations. Thursday's Bruno fitness evidence reduces state risk but does not make a hit worthwhile.</p>
 <p><strong>Provisional optimal XI:</strong> Verbruggen; Calafiori, Hall, Thomas; Bruno, Saka, Mbeumo, Palmer, Tavernier; João Pedro, Gonzalo. <strong>Points-EV captain:</strong> Calafiori; <strong>vice:</strong> Palmer. Their 0.09 xPts gap is below model resolution, so this is a statistical tie rather than a strong defender-captain call.</p></section>
 
 <section class="card"><h2>Verified state and material changes</h2><ul>
-<li><strong>GW6 is now official:</strong> <code>finished=true</code> and <code>data_checked=true</code>. All six completed Gameweeks are therefore included; yesterday's provisional-data quarantine has ended.</li>
+<li>GW6 remains official at <code>finished=true</code> and <code>data_checked=true</code>; all six completed Gameweeks are included.</li>
 <li>The latest verified squad state remains Tavernier owned, zero free transfers, £0.8m bank, £98.5m sale-value squad and £99.3m total spending power.</li>
-<li>Mykolenko remains flagged at 75% with a leg injury in official FPL data; the Premier League injury register also identifies him for follow-up. <a href="https://www.premierleague.com/en/news/4693209/premier-league-injury-news-2026-27">Official injury register</a>.</li>
+<li>Mykolenko remains the only owned player carrying an official FPL flag: 75% with a leg injury. The Premier League injury register was last updated at 13:54 BST on 14 October. <a href="https://www.premierleague.com/en/news/4450606/latest-premier-league-player-injuries-club-by-club-news">Official injury register</a>.</li>
 <li>Verbruggen's market price has risen to £4.6m, but his verified selling price remains £4.5m. João Pedro's market price is £7.8m versus a £7.7m selling price.</li>
-<li>The official GW6 review email was present in the connected inbox, but supplied no private-team state or decision-changing information.</li>
+<li>Bruno started United's 13 October European match, took set pieces and struck the crossbar; the club's subsequent update quashed the fitness concern. This improves availability confidence without fixing his weak FPL value. <a href="https://www.manutd.com/en/news/atletico-de-madrid-2-united-0-13-oct-2026">Official club match report</a>.</li>
+<li>The connected inbox contained no new FPL or private-team update after 14 October.</li>
 </ul></section>
 
 <section class="card"><h2>Data freshness and validation</h2><table><thead><tr><th>Input</th><th>Result</th></tr></thead><tbody>
-<tr><td>bootstrap-static</td><td>Refreshed 14 Oct during 09:05–09:12 BST; 667 elements, 562 selectable; GW6 finalised and GW7 current identifiers validated.</td></tr>
+<tr><td>bootstrap-static</td><td>Refreshed 15 Oct during 08:59–09:06 BST; 667 elements, 562 selectable; season, GW6 finality, GW7 state and identifiers validated.</td></tr>
 <tr><td>fixtures</td><td>380 fixtures retrieved; ten GW7 fixtures; deadline 10:00 UTC / 11:00 BST. All published future deadlines through GW38 were rechecked.</td></tr>
 <tr><td>element-summary</td><td>562/562 selectable-player endpoints retrieved successfully, including all 15 owned players resolved from current bootstrap IDs.</td></tr>
-<tr><td>event/6/live</td><td>667 records retrieved; final GW6 player outcomes ingested.</td></tr>
+<tr><td>event/6/live</td><td>Refreshed 15 Oct; 667 unique player records; final outcomes validated against current summaries.</td></tr>
 <tr><td>Private state</td><td>Latest screenshots establish squad, 0 FT, bank and selling prices; no later contradictory state recovered.</td></tr>
 </tbody></table>
 <p><strong>Blocked inputs:</strong> none among the required official endpoints. No field was invented. Empirical player and team estimates use 2026/27 only.</p></section>
@@ -72,32 +73,32 @@
 <p><strong>Bench order:</strong> Konsa, Wissa, Mykolenko; Kelleher. Thomas and Gonzalo edge Konsa and Wissa on GW7 Points-EV. Mykolenko is third because of both the 75% flag and lower expectation.</p>
 <p><strong>Raw XI 52.1; captain-inclusive 57.4 xPts.</strong></p>
 <table><thead><tr><th>Window</th><th>Simulated score</th><th>80% predictive interval</th></tr></thead><tbody>
-<tr><td>GW7</td><td>57.7</td><td>39–78</td></tr>
-<tr><td>GW7–9</td><td>167.5</td><td>135–202</td></tr>
-<tr><td>GW7–11</td><td>283.3</td><td>240–328</td></tr>
+<tr><td>GW7</td><td>57.4</td><td>39–78</td></tr>
+<tr><td>GW7–9</td><td>167.2</td><td>135–201</td></tr>
+<tr><td>GW7–11</td><td>282.8</td><td>240–327</td></tr>
 </tbody></table></section>
 
 <section class="card"><h2>HOLD versus transfer paths</h2>
 <table><thead><tr><th>Action</th><th>Horizon</th><th>Net E[Δ] vs HOLD</th><th>P(Δ&gt;0)</th><th>80% Δ interval</th><th>Confidence / dominant downside</th></tr></thead><tbody>
 <tr><td>HOLD</td><td>GW7 / 7–9 / 7–11</td><td>0 baseline</td><td>—</td><td>See score intervals above</td><td>Medium model; preserves four points and option value.</td></tr>
-<tr><td>Mykolenko → De Cuyper (−4)</td><td>GW7</td><td>+1.61</td><td>47.5%</td><td>−12…+18</td><td>Low-medium; hit plus noisy defender returns.</td></tr>
-<tr><td>Mykolenko → De Cuyper (−4)</td><td>GW7–9</td><td>+6.52</td><td>59.6%</td><td>−17…+32</td><td>Medium-low; role/form regression and future flexibility.</td></tr>
-<tr><td>Mykolenko → De Cuyper (−4)</td><td>GW7–11</td><td>+15.96</td><td>71.1%</td><td>−16…+50</td><td>Medium-low; compounding state uncertainty.</td></tr>
-<tr><td>Bruno → Groß (−4)</td><td>GW7</td><td>+1.06</td><td>44.9%</td><td>−13…+18</td><td>Low; selection bias and immediately spent hit.</td></tr>
-<tr><td>Bruno → Groß (−4)</td><td>GW7–9</td><td>+4.59</td><td>54.9%</td><td>−20…+31</td><td>Medium-low; purple-patch regression.</td></tr>
-<tr><td>Bruno → Groß (−4)</td><td>GW7–11</td><td>+13.43</td><td>66.3%</td><td>−20…+49</td><td>Medium-low; released cash has no named second use yet.</td></tr>
+<tr><td>Mykolenko → De Cuyper (−4)</td><td>GW7</td><td>+1.81</td><td>47.8%</td><td>−12…+18</td><td>Low-medium; hit plus noisy defender returns.</td></tr>
+<tr><td>Mykolenko → De Cuyper (−4)</td><td>GW7–9</td><td>+6.57</td><td>59.7%</td><td>−17…+32</td><td>Medium-low; role/form regression and future flexibility.</td></tr>
+<tr><td>Mykolenko → De Cuyper (−4)</td><td>GW7–11</td><td>+16.02</td><td>71.0%</td><td>−16…+50</td><td>Medium-low; compounding state uncertainty.</td></tr>
+<tr><td>Bruno → Groß (−4)</td><td>GW7</td><td>+0.98</td><td>45.1%</td><td>−14…+18</td><td>Low; selection bias and immediately spent hit.</td></tr>
+<tr><td>Bruno → Groß (−4)</td><td>GW7–9</td><td>+4.75</td><td>55.4%</td><td>−20…+32</td><td>Medium-low; purple-patch regression.</td></tr>
+<tr><td>Bruno → Groß (−4)</td><td>GW7–11</td><td>+13.71</td><td>66.7%</td><td>−20…+50</td><td>Medium-low; released cash has no named second use yet.</td></tr>
 </tbody></table>
 <p><strong>Decision:</strong> reject both hits. The longer-horizon means are not enough to override sub-50% one-week win rates, wide downside intervals, early-season leader bias and the value of waiting for a free transfer. A two-transfer −8 path selected Mykolenko → De Cuyper plus Tavernier → Groß; it is rejected because it undoes the deliberate Tavernier move and concentrates the same Groß uncertainty.</p></section>
 
 <section class="card"><h2>Bruno Fernandes decision</h2>
-<p>Bruno remains the leading premium sell candidate for GW8/9, but not for a GW7 hit. At £11.9m selling value and 4.85 projected GW7 points, his marginal return per £1m is weak. Official analysis likewise notes that his involvement has not translated into price-appropriate output. <a href="https://www.premierleague.com/en/news/4729738">Premier League analysis</a>.</p>
+<p>Bruno remains the leading premium sell candidate for GW8/9, but not for a GW7 hit. At £11.9m selling value and 4.85 projected GW7 points, his marginal return per £1m is weak. His midweek start and threatening set-piece work reduce fitness uncertainty, but availability and value are separate questions. Official FPL analysis still notes that his involvement has not translated into price-appropriate output. <a href="https://www.premierleague.com/en/news/4729738">Premier League analysis</a>.</p>
 <p><strong>Flip condition:</strong> sell on a free transfer only when a named replacement plus a specific use of the released cash beats the best attainable HOLD path. Do not count unspent cash as points, and do not use Groß's current rank alone as the reason.</p></section>
 
 <section class="card"><h2>Haaland-out diagnostic</h2>
 <table><thead><tr><th>Horizon</th><th>Estimated cost of excluding Haaland</th><th>80% interval</th></tr></thead><tbody>
-<tr><td>GW7</td><td>1.66</td><td>−9…+13</td></tr>
-<tr><td>GW7–9</td><td>3.97</td><td>−18…+27</td></tr>
-<tr><td>GW7–11</td><td>6.09</td><td>−24…+37</td></tr>
+<tr><td>GW7</td><td>1.44</td><td>−10…+13</td></tr>
+<tr><td>GW7–9</td><td>3.99</td><td>−18…+26</td></tr>
+<tr><td>GW7–11</td><td>5.78</td><td>−25…+37</td></tr>
 </tbody></table>
 <p>The unrestricted control retains only a small mean advantage relative to the uncertainty. The deliberate Haaland-out strategy therefore remains intact.</p></section>
 
@@ -115,7 +116,7 @@
 </tbody></table></section>
 
 <section class="card"><h2>Confidence</h2>
-<p><strong>Evidence quality: high</strong> for official finality, identifiers, fixtures, squad state and current prices. <strong>Model stability: medium-low</strong> because six Gameweeks still leave early leaders and fine captaincy gaps regression-sensitive. <strong>Outcome uncertainty: high</strong>; the recommendation is confidence in avoiding a poor decision process, not confidence in a specific score. The best extra hit wins only 47.5% of GW7 simulations despite its positive mean.</p></section>
+<p><strong>Evidence quality: high</strong> for official finality, identifiers, fixtures, squad state, current prices and Bruno's fitness evidence. <strong>Model stability: medium-low</strong> because six Gameweeks still leave early leaders and fine captaincy gaps regression-sensitive. <strong>Outcome uncertainty: high</strong>; the recommendation is confidence in avoiding a poor decision process, not confidence in a specific score. The best extra hit wins only 47.8% of GW7 simulations despite its positive mean.</p></section>
 
 <section class="card"><h2>Pre-deadline plan</h2><ol>
 <li>Make no transfer and preserve £0.8m plus the four-point hit.</li>
@@ -130,7 +131,9 @@
 <li><a href="https://fantasy.premierleague.com/api/fixtures/">Official FPL fixtures</a></li>
 <li><a href="https://fantasy.premierleague.com/api/event/6/live/">Official FPL GW6 live data</a></li>
 <li><a href="https://fantasy.premierleague.com/api/element-summary/68/">Official FPL Tavernier element summary</a></li>
-<li><a href="https://www.premierleague.com/en/news/4693209/premier-league-injury-news-2026-27">Official Premier League injury register</a></li>
+<li><a href="https://www.premierleague.com/en/news/4450606/latest-premier-league-player-injuries-club-by-club-news">Official Premier League injury register</a></li>
+<li><a href="https://www.manutd.com/en/news/atletico-de-madrid-2-united-0-13-oct-2026">Official Manchester United match report and Bruno evidence</a></li>
+<li><a href="https://www.premierleague.com/en/news/4737113/the-scouts-fpl-gameweek-7-transfer-radar/">Official GW7 transfer radar</a></li>
 <li><a href="https://www.premierleague.com/en/news/4729738">Fernandes and Szoboszlai current-season analysis</a></li>
 <li><a href="https://www.premierleague.com/en/news/2884829/fpl-player-price-changes-risers-fallers-and-top-transfers-for-gameweek-7">Official GW7 price changes and transfer trends</a></li>
 <li><a href="https://www.premierleague.com/en/news/4679879/whats-happening-with-fpl-chips-in-202627">Official 2026/27 chip rules</a></li>
