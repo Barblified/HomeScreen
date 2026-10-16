@@ -1,8 +1,31 @@
 {
   "schemaVersion": 1,
-  "publishedAtUtc": "2026-10-15T05:29:07.836Z",
-  "publishedAtDisplay": "15 October 2026 at 06:29 Europe/London",
+  "publishedAtUtc": "2026-10-16T05:35:21.789Z",
+  "publishedAtDisplay": "16 October 2026 at 06:35 Europe/London",
   "entries": [
+    {
+      "date": "2026-10-16",
+      "type": "Theory",
+      "title": "The Byzantine Generals Problem: agreement when messages may lie",
+      "creator": "Leslie Lamport, Robert Shostak and Marshall Pease",
+      "sourceLabel": "The Byzantine Generals Problem · ACM TOPLAS (1982)",
+      "sourceUrl": "https://lamport.azurewebsites.net/pubs/byz.pdf",
+      "centralIdea": "In a distributed system, failure is not always silence. A faulty component may tell one peer “attack” and another “retreat,” leaving honest participants with incompatible views. Lamport, Shostak and Pease modelled this as generals who must agree on a plan despite traitors. Their two requirements are stricter than majority voting: loyal participants must reach the same decision, and if the commander is loyal, they must follow the commander’s order. Under their “oral messages” assumptions—messages arrive, sender identity is known, but content can be fabricated by a faulty sender—agreement tolerating m traitors requires at least 3m+1 participants. With unforgeable signed messages, the bound changes dramatically. The lasting insight is architectural: trustworthiness is not a property of individual messages alone. It emerges from redundancy, authenticated communication, explicit fault assumptions and an agreement procedure designed for the worst behaviour the system permits.",
+      "whyItMayInterestYou": "This is the mathematics beneath fault-tolerant databases, replicated services and some consensus systems. More broadly, it separates ordinary error from adversarial inconsistency: checking one report is insufficient when a source can present different realities to different observers.",
+      "commonplaceEntry": "Consensus is easy when failure means silence; harder when failure can imitate confidence and contradict itself. The Byzantine Generals Problem asks honest participants to agree even when some nodes tell different stories to different listeners. Its lesson is not simply “trust nobody.” Agreement requires a declared failure model. How many actors may be faulty? Can identities be forged? Do messages arrive within known bounds? Are signatures reliable? The answers determine what guarantees are possible and how much redundancy is required. Robust systems do not rely on sincerity as an unstated assumption. They specify the kinds of deception or malfunction they must survive, then build enough verification, replication and communication to make agreement defensible.",
+      "questionToCarry": "Which failure modes does this system actually tolerate, and which ones has it merely assumed away?",
+      "evidenceNote": "Established by the 1982 paper: in its oral-message model, agreement is solvable if and only if more than two-thirds of the generals are loyal; tolerating m traitors therefore requires at least 3m+1 participants. With the paper’s unforgeable signed-message assumptions, the problem is solvable regardless of the number of traitors, subject to the stated communication and connectivity conditions. These are formal results inside explicit models: oral messages assume correct delivery from loyal senders, identifiable senders and detectable absence; signed messages assume signatures cannot be forged or altered undetected. Modern systems may also face asynchronous delivery, compromised keys, network partitions or changing membership. The theorem does not by itself certify any database or blockchain implementation. Extending the lesson to human organisations is interpretive analogy.",
+      "additionalSources": [
+        {
+          "label": "Definitive publication record · ACM Digital Library",
+          "url": "https://dl.acm.org/doi/10.1145/357172.357176"
+        },
+        {
+          "label": "Leslie Lamport’s historical commentary · Microsoft Research",
+          "url": "https://www.microsoft.com/en-us/research/publication/byzantine-generals-problem/"
+        }
+      ]
+    },
     {
       "date": "2026-10-15",
       "type": "Mathematics",
