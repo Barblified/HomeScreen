@@ -1,31 +1,32 @@
 <!doctype html>
 <html lang="en-GB">
 <head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>FPL Decision Lab — GW7 pre-deadline hold</title><link rel="stylesheet" href="../report.css"></head>
+<title>FPL Decision Lab — GW7 final deadline call</title><link rel="stylesheet" href="../report.css"></head>
 <body><main>
-<header><p class="eyebrow">Fantasy Premier League · 2026/27</p><h1>Decision Lab — GW7 pre-deadline hold</h1>
-<p><strong>Generated:</strong> Friday 16 October 2026, 09:09 Europe/London · <strong>GW7 deadline:</strong> Saturday 17 October, 11:00 BST · Decision support only; no transfer, lineup, captaincy or chip action was executed.</p></header>
+<header><p class="eyebrow">Fantasy Premier League · 2026/27</p><h1>Decision Lab — GW7 final deadline call</h1>
+<p><strong>Generated:</strong> Saturday 17 October 2026, 09:10 Europe/London · <strong>GW7 deadline:</strong> today, 11:00 BST · Decision support only; no transfer, lineup, captaincy or chip action was executed.</p></header>
 
 <section class="card"><h2>Bottom line</h2>
-<p><strong>HOLD: make no further GW7 transfer this morning.</strong> Szoboszlai → Tavernier is complete, leaving zero free transfers and £0.8m bank. The best extra move remains Mykolenko → De Cuyper for a −4, but it beats HOLD in only 47.4% of one-week simulations and its positive longer-horizon mean is highly exposed to six-week selection bias. The official Scout's De Cuyper backing makes this a genuine alternative, not yet a sufficiently robust hit.</p>
-<p><strong>Provisional optimal XI:</strong> Verbruggen; Calafiori, Hall, Thomas; Bruno, Saka, Mbeumo, Palmer, Tavernier; João Pedro, Gonzalo. <strong>Points-EV captain:</strong> Calafiori; <strong>vice:</strong> Palmer. Their 0.09 xPts gap is below model resolution, so this is a statistical tie rather than a strong defender-captain call.</p></section>
+<p><strong>FINAL CALL: HOLD. Make no further GW7 transfer.</strong> Mykolenko has deteriorated from 75% to 50%, but the best extra move—Mykolenko → De Cuyper for −4—still beats HOLD in only 47.0% of one-week simulations. Moyes says Mykolenko has “got a chance” to return, so the pre-set flip condition of a confirmed multi-week absence has not been met.</p>
+<p><strong>Final optimal XI:</strong> Verbruggen; Calafiori, Hall, Thomas; Bruno, Saka, Mbeumo, Palmer, Tavernier; João Pedro, Gonzalo. <strong>Points-EV captain:</strong> Calafiori; <strong>vice:</strong> Palmer. Their 0.09 xPts gap remains below model resolution, but the final evidence contains no Arsenal concern and no Chelsea concern to justify overriding the mechanical order.</p></section>
 
 <section class="card"><h2>Verified state and material changes</h2><ul>
 <li>GW6 remains official at <code>finished=true</code> and <code>data_checked=true</code>; all six completed Gameweeks are included.</li>
-<li>The latest verified squad state remains Tavernier owned, zero free transfers, £0.8m bank, £98.5m sale-value squad and £99.3m total spending power.</li>
-<li>Mykolenko remains the only owned player carrying an official FPL flag: 75% with a leg injury. The Premier League injury register was last updated at 15:10 BST on 15 October. <a href="https://www.premierleague.com/en/news/4450606/latest-premier-league-player-injuries-club-by-club-news">Official injury register</a>.</li>
-<li>Verbruggen's market price has risen to £4.6m, but his verified selling price remains £4.5m. João Pedro's market price is £7.8m versus a £7.7m selling price.</li>
+<li>Tavernier remains owned with zero free transfers and £0.8m bank. Overnight price falls for Bruno (£11.8m) and Mbeumo (£7.8m) reduce reconstructed sale value to £98.3m and total spending power to £99.1m.</li>
+<li>Mykolenko remains the only owned player carrying an official FPL flag, but he has worsened from 75% to 50% with a leg injury. The official predicted-lineup briefing reports David Moyes saying he has “got a chance” to return. <a href="https://www.premierleague.com/en/news/4737644/predicted-line-ups-for-matchweek-7/">Official predicted line-ups</a>.</li>
+<li>Verbruggen's market price is £4.6m versus a £4.5m selling price; João Pedro is £7.8m versus £7.7m. De Cuyper has risen to £5.2m but remains affordable for Mykolenko using £0.7m of the bank.</li>
 <li>Official FPL's 15 October Scout Selection includes four owned players—Calafiori, Saka, Tavernier and João Pedro—and also selects De Cuyper. It reports eight Calafiori shots in the box, more than all other Arsenal defenders combined. This strengthens the current XI and the De Cuyper watch, but it does not remove model uncertainty. <a href="https://www.premierleague.com/en/news/4737338/scout-selection-best-fantasy-team-for-gameweek-7">Official Scout Selection</a>.</li>
-<li>Newcastle's Friday club update discusses Touré and Elanga but does not flag owned Hall or Wissa; both also remain available in the official FPL payload. <a href="https://www.newcastleunited.com/en/news/matthias-jaissles-team-news-update-toure-and-elanga-latest-ahead-of-villans-clash">Official Newcastle update</a>.</li>
-<li>The connected inbox contains one new official FPL editorial email but no private-team change, transfer confirmation or squad-state contradiction.</li>
+<li>Chelsea report no fresh fitness concerns; Palmer and João Pedro trained on Friday, and Alonso explicitly backed João Pedro after five goals and three assists in five league appearances. <a href="https://www.chelseafc.com/en/news/article/xabi-alonso-confirms-chelsea-team-news-for-everton">Official Chelsea team news</a>.</li>
+<li>Arsenal have no fresh injury concern in the official Matchweek 7 preview. Newcastle do not flag Hall or Wissa; both remain available in the FPL payload.</li>
+<li>The connected inbox contains one overnight Premier League weekend preview, but no private-team change, transfer confirmation or squad-state contradiction.</li>
 </ul></section>
 
 <section class="card"><h2>Data freshness and validation</h2><table><thead><tr><th>Input</th><th>Result</th></tr></thead><tbody>
-<tr><td>bootstrap-static</td><td>Refreshed 16 Oct at 08:56 BST; 667 elements, 562 selectable; season, GW6 finality, GW7 state and identifiers validated.</td></tr>
-<tr><td>fixtures</td><td>Refreshed 16 Oct at 08:56 BST; 380 fixtures; ten GW7 fixtures; deadline 10:00 UTC / 11:00 BST. All published future deadlines through GW38 were rechecked.</td></tr>
-<tr><td>element-summary</td><td>562/562 selectable-player endpoints refreshed during 08:57–08:59 BST, including all 15 owned players resolved from current bootstrap IDs.</td></tr>
-<tr><td>event/6/live</td><td>Refreshed 16 Oct at 08:56 BST; 667 unique player records; final outcomes validated against current summaries.</td></tr>
-<tr><td>Private state</td><td>Latest screenshots establish squad, 0 FT, bank and selling prices; no later contradictory state recovered.</td></tr>
+<tr><td>bootstrap-static</td><td>Refreshed 17 Oct at 09:00 BST after a transient SSL timeout and successful retry; 667 elements, 562 selectable; season, GW6 finality, GW7 state and identifiers validated.</td></tr>
+<tr><td>fixtures</td><td>Refreshed 17 Oct at 09:01 BST; 380 fixtures; ten GW7 fixtures; deadline 10:00 UTC / 11:00 BST. All future deadline entries through GW38 were rechecked.</td></tr>
+<tr><td>element-summary</td><td>562/562 selectable-player endpoints refreshed during 09:01–09:03 BST. Several transient proxy/SSL timeouts succeeded on retry; all files passed structural and freshness validation.</td></tr>
+<tr><td>event/6/live</td><td>Refreshed 17 Oct at 09:01 BST; 667 unique player records; final outcomes validated against current summaries.</td></tr>
+<tr><td>Private state</td><td>Latest screenshots establish squad and 0 FT; overnight official prices and the sale-price cap reconstruct the new £98.3m sale value. Gmail contained no contradictory private update.</td></tr>
 </tbody></table>
 <p><strong>Blocked inputs:</strong> none among the required official endpoints. No field was invented. Empirical player and team estimates use 2026/27 only.</p></section>
 
@@ -33,7 +34,7 @@
 <table><thead><tr><th>Position</th><th>Players at verified selling price</th></tr></thead><tbody>
 <tr><td>GK</td><td>Kelleher £5.0m; Verbruggen £4.5m</td></tr>
 <tr><td>DEF</td><td>Calafiori £5.7m; Hall £5.2m; Mykolenko £4.5m; Thomas £4.0m; Konsa £4.6m</td></tr>
-<tr><td>MID</td><td>Bruno £11.9m; Saka £9.5m; Mbeumo £7.9m; Palmer £9.7m; Tavernier £6.1m</td></tr>
+<tr><td>MID</td><td>Bruno £11.8m; Saka £9.5m; Mbeumo £7.8m; Palmer £9.7m; Tavernier £6.1m</td></tr>
 <tr><td>FWD</td><td>João Pedro £7.7m; Wissa £6.2m; Gonzalo £6.0m</td></tr>
 </tbody></table>
 <p>Any additional GW7 transfer costs four points. Selling prices—not market prices—drive affordability; the £0.8m bank makes Mykolenko → De Cuyper legal. Waiting also preserves information and leaves the next move available without forcing today's early-form winner into the squad.</p></section>
@@ -48,65 +49,65 @@
 
 <section class="card"><h2>Model, validation and uncertainty</h2>
 <p>The generative model is defined before simulation. Completed 2026/27 player rates are shrunk toward broad position-level current-season priors equivalent to 360 minutes, then conditioned on minutes, availability, home advantage, opponent difficulty and scheduled fixtures. The 20,000-draw joint Monte Carlo samples player availability, shared team shocks and Gamma–Poisson scoring, then applies legal formations, captain fallback and autosubs. Ordinary bench points are excluded.</p>
-<p><strong>Aleatoric uncertainty:</strong> match-to-match scoring variance. <strong>Epistemic uncertainty:</strong> six-Gameweek sample and uncertain true player rates. <strong>State uncertainty:</strong> late manager news, tactical roles, Saka's reported minor illness and Mykolenko's injury.</p>
+<p><strong>Aleatoric uncertainty:</strong> match-to-match scoring variance. <strong>Epistemic uncertainty:</strong> six-Gameweek sample and uncertain true player rates. <strong>State uncertainty:</strong> tactical roles, Mykolenko's 50% status and the usual post-deadline lineup uncertainty. Final official reports remove the prior Saka, Palmer and João Pedro fitness concerns.</p>
 <p>Walk-forward holdouts: GW4 MAE 1.42, rank correlation 0.647, bias −0.14; GW5 MAE 1.32, correlation 0.687, bias −0.22. These support useful ranking signal, but not fine-grained certainty at differences of a few tenths.</p></section>
 
 <section class="card"><h2>Captaincy evidence</h2>
-<p>In the six-GW model, Calafiori projects at 5.32, Palmer 5.23, Saka 5.00, Mbeumo 4.95 and Bruno 4.85. The optimizer therefore assigns Calafiori the armband and Palmer vice. The 0.09 gap is much smaller than model error, and Calafiori's estimate is especially sensitive to clean-sheet covariance and a recent nine-point return; final manager news can reasonably flip the order.</p>
+<p>In the six-GW model, Calafiori projects at 5.32, Palmer 5.23, Saka 5.00, Mbeumo 4.95 and Bruno 4.85. The optimizer assigns Calafiori the armband and Palmer vice. The 0.09 gap is much smaller than model error, but final official evidence reports no fresh Arsenal or Chelsea concern, so there is no evidence-based trigger to override the Points-EV order.</p>
 <table><thead><tr><th>Candidate</th><th>GW7 Points-EV</th><th>Reading</th></tr></thead><tbody>
 <tr><td>Calafiori</td><td>5.32</td><td>Mechanical EV leader; high state/clean-sheet sensitivity.</td></tr>
 <tr><td>Palmer</td><td>5.23</td><td>Robust vice and practical alternative in the statistical tie.</td></tr>
 <tr><td>Saka</td><td>5.00</td><td>Strong underlying chance volume, but no longer the leader after GW6 ingestion.</td></tr>
 <tr><td>Mbeumo</td><td>4.95</td><td>Close second attacking tier.</td></tr>
-<tr><td>Bruno</td><td>4.85</td><td>Involved but weak value at £11.9m; not the current captain choice.</td></tr>
+<tr><td>Bruno</td><td>4.85</td><td>Involved but weak value at £11.8m; not the current captain choice.</td></tr>
 <tr><td>João Pedro</td><td>4.74</td><td>GW6 return does not alone make him the expectation leader.</td></tr>
 <tr><td>Tavernier</td><td>4.43</td><td>Hold the new transfer; do not chase a second move.</td></tr>
 </tbody></table>
 <p>The official Scout independently selects Calafiori and Saka for GW7, while making Saka vice-captain to Haaland. That supports their ceiling but does not resolve the model's 0.09 Calafiori–Palmer gap. <a href="https://www.premierleague.com/en/news/4737338/scout-selection-best-fantasy-team-for-gameweek-7">Official GW7 selection</a>.</p></section>
 
 <section class="card"><h2>League-wide legal optimum — unrestricted control</h2>
-<p><strong>Cost £99.8m · XV:</strong> Raya, Tzolakis; Calafiori, De Cuyper, Vuskovic, Tarkowski, Bogle; Janelt, Groß, Rogers, Semenyo, Cherki; Barry, Emersonn, Haaland.</p>
-<p><strong>GW7 XI:</strong> Tzolakis; Calafiori, De Cuyper, Vuskovic, Tarkowski, Bogle; Groß, Rogers, Semenyo, Cherki; Haaland. <strong>C</strong> Groß, <strong>VC</strong> De Cuyper. Bench: Janelt, Barry, Emersonn; Raya. <strong>Raw XI 65.7; captain-inclusive 73.3 xPts.</strong></p>
+<p><strong>Cost £99.5m · XV:</strong> Trafford, Tzolakis; Calafiori, De Cuyper, Vuskovic, Tarkowski, Bogle; Janelt, Groß, Rogers, Semenyo, Cherki; Evanilson, Barry, Haaland.</p>
+<p><strong>GW7 XI:</strong> Tzolakis; Calafiori, De Cuyper, Vuskovic, Tarkowski, Bogle; Groß, Rogers, Semenyo, Cherki; Haaland. <strong>C</strong> Groß, <strong>VC</strong> De Cuyper. Bench: Evanilson, Janelt, Barry; Trafford. <strong>Raw XI 65.7; captain-inclusive 73.3 xPts.</strong></p>
 <p>This is a legal £100m benchmark, not a personalised recommendation: it violates Haaland-out and is exposed to post-selection bias from early-season leaders.</p></section>
 
 <section class="card"><h2>Our optimal HOLD</h2>
 <p><strong>Formation 3-5-2 · XI:</strong> Verbruggen; Calafiori, Hall, Thomas; Bruno, Saka, Mbeumo, Palmer, Tavernier; João Pedro, Gonzalo. <strong>C</strong> Calafiori, <strong>VC</strong> Palmer.</p>
-<p><strong>Bench order:</strong> Konsa, Wissa, Mykolenko; Kelleher. Thomas and Gonzalo edge Konsa and Wissa on GW7 Points-EV. Mykolenko is third because of both the 75% flag and lower expectation.</p>
+<p><strong>Bench order:</strong> Konsa, Wissa, Mykolenko; Kelleher. Thomas and Gonzalo edge Konsa and Wissa on GW7 Points-EV. Mykolenko is third because of both the 50% flag and lower expectation.</p>
 <p><strong>Raw XI 52.1; captain-inclusive 57.4 xPts.</strong></p>
 <table><thead><tr><th>Window</th><th>Simulated score</th><th>80% predictive interval</th></tr></thead><tbody>
-<tr><td>GW7</td><td>57.4</td><td>39–78</td></tr>
-<tr><td>GW7–9</td><td>166.4</td><td>134–200</td></tr>
-<tr><td>GW7–11</td><td>281.9</td><td>240–327</td></tr>
+<tr><td>GW7</td><td>57.2</td><td>39–77</td></tr>
+<tr><td>GW7–9</td><td>166.9</td><td>135–200</td></tr>
+<tr><td>GW7–11</td><td>282.3</td><td>240–326</td></tr>
 </tbody></table></section>
 
 <section class="card"><h2>HOLD versus transfer paths</h2>
 <table><thead><tr><th>Action</th><th>Horizon</th><th>Net E[Δ] vs HOLD</th><th>P(Δ&gt;0)</th><th>80% Δ interval</th><th>Confidence / dominant downside</th></tr></thead><tbody>
 <tr><td>HOLD</td><td>GW7 / 7–9 / 7–11</td><td>0 baseline</td><td>—</td><td>See score intervals above</td><td>Medium model; preserves four points and option value.</td></tr>
-<tr><td>Mykolenko → De Cuyper (−4)</td><td>GW7</td><td>+1.73</td><td>47.4%</td><td>−12…+18</td><td>Low-medium; hit plus noisy defender returns.</td></tr>
-<tr><td>Mykolenko → De Cuyper (−4)</td><td>GW7–9</td><td>+6.43</td><td>59.3%</td><td>−17…+32</td><td>Medium-low; role/form regression and future flexibility.</td></tr>
-<tr><td>Mykolenko → De Cuyper (−4)</td><td>GW7–11</td><td>+15.75</td><td>70.8%</td><td>−16…+50</td><td>Medium-low; compounding state uncertainty.</td></tr>
-<tr><td>Bruno → Groß (−4)</td><td>GW7</td><td>+1.11</td><td>45.8%</td><td>−13…+19</td><td>Low; selection bias and immediately spent hit.</td></tr>
-<tr><td>Bruno → Groß (−4)</td><td>GW7–9</td><td>+4.66</td><td>55.5%</td><td>−20…+32</td><td>Medium-low; purple-patch regression.</td></tr>
-<tr><td>Bruno → Groß (−4)</td><td>GW7–11</td><td>+13.49</td><td>66.8%</td><td>−20…+49</td><td>Medium-low; released cash has no named second use yet.</td></tr>
+<tr><td>Mykolenko → De Cuyper (−4)</td><td>GW7</td><td>+1.73</td><td>47.0%</td><td>−12…+18</td><td>Low-medium; hit plus noisy defender returns.</td></tr>
+<tr><td>Mykolenko → De Cuyper (−4)</td><td>GW7–9</td><td>+6.43</td><td>59.3%</td><td>−17…+31</td><td>Medium-low; role/form regression and future flexibility.</td></tr>
+<tr><td>Mykolenko → De Cuyper (−4)</td><td>GW7–11</td><td>+15.75</td><td>71.4%</td><td>−16…+50</td><td>Medium-low; compounding state uncertainty.</td></tr>
+<tr><td>Bruno → Groß (−4)</td><td>GW7</td><td>+1.11</td><td>45.4%</td><td>−14…+18</td><td>Low; selection bias and immediately spent hit.</td></tr>
+<tr><td>Bruno → Groß (−4)</td><td>GW7–9</td><td>+4.66</td><td>55.2%</td><td>−20…+32</td><td>Medium-low; purple-patch regression.</td></tr>
+<tr><td>Bruno → Groß (−4)</td><td>GW7–11</td><td>+13.49</td><td>66.7%</td><td>−20…+50</td><td>Medium-low; released cash has no named second use yet.</td></tr>
 </tbody></table>
 <p><strong>Decision:</strong> reject both hits. The longer-horizon means are not enough to override sub-50% one-week win rates, wide downside intervals, early-season leader bias and the value of waiting for a free transfer. A two-transfer −8 path selected Mykolenko → De Cuyper plus Tavernier → Groß; it is rejected because it undoes the deliberate Tavernier move and concentrates the same Groß uncertainty.</p></section>
 
 <section class="card"><h2>Bruno Fernandes decision</h2>
-<p>Bruno remains the leading premium sell candidate for GW8/9, but not for a GW7 hit. At £11.9m selling value and 4.85 projected GW7 points, his marginal return per £1m is weak. His midweek start and threatening set-piece work reduce fitness uncertainty, but availability and value are separate questions. Official FPL analysis still notes that his involvement has not translated into price-appropriate output. <a href="https://www.premierleague.com/en/news/4729738">Premier League analysis</a>.</p>
+<p>Bruno remains the leading premium sell candidate for GW8/9, but not for a GW7 hit. At the now-lower £11.8m selling value and 4.85 projected GW7 points, his marginal return per £1m remains weak. The price fall reduces future reinvestment capacity by £0.1m, but does not turn an uncertain −4 into a good move. Availability and value remain separate questions. <a href="https://www.premierleague.com/en/news/4729738">Premier League analysis</a>.</p>
 <p><strong>Flip condition:</strong> sell on a free transfer only when a named replacement plus a specific use of the released cash beats the best attainable HOLD path. Do not count unspent cash as points, and do not use Groß's current rank alone as the reason.</p></section>
 
 <section class="card"><h2>Haaland-out diagnostic</h2>
 <table><thead><tr><th>Horizon</th><th>Estimated cost of excluding Haaland</th><th>80% interval</th></tr></thead><tbody>
-<tr><td>GW7</td><td>1.50</td><td>−10…+13</td></tr>
-<tr><td>GW7–9</td><td>3.90</td><td>−19…+27</td></tr>
-<tr><td>GW7–11</td><td>6.02</td><td>−25…+37</td></tr>
+<tr><td>GW7</td><td>1.54</td><td>−10…+13</td></tr>
+<tr><td>GW7–9</td><td>3.18</td><td>−19…+26</td></tr>
+<tr><td>GW7–11</td><td>6.06</td><td>−24…+37</td></tr>
 </tbody></table>
 <p>The unrestricted control retains only a small mean advantage relative to the uncertainty. The deliberate Haaland-out strategy therefore remains intact.</p></section>
 
 <section class="card"><h2>Decision and flip conditions</h2>
-<p><strong>Transfer: HOLD.</strong> <strong>Lineup:</strong> Thomas over Konsa and Gonzalo over Wissa provisionally. <strong>Captain:</strong> Calafiori narrowly, Palmer vice; treat that 0.09 edge as unresolved rather than strong.</p>
-<ul><li>Flip to Mykolenko → De Cuyper for −4 only if the final manager updates confirm Mykolenko out beyond GW7 and De Cuyper's role remains secure; otherwise wait for the free transfer.</li>
-<li>Flip the armband if final evidence changes minutes, illness status or defensive state; Palmer is the robust alternative.</li>
+<p><strong>Transfer: HOLD.</strong> <strong>Lineup:</strong> Thomas over Konsa and Gonzalo over Wissa. <strong>Captain:</strong> Calafiori narrowly, Palmer vice; treat the 0.09 edge as a model instruction, not a confident forecast.</p>
+<ul><li>The Mykolenko → De Cuyper flip condition was not met: Mykolenko is only 50%, but his manager says he has a chance and no multi-week absence was confirmed.</li>
+<li>Change captain only for credible late team-news evidence; Palmer is the robust alternative if any Arsenal concern emerges.</li>
 <li>Move Bruno only when the replacement and the reinvestment step are both named and jointly superior.</li></ul></section>
 
 <section class="card"><h2>Chip decisions</h2><table><thead><tr><th>Chip</th><th>GW7 decision</th><th>Reason</th></tr></thead><tbody>
@@ -117,14 +118,14 @@
 </tbody></table></section>
 
 <section class="card"><h2>Confidence</h2>
-<p><strong>Evidence quality: high</strong> for official finality, identifiers, fixtures, squad state and current prices; medium for late player state because most Friday press conferences were not yet published by 09:09. <strong>Model stability: medium-low</strong> because six Gameweeks still leave early leaders and fine captaincy gaps regression-sensitive. <strong>Outcome uncertainty: high</strong>; the recommendation is confidence in avoiding a poor decision process, not confidence in a specific score. The best extra hit wins only 47.4% of GW7 simulations despite its positive mean.</p></section>
+<p><strong>Evidence quality: high</strong> for official finality, identifiers, fixtures, prices and final manager evidence; medium-high for reconstructed sale values because no new private screenshot was available. <strong>Model stability: medium-low</strong> because six Gameweeks still leave early leaders and fine captaincy gaps regression-sensitive. <strong>Outcome uncertainty: high</strong>; the recommendation is confidence in avoiding a poorly supported hit, not confidence in a specific score. The best extra hit wins only 47.0% of GW7 simulations despite its positive mean.</p></section>
 
 <section class="card"><h2>Pre-deadline plan</h2><ol>
-<li>Make no transfer and preserve £0.8m plus the four-point hit.</li>
-<li>At the final Saturday check, refresh official availability, press-conference evidence and prices.</li>
-<li>Keep the model XI; resolve the Calafiori–Palmer armband tie after any Arsenal and Chelsea updates.</li>
-<li>Leave Mykolenko third bench while flagged; do not Bench Boost.</li>
-<li>For GW8, compare Bruno HOLD against replacement-plus-reinvestment paths using the new free transfer.</li>
+<li>Make no transfer; retain £0.8m and avoid the four-point hit.</li>
+<li>Set the final XI exactly as modelled: Thomas and Gonzalo start; Konsa, Wissa and Mykolenko occupy bench slots one to three.</li>
+<li>Captain Calafiori and vice-captain Palmer; only credible late Arsenal news should flip them.</li>
+<li>Do not Bench Boost.</li>
+<li>After the deadline, prepare a GW8 Bruno replacement-plus-specific-reinvestment comparison using the new £11.8m sale value.</li>
 </ol></section>
 
 <section class="card"><h2>Sources</h2><ul>
@@ -135,6 +136,9 @@
 <li><a href="https://www.premierleague.com/en/news/4450606/latest-premier-league-player-injuries-club-by-club-news">Official Premier League injury register</a></li>
 <li><a href="https://www.premierleague.com/en/news/4737338/scout-selection-best-fantasy-team-for-gameweek-7">Official GW7 Scout Selection</a></li>
 <li><a href="https://www.premierleague.com/en/news/4737262/everything-you-need-for-gameweek-7-of-fpl-with-the-latest-tips-and-advice">Official GW7 hub and deadline</a></li>
+<li><a href="https://www.premierleague.com/en/news/4737644/predicted-line-ups-for-matchweek-7/">Official Matchweek 7 predicted line-ups and manager quotes</a></li>
+<li><a href="https://www.chelseafc.com/en/news/article/xabi-alonso-confirms-chelsea-team-news-for-everton">Official Chelsea team news</a></li>
+<li><a href="https://www.chelseafc.com/en/news/article/alonso-pleased-hungry-and-complete-joao-pedro-has-taken-next-step-at">Official João Pedro manager assessment</a></li>
 <li><a href="https://www.newcastleunited.com/en/news/matthias-jaissles-team-news-update-toure-and-elanga-latest-ahead-of-villans-clash">Official Newcastle team update</a></li>
 <li><a href="https://www.manutd.com/en/news/atletico-de-madrid-2-united-0-13-oct-2026">Official Manchester United match report and Bruno evidence</a></li>
 <li><a href="https://www.premierleague.com/en/news/4737113/the-scouts-fpl-gameweek-7-transfer-radar/">Official GW7 transfer radar</a></li>
