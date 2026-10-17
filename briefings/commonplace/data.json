@@ -1,8 +1,31 @@
 {
   "schemaVersion": 1,
-  "publishedAtUtc": "2026-10-16T05:35:21.789Z",
-  "publishedAtDisplay": "16 October 2026 at 06:35 Europe/London",
+  "publishedAtUtc": "2026-10-17T05:32:49.195Z",
+  "publishedAtDisplay": "17 October 2026 at 06:32 Europe/London",
   "entries": [
+    {
+      "date": "2026-10-17",
+      "type": "Video",
+      "title": "How to Speak: give the audience an empowerment promise",
+      "creator": "Patrick Henry Winston",
+      "sourceLabel": "How to Speak · MIT OpenCourseWare video",
+      "sourceUrl": "https://ocw.mit.edu/courses/res-tll-005-how-to-speak-january-iap-2018/resources/how-to-speak-1/",
+      "centralIdea": "Patrick Winston treats speaking as a learnable craft: knowledge and practice matter more than an imagined gift for performance. His governing test is whether an audience can understand, retain and value an idea. Begin with an “empowerment promise”—state what listeners will be able to know or do by the end. Then cycle around the central idea, distinguish it from neighbouring ideas, and use verbal punctuation so attention can rejoin after it wanders. Match medium to purpose: Winston prefers the board for teaching because writing pace approximates absorption pace, while slides can expose material too quickly. For technical talks, situate the problem, show a vision, enumerate what has been done, and end on contributions rather than a generic thank-you slide. The deeper point is ethical as well as practical: presentation is not cosmetic packaging applied after thought. It is the engineering required for an idea to survive transmission.",
+      "whyItMayInterestYou": "The lecture joins communication, teaching and systems thinking. Each technique has a function—orientation, pacing, recovery or memory—so style becomes inspectable rather than mystical. It is especially useful when the material is complex enough that clarity cannot be improvised.",
+      "commonplaceEntry": "A talk is a designed path through another person’s attention. Begin by promising a real change in what the audience will understand. Revisit the central idea from more than one angle, mark transitions aloud, and provide landmarks where a distracted listener can re-enter. Choose tools for cognitive pace, not prestige: a board can slow explanation to the speed of comprehension, while a slide can make information appear faster than it can be integrated. Finish by naming the contribution, because the final frame remains after the supporting detail fades. Good speaking is not performance layered over substance. It is the craft of carrying substance across the gap between minds with as little damage as possible.",
+      "questionToCarry": "What will this audience be able to understand or do after the talk that they could not do before it?",
+      "evidenceNote": "Established by the source: MIT OpenCourseWare identifies Patrick Henry Winston as the instructor and provides the playable lecture and transcript. The transcript explicitly recommends beginning with an “empowerment promise,” revisiting the subject, distinguishing an idea from alternatives, marking transitions, matching tools to purpose, situating technical work and closing with contributions. MIT records the talk as a long-running Institute tradition. Qualification: these are Winston’s accumulated teaching and speaking heuristics, demonstrated through the lecture itself; the source does not provide controlled evidence that each technique improves outcomes across audiences. Claims about attention, pacing and memory should therefore be treated as experienced guidance, sensitive to accessibility needs, format and context. Describing presentation as transmission engineering is an interpretation of the lecture.",
+      "additionalSources": [
+        {
+          "label": "Full How to Speak transcript · MIT OpenCourseWare",
+          "url": "https://ocw.mit.edu/courses/15-371-innovation-teams-fall-2024/Unzc731iCUY_transcript.pdf"
+        },
+        {
+          "label": "History of the How to Speak tradition · MIT News",
+          "url": "https://news.mit.edu/2010/learn-how-speak"
+        }
+      ]
+    },
     {
       "date": "2026-10-16",
       "type": "Theory",
