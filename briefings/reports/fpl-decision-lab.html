@@ -4,10 +4,11 @@
 <title>FPL Decision Lab — GW7 final deadline call</title><link rel="stylesheet" href="../report.css"></head>
 <body><main>
 <header><p class="eyebrow">Fantasy Premier League · 2026/27</p><h1>Decision Lab — GW7 final deadline call</h1>
-<p><strong>Generated:</strong> Saturday 17 October 2026, 09:10 Europe/London · <strong>GW7 deadline:</strong> today, 11:00 BST · Decision support only; no transfer, lineup, captaincy or chip action was executed.</p></header>
+<p><strong>Generated:</strong> Saturday 17 October 2026, 09:46 Europe/London · <strong>GW7 deadline:</strong> today, 11:00 BST · Decision support only; no transfer, lineup, captaincy or chip action was executed.</p></header>
 
 <section class="card"><h2>Bottom line</h2>
 <p><strong>FINAL CALL: HOLD. Make no further GW7 transfer.</strong> Mykolenko has deteriorated from 75% to 50%, but the best extra move—Mykolenko → De Cuyper for −4—still beats HOLD in only 47.0% of one-week simulations. Moyes says Mykolenko has “got a chance” to return, so the pre-set flip condition of a confirmed multi-week absence has not been met.</p>
+<p><strong>90-minute checkpoint:</strong> the 09:36–09:42 BST official-data and model refresh reproduced the 09:10 call. Player histories, fixtures, final GW6 outcomes, owned-player availability and the decision outputs are unchanged; only live ownership and transfer counters moved.</p>
 <p><strong>Final optimal XI:</strong> Verbruggen; Calafiori, Hall, Thomas; Bruno, Saka, Mbeumo, Palmer, Tavernier; João Pedro, Gonzalo. <strong>Points-EV captain:</strong> Calafiori; <strong>vice:</strong> Palmer. Their 0.09 xPts gap remains below model resolution, but the final evidence contains no Arsenal concern and no Chelsea concern to justify overriding the mechanical order.</p></section>
 
 <section class="card"><h2>Verified state and material changes</h2><ul>
@@ -18,14 +19,14 @@
 <li>Official FPL's 15 October Scout Selection includes four owned players—Calafiori, Saka, Tavernier and João Pedro—and also selects De Cuyper. It reports eight Calafiori shots in the box, more than all other Arsenal defenders combined. This strengthens the current XI and the De Cuyper watch, but it does not remove model uncertainty. <a href="https://www.premierleague.com/en/news/4737338/scout-selection-best-fantasy-team-for-gameweek-7">Official Scout Selection</a>.</li>
 <li>Chelsea report no fresh fitness concerns; Palmer and João Pedro trained on Friday, and Alonso explicitly backed João Pedro after five goals and three assists in five league appearances. <a href="https://www.chelseafc.com/en/news/article/xabi-alonso-confirms-chelsea-team-news-for-everton">Official Chelsea team news</a>.</li>
 <li>Arsenal have no fresh injury concern in the official Matchweek 7 preview. Newcastle do not flag Hall or Wissa; both remain available in the FPL payload.</li>
-<li>The connected inbox contains one overnight Premier League weekend preview, but no private-team change, transfer confirmation or squad-state contradiction.</li>
+<li>The connected inbox contains one overnight Premier League weekend preview and no newer relevant message after 09:00 BST; there is no private-team change, transfer confirmation or squad-state contradiction.</li>
 </ul></section>
 
 <section class="card"><h2>Data freshness and validation</h2><table><thead><tr><th>Input</th><th>Result</th></tr></thead><tbody>
-<tr><td>bootstrap-static</td><td>Refreshed 17 Oct at 09:00 BST after a transient SSL timeout and successful retry; 667 elements, 562 selectable; season, GW6 finality, GW7 state and identifiers validated.</td></tr>
-<tr><td>fixtures</td><td>Refreshed 17 Oct at 09:01 BST; 380 fixtures; ten GW7 fixtures; deadline 10:00 UTC / 11:00 BST. All future deadline entries through GW38 were rechecked.</td></tr>
-<tr><td>element-summary</td><td>562/562 selectable-player endpoints refreshed during 09:01–09:03 BST. Several transient proxy/SSL timeouts succeeded on retry; all files passed structural and freshness validation.</td></tr>
-<tr><td>event/6/live</td><td>Refreshed 17 Oct at 09:01 BST; 667 unique player records; final outcomes validated against current summaries.</td></tr>
+<tr><td>bootstrap-static</td><td>Refreshed 17 Oct at 09:36 BST; 667 elements, 562 selectable; season, GW6 finality, GW7 state and identifiers validated. No status, price or news change from 09:10.</td></tr>
+<tr><td>fixtures</td><td>Refreshed 17 Oct at 09:36 BST; 380 fixtures; ten GW7 fixtures; deadline 10:00 UTC / 11:00 BST. All future deadline entries through GW38 were rechecked.</td></tr>
+<tr><td>element-summary</td><td>562/562 selectable-player endpoints refreshed during 09:36–09:40 BST; all passed structural validation and all histories were identical to the 09:10 baseline.</td></tr>
+<tr><td>event/6/live</td><td>Refreshed 17 Oct at 09:36 BST; 667 unique player records; final outcomes remain identical to the 09:10 baseline.</td></tr>
 <tr><td>Private state</td><td>Latest screenshots establish squad and 0 FT; overnight official prices and the sale-price cap reconstruct the new £98.3m sale value. Gmail contained no contradictory private update.</td></tr>
 </tbody></table>
 <p><strong>Blocked inputs:</strong> none among the required official endpoints. No field was invented. Empirical player and team estimates use 2026/27 only.</p></section>
@@ -127,6 +128,9 @@
 <li>Do not Bench Boost.</li>
 <li>After the deadline, prepare a GW8 Bruno replacement-plus-specific-reinvestment comparison using the new £11.8m sale value.</li>
 </ol></section>
+
+<section class="card"><h2>Deadline schedule check</h2>
+<p>The official GW7 deadline remains 11:00 BST today. All future official deadline-minus-90-minute runs through GW38 were recalculated from the live FPL event timestamps; the now-elapsed GW7 extra run was removed while the daily 09:00 Europe/London run was preserved.</p></section>
 
 <section class="card"><h2>Sources</h2><ul>
 <li><a href="https://fantasy.premierleague.com/api/bootstrap-static/">Official FPL bootstrap-static</a></li>
