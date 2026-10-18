@@ -1,8 +1,31 @@
 {
   "schemaVersion": 1,
-  "publishedAtUtc": "2026-10-17T05:32:49.195Z",
-  "publishedAtDisplay": "17 October 2026 at 06:32 Europe/London",
+  "publishedAtUtc": "2026-10-18T05:32:36.346Z",
+  "publishedAtDisplay": "18 October 2026 at 06:32 Europe/London",
   "entries": [
+    {
+      "date": "2026-10-18",
+      "type": "Theology",
+      "title": "Luke 10: the kingdom comes near before it is welcomed",
+      "creator": "The Gospel according to Luke",
+      "sourceLabel": "Luke 10:1–12 · English Standard Version on Bible.com",
+      "sourceUrl": "https://www.bible.com/bible/59/LUK.10.1-12.ESV",
+      "centralIdea": "In Luke 10, Jesus appoints seventy-two others and sends them in pairs ahead of him. Their sequence matters: first ask the Lord of the harvest to send workers; then go as lambs among wolves, without the normal securities of moneybag, knapsack or sandals. They enter as guests, offer peace, accept hospitality without trading up, heal the sick and announce that God’s kingdom has come near. When a town refuses them, they withdraw and warn rather than coerce—but the announcement remains: the kingdom has still come near. Reception changes the town’s response to God’s reign; it does not manufacture that reign. The disciples are neither conquering heroes nor travelling proprietors. They are vulnerable witnesses whose fellowship, dependence, peace and healing make visible the approach of the King who sent them and is himself coming to those places.",
+      "whyItMayInterestYou": "The passage joins mission to humility. Prayer precedes action, companions precede individual heroics, hospitality precedes proclamation, and healing embodies the message. It also prevents acceptance from becoming the measure of truth: rejection does not reverse what God is doing.",
+      "commonplaceEntry": "The seventy-two do not carry the kingdom as private property. They are sent ahead of Jesus to reveal that God’s reign has drawn near. Their manner is part of the message: two by two, prayerful, exposed, dependent on welcome, offering peace and healing. They cannot force reception, improve the truth by success, or cancel it by failure. If received, they remain and share the table. If rejected, they leave without coercion, yet speak the same reality: the kingdom has come near. Christian witness therefore holds confidence and powerlessness together. The messenger acts, serves and speaks clearly, while leaving both provision and response outside the messenger’s control.",
+      "questionToCarry": "How can a witness make the kingdom’s nearness visible without trying to control whether it is received?",
+      "evidenceNote": "Established by Luke 10:1–12: Jesus appoints the group, sends them two by two ahead of himself, commands prayer, describes them as lambs among wolves, removes ordinary travel provisions, tells them to offer peace, remain in one house, receive food, heal the sick and announce the kingdom’s nearness. Receptive and unreceptive towns receive the same central announcement, although rejection also brings a warning of judgment. Interpretation: saying that the mission reveals a kingdom already drawing near through Jesus, rather than producing it through acceptance, follows from that repeated announcement and from the disciples being sent where Jesus intends to come. Textual uncertainty: ancient manuscripts divide between seventy and seventy-two; the ESV prints seventy-two. Modern application beyond this particular mission is theological interpretation, not an explicit universal procedure.",
+      "additionalSources": [
+        {
+          "label": "Luke’s Kingdom mission in literary context · BibleProject",
+          "url": "https://bibleproject.com/guides/book-of-luke/"
+        },
+        {
+          "label": "Textual note on seventy or seventy-two · NET Bible",
+          "url": "https://classic.net.bible.org/passage.php?passage=Luk+10%3A1"
+        }
+      ]
+    },
     {
       "date": "2026-10-17",
       "type": "Video",
