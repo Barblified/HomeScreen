@@ -1,38 +1,38 @@
 {
   "schemaVersion": 1,
-  "publishedAtUtc": "2026-10-18T02:04:24.000Z",
-  "publishedAtDisplay": "2026-10-18 03:04:24 BST",
+  "publishedAtUtc": "2026-10-19T02:03:13.000Z",
+  "publishedAtDisplay": "2026-10-19 03:03:13 BST",
   "runStatus": {
     "status": "SUCCESS",
-    "lastRun": "2026-10-18 03:00 UK",
-    "petrolCheckpoint": "2026-10-17",
+    "lastRun": "2026-10-19 03:00 UK",
+    "petrolCheckpoint": "2026-10-18",
     "backlogStart": null,
     "backlogThrough": null,
-    "note": "Data verified through 2026-10-17; two local petrol price changes were recorded."
+    "note": "Data verified through 2026-10-18; no local petrol price changes were recorded."
   },
   "freshness": {
-    "petrol": "2026-10-17",
-    "oil": "2026-10-17",
-    "weather": "2026-10-17",
+    "petrol": "2026-10-18",
+    "oil": "2026-10-18",
+    "weather": "2026-10-18",
     "ukWeekly": "2026-10-12"
   },
   "latest": {
     "petrol": {
-      "date": "2026-10-17",
+      "date": "2026-10-18",
       "min": 166.9,
       "average": 168.48,
       "max": 169.9,
       "stations": 10
     },
     "oil": {
-      "date": "2026-10-17",
+      "date": "2026-10-18",
       "brent": 109.86,
       "wti": 101.41,
       "status": "Market closed — latest prior settlement"
     },
     "weather": {
-      "date": "2026-10-17",
-      "hucknall": 9.5,
+      "date": "2026-10-18",
+      "hucknall": 10,
       "rotherham": 9.8,
       "reference": 15,
       "status": "Provisional — Hucknall high/low midpoint; Rotherham finalized"
@@ -736,6 +736,13 @@
         "average": 168.48,
         "max": 169.9,
         "stations": 10
+      },
+      {
+        "date": "2026-10-18",
+        "min": 166.9,
+        "average": 168.48,
+        "max": 169.9,
+        "stations": 10
       }
     ],
     "oil": [
@@ -1317,6 +1324,12 @@
       },
       {
         "date": "2026-10-17",
+        "brent": 109.86,
+        "wti": 101.41,
+        "status": "Market closed — latest prior settlement"
+      },
+      {
+        "date": "2026-10-18",
         "brent": 109.86,
         "wti": 101.41,
         "status": "Market closed — latest prior settlement"
@@ -1990,7 +2003,14 @@
       },
       {
         "date": "2026-10-17",
-        "hucknall": 9.5,
+        "hucknall": 9.1,
+        "rotherham": 9.8,
+        "reference": 15,
+        "status": "Finalized — reported historical daily mean regional proxies"
+      },
+      {
+        "date": "2026-10-18",
+        "hucknall": 10,
         "rotherham": 9.8,
         "reference": 15,
         "status": "Provisional — Hucknall high/low midpoint; Rotherham finalized"
