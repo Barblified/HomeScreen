@@ -1,8 +1,31 @@
 {
   "schemaVersion": 1,
-  "publishedAtUtc": "2026-10-18T05:32:36.346Z",
-  "publishedAtDisplay": "18 October 2026 at 06:32 Europe/London",
+  "publishedAtUtc": "2026-10-19T05:36:22.085Z",
+  "publishedAtDisplay": "19 October 2026 at 06:36 BST",
   "entries": [
+    {
+      "date": "2026-10-19",
+      "type": "Data",
+      "title": "The garden of forking paths: one analysis, many unseen alternatives",
+      "creator": "Andrew Gelman and Eric Loken",
+      "sourceLabel": "The garden of forking paths · Columbia University Statistics (2013)",
+      "sourceUrl": "https://stat.columbia.edu/~gelman/research/unpublished/p_hacking.pdf",
+      "centralIdea": "An analysis can suffer from multiple comparisons even when the researcher runs only one test. Gelman and Loken’s “garden of forking paths” begins earlier: choices about exclusions, transformations, outcomes, subgroups, covariates and interactions may be made after seeing features of the data, each choice appearing defensible in context. The reported path is singular, but another dataset could have prompted another equally plausible route. Conventional significance calculations usually treat the chosen route as if it had been fixed in advance, ignoring the larger set of analyses that might have been selected. No conscious fishing or dishonesty is required; good-faith theory can rationalise the turn that looks sensible after the result is visible. The remedy is not one ritual. Preregistration separates planned from exploratory work; multiverse or specification analyses expose how conclusions vary across defensible choices; replication tests whether the selected pattern survives new data.",
+      "whyItMayInterestYou": "This names a failure mode that lives between bad statistics and bad character. It redirects scrutiny from whether an analyst intended to manipulate a result toward whether the conclusion remains stable across the reasonable decisions the data could have invited.",
+      "commonplaceEntry": "A result inherits uncertainty from the route used to reach it. If cleaning rules, outcomes, subgroups or model terms were chosen partly in response to the observed data, the final p-value describes only the selected path—not the garden of plausible paths surrounding it. Sincerity does not remove this multiplicity; a theoretically respectable explanation can be found for whichever turn the data makes attractive. Record decisions before outcomes are visible when confirmation matters. When several choices are genuinely defensible, show the range: rerun the analysis across them, explain which specifications are credible, and distinguish a stable conclusion from one that exists only at a convenient fork.",
+      "questionToCarry": "Would this conclusion survive the other defensible analytical choices I could have made at each fork?",
+      "evidenceNote": "Established as Gelman and Loken’s methodological argument: data-contingent researcher choices create an implicit multiple-comparisons problem even when only one analysis is executed and no deliberate p-hacking occurs. The paper illustrates the mechanism through published cases; it is not a theorem assigning a universal false-positive rate to every flexible workflow. Supporting evidence: a 2024 multiverse study of an N400 experiment found that several defensible preprocessing and measurement choices changed at least some outcomes. Limits: preregistration can clarify confirmatory claims but cannot repair weak theory, poor measurement or noisy data; multiverse analyses also require judgment about which specifications are genuinely defensible. Calling the unreported alternatives uncertainty inherited by the result is an interpretive summary.",
+      "additionalSources": [
+        {
+          "label": "An empirical multiverse analysis in ERP research · Psychophysiology (2024)",
+          "url": "https://onlinelibrary.wiley.com/doi/10.1111/psyp.14628"
+        },
+        {
+          "label": "Why p-hacking need not imply an intention to cheat · Andrew Gelman",
+          "url": "https://statmodeling.stat.columbia.edu/2017/05/10/p-hacking-intention-cheat-effect/"
+        }
+      ]
+    },
     {
       "date": "2026-10-18",
       "type": "Theology",
