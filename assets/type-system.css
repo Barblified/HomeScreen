@@ -417,3 +417,146 @@ main.card > h1 { color: var(--ink) !important; }
 
 .briefings-shell .viewer-toolbar { background: var(--paper-light) !important; border-color: var(--line) !important; }
 .briefings-shell .viewer-title { color: var(--ink) !important; }
+
+
+/* Graphic fieldbook: saturated, crisp colour blocks inspired by the supplied wallpapers. */
+:root {
+  --paper: #f2f0e6;
+  --paper-light: #fffdf5;
+  --paper-deep: #dfded2;
+  --ink: #192027;
+  --muted: #525d63;
+  --forest: #16766e;
+  --forest-dark: #0f5056;
+  --forest-soft: #d9efea;
+  --rust: #e14c36;
+  --brass: #e2bd27;
+  --line: #b9c0bb;
+  --shadow: 3px 4px 0 rgba(25, 32, 39, .13);
+  --chart-surface: #faf8f0;
+  --chart-grid: rgba(25, 32, 39, .16);
+  --chart-text: #192027;
+  --canvas: var(--paper);
+  --surface: var(--paper-light);
+  --surface-strong: #ffffff;
+  --mist: var(--paper-deep);
+  --sky: #238bd3;
+  --teal: var(--forest);
+  --teal-dark: var(--forest-dark);
+  --orange: var(--rust);
+  --orange-dark: #b93629;
+  --leaf: #eab8cb;
+  --green: var(--forest);
+  --green-2: #22a08f;
+  --shadow-1: var(--shadow);
+  --shadow-2: 4px 6px 0 rgba(25, 32, 39, .16);
+  --bg-1: var(--paper);
+  --bg-2: #e8e5d8;
+  --card: var(--paper-light);
+  --panel: #f8f5ea;
+  --panel-soft: #ebe9dc;
+  --blue: #237fba;
+  --orange-soft: #f4c4a7;
+  --danger: #c63731;
+}
+body { background-color: var(--paper) !important; }
+.site-menu {
+  background: var(--ink) !important;
+  border-bottom: 3px solid var(--forest) !important;
+}
+.site-menu::before { color: #f4dc4a; }
+.site-menu a { color: #f5f3ea !important; }
+.site-menu a:hover, .site-menu a:focus-visible {
+  color: #192027 !important;
+  background: #f4dc4a !important;
+}
+.site-menu a[aria-current="page"] {
+  color: #192027 !important;
+  background: #f4dc4a !important;
+  border-bottom-color: #f4dc4a !important;
+}
+:focus-visible { outline-color: var(--sky) !important; }
+.card, .main, .link-group, .briefing-nav, .viewer,
+.hero, .coach, .trend-card, .sources-panel, .panel, .small, .picker, .result, .setup {
+  border: 1px solid #aeb6b2 !important;
+  border-radius: 3px !important;
+  box-shadow: var(--shadow) !important;
+}
+.card { position: relative; isolation: isolate; overflow: hidden; }
+.card::before {
+  width: 6px !important;
+  border-radius: 0 !important;
+  background: var(--forest) !important;
+}
+.card::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  right: 0;
+  width: 88px;
+  height: 88px;
+  opacity: .16;
+  background: var(--sky);
+  clip-path: polygon(100% 0, 0 0, 100% 100%);
+  pointer-events: none;
+}
+.card.orange::before, .planning-card.month::before { background: var(--rust) !important; }
+.card.orange::after { background: var(--rust); }
+.card.green::before, .planning-card.year::before { background: var(--forest) !important; }
+.card.green::after { background: #18a895; }
+.card.sky::before { background: var(--brass) !important; }
+.card.sky::after { background: var(--brass); }
+.favourite-link, .tool-link, .discovery-link, .health-metric,
+.micro-meta span, .health-trend, .attention-status {
+  border-radius: 2px !important;
+}
+.favourite-link, .tool-link, .discovery-link, .health-metric {
+  border: 1px solid #aeb6b2 !important;
+  box-shadow: 1px 2px 0 rgba(25,32,39,.09) !important;
+}
+.favourite-link:hover, .tool-link:hover, .discovery-link:hover {
+  border-color: var(--forest) !important;
+  background: var(--forest-soft) !important;
+  box-shadow: 2px 3px 0 rgba(25,32,39,.14) !important;
+}
+.link-group summary {
+  background: #e4eee8 !important;
+  border-left: 5px solid var(--forest);
+}
+.link-group:nth-child(3n + 2) summary {
+  background: #f4e8ac !important;
+  border-left-color: var(--brass);
+}
+.link-group:nth-child(3n) summary {
+  background: #f3d0c4 !important;
+  border-left-color: var(--rust);
+}
+.task-button, .toolbar-actions button, .toolbar-actions a {
+  border-radius: 2px !important;
+  box-shadow: 1px 2px 0 rgba(25,32,39,.08) !important;
+}
+.task-button[aria-selected="true"] {
+  border-color: var(--forest) !important;
+  background: var(--forest-soft) !important;
+  box-shadow: inset 4px 0 0 var(--forest) !important;
+}
+.diary-link, .primary, .save, .watch {
+  color: var(--ink) !important;
+  background: #f0d83f !important;
+  border: 1px solid var(--ink) !important;
+  box-shadow: 2px 3px 0 var(--ink) !important;
+}
+.diary-link:hover, .primary:hover, .save:hover, .watch:hover {
+  background: #f6e675 !important;
+}
+.chart-wrap, .home-weight-wrap, .bp-chart-wrap, .waist-chart-wrap, .routine-chart,
+[id$="-trend-wrap"], .chart-card, [class*="-chart-card"], .routine-card {
+  border-radius: 3px !important;
+}
+.metric, .tile, .trend-card, .chart-chip, .bp-chart-chip, .waist-chart-chip {
+  border-radius: 3px !important;
+}
+@media (max-width: 600px) {
+  .site-menu { background: var(--ink) !important; }
+}
