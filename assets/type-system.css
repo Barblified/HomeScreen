@@ -634,7 +634,7 @@ body { background-color: var(--paper) !important; }
   background-repeat: no-repeat;
   background-size: 600% 100%;
   background-position: 0 0;
-  animation: chibi-journal-poses 4.8s steps(6, end) infinite;
+  animation: chibi-journal-poses 4.8s steps(5, end) infinite;
 }
 @keyframes chibi-journal-poses {
   from { background-position: 0 0; }
