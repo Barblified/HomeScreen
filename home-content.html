@@ -45,7 +45,7 @@
       min-height: 100vh;
       color: var(--ink);
       background: var(--canvas);
-      font-family: "Gloria Hallelujah", cursive;
+      font-family: var(--font-ui), Arial, sans-serif;
     }
 
     a { color: inherit; }
@@ -122,7 +122,7 @@
     }
 
     h1, h2, h3, .script-title {
-      font-family: "Swanky and Moo Moo", cursive;
+      font-family: var(--font-ui), Arial, sans-serif;
       font-weight: 400;
     }
 
@@ -474,7 +474,7 @@
     }
 
     .link-group[open] summary::after { content: "−"; }
-    .link-group summary span { font-family: "Swanky and Moo Moo", cursive; color: var(--orange-dark); font-size: 1.75rem; line-height: 1; }
+    .link-group summary span { font-family: var(--font-ui), Arial, sans-serif; color: var(--orange-dark); font-size: 1.75rem; line-height: 1; }
     .link-group summary small { color: var(--muted); font-size: .72rem; }
 
     .tool-grid {
@@ -583,7 +583,7 @@
       .tool-grid { grid-template-columns: 1fr; }
     }
   </style>
-  <link rel="stylesheet" href="assets/type-system.css?v=20261020-neon8">
+  <link rel="stylesheet" href="assets/type-system.css?v=20261020-font1">
 </head>
 <body>
   <div class="wave-bg" aria-hidden="true">
@@ -686,6 +686,6 @@
     </section>
   </main>
 
-  <script src="/HomeScreen/assets/home-dashboard.js?v=20261020-neon8"></script>
+  <script src="/HomeScreen/assets/home-dashboard.js?v=20261020-font1"></script>
 </body>
 </html>
