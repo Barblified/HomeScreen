@@ -33,9 +33,6 @@
   --leaf: #a0b397;
   --green: var(--forest);
   --green-2: #58765d;
-  --ink: var(--ink);
-  --line: var(--line);
-  --muted: var(--muted);
   --shadow-1: var(--shadow);
   --shadow-2: 0 10px 28px rgba(43, 51, 43, .09);
   --bg-1: var(--paper);
