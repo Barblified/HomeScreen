@@ -93,7 +93,7 @@
         margin: 0 0 30px;
         padding: 22px 24px 24px;
         border: 1px solid rgba(44,181,201,.22);
-        border-left: 6px solid #2CB5C9;
+        border-left: 6px solid #00D5FF;
         border-radius: 14px;
         background: rgba(255,255,255,.88);
         box-shadow: 0 4px 14px rgba(35,64,61,.12);
@@ -108,11 +108,11 @@
       }
       .home-weight-heading h3 {
         margin: 0;
-        color: #2CB5C9 !important;
+        color: #00D5FF !important;
       }
       .home-weight-heading p {
         margin: 4px 0 0;
-        color: #5E7A78;
+        color: #a8b3ba;
         font-size: 22px;
         line-height: 1.15;
       }
@@ -132,7 +132,7 @@
       }
       .home-weight-chip small {
         display: block;
-        color: #5E7A78;
+        color: #a8b3ba;
         font-size: 10px;
         font-weight: 800;
         letter-spacing: .05em;
@@ -143,15 +143,15 @@
         margin-top: 2px;
         font-size: 14px;
       }
-      .home-weight-chip.current { box-shadow: inset 0 3px 0 #2CB5C9; }
-      .home-weight-chip.current strong { color: #168FA2; }
+      .home-weight-chip.current { box-shadow: inset 0 3px 0 #00D5FF; }
+      .home-weight-chip.current strong { color: #00D5FF; }
       .home-weight-chip.seven { box-shadow: inset 0 3px 0 #FF8A3D; }
-      .home-weight-chip.seven strong { color: #E87428; }
-      .home-weight-chip.fourteen { box-shadow: inset 0 3px 0 #2F7D4A; }
-      .home-weight-chip.fourteen strong { color: #2F7D4A; }
+      .home-weight-chip.seven strong { color: #B8FF00; }
+      .home-weight-chip.fourteen { box-shadow: inset 0 3px 0 #F4FF00; }
+      .home-weight-chip.fourteen strong { color: #F4FF00; }
       .home-weight-note {
         margin: 0 0 9px;
-        color: #5E7A78;
+        color: #a8b3ba;
         font-family: "Gloria Hallelujah", cursive;
         font-size: 12px;
       }
@@ -178,7 +178,7 @@
         border-radius: 11px;
         background: rgba(255,249,241,.98);
         box-shadow: 0 6px 18px rgba(35,64,61,.13);
-        color: #23403D;
+        color: #f7f9fb;
         font-family: "Gloria Hallelujah", cursive;
         font-size: 12px;
         line-height: 1.42;
@@ -192,7 +192,7 @@
         place-items: center;
         min-height: 180px;
         margin: 0;
-        color: #5E7A78;
+        color: #a8b3ba;
         font-size: 24px;
         text-align: center;
       }
@@ -380,12 +380,12 @@
       context.lineTo(margin.left + plotWidth, y);
       context.strokeStyle = 'rgba(182,201,219,.18)';
       context.stroke();
-      context.fillStyle = '#D7E3ED';
+      context.fillStyle = '#a8b3ba';
       context.textAlign = 'right';
       context.fillText(value.toFixed(1), margin.left - 8, y);
     }
 
-    context.fillStyle = '#D7E3ED';
+    context.fillStyle = '#a8b3ba';
     context.textAlign = 'left';
     context.fillText('kg', 7, margin.top - 6);
 
@@ -397,7 +397,7 @@
 
     tickIndices.forEach((historyIndex, tickIndex) => {
       const x = xForIndex(historyIndex);
-      context.fillStyle = '#D7E3ED';
+      context.fillStyle = '#a8b3ba';
       context.textAlign = tickIndex === 0 ? 'left' : historyIndex === pointCount - 1 ? 'right' : 'center';
       context.fillText(formatDate(history[historyIndex].timestamp), x, cssHeight - 17);
     });
@@ -422,27 +422,33 @@
         }
       });
       context.strokeStyle = strokeStyle;
+      context.shadowColor = strokeStyle;
+      context.shadowBlur = 13;
       context.lineWidth = lineWidth;
       context.lineJoin = 'round';
       context.lineCap = 'round';
       context.stroke();
+      context.shadowBlur = 0;
       context.setLineDash([]);
     }
 
-    drawSeries(linearTrendSeries, 'trendKg', '#7DB9E8', 2.25, [7, 5]);
-    drawSeries(sevenReadingSeries, 'averageKg', '#FFAD62', 3);
-    drawSeries(fourteenReadingSeries, 'averageKg', '#45DB70', 4.5);
+    drawSeries(linearTrendSeries, 'trendKg', '#00D5FF', 2.25, [7, 5]);
+    drawSeries(sevenReadingSeries, 'averageKg', '#B8FF00', 3);
+    drawSeries(fourteenReadingSeries, 'averageKg', '#F4FF00', 4.5);
 
     const interactivePoints = history.map((entry, index) => {
       const x = xForIndex(index);
       const y = yFor(entry.weightKg);
       context.beginPath();
       context.arc(x, y, index === history.length - 1 ? 4.5 : 3.5, 0, Math.PI * 2);
-      context.fillStyle = '#F3F7FB';
+      context.fillStyle = '#B8FF00';
+      context.shadowColor = '#B8FF00';
+      context.shadowBlur = 12;
       context.fill();
       context.lineWidth = 1.4;
-      context.strokeStyle = '#7DB9E8';
+      context.strokeStyle = '#00D5FF';
       context.stroke();
+      context.shadowBlur = 0;
       return { index, x, y };
     });
 
