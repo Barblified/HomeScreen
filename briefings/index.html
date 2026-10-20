@@ -194,7 +194,7 @@
       .privacy-note { display: none; }
     }
   </style>
-  <link rel="stylesheet" href="../assets/type-system.css?v=20261020-fieldbook5">
+  <link rel="stylesheet" href="../assets/type-system.css?v=20261020-fieldbook6">
 </head>
 <body>
   <nav class="site-menu" aria-label="Site navigation">
@@ -276,6 +276,19 @@
 
       buttons.forEach(button => button.addEventListener("click", () => select(button, true)));
       refresh.addEventListener("click", () => select(current, true));
+
+      frame.addEventListener("load", () => {
+        try {
+          const reportDoc = frame.contentDocument;
+          if (!reportDoc?.head) return;
+          const theme = reportDoc.createElement("link");
+          theme.rel = "stylesheet";
+          theme.href = "/HomeScreen/briefings/report.css?v=20261020-fieldbook2";
+          reportDoc.head.append(theme);
+        } catch (error) {
+          console.warn("Briefing report theme could not be applied.", error);
+        }
+      });
 
       const requested = location.hash.slice(1);
       const matched = buttons.find(button => button.dataset.key === requested);
