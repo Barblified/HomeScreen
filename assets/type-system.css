@@ -889,3 +889,11 @@ input::placeholder, textarea::placeholder { color: #8e9aa4 !important; }
   .page-banner--briefings { margin-bottom: 50px !important; }
   .banner-mascot--briefings { width: 50px !important; height: 86px !important; bottom: -36px !important; }
 }
+
+/* Final banner spacing and accessible selected states. */
+.page-banner--briefings > div { max-width: calc(100% - 58px) !important; }
+.page-banner--briefings h1 {
+  font-size: clamp(1.4rem, 2vw, 1.8rem) !important;
+  letter-spacing: -.06em !important;
+}
+.task-button[aria-selected="true"] span { color: #050608 !important; }
