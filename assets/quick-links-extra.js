@@ -71,7 +71,7 @@
         display: block;
         min-width: 0;
         color: #23403D;
-        font-family: "Gloria Hallelujah", cursive;
+        font-family: var(--font-ui), Arial, sans-serif;
         font-size: 11.5px;
         font-weight: 700;
         line-height: 1.05;
