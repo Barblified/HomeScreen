@@ -39,7 +39,7 @@
           border-radius: 999px;
           background: rgba(125,185,232,.10);
           color: #B6C9DB;
-          font-family: "Gloria Hallelujah", cursive;
+          font-family: var(--font-ui), Arial, sans-serif;
           font-size: .82rem;
           line-height: 1.2;
           vertical-align: baseline;
