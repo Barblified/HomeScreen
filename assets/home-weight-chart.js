@@ -1,5 +1,5 @@
 (() => {
-  const HEALTH_DATA_URL = "https://script.google.com/macros/s/AKfycbxmuIjmiQe6D-yrB1i8cp3g6NPxTxDPxmqj6ZynwZ-CWDz_F2COc-DEImaFnyaZygMO/exec";
+  const HEALTH_DATA_URL = "https://script.google.com/macros/s/AKfycbwihWQw8Frs1acA1Y-CELBw0NmX4O5KFzcqU3f8TbFpSegleKyPM64TkqTyoNyAWhLP/exec";
   const frame = document.querySelector('.page-frame');
   let historyCache = [];
   let chartState = null;
