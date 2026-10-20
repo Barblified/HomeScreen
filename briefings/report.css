@@ -166,3 +166,53 @@ h2,h3,h4{font-family:"Barlow Condensed","DIN Alternate","Bahnschrift",sans-serif
 th{background:#171e24!important;color:#00d5ff!important}
 th,td{border-color:#39434c!important;color:#f7f9fb!important}
 .sources{color:#b5c0c8!important}
+
+
+/* Neon report skin aligned with the rest of the site. */
+:root {
+  color-scheme: dark;
+  --ink: #f7f9fb;
+  --muted: #b5c0c8;
+  --cream: #07090c;
+  --white: #101419;
+  --line: #39434c;
+  --navy: #101419;
+  --navy-2: #101419;
+  --navy-3: #151b21;
+  --green: #b8ff00;
+  --green-soft: rgba(184,255,0,.12);
+  --amber: #fff000;
+  --amber-soft: rgba(255,240,0,.12);
+  --red: #00d5ff;
+  --red-soft: rgba(0,213,255,.12);
+  --shadow: 4px 5px 0 rgba(0,0,0,.76);
+}
+html, body { background: #07090c !important; color: #f7f9fb !important; }
+body, p, li, table, th, td { font-family: "DIN Alternate", "DIN Next", "Bahnschrift", "Barlow Condensed", "Arial Narrow", sans-serif !important; }
+h1, h2, h3, .awaiting strong { color: #f7f9fb !important; font-family: "Major Mono Display", monospace !important; }
+a { color: #00d5ff !important; }
+a:hover { color: #fff000 !important; }
+.masthead, .report-header {
+  background: #101419 !important; color: #f7f9fb !important;
+  border: 1px solid #39434c !important; border-bottom: 3px solid #00d5ff !important;
+  box-shadow: 4px 5px 0 rgba(0,0,0,.76) !important;
+}
+.masthead h1, .report-header h1, .masthead h2, .report-header h2 { color: #f7f9fb !important; }
+.masthead .kicker, .report-header .kicker { color: #b8ff00 !important; font-family: "Major Mono Display", monospace !important; }
+.report-meta, .meta { color: #b5c0c8 !important; }
+.card {
+  color: #f7f9fb !important; background: #101419 !important;
+  border: 1px solid #39434c !important; box-shadow: 4px 5px 0 rgba(0,0,0,.76) !important;
+}
+.card h2, .card h3 { color: #f7f9fb !important; }
+.status, .status.watch, .status.risk {
+  color: #b8ff00 !important; background: rgba(184,255,0,.12) !important;
+  border: 1px solid rgba(184,255,0,.45) !important;
+}
+table { color: #f7f9fb !important; }
+th, td { border-color: #39434c !important; }
+th { color: #00d5ff !important; background: #151b21 !important; }
+.notice { color: #f7f9fb !important; border-left-color: #fff000 !important; background: rgba(255,240,0,.08) !important; }
+.awaiting strong { color: #b8ff00 !important; }
+.awaiting span { color: #b5c0c8 !important; }
+.skip { color: #050608 !important; background: #b8ff00 !important; }
