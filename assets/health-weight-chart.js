@@ -94,7 +94,7 @@
         padding: 18px;
         border: 1px solid rgba(47, 125, 74, 0.20);
         border-radius: 22px;
-        background: #fbf9f2;
+        background: #101318;
         overflow: hidden;
       }
       .chart-heading {
@@ -126,7 +126,7 @@
         padding: 7px 10px 8px;
         border: 1px solid var(--line);
         border-radius: 12px;
-        background: #fffdf8;
+        background: #151b21;
         text-align: center;
       }
       .chart-chip small {
@@ -143,12 +143,12 @@
         color: var(--ink);
         font-size: 0.94rem;
       }
-      .chart-chip.current { box-shadow: inset 0 3px 0 #8f7444; }
-      .chart-chip.current strong { color: #8f7444; }
-      .chart-chip.seven { box-shadow: inset 0 3px 0 #58765d; }
-      .chart-chip.seven strong { color: #58765d; }
-      .chart-chip.fourteen { box-shadow: inset 0 3px 0 #3e6048; }
-      .chart-chip.fourteen strong { color: #3e6048; }
+      .chart-chip.current { box-shadow: inset 0 3px 0 #F4FF00; }
+      .chart-chip.current strong { color: #F4FF00; }
+      .chart-chip.seven { box-shadow: inset 0 3px 0 #B8FF00; }
+      .chart-chip.seven strong { color: #B8FF00; }
+      .chart-chip.fourteen { box-shadow: inset 0 3px 0 #F4FF00; }
+      .chart-chip.fourteen strong { color: #F4FF00; }
       .chart-note {
         margin: 0 0 9px;
         color: var(--muted);
@@ -160,7 +160,7 @@
         width: 100%;
         height: 310px;
         border-radius: 14px;
-        background: #f8f6ef;
+        background: #101318;
         overflow: hidden;
       }
       #weight-trend-canvas {
@@ -176,7 +176,7 @@
         padding: 9px 11px;
         border: 1px solid rgba(41,52,46,.18);
         border-radius: 11px;
-        background: #fbf9f2;
+        background: #101318;
         box-shadow: 0 6px 18px rgba(43,51,43,.09);
         color: var(--ink);
         font-family: "Gloria Hallelujah", cursive;
@@ -229,7 +229,7 @@
           <div class="chart-chip fourteen"><small>14-log avg</small><strong id="weight-trend-fourteen">—</strong></div>
         </div>
       </div>
-      <p class="chart-note">7-log average starts after 4 readings · 14-log average starts after 8 · Empty dates are removed · Sky-blue line = overall linear trend.</p>
+      <p class="chart-note">7-log average starts after 4 readings · 14-log average starts after 8 · Empty dates are removed · Neon-blue line = overall linear trend.</p>
       <div class="chart-wrap" id="weight-trend-wrap">
         <canvas id="weight-trend-canvas" role="img" aria-label="Weight progress chart showing individual weigh-ins, 7-log and 14-log rolling averages, and an overall linear trend in kilograms across logged weigh-ins">Weight history chart.</canvas>
         <div class="chart-tooltip" id="weight-trend-tooltip" hidden aria-live="polite"></div>
@@ -237,8 +237,9 @@
       </div>
     `;
 
-    const hero = doc.querySelector('.hero');
-    if (hero) hero.before(section);
+    const charts = doc.getElementById('health-charts');
+    if (charts) charts.appendChild(section);
+    else doc.querySelector('.hero')?.before(section);
   }
 
   function setChartText(doc, id, value) {
@@ -397,15 +398,15 @@
       context.beginPath();
       context.moveTo(margin.left, y);
       context.lineTo(margin.left + plotWidth, y);
-      context.strokeStyle = 'rgba(41,52,46,.14)';
+      context.strokeStyle = 'rgba(0,213,255,.18)';
       context.stroke();
 
-      context.fillStyle = '#667168';
+      context.fillStyle = '#a8b3ba';
       context.textAlign = 'right';
       context.fillText(`${value.toFixed(1)}`, margin.left - 8, y);
     }
 
-    context.fillStyle = '#667168';
+    context.fillStyle = '#a8b3ba';
     context.textAlign = 'left';
     context.fillText('kg', 7, margin.top - 6);
 
@@ -417,7 +418,7 @@
 
     tickIndices.forEach((historyIndex, tickIndex) => {
       const x = xForIndex(historyIndex);
-      context.fillStyle = '#667168';
+      context.fillStyle = '#a8b3ba';
       context.textAlign = tickIndex === 0 ? 'left' : historyIndex === pointCount - 1 ? 'right' : 'center';
       context.fillText(formatChartDate(history[historyIndex].timestamp), x, cssHeight - 17);
     });
@@ -445,14 +446,17 @@
       });
 
       context.strokeStyle = strokeStyle;
+      context.shadowColor = strokeStyle;
+      context.shadowBlur = 13;
       context.lineWidth = lineWidth;
       context.lineJoin = 'round';
       context.lineCap = 'round';
       context.stroke();
+      context.shadowBlur = 0;
       context.setLineDash([]);
     }
 
-    drawSeries(linearTrendSeries, 'trendKg', '#7894a2', 2.25, [7, 5]);
+    drawSeries(linearTrendSeries, 'trendKg', '#00D5FF', 2.25, [7, 5]);
 
     const interactivePoints = history.map((entry, index) => {
       const x = xForIndex(index);
@@ -460,17 +464,20 @@
 
       context.beginPath();
       context.arc(x, y, index === history.length - 1 ? 4.5 : 3.5, 0, Math.PI * 2);
-      context.fillStyle = '#fffdf8';
+      context.fillStyle = '#B8FF00';
+      context.shadowColor = '#B8FF00';
+      context.shadowBlur = 12;
       context.fill();
       context.lineWidth = 1.4;
-      context.strokeStyle = 'rgba(41,52,46,.55)';
+      context.strokeStyle = 'rgba(247,249,251,.75)';
       context.stroke();
+      context.shadowBlur = 0;
 
       return { index, x, y };
     });
 
-    drawSeries(sevenReadingSeries, 'averageKg', '#a2533d', 3);
-    drawSeries(fourteenReadingSeries, 'averageKg', '#3e6048', 4.5);
+    drawSeries(sevenReadingSeries, 'averageKg', '#B8FF00', 3);
+    drawSeries(fourteenReadingSeries, 'averageKg', '#F4FF00', 4.5);
 
     canvas.setAttribute(
       'aria-label',
