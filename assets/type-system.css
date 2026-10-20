@@ -1,99 +1,352 @@
-@import url('https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Gloria+Hallelujah&family=Swanky+and+Moo+Moo&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Literata:opsz,wght@7..72,400;7..72,500;7..72,600&display=swap');
 
 :root {
-  --font-display: "Swanky and Moo Moo", cursive;
-  --font-accent: "Gloria Hallelujah", cursive;
+  color-scheme: light;
+  --paper: #f4f0e6;
+  --paper-light: #fbf9f2;
+  --paper-deep: #eae5d8;
+  --ink: #29342e;
+  --muted: #667168;
+  --forest: #3e6048;
+  --forest-dark: #2e4d38;
+  --forest-soft: #e5ece4;
+  --rust: #a2533d;
+  --brass: #8f7444;
+  --line: #d8d2c4;
+  --shadow: 0 5px 18px rgba(43, 51, 43, .07);
+  --font-display: "Literata", Georgia, serif;
   --font-ui: "Atkinson Hyperlegible", Arial, sans-serif;
-  --chart-surface: #0D2741;
-  --chart-grid: rgba(182, 201, 219, .18);
-  --chart-text: #D7E3ED;
+  --chart-surface: #f8f6ef;
+  --chart-grid: rgba(41, 52, 46, .14);
+  --chart-text: #29342e;
+
+  /* Preserve the existing page components while translating their color tokens. */
+  --canvas: var(--paper);
+  --surface: var(--paper-light);
+  --surface-strong: #fffdf8;
+  --mist: var(--paper-deep);
+  --sky: #9eaf9f;
+  --teal: var(--forest);
+  --teal-dark: var(--forest-dark);
+  --orange: var(--rust);
+  --orange-dark: var(--rust);
+  --leaf: #a0b397;
+  --green: var(--forest);
+  --green-2: #58765d;
+  --ink: var(--ink);
+  --line: var(--line);
+  --muted: var(--muted);
+  --shadow-1: var(--shadow);
+  --shadow-2: 0 10px 28px rgba(43, 51, 43, .09);
+  --bg-1: var(--paper);
+  --bg-2: var(--paper-deep);
+  --card: var(--paper-light);
+  --panel: #f5f2e9;
+  --panel-soft: #ece8dc;
+  --blue: #4c6e79;
+  --orange-soft: #bd7458;
+  --danger: #a4443a;
 }
 
-/* Functional information should be effortless to scan. */
-html,
-body,
-button,
-input,
-select,
-textarea,
-option,
-label,
-legend,
-summary,
-table,
-th,
-td,
-small,
-.site-menu,
-.tool-link,
-.favourite-link,
-.discovery-link,
-.attention-item,
-.health-metric,
-.chart-summary,
-.home-weight-summary,
-.chart-tooltip,
-.home-weight-tooltip {
+* { box-sizing: border-box; }
+html { background: var(--paper) !important; scroll-behavior: smooth; }
+body {
+  color: var(--ink) !important;
+  background-color: var(--paper) !important;
   font-family: var(--font-ui) !important;
+  line-height: 1.55;
 }
-
-/* Brand voice stays handwritten and distinctive. */
-h1,
-h2,
-h3,
-h4,
-.script-title,
-.card-heading h2,
-.planning-card h3,
-.link-group summary > span,
-#home-weight-trend-heading,
-#weight-trend-heading {
+h1, h2, h3, h4, .script-title,
+.card-heading h2, .section-heading h2, .planning-card h3,
+.link-group summary > span, #home-weight-trend-heading, #weight-trend-heading {
+  color: var(--ink);
   font-family: var(--font-display) !important;
-  font-weight: 400 !important;
+  font-weight: 500 !important;
+  letter-spacing: -.025em;
+}
+p, li, label, button, input, select, textarea, summary, table, th, td {
+  font-family: var(--font-ui) !important;
+}
+a { color: var(--forest-dark); text-underline-offset: 3px; }
+a:hover { color: var(--rust); }
+:focus-visible { outline: 3px solid rgba(62, 96, 72, .52) !important; outline-offset: 3px; }
+
+.site-menu {
+  position: relative;
+  z-index: 20;
+  height: 64px !important;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start !important;
+  gap: clamp(3px, 1vw, 13px) !important;
+  padding: 8px clamp(12px, 3vw, 34px) !important;
+  overflow-x: auto;
+  white-space: nowrap;
+  background: var(--paper) !important;
+  border-bottom: 1px solid var(--line) !important;
+  box-shadow: none !important;
+  font-family: var(--font-ui) !important;
+}
+.site-menu::before {
+  content: "FIELD NOTES";
+  flex: 0 0 auto;
+  margin-right: auto;
+  padding-right: 22px;
+  color: var(--forest-dark);
+  font-size: .72rem;
+  font-weight: 700;
+  letter-spacing: .16em;
+}
+.site-menu a {
+  flex: 0 0 auto;
+  padding: 10px 11px !important;
+  border: 0;
+  border-bottom: 2px solid transparent;
+  border-radius: 0 !important;
+  color: var(--muted) !important;
+  background: transparent !important;
+  text-decoration: none;
+  font-size: .91rem !important;
+  font-weight: 700;
+  line-height: 1.2;
+}
+.site-menu a:hover,
+.site-menu a:focus-visible {
+  color: var(--ink) !important;
+  background: transparent !important;
+  border-bottom-color: var(--rust);
+}
+.site-menu a[aria-current="page"] {
+  color: var(--forest-dark) !important;
+  background: transparent !important;
+  border-bottom-color: var(--forest);
+}
+.site-menu a:focus-visible { outline-offset: -2px !important; }
+.page-frame {
+  width: 100%;
+  height: calc(100% - 64px) !important;
+  border: 0;
+  display: block;
+  background: var(--paper) !important;
+}
+@media (max-width: 600px) {
+  .site-menu { height: 58px !important; gap: 1px !important; padding-inline: 10px !important; }
+  .site-menu::before { padding-right: 8px; font-size: .64rem; letter-spacing: .12em; }
+  .site-menu a { padding: 9px 8px !important; font-size: .82rem !important; }
+  .page-frame { height: calc(100% - 58px) !important; }
 }
 
-/* Gloria becomes seasoning rather than the reading font. */
-.eyebrow,
-.section-kicker,
-.kicker,
-.home-weight-note,
-.chart-note {
-  font-family: var(--font-accent) !important;
-  font-weight: 400 !important;
+/* Home: a calm index rather than a wall of glowing widgets. */
+.wave-bg { display: none !important; }
+.home-shell {
+  width: min(1120px, calc(100% - 36px)) !important;
+  padding: 34px 0 56px !important;
 }
-
-/* Data graphics: quiet backdrop, readable labels, restrained accents. */
-.home-weight-wrap,
-.chart-wrap {
+.page-intro {
+  align-items: end;
+  margin: 0 0 27px !important;
+  padding: 0 0 18px;
+  border-bottom: 1px solid var(--line);
+}
+.eyebrow, .section-kicker, .kicker {
+  color: var(--forest) !important;
+  font-family: var(--font-ui) !important;
+  font-size: .7rem !important;
+  font-weight: 700 !important;
+  letter-spacing: .14em !important;
+  text-transform: uppercase;
+}
+.page-intro h1 { margin-top: 4px !important; color: var(--ink) !important; font-size: clamp(2.3rem, 5vw, 3.5rem) !important; line-height: 1.04; }
+.today-label { color: var(--muted) !important; font-size: .88rem; }
+.dashboard-grid, .context-grid, .planning-grid { gap: 15px !important; margin-bottom: 17px !important; }
+.context-grid { grid-template-columns: minmax(0, 1.25fr) minmax(260px, .75fr) !important; }
+.planning-grid { grid-template-columns: repeat(3, minmax(0, 1fr)) !important; }
+.card, .main, .link-group, .briefing-nav, .viewer {
+  border: 1px solid var(--line) !important;
+  border-radius: 7px !important;
+  background: var(--paper-light) !important;
+  box-shadow: var(--shadow) !important;
+  backdrop-filter: none !important;
+}
+.card { padding: 20px !important; }
+.card::before {
+  width: 3px !important;
+  border-radius: 7px 0 0 7px !important;
+  background: var(--forest) !important;
+}
+.card.orange::before, .planning-card.month::before { background: var(--rust) !important; }
+.card.green::before, .planning-card.year::before { background: var(--forest) !important; }
+.card.sky::before { background: var(--brass) !important; }
+.card-heading { margin-bottom: 14px !important; }
+.card-heading h2, .section-heading h2, .planning-card h3 { color: var(--ink) !important; font-size: clamp(1.65rem, 3vw, 2.1rem) !important; line-height: 1.15 !important; }
+.micro-meta { gap: 6px; }
+.micro-meta span {
+  padding: 5px 8px;
+  border: 1px solid var(--line);
+  border-radius: 3px !important;
+  color: var(--muted);
+  background: var(--paper) !important;
+  font-size: .72rem;
+}
+.favourites-grid { gap: 9px !important; }
+.favourite-link, .tool-link, .discovery-link, .health-metric {
+  border-color: var(--line) !important;
+  border-radius: 4px !important;
+  color: var(--ink) !important;
+  background: #fffdf8 !important;
+  box-shadow: none !important;
+}
+.favourite-link { min-height: 67px !important; }
+.favourite-link svg, .tool-link svg, .discovery-link svg { opacity: .72; }
+.favourite-link:hover, .tool-link:hover, .discovery-link:hover {
+  transform: translateY(-1px);
+  border-color: #aebbaa !important;
+  background: var(--forest-soft) !important;
+  box-shadow: none !important;
+}
+.health-metrics { gap: 8px; }
+.health-metric { padding: 10px 7px !important; }
+.health-metric strong { color: var(--forest-dark) !important; }
+.health-trend, .attention-status, .micro-meta span {
+  border-color: var(--line) !important;
+  border-radius: 3px !important;
+  color: var(--muted) !important;
+  background: #efeee6 !important;
+}
+.health-link, .attention-detail a, .attention-more summary, .discovery-more summary {
+  color: var(--forest-dark) !important;
+}
+.section { margin-bottom: 22px !important; }
+.section-heading { margin-bottom: 10px !important; }
+.section-heading h2 { color: var(--ink) !important; }
+.section-heading p { color: var(--muted) !important; font-size: .82rem; }
+.link-groups { gap: 11px !important; }
+.link-group { overflow: hidden; }
+.link-group summary {
+  background: #efede4 !important;
+  padding: 13px 42px 13px 15px !important;
+}
+.link-group summary::after { color: var(--rust) !important; }
+.link-group summary > span { color: var(--ink) !important; font-size: 1.3rem !important; }
+.tool-grid { gap: 7px !important; }
+.tool-link { min-height: 42px !important; padding: 8px 9px !important; }
+.planning-card { min-height: 0 !important; }
+.planning-card h3 { margin-top: 5px !important; }
+.planning-card > p:not(.section-kicker) {
+  margin: 11px 0 0;
+  color: var(--muted);
+  font-size: .9rem;
+  line-height: 1.5;
+}
+.discovery-card { margin-top: 20px; }
+.discovery-more summary { font-weight: 700; }
+.home-weight-card { border-radius: 6px !important; }
+.home-weight-wrap, .chart-wrap {
+  color: var(--ink) !important;
+  border: 1px solid var(--line) !important;
+  border-radius: 6px !important;
   background: var(--chart-surface) !important;
+  box-shadow: none !important;
 }
-
-.home-weight-tooltip,
-.chart-tooltip {
-  font-size: 15px !important;
-  line-height: 1.45 !important;
+.home-weight-heading h3 { color: var(--ink) !important; }
+.home-weight-heading p, .home-weight-note, .home-weight-empty { color: var(--muted) !important; }
+.home-weight-chip { border-color: var(--line) !important; background: var(--paper-light) !important; }
+.home-weight-tooltip, .chart-tooltip {
+  color: var(--ink) !important;
+  border-color: var(--line) !important;
+  background: var(--paper-light) !important;
 }
+.home-weight-note, .chart-note { font-family: var(--font-ui) !important; }
 
-.home-weight-tooltip strong,
-.chart-tooltip strong {
-  font-family: var(--font-ui) !important;
-  font-weight: 700 !important;
+/* Health and learning pages share the same quiet paper, type and controls. */
+main.card { max-width: 1100px; margin: 22px auto; }
+.hero, .coach, .trend-card, .sources-panel, .panel, .small, .picker, .result, .setup {
+  border-color: var(--line) !important;
+  border-radius: 7px !important;
+  color: var(--ink) !important;
+  background: var(--paper-light) !important;
+  box-shadow: var(--shadow) !important;
+  backdrop-filter: none !important;
 }
-
-.home-weight-chip,
-.chart-chip {
-  font-family: var(--font-ui) !important;
+.hero { color: var(--ink) !important; }
+.hero h1, .hero h2, .coach-heading h2 { color: var(--ink) !important; }
+.hero p, .coach-subtitle, .metric small, .metric span, .tile span { color: var(--muted) !important; }
+.status, .badge, .chip, .duration {
+  border-color: var(--line) !important;
+  border-radius: 3px !important;
+  color: var(--forest-dark) !important;
+  background: var(--forest-soft) !important;
 }
-
-.home-weight-chip strong,
-.chart-chip strong {
-  font-weight: 700 !important;
+.metric, .tile, .trend-card { border-color: var(--line) !important; background: #fffdf8 !important; }
+.metric strong, .tile strong { color: var(--forest-dark) !important; }
+.progress { background: var(--paper-deep) !important; }
+.bar { background: var(--forest) !important; }
+.coach-section { border-color: var(--line) !important; }
+.coach-section h3, .sources-block h4, .trend-card h4 { color: var(--forest-dark) !important; }
+.trend-card p, .readable-list, .action-list { color: var(--ink) !important; }
+.sources-panel summary { color: var(--forest-dark) !important; }
+.diary-link, .primary, .save, .watch {
+  border-radius: 4px !important;
+  color: #fffdf8 !important;
+  background: var(--forest-dark) !important;
 }
+.secondary, .action, .icon {
+  border-color: var(--line) !important;
+  border-radius: 4px !important;
+  color: var(--ink) !important;
+  background: var(--paper) !important;
+}
+.select select, select, .text, input {
+  border-color: var(--line) !important;
+  border-radius: 4px !important;
+  color: var(--ink) !important;
+  background: #fffdf8 !important;
+}
+.intro p, .small p, .micro, .label, legend { color: var(--muted) !important; }
 
-/* Keep decorative handwriting comfortably large wherever retained. */
-@media (max-width: 620px) {
-  .home-weight-note,
-  .chart-note {
-    line-height: 1.45;
-  }
+/* Briefings navigation: the reports remain readable while chrome matches the fieldbook. */
+.briefings-shell {
+  height: calc(100% - 64px) !important;
+  background: var(--paper) !important;
+}
+.briefing-nav, .viewer { color: var(--ink) !important; }
+.briefings-shell h1 { color: var(--ink) !important; }
+.briefings-shell .intro { color: var(--muted) !important; }
+.task-button {
+  border: 1px solid var(--line) !important;
+  border-radius: 4px !important;
+  color: var(--ink) !important;
+  background: #fffdf8 !important;
+  box-shadow: none !important;
+}
+.task-button:hover { border-color: #aebbaa !important; }
+.task-button[aria-selected="true"] {
+  border-color: var(--forest) !important;
+  background: var(--forest-soft) !important;
+}
+.task-button span, .privacy-note { color: var(--muted) !important; }
+.viewer-toolbar { border-color: var(--line) !important; }
+.viewer-title { color: var(--ink) !important; }
+.toolbar-actions button, .toolbar-actions a {
+  border: 1px solid var(--line) !important;
+  border-radius: 4px !important;
+  color: var(--forest-dark) !important;
+  background: var(--paper-light) !important;
+}
+#report-frame { border-color: var(--line) !important; background: var(--paper-light) !important; }
+
+/* Data graphics retain contrast without bringing the old dark palette back. */
+.chart-wrap, .home-weight-wrap { --chart-surface: #f8f6ef; --chart-grid: rgba(41,52,46,.14); --chart-text: #29342e; }
+@media (max-width: 760px) {
+  .home-shell { width: min(calc(100% - 24px), 1120px) !important; padding-top: 22px !important; }
+  .context-grid, .planning-grid { grid-template-columns: 1fr !important; }
+  .planning-card:first-child { grid-column: auto !important; }
+  .card { padding: 16px !important; }
+  .favourites-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .briefings-shell { height: auto !important; min-height: calc(100% - 58px); }
+  .viewer { min-height: 55vh; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation-duration: .001ms !important; transition-duration: .001ms !important; }
 }

@@ -9,7 +9,7 @@
       const link = doc.createElement('link');
       link.id = 'home-dark-theme';
       link.rel = 'stylesheet';
-      link.href = '/HomeScreen/assets/home-dark-theme.css';
+      link.href = '/HomeScreen/assets/home-dark-theme.css?v=20261020-fieldbook';
       doc.head.appendChild(link);
     } catch (error) {
       console.warn('Unable to apply HomeScreen dark theme:', error);

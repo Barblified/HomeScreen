@@ -583,7 +583,7 @@
       .tool-grid { grid-template-columns: 1fr; }
     }
   </style>
-  <link rel="stylesheet" href="assets/type-system.css">
+  <link rel="stylesheet" href="assets/type-system.css?v=20261020-fieldbook">
 </head>
 <body>
   <div class="wave-bg" aria-hidden="true">
@@ -595,7 +595,7 @@
   <main class="home-shell">
     <header class="page-intro">
       <div>
-        <p class="eyebrow">My Anchor in the Chaos</p>
+        <p class="eyebrow">A quieter home base</p>
         <h1>Home</h1>
       </div>
       <p class="today-label" id="today-label"></p>
@@ -606,10 +606,10 @@
       <article class="card orange" aria-labelledby="favourites-heading">
         <div class="card-heading">
           <div>
-            <p class="section-kicker">Launch</p>
-            <h2 id="favourites-heading">Pinned</h2>
+            <p class="section-kicker">At hand</p>
+            <h2 id="favourites-heading">Selected tools</h2>
           </div>
-          <div class="micro-meta"><span>8 stable favourites</span></div>
+          <div class="micro-meta"><span>A few links, chosen on purpose</span></div>
         </div>
         <nav class="favourites-grid" id="favourites-grid" aria-label="Pinned favourites"></nav>
       </article>
@@ -620,9 +620,9 @@
         <div class="card-heading">
           <div>
             <p class="section-kicker">Health</p>
-            <h2 id="health-summary-heading">Snapshot</h2>
+            <h2 id="health-summary-heading">Health, over time</h2>
           </div>
-          <div class="micro-meta"><span>Trend, not noise</span></div>
+          <div class="micro-meta"><span>Patterns, not pressure</span></div>
         </div>
         <div class="health-metrics">
           <div class="health-metric"><small>Current</small><strong id="health-current">—</strong></div>
@@ -637,44 +637,31 @@
     <section class="section" aria-labelledby="tools-heading">
       <div class="section-heading">
         <div>
-          <p class="section-kicker">Launch</p>
-          <h2 id="tools-heading">Quick Links</h2>
+          <p class="section-kicker">Reference shelf</p>
+          <h2 id="tools-heading">Tools by purpose</h2>
         </div>
-        <p>Grouped by purpose · alphabetical inside each group</p>
+        <p>Open what serves this moment; leave when you are done.</p>
       </div>
       <div class="link-groups" id="link-groups"></div>
     </section>
 
-    <section class="planning-grid" aria-label="Planning and reflection">
+    <section class="planning-grid" aria-label="A slower rhythm">
       <article class="card planning-card">
-        <p class="section-kicker">Focus</p>
-        <h3>This Week</h3>
-        <ul>
-          <li>Get fully caught up on work tasks</li>
-          <li>Pray daily</li>
-          <li>Continue with journal</li>
-        </ul>
+        <p class="section-kicker">On paper</p>
+        <h3>Think first</h3>
+        <p>Let the notebook hold the first draft: questions, fragments and things worth remembering.</p>
       </article>
 
       <article class="card orange planning-card month">
-        <p class="section-kicker">Direction</p>
-        <h3>This Month (September)</h3>
-        <ul>
-          <li>🎯 Theme: Build Momentum</li>
-          <li>🐍 Datacamp: Learn as much as I can on the data literacy track, at least 4 hours per week.</li>
-          <li>📊 Work: Get everything ready for the person who will take over</li>
-        </ul>
+        <p class="section-kicker">With technology</p>
+        <h3>Use it on purpose</h3>
+        <p>Open a digital tool when it helps with a clear task. Keep the rest of the day elsewhere.</p>
       </article>
 
       <article class="card green planning-card year">
-        <p class="section-kicker">Long view</p>
-        <h3>This Year</h3>
-        <ul>
-          <li>🐍 Soft Skills: Work on influencing up, down and sideways</li>
-          <li>📈 Work: Become the go-to for solving data problems</li>
-          <li>⚡ Energy: Protect focus time and reduce reactive days</li>
-          <li>💪 Health: Cut to 100kg first. Abs are earned after obedience.</li>
-        </ul>
+        <p class="section-kicker">For its own sake</p>
+        <h3>Leave some space</h3>
+        <p>Not every interest needs a feed, a tracker or a system. Some things can simply be enjoyed.</p>
       </article>
     </section>
 
@@ -683,19 +670,19 @@
 
     <section class="card orange discovery-card" aria-labelledby="discovery-heading">
       <div>
-        <p class="section-kicker">Discover</p>
+        <p class="section-kicker">Curiosity</p>
         <div class="card-heading">
-          <h2 id="discovery-heading">Try Something</h2>
+          <h2 id="discovery-heading">One deliberate detour</h2>
         </div>
         <div class="discovery-pick" id="discovery-pick"></div>
       </div>
       <details class="discovery-more">
-        <summary>More rabbit holes</summary>
+        <summary>Other paths to follow</summary>
         <div class="discovery-list" id="discovery-list"></div>
       </details>
     </section>
   </main>
 
-  <script src="/HomeScreen/assets/home-dashboard.js?v=20261020-1046"></script>
+  <script src="/HomeScreen/assets/home-dashboard.js?v=20261020-fieldbook"></script>
 </body>
 </html>
