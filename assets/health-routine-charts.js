@@ -1,7 +1,7 @@
 (() => {
   'use strict';
   const frame = document.querySelector('.page-frame');
-  const URL = 'https://script.google.com/macros/s/AKfycbxmuIjmiQe6D-yrB1i8cp3g6NPxTxDPxmqj6ZynwZ-CWDz_F2COc-DEImaFnyaZygMO/exec';
+  const URL = 'https://script.google.com/macros/s/AKfycbwihWQw8Frs1acA1Y-CELBw0NmX4O5KFzcqU3f8TbFpSegleKyPM64TkqTyoNyAWhLP/exec';
   const ns = 'http://www.w3.org/2000/svg';
   const state = { windowDays: '90', payload: null };
   const configs = [
