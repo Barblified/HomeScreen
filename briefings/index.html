@@ -277,18 +277,21 @@
       buttons.forEach(button => button.addEventListener("click", () => select(button, true)));
       refresh.addEventListener("click", () => select(current, true));
 
-      frame.addEventListener("load", () => {
+      const applyReportTheme = () => {
         try {
           const reportDoc = frame.contentDocument;
-          if (!reportDoc?.head) return;
+          if (!reportDoc?.head || reportDoc.getElementById("fieldbook-report-theme")) return;
           const theme = reportDoc.createElement("link");
+          theme.id = "fieldbook-report-theme";
           theme.rel = "stylesheet";
-          theme.href = "/HomeScreen/briefings/report.css?v=20261020-fieldbook2";
+          theme.href = "/HomeScreen/briefings/report.css?v=20261020-fieldbook3";
           reportDoc.head.append(theme);
         } catch (error) {
           console.warn("Briefing report theme could not be applied.", error);
         }
-      });
+      };
+      frame.addEventListener("load", applyReportTheme);
+      applyReportTheme();
 
       const requested = location.hash.slice(1);
       const matched = buttons.find(button => button.dataset.key === requested);
