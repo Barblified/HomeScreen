@@ -120,7 +120,7 @@
         grid-template-columns: repeat(3, minmax(82px, 1fr));
         gap: 7px;
         min-width: min(100%, 294px);
-        font-family: "Gloria Hallelujah", cursive;
+        font-family: var(--font-ui), Arial, sans-serif;
       }
       .chart-chip {
         padding: 7px 10px 8px;
@@ -152,7 +152,7 @@
       .chart-note {
         margin: 0 0 9px;
         color: var(--muted);
-        font-family: "Gloria Hallelujah", cursive;
+        font-family: var(--font-ui), Arial, sans-serif;
         font-size: 0.76rem;
       }
       .chart-wrap {
@@ -179,7 +179,7 @@
         background: #101318;
         box-shadow: 0 6px 18px rgba(43,51,43,.09);
         color: var(--ink);
-        font-family: "Gloria Hallelujah", cursive;
+        font-family: var(--font-ui), Arial, sans-serif;
         font-size: 0.75rem;
         line-height: 1.42;
         pointer-events: none;
