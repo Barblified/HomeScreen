@@ -121,7 +121,7 @@
         grid-template-columns: repeat(3, minmax(88px, 1fr));
         gap: 8px;
         min-width: min(100%, 330px);
-        font-family: "Gloria Hallelujah", cursive;
+        font-family: var(--font-ui), Arial, sans-serif;
       }
       .home-weight-chip {
         padding: 8px 10px 9px;
@@ -152,7 +152,7 @@
       .home-weight-note {
         margin: 0 0 9px;
         color: #a8b3ba;
-        font-family: "Gloria Hallelujah", cursive;
+        font-family: var(--font-ui), Arial, sans-serif;
         font-size: 12px;
       }
       .home-weight-wrap {
@@ -179,7 +179,7 @@
         background: #101318;
         box-shadow: 0 0 15px rgba(0,213,255,.15);
         color: #f7f9fb;
-        font-family: "Gloria Hallelujah", cursive;
+        font-family: var(--font-ui), Arial, sans-serif;
         font-size: 12px;
         line-height: 1.42;
         pointer-events: none;
