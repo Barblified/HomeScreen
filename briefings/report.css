@@ -216,3 +216,7 @@ th { color: #00d5ff !important; background: #151b21 !important; }
 .awaiting strong { color: #b8ff00 !important; }
 .awaiting span { color: #b5c0c8 !important; }
 .skip { color: #050608 !important; background: #b8ff00 !important; }
+
+/* Small contrast and type refinements. */
+.window { color: #f7f9fb !important; background: #101419 !important; border-left-color: #00d5ff !important; }
+h2, h3 { font-family: "DIN Alternate", "DIN Next", "Bahnschrift", "Barlow Condensed", "Arial Narrow", sans-serif !important; }
