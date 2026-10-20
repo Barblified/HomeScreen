@@ -89,3 +89,10 @@ li + li { margin-top: 6px; }
   .table-wrap { overflow-x: auto; }
   th, td { min-width: 130px; }
 }
+
+
+/* Keep generated reports legible inside the paper-and-ink fieldbook. */
+.masthead, .report-header { background: #fbf9f2 !important; color: #29342e !important; border: 1px solid #d8d2c4 !important; border-top: 3px solid #3e6048 !important; box-shadow: 0 5px 18px rgba(43,51,43,.07) !important; }
+.masthead h1, .report-header h1, .masthead h2, .report-header h2 { color: #29342e !important; }
+.masthead .kicker, .report-header .kicker { color: #3e6048 !important; }
+.masthead .meta, .report-header .report-meta, .report-header .meta { color: #667168 !important; }
