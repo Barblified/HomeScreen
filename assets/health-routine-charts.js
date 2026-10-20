@@ -5,8 +5,8 @@
   const ns = 'http://www.w3.org/2000/svg';
   const state = { windowDays: '90', payload: null };
   const configs = [
-    { id: 'wake', title: 'Wake-up Time', subtitle: 'Actual wake-up time by day; 7-day and 14-day observed averages.', source: 'wakeUpHistory', unit: 'time', color: '#7DB9E8' },
-    { id: 'jacked', title: 'Jacked Plan Adherence', subtitle: 'Score out of 10 on scheduled sessions. Rest days do not count as missed.', source: 'jackedAdherenceHistory', unit: 'score', color: '#6BE784' }
+    { id: 'wake', title: 'Wake-up Time', subtitle: 'Actual wake-up time by day; 7-day and 14-day observed averages.', source: 'wakeUpHistory', unit: 'time', color: '#4c6e79' },
+    { id: 'jacked', title: 'Jacked Plan Adherence', subtitle: 'Score out of 10 on scheduled sessions. Rest days do not count as missed.', source: 'jackedAdherenceHistory', unit: 'score', color: '#58765d' }
   ];
   function numeric(v) {
     if (v === null || v === undefined || String(v).trim() === '') return null;
@@ -75,29 +75,29 @@
     const st = doc.createElement('style');
     st.textContent = [
       '.routine-trends { margin: 22px 0; }',
-      '.routine-trends > h2 { font-size: 2.2rem; margin: 0 0 4px; color: #FFAD62; }',
+      '.routine-trends > h2 { font-size: 2.2rem; margin: 0 0 4px; color: #bd7458; }',
       '.routine-trends > p { margin: 0 0 14px; color: var(--muted); font-size: 1.05rem; }',
       '.routine-summary { display: grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:10px; margin-bottom:14px; }',
-      '.routine-summary > div, .routine-card { border:1px solid var(--line); background:rgba(10,32,55,.95); border-radius:18px; }',
+      '.routine-summary > div, .routine-card { border:1px solid var(--line); background:#fbf9f2; border-radius:18px; }',
       '.routine-summary > div { padding:12px; }',
-      '.routine-summary small { color:var(--muted); display:block; font:700 .68rem system-ui,sans-serif; letter-spacing:.03em; }',
-      '.routine-summary strong { font:700 1.12rem system-ui,sans-serif; display:block; margin-top:6px; color:#EAF2F8; }',
+      '.routine-summary small { color:var(--muted); display:block; font:700 .68rem var(--font-ui),Arial,sans-serif; letter-spacing:.03em; }',
+      '.routine-summary strong { font:700 1.12rem var(--font-ui),Arial,sans-serif; display:block; margin-top:6px; color:#29342e; }',
       '.routine-card { padding:18px; margin:14px 0; }',
       '.routine-head { display:flex; align-items:start; justify-content:space-between; gap:14px; }',
-      '.routine-head h3 { color:#7DB9E8; font-size:1.8rem; margin:0; }',
-      '.routine-card[data-chart="jacked"] .routine-head h3 { color:#6BE784; }',
+      '.routine-head h3 { color:#4c6e79; font-size:1.8rem; margin:0; }',
+      '.routine-card[data-chart="jacked"] .routine-head h3 { color:#58765d; }',
       '.routine-head p { color:var(--muted); margin:3px 0 10px; font-size:1rem; }',
       '.routine-chips { display:flex; flex-wrap:wrap; gap:6px; margin:9px 0; }',
-      '.routine-chips span { border-radius:10px; border:1px solid var(--line); padding:5px 9px; font:700 .75rem system-ui,sans-serif; color:var(--ink); }',
+      '.routine-chips span { border-radius:10px; border:1px solid var(--line); padding:5px 9px; font:700 .75rem var(--font-ui),Arial,sans-serif; color:var(--ink); }',
       '.routine-period { display:flex; gap:6px; flex-wrap:wrap; justify-content:flex-end; margin:0 0 8px; }',
-      '.routine-period button { cursor:pointer; border:1px solid var(--line); border-radius:999px; padding:5px 10px; background:#102D49; color:#F3F7FB; font:700 .72rem system-ui,sans-serif; }',
-      '.routine-period button[aria-pressed="true"] { background:#45DB70; color:#07182A; }',
-      '.routine-chart { position:relative; min-height:260px; overflow:hidden; border-radius:14px; background:linear-gradient(180deg,rgba(17,52,84,.95),rgba(7,24,42,.94)); }',
+      '.routine-period button { cursor:pointer; border:1px solid var(--line); border-radius:999px; padding:5px 10px; background:#fffdf8; color:#29342e; font:700 .72rem var(--font-ui),Arial,sans-serif; }',
+      '.routine-period button[aria-pressed="true"] { background:#3e6048; color:#fbf9f2; }',
+      '.routine-chart { position:relative; min-height:260px; overflow:hidden; border-radius:14px; background:linear-gradient(180deg,#f5f2e9,#f8f6ef); }',
       '.routine-chart svg { width:100%; height:auto; min-height:230px; display:block; }',
-      '.routine-empty { margin:0; padding:65px 15px; text-align:center; color:var(--muted); font:1.05rem system-ui,sans-serif; }',
-      '.routine-note { font: .75rem system-ui,sans-serif; color:var(--muted); line-height:1.5; margin:10px 0 0; }',
+      '.routine-empty { margin:0; padding:65px 15px; text-align:center; color:var(--muted); font:1.05rem var(--font-ui),Arial,sans-serif; }',
+      '.routine-note { font: .75rem var(--font-ui),Arial,sans-serif; color:var(--muted); line-height:1.5; margin:10px 0 0; }',
       '.routine-chart circle { cursor:help; }',
-      '.routine-chart circle:focus { outline:2px solid #FFAD62; outline-offset:2px; }',
+      '.routine-chart circle:focus { outline:2px solid #bd7458; outline-offset:2px; }',
       '@media (max-width:680px) { .routine-summary { grid-template-columns:repeat(2,minmax(0,1fr)); } .routine-head { flex-direction:column; } .routine-card { padding:12px; } .routine-chart svg { min-height:180px; } }'
     ].join('\n');
     doc.head.appendChild(st);
@@ -200,12 +200,12 @@
     const svg = svgNode(doc, 'svg', { viewBox: '0 0 760 270', role: 'img', 'aria-label': config.title + ', with raw measurements and seven and fourteen day averages. ' + filtered.length + ' observed records in selected range.' });
     ticks.forEach(t => {
       const yy = y(t);
-      svg.appendChild(svgNode(doc, 'line', { x1: padL, y1: yy, x2: width - padR, y2: yy, stroke: '#43617C', 'stroke-opacity': '.38' }));
-      svg.appendChild(svgNode(doc, 'text', { x: padL - 10, y: yy + 4, fill: '#C7D5E3', 'text-anchor': 'end', 'font-size': '12', 'font-family': 'system-ui, sans-serif' }, config.unit === 'time' ? format(config, t) : String(t)));
+      svg.appendChild(svgNode(doc, 'line', { x1: padL, y1: yy, x2: width - padR, y2: yy, stroke: '#667168', 'stroke-opacity': '.38' }));
+      svg.appendChild(svgNode(doc, 'text', { x: padL - 10, y: yy + 4, fill: '#667168', 'text-anchor': 'end', 'font-size': '12', 'font-family': 'system-ui, sans-serif' }, config.unit === 'time' ? format(config, t) : String(t)));
     });
     const range = [filtered[0].stamp, (filtered[0].stamp + filtered[filtered.length-1].stamp)/2, filtered[filtered.length-1].stamp];
     range.forEach((t, i) => {
-      svg.appendChild(svgNode(doc, 'text', { x: padL + i * plotW / 2, y: height - 9, fill: '#C7D5E3', 'text-anchor': i === 0 ? 'start' : i === 2 ? 'end' : 'middle', 'font-size': '12', 'font-family': 'system-ui, sans-serif' }, dayLabel(t)));
+      svg.appendChild(svgNode(doc, 'text', { x: padL + i * plotW / 2, y: height - 9, fill: '#667168', 'text-anchor': i === 0 ? 'start' : i === 2 ? 'end' : 'middle', 'font-size': '12', 'font-family': 'system-ui, sans-serif' }, dayLabel(t)));
     });
     const rolling = filtered.map(p => ({ ...p, avg7: average(history, 7, p.stamp), avg14: average(history, 14, p.stamp) }));
     const line = (points, key, colour, thickness, opacity) => {
@@ -214,10 +214,10 @@
       svg.appendChild(svgNode(doc, 'path', { d, fill: 'none', stroke: colour, 'stroke-width': thickness, 'stroke-linecap': 'round', 'stroke-linejoin': 'round', opacity }));
     };
     line(rolling, 'value', config.color, 2, 0.7);
-    line(rolling, 'avg7', '#FFAD62', 2.7, 1);
-    line(rolling, 'avg14', '#45DB70', 3.3, 1);
+    line(rolling, 'avg7', '#bd7458', 2.7, 1);
+    line(rolling, 'avg14', '#3e6048', 3.3, 1);
     rolling.forEach(p => {
-      const circle = svgNode(doc, 'circle', { cx: x(p), cy: y(p.value), r: '4', fill: config.color, stroke: '#07182A', 'stroke-width': '1.5', tabindex: '0' });
+      const circle = svgNode(doc, 'circle', { cx: x(p), cy: y(p.value), r: '4', fill: config.color, stroke: '#fbf9f2', 'stroke-width': '1.5', tabindex: '0' });
       const label = dayLabel(p.stamp) + ': ' + format(config, p.value) + (p.status ? ' (' + p.status + ')' : '') + '. 7-day average: ' + format(config, p.avg7) + '; 14-day average: ' + format(config, p.avg14);
       circle.appendChild(svgNode(doc, 'title', {}, label));
       circle.setAttribute('aria-label', label);
@@ -226,7 +226,7 @@
     wrap.appendChild(svg);
     const legend = doc.createElement('div');
     legend.className = 'routine-chips';
-    legend.innerHTML = '<span>● Raw readings</span><span style="color:#FFAD62">● 7-day average</span><span style="color:#45DB70">● 14-day average</span>';
+    legend.innerHTML = '<span>● Raw readings</span><span style="color:#bd7458">● 7-day average</span><span style="color:#3e6048">● 14-day average</span>';
     wrap.after(legend);
     const card = wrap.closest('.routine-card');
     card.querySelectorAll('.routine-legend').forEach(n => n.remove());
