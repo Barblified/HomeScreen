@@ -897,3 +897,9 @@ input::placeholder, textarea::placeholder { color: #8e9aa4 !important; }
   letter-spacing: -.06em !important;
 }
 .task-button[aria-selected="true"] span { color: #050608 !important; }
+
+.card.green .micro-meta span {
+  color: #f7f9fb !important;
+  background: #151b21 !important;
+  border-color: var(--line) !important;
+}
