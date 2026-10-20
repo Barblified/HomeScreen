@@ -413,3 +413,7 @@ main.card > h1 { color: var(--ink) !important; }
 .shell .primary { background: var(--forest-dark) !important; color: var(--paper-light) !important; border-radius: 4px !important; }
 .shell .primary:hover { background: var(--forest) !important; }
 @media (max-width: 700px) { .shell .intro { grid-template-columns: 1fr !important; } }
+
+
+.briefings-shell .viewer-toolbar { background: var(--paper-light) !important; border-color: var(--line) !important; }
+.briefings-shell .viewer-title { color: var(--ink) !important; }
