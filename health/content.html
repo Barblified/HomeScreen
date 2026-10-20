@@ -329,7 +329,7 @@
       footer { flex-direction: column; }
     }
   </style>
-  <link rel="stylesheet" href="../assets/type-system.css?v=20261020-neon4">
+  <link rel="stylesheet" href="../assets/type-system.css?v=20261020-neon5">
 </head>
 <body>
   <main class="card" aria-live="polite">
@@ -338,6 +338,8 @@
       <span class="banner-mascot banner-mascot--health" aria-hidden="true"></span>
     </header>
     <p class="status" id="status">Loading today’s numbers…</p>
+
+    <div id="health-charts" aria-label="Health trends"></div>
 
     <section class="hero">
       <div class="metric">
@@ -361,80 +363,6 @@
       <div class="progress"><div class="bar" id="progress-bar"></div></div>
     </section>
 
-    <section class="grid" aria-label="Today's nutrition">
-      <div class="tile"><strong id="calories-today">—</strong><span>Calories</span></div>
-      <div class="tile"><strong id="protein-grams-today">—</strong><span>Protein</span></div>
-      <div class="tile"><strong id="carbs-grams-today">—</strong><span>Carbs</span></div>
-      <div class="tile"><strong id="fat-grams-today">—</strong><span>Fat</span></div>
-    </section>
-
-    <div class="diary-link-wrap">
-      <span>Want the detail behind today’s totals? Open the public food diary.</span>
-      <a class="diary-link" href="https://www.myfitnesspal.com/en/food/diary/tomguyler" target="_blank" rel="noopener noreferrer">View MyFitnessPal diary ↗</a>
-    </div>
-
-    <section class="grid" aria-label="Health habits">
-      <div class="tile"><strong id="logged">—</strong><span>Nutrition Days Logged</span></div>
-      <div class="tile"><strong id="protein">—</strong><span>Protein Target Days</span></div>
-      <div class="tile"><strong id="workouts">—</strong><span>Workouts</span></div>
-      <div class="tile"><strong id="sleep">—</strong><span id="sleep-label">Sleep Today</span></div>
-    </section>
-
-    <section class="coach" aria-labelledby="coach-heading">
-      <div class="coach-heading">
-        <div>
-          <h2 id="coach-heading">Nehemiah Check</h2>
-          <p class="coach-subtitle">Daily coaching first. Sources and methodology stay available without overwhelming the page.</p>
-        </div>
-        <div class="coach-badges" id="coach-badges">
-          <span class="badge" id="coach-status">—</span>
-          <span class="badge" id="risk-flag">—</span>
-        </div>
-      </div>
-
-      <div id="coach-details">
-        <section class="coach-section action">
-          <h3>What to do</h3>
-          <ol class="action-list" id="recommended-action"></ol>
-        </section>
-
-        <section class="coach-section">
-          <h3>What the data says</h3>
-          <ul class="readable-list" id="daily-analysis"></ul>
-        </section>
-
-        <section class="coach-section">
-          <h3>Trend & interpretation</h3>
-          <div class="trend-grid" id="trend-summary"></div>
-        </section>
-
-        <section class="coach-section" id="missing-section">
-          <h3>Data still missing</h3>
-          <p class="missing-note" id="missing-fields">—</p>
-        </section>
-
-        <details class="sources-panel" id="sources-panel">
-          <summary>Sources & method</summary>
-          <div class="sources-inner">
-            <section class="sources-block">
-              <h4>Data sources</h4>
-              <ul class="source-list" id="data-sources"></ul>
-            </section>
-            <section class="sources-block">
-              <h4>Bibliography</h4>
-              <ol class="bibliography-list" id="bibliography"></ol>
-            </section>
-            <section class="sources-block">
-              <h4>House rules / method</h4>
-              <ul class="source-list" id="implementation-rules"></ul>
-            </section>
-          </div>
-        </details>
-      </div>
-
-      <p class="no-coach" id="no-coach" hidden>No coach notes are available for today.</p>
-    </section>
-
     <footer>
       <span id="updated">Updated: —</span>
       <span id="source">Source: Google Sheets</span>
@@ -453,26 +381,6 @@
       currentBmi: null,
       totalLostKg: null,
       checkpointProgressPercent: null,
-      caloriesToday: null,
-      proteinGramsToday: null,
-      carbsGramsToday: null,
-      fatGramsToday: null,
-      daysLoggedThisWeek: null,
-      proteinDaysThisWeek: null,
-      workoutsThisWeek: null,
-      workoutTarget: null,
-      sleepHoursToday: null,
-      sleepTargetDaysThisWeek: null,
-      coachStatus: "",
-      missingFields: "",
-      dailyAnalysis: "",
-      trendSummary: "",
-      recommendedAction: "",
-      riskFlag: "",
-      evidenceSource: "",
-      bibliography: "",
-      dataSources: "",
-      implementationRules: "",
       lastUpdated: "Live data unavailable",
       accountabilityStatus: "Live data did not load. Check the Apps Script endpoint."
     };
@@ -526,119 +434,6 @@
       return fallback;
     }
 
-    function splitNumberedActions(text) {
-      const value = textOrBlank(text);
-      if (!value) return [];
-      const numbered = value.split(/\s*\(\d+\)\s*/).map(item => item.trim()).filter(Boolean);
-      if (numbered.length > 1) return numbered;
-      return value.split(/\n+/).map(item => item.replace(/^[-•]\s*/, "").trim()).filter(Boolean);
-    }
-
-    function splitReadableSentences(text) {
-      const value = textOrBlank(text);
-      if (!value) return [];
-      const lines = value.split(/\n+/).map(item => item.trim()).filter(Boolean);
-      if (lines.length > 1) return lines;
-      const sentences = value.match(/[^.!?]+(?:[.!?]+|$)/g) || [value];
-      return sentences.map(item => item.trim()).filter(Boolean);
-    }
-
-    function splitLines(text) {
-      return textOrBlank(text).split(/\n+/).map(item => item.replace(/^\[\d+\]\s*/, "").trim()).filter(Boolean);
-    }
-
-    function addLinkedText(container, text) {
-      const pattern = /(https?:\/\/[^\s]+|doi:10\.\d{4,9}\/[-._;()/:A-Z0-9]+)/ig;
-      let cursor = 0;
-      let match;
-      while ((match = pattern.exec(text)) !== null) {
-        if (match.index > cursor) container.append(document.createTextNode(text.slice(cursor, match.index)));
-        const raw = match[0];
-        const link = document.createElement("a");
-        link.className = "source-link";
-        link.href = raw.toLowerCase().startsWith("doi:") ? `https://doi.org/${raw.slice(4)}` : raw.replace(/[.,;)]$/, "");
-        link.textContent = raw;
-        link.target = "_blank";
-        link.rel = "noopener noreferrer";
-        container.append(link);
-        cursor = match.index + raw.length;
-      }
-      if (cursor < text.length) container.append(document.createTextNode(text.slice(cursor)));
-    }
-
-    function renderList(id, items, emptyText, linked = false) {
-      const list = document.getElementById(id);
-      if (!list) return;
-      list.replaceChildren();
-      const values = items.length ? items : [emptyText];
-      values.forEach(item => {
-        const li = document.createElement("li");
-        if (linked) addLinkedText(li, item); else li.textContent = item;
-        list.append(li);
-      });
-    }
-
-    function parseTrend(text) {
-      const value = textOrBlank(text);
-      if (!value) return [];
-      const observationMatch = value.match(/Observation:\s*([\s\S]*?)(?=\s*Interpretation:|$)/i);
-      const interpretationMatch = value.match(/Interpretation:\s*([\s\S]*)$/i);
-      if (observationMatch || interpretationMatch) {
-        const blocks = [];
-        if (observationMatch?.[1]?.trim()) blocks.push(["Observation", observationMatch[1].trim()]);
-        if (interpretationMatch?.[1]?.trim()) blocks.push(["Interpretation", interpretationMatch[1].trim()]);
-        return blocks;
-      }
-      return [["Trend", value]];
-    }
-
-    function renderTrend(text) {
-      const target = document.getElementById("trend-summary");
-      if (!target) return;
-      target.replaceChildren();
-      const blocks = parseTrend(text);
-      (blocks.length ? blocks : [["Trend", "No trend summary recorded."]]).forEach(([title, body]) => {
-        const card = document.createElement("div");
-        card.className = "trend-card";
-        const heading = document.createElement("h4");
-        heading.textContent = title;
-        const paragraph = document.createElement("p");
-        paragraph.textContent = body;
-        card.append(heading, paragraph);
-        target.append(card);
-      });
-    }
-
-    function renderCoachNotes(metrics) {
-      const notes = {
-        status: textOrBlank(metrics.coachStatus),
-        missing: textOrBlank(metrics.missingFields),
-        analysis: textOrBlank(metrics.dailyAnalysis),
-        trend: textOrBlank(metrics.trendSummary),
-        action: textOrBlank(metrics.recommendedAction),
-        risk: textOrBlank(metrics.riskFlag),
-        bibliography: textOrBlank(metrics.bibliography) || textOrBlank(metrics.evidenceSource),
-        dataSources: textOrBlank(metrics.dataSources),
-        implementationRules: textOrBlank(metrics.implementationRules)
-      };
-
-      const hasCoachNotes = [notes.status, notes.missing, notes.analysis, notes.trend, notes.action, notes.risk].some(Boolean);
-      document.getElementById("coach-details").hidden = !hasCoachNotes;
-      document.getElementById("coach-badges").hidden = !hasCoachNotes;
-      document.getElementById("no-coach").hidden = hasCoachNotes;
-      if (!hasCoachNotes) return;
-
-      setText("coach-status", notes.status || "No status");
-      setText("risk-flag", `Risk: ${notes.risk || "None"}`);
-      renderList("recommended-action", splitNumberedActions(notes.action), "No action recorded for today.");
-      renderList("daily-analysis", splitReadableSentences(notes.analysis), "No daily analysis recorded.");
-      renderTrend(notes.trend);
-      setText("missing-fields", notes.missing || "None recorded.");
-      renderList("data-sources", splitLines(notes.dataSources), "Data provenance not supplied.", true);
-      renderList("bibliography", splitLines(notes.bibliography), "No bibliography recorded for this run.", true);
-      renderList("implementation-rules", splitLines(notes.implementationRules), "No additional house rules recorded.", true);
-    }
-
     function render(metrics, sourceLabel = "Google Sheets") {
       const start = toNumber(metrics.startingWeightKg);
       const current = toNumber(metrics.currentWeightKg);
@@ -670,31 +465,6 @@
       setText("checkpoint-percent", progress === null ? "—" : `${progress.toFixed(0)}%`);
       document.getElementById("progress-bar").style.width = `${progress === null ? 0 : progress}%`;
 
-      setText("calories-today", formatWholeNumber(metrics.caloriesToday));
-      setText("protein-grams-today", formatWholeNumber(metrics.proteinGramsToday, "g"));
-      setText("carbs-grams-today", formatWholeNumber(metrics.carbsGramsToday, "g"));
-      setText("fat-grams-today", formatWholeNumber(metrics.fatGramsToday, "g"));
-
-      const daysLogged = toNumber(metrics.daysLoggedThisWeek);
-      const proteinDays = toNumber(metrics.proteinDaysThisWeek);
-      const workouts = toNumber(metrics.workoutsThisWeek);
-      const workoutTarget = toNumber(metrics.workoutTarget);
-      const sleepHours = toNumber(metrics.sleepHoursToday);
-      const sleepDays = toNumber(metrics.sleepTargetDaysThisWeek);
-
-      setText("logged", daysLogged === null ? "—" : `${daysLogged}/7`);
-      setText("protein", proteinDays === null ? "—" : `${proteinDays}/7`);
-      setText("workouts", workouts === null ? "—" : `${workouts}/${workoutTarget === null ? "—" : workoutTarget}`);
-      if (sleepHours === null) {
-        setText("sleep", sleepDays === null ? "—" : `${sleepDays}/7`);
-        setText("sleep-label", "Sleep Target Days");
-      } else {
-        const sleepText = Number.isInteger(sleepHours) ? sleepHours.toFixed(0) : sleepHours.toFixed(1);
-        setText("sleep", `${sleepText} h`);
-        setText("sleep-label", `Today · ${sleepDays === null ? "—" : `${sleepDays}/7`} target days`);
-      }
-
-      renderCoachNotes(metrics);
       setText("updated", `Updated: ${textOrBlank(metrics.lastUpdated) || "—"}`);
       setText("source", `Source: ${sourceLabel}`);
     }
