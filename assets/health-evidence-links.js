@@ -170,34 +170,32 @@
     style.id = 'nehemiah-chart-palette-fix';
     style.textContent = `
       .chart-card {
-        background: rgba(10,32,55,.95) !important;
-        border-color: rgba(63,227,109,.28) !important;
-        color: #F3F7FB !important;
+        background: #fbf9f2 !important;
+        border-color: #d8d2c4 !important;
+        color: #29342e !important;
       }
-      .chart-heading h2 { color: #45DB70 !important; }
+      .chart-heading h2 { color: #3e6048 !important; }
       .chart-heading p,
       .chart-note,
-      .chart-empty { color: #B6C9DB !important; }
-      .chart-wrap {
-        background: linear-gradient(180deg, rgba(17,52,84,.95), rgba(7,24,42,.94)) !important;
-      }
+      .chart-empty { color: #667168 !important; }
+      .chart-wrap { background: #f8f6ef !important; }
       .chart-chip {
-        background: rgba(15,43,70,.96) !important;
-        border-color: rgba(190,214,235,.18) !important;
-        color: #F3F7FB !important;
+        background: #fffdf8 !important;
+        border-color: #d8d2c4 !important;
+        color: #29342e !important;
       }
-      .chart-chip small { color: #B6C9DB !important; }
-      .chart-chip.current { box-shadow: inset 0 3px 0 #45DB70 !important; }
-      .chart-chip.current strong { color: #45DB70 !important; }
-      .chart-chip.seven { box-shadow: inset 0 3px 0 #FF8126 !important; }
-      .chart-chip.seven strong { color: #FFAD62 !important; }
-      .chart-chip.fourteen { box-shadow: inset 0 3px 0 #45DB70 !important; }
-      .chart-chip.fourteen strong { color: #45DB70 !important; }
+      .chart-chip small { color: #667168 !important; }
+      .chart-chip.current { box-shadow: inset 0 3px 0 #8f7444 !important; }
+      .chart-chip.current strong { color: #8f7444 !important; }
+      .chart-chip.seven { box-shadow: inset 0 3px 0 #a2533d !important; }
+      .chart-chip.seven strong { color: #a2533d !important; }
+      .chart-chip.fourteen { box-shadow: inset 0 3px 0 #3e6048 !important; }
+      .chart-chip.fourteen strong { color: #3e6048 !important; }
       .chart-tooltip {
-        background: rgba(10,32,55,.98) !important;
-        border-color: rgba(190,214,235,.18) !important;
-        color: #F3F7FB !important;
-        box-shadow: 0 8px 20px rgba(0,0,0,.28) !important;
+        background: #fbf9f2 !important;
+        border-color: #d8d2c4 !important;
+        color: #29342e !important;
+        box-shadow: 0 5px 18px rgba(43,51,43,.09) !important;
       }
     `;
     doc.head.appendChild(style);
