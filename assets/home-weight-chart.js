@@ -92,11 +92,11 @@
       .home-weight-card {
         margin: 0 0 30px;
         padding: 22px 24px 24px;
-        border: 1px solid rgba(44,181,201,.22);
+        border: 1px solid rgba(0,213,255,.38);
         border-left: 6px solid #00D5FF;
         border-radius: 14px;
-        background: rgba(255,255,255,.88);
-        box-shadow: 0 4px 14px rgba(35,64,61,.12);
+        background: #101318;
+        box-shadow: 0 0 18px rgba(0,213,255,.08), 3px 4px 0 rgba(0,0,0,.72);
         overflow: hidden;
       }
       .home-weight-heading {
@@ -125,9 +125,9 @@
       }
       .home-weight-chip {
         padding: 8px 10px 9px;
-        border: 1px solid rgba(35,64,61,.12);
+        border: 1px solid rgba(0,213,255,.24);
         border-radius: 12px;
-        background: rgba(255,249,241,.9);
+        background: #151b21;
         text-align: center;
       }
       .home-weight-chip small {
@@ -160,7 +160,7 @@
         width: 100%;
         height: 310px;
         border-radius: 14px;
-        background: linear-gradient(180deg, rgba(126,214,247,.20), rgba(255,249,241,.72));
+        background: linear-gradient(180deg, rgba(0,213,255,.035), rgba(184,255,0,.025));
         overflow: hidden;
       }
       #home-weight-trend-canvas {
@@ -174,10 +174,10 @@
         z-index: 2;
         min-width: 158px;
         padding: 9px 11px;
-        border: 1px solid rgba(35,64,61,.15);
+        border: 1px solid rgba(0,213,255,.42);
         border-radius: 11px;
-        background: rgba(255,249,241,.98);
-        box-shadow: 0 6px 18px rgba(35,64,61,.13);
+        background: #101318;
+        box-shadow: 0 0 15px rgba(0,213,255,.15);
         color: #f7f9fb;
         font-family: "Gloria Hallelujah", cursive;
         font-size: 12px;
