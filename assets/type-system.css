@@ -396,3 +396,20 @@ main.card > h1 { color: var(--ink) !important; }
   html { scroll-behavior: auto; }
   *, *::before, *::after { animation-duration: .001ms !important; transition-duration: .001ms !important; }
 }
+
+
+/* Learning page: give the discovery controls an editorial scale and paper contrast. */
+.shell { width: min(1080px, calc(100% - 36px)) !important; padding-top: 30px !important; }
+.shell header { margin-bottom: 24px !important; }
+.shell header h1 { font-size: clamp(2.5rem, 5.2vw, 4rem) !important; line-height: 1.04 !important; }
+.shell .intro { grid-template-columns: minmax(0, 1.1fr) minmax(240px, .9fr) !important; gap: 22px !important; margin-bottom: 20px !important; }
+.shell .intro h2 { max-width: 670px; font-size: clamp(1.9rem, 3.6vw, 3rem) !important; line-height: 1.06 !important; }
+.shell .intro p { font-size: 1rem !important; line-height: 1.55 !important; }
+.shell .panel { border-radius: 7px !important; background: var(--paper-light) !important; box-shadow: var(--shadow) !important; backdrop-filter: none !important; }
+.shell .mode label { background: var(--paper) !important; color: var(--ink) !important; }
+.shell .mode label strong { color: var(--ink) !important; }
+.shell .mode label span { color: var(--muted) !important; }
+.shell .mode input:checked + label { background: #f2e9dc !important; border-color: var(--rust) !important; box-shadow: inset 0 0 0 1px var(--rust) !important; }
+.shell .primary { background: var(--forest-dark) !important; color: var(--paper-light) !important; border-radius: 4px !important; }
+.shell .primary:hover { background: var(--forest) !important; }
+@media (max-width: 700px) { .shell .intro { grid-template-columns: 1fr !important; } }
