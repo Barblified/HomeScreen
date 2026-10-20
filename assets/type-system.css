@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Literata:opsz,wght@7..72,400;7..72,500;7..72,600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600;700&family=Major+Mono+Display&display=swap');
 
 :root {
   color-scheme: light;
@@ -681,3 +681,166 @@ html,body,.page-frame{background:var(--paper)!important}body{color:var(--ink)!im
 .briefing-nav .mascot-anchor{width:56px;height:112px}.briefing-nav .mascot-on-top{top:-22px;right:7px}
 
 .briefing-nav .mascot-on-top{right:-8px}
+
+
+/* Neon fieldbook palette. Preserve the existing card geometry and page layouts. */
+:root {
+  color-scheme: dark;
+  --neon-green: #b8ff00;
+  --neon-blue: #00d5ff;
+  --neon-yellow: #fff000;
+  --paper: #07090c;
+  --paper-light: #101419;
+  --paper-deep: #1a2027;
+  --ink: #f7f9fb;
+  --muted: #b5c0c8;
+  --forest: var(--neon-green);
+  --forest-dark: #b8ff00;
+  --forest-soft: rgba(184, 255, 0, .12);
+  --rust: var(--neon-yellow);
+  --brass: var(--neon-blue);
+  --line: #39434c;
+  --shadow: 4px 5px 0 rgba(0, 0, 0, .76);
+  --font-display: "Major Mono Display", monospace;
+  --font-ui: "DIN Alternate", "DIN Next", "Bahnschrift", "Barlow Condensed", "Arial Narrow", sans-serif;
+  --chart-surface: #0c1014;
+  --chart-grid: rgba(247, 249, 251, .16);
+  --chart-text: #f7f9fb;
+  --canvas: var(--paper);
+  --surface: var(--paper-light);
+  --surface-strong: #171d23;
+  --mist: var(--paper-deep);
+  --sky: var(--neon-blue);
+  --teal: var(--neon-blue);
+  --teal-dark: #00b6dd;
+  --orange: var(--neon-yellow);
+  --orange-dark: #e4d900;
+  --leaf: var(--neon-green);
+  --green: var(--neon-green);
+  --green-2: #d3ff6b;
+  --shadow-1: var(--shadow);
+  --shadow-2: 5px 7px 0 rgba(0, 0, 0, .78);
+  --bg-1: var(--paper);
+  --bg-2: var(--paper-deep);
+  --card: var(--paper-light);
+  --panel: #11171c;
+  --panel-soft: #171e24;
+  --blue: var(--neon-blue);
+  --orange-soft: var(--neon-yellow);
+  --danger: var(--neon-yellow);
+}
+
+html, body, .page-frame, .briefings-shell { color: var(--ink) !important; background: var(--paper) !important; }
+body, p, li, label, button, input, select, textarea, summary, table, th, td { font-family: var(--font-ui) !important; }
+h1, h2, h3, h4, .script-title, .card-heading h2, .section-heading h2, .planning-card h3 {
+  color: var(--ink) !important; font-family: var(--font-ui) !important; font-weight: 600 !important; letter-spacing: -.015em;
+}
+.page-intro h1, main.card > h1, .shell > header h1, .site-menu::before, .eyebrow, .section-kicker, .kicker {
+  font-family: var(--font-display) !important;
+}
+.page-intro h1, main.card > h1, .shell > header h1 { font-size: clamp(2rem, 4.7vw, 3.7rem) !important; line-height: 1.16 !important; }
+a { color: var(--neon-blue) !important; }
+a:hover { color: var(--neon-yellow) !important; }
+:focus-visible { outline: 3px solid var(--neon-yellow) !important; outline-offset: 3px; }
+
+.site-menu {
+  color: var(--ink) !important; background: #050608 !important;
+  border-bottom: 3px solid var(--neon-blue) !important;
+  box-shadow: 0 3px 0 rgba(184,255,0,.28) !important;
+}
+.site-menu::before { color: var(--neon-blue) !important; font-size: .72rem; letter-spacing: .08em; }
+.site-menu a { color: var(--ink) !important; }
+.site-menu a:hover, .site-menu a:focus-visible { color: #050608 !important; background: var(--neon-yellow) !important; border-bottom-color: var(--neon-yellow) !important; }
+.site-menu a[aria-current="page"] { color: #050608 !important; background: var(--neon-green) !important; border-bottom-color: var(--neon-green) !important; }
+
+.eyebrow, .section-kicker, .kicker { color: var(--neon-blue) !important; font-size: .67rem !important; font-weight: 400 !important; letter-spacing: .12em !important; }
+.page-intro, .page-banner { position: relative; isolation: isolate; border-bottom: 1px solid rgba(0,213,255,.65) !important; }
+.page-intro::after, .page-banner::after {
+  content: ""; position: absolute; z-index: 0; top: 0; right: 0; width: 78px; height: 56px;
+  background: linear-gradient(135deg, var(--neon-blue), var(--neon-green)); opacity: .22;
+  clip-path: polygon(36% 0, 100% 0, 100% 100%, 0 62%); pointer-events: none;
+}
+.page-intro > *, .page-banner > * { position: relative; z-index: 1; }
+
+.card, .main, .link-group, .briefing-nav, .viewer, .hero, .coach, .trend-card, .sources-panel,
+.panel, .small, .picker, .result, .setup, .coach-section, .metric, .tile,
+.chart-card, [class*="-chart-card"], .routine-card {
+  color: var(--ink) !important; border-color: var(--line) !important; background-color: var(--paper-light) !important; box-shadow: var(--shadow) !important;
+}
+.card.orange, .card.green, .card.sky, .card.orange.discovery-card, .card.orange.planning-card, .card.green.planning-card {
+  color: var(--ink) !important; background-color: var(--paper-light) !important;
+}
+.card::before { background: var(--neon-green) !important; }
+.card.orange::before, .planning-card.month::before { background: var(--neon-yellow) !important; }
+.card.green::before, .planning-card.year::before { background: var(--neon-green) !important; }
+.card.sky::before { background: var(--neon-blue) !important; }
+.card::after { opacity: .23 !important; background: var(--neon-blue) !important; clip-path: polygon(100% 0, 16% 0, 100% 100%) !important; }
+.card.orange::after { background: var(--neon-yellow) !important; }
+.card.green::after { background: var(--neon-green) !important; }
+.card.sky::after { background: var(--neon-blue) !important; }
+.card .card-heading h2, .section-heading h2, .planning-card h3, .coach-section h3, .trend-card h4,
+.sources-block h4, .chart-heading h2, .routine-head h3, .link-group summary > span { color: var(--ink) !important; }
+.favourite-link, .tool-link, .discovery-link, .health-metric, .micro-meta span, .health-trend,
+.attention-status, .task-button, .link-group summary, .trend-card, .metric, .tile {
+  color: var(--ink) !important; border-color: var(--line) !important; background: #151b21 !important;
+}
+.favourite-link, .tool-link, .discovery-link { box-shadow: 2px 3px 0 rgba(0,0,0,.68) !important; }
+.favourite-link:hover, .tool-link:hover, .discovery-link:hover, .task-button:hover, .task-button[aria-selected="true"] {
+  color: #050608 !important; border-color: var(--neon-green) !important; background: var(--neon-green) !important;
+}
+.task-button[aria-selected="true"] { box-shadow: inset 4px 0 0 var(--neon-blue) !important; }
+.micro-meta span, .badge, .chip, .duration, .status {
+  color: var(--neon-green) !important; border-color: rgba(184,255,0,.42) !important; background: rgba(184,255,0,.10) !important;
+}
+.health-metric strong, .metric strong, .tile strong, .attention-status strong { color: var(--neon-green) !important; }
+.health-link, .attention-detail a, .attention-more summary, .discovery-more summary, .sources-panel summary { color: var(--neon-blue) !important; }
+.health-trend, .attention-status, .chart-wrap, .home-weight-wrap, .bp-chart-wrap, .waist-chart-wrap,
+.routine-chart, [id$="-trend-wrap"] { color: var(--ink) !important; border-color: var(--line) !important; background: var(--chart-surface) !important; }
+.chart-grid, .grid-line { stroke: var(--chart-grid) !important; }
+.chart-label, .axis-label { fill: var(--chart-text) !important; color: var(--chart-text) !important; }
+
+.diary-link, .primary, .save, .watch, .shell .primary {
+  color: #050608 !important; background: var(--neon-green) !important; border: 1px solid var(--neon-green) !important; box-shadow: 3px 4px 0 rgba(0,0,0,.8) !important;
+}
+.diary-link:hover, .primary:hover, .save:hover, .watch:hover { color: #050608 !important; background: var(--neon-yellow) !important; border-color: var(--neon-yellow) !important; }
+.secondary, .action, .icon, .toolbar-actions button, .toolbar-actions a {
+  color: var(--ink) !important; border-color: var(--line) !important; background: #151b21 !important;
+}
+.secondary:hover, .action:hover, .icon:hover, .toolbar-actions button:hover, .toolbar-actions a:hover {
+  color: #050608 !important; border-color: var(--neon-blue) !important; background: var(--neon-blue) !important;
+}
+.select select, select, .text, input, textarea { color: var(--ink) !important; border-color: #4b5964 !important; background: #090c10 !important; }
+input::placeholder, textarea::placeholder { color: #8e9aa4 !important; }
+.intro p, .small p, .micro, .label, legend, .today-label, .task-button span, .privacy-note,
+.briefings-shell .intro, .viewer-title { color: var(--muted) !important; }
+.briefing-nav, .viewer, .viewer-toolbar { background: var(--paper-light) !important; }
+.briefings-shell h1 { color: var(--ink) !important; }
+.viewer-toolbar { border-color: var(--line) !important; }
+#report-frame { background: var(--paper) !important; }
+
+.page-intro { border-bottom-color: var(--neon-blue) !important; }
+.banner-mascot {
+  position: absolute; z-index: 5; display: block; width: 82px; height: 140px;
+  background-repeat: no-repeat; background-size: 100% 100%; background-position: center bottom;
+  pointer-events: none; animation: banner-mascot-sway 4.2s ease-in-out infinite; transform-origin: 50% 58%;
+}
+.banner-mascot--home { background-image: url('/HomeScreen/assets/chibi-banner-home.webp?v=20261020-neon1'); right: 158px; bottom: -58px; }
+.banner-mascot--health { background-image: url('/HomeScreen/assets/chibi-banner-health.webp?v=20261020-neon1'); width: 76px; height: 130px; right: 18px; bottom: -53px; }
+.banner-mascot--learn { background-image: url('/HomeScreen/assets/chibi-banner-learn.webp?v=20261020-neon1'); width: 76px; height: 130px; right: 66px; bottom: -53px; }
+.banner-mascot--briefings { background-image: url('/HomeScreen/assets/chibi-banner-briefings.webp?v=20261020-neon1'); width: 64px; height: 110px; right: 8px; bottom: -44px; }
+.page-banner--health { padding: 0 108px 13px 0; margin: 0 0 14px; }
+.page-banner--health h1 { margin: .1rem 0 0; }
+.page-banner--learn { display: flex; align-items: flex-start; justify-content: space-between; gap: 14px; padding: 0 0 13px; margin: 0 0 17px; }
+.page-banner--learn > div { max-width: calc(100% - 125px); }
+.page-banner--briefings { padding: 0 72px 12px 0; margin: 0 0 12px; }
+.page-banner--briefings h1 { font-family: var(--font-ui) !important; font-size: 2.35rem !important; line-height: 1.15 !important; }
+@keyframes banner-mascot-sway { 0%, 100% { transform: translateY(0) rotate(0); } 50% { transform: translateY(-3px) rotate(.6deg); } }
+@media(max-width:760px) {
+  .banner-mascot--home { width: 60px; height: 104px; right: 68px; bottom: -43px; }
+  .banner-mascot--health { width: 62px; height: 106px; right: 6px; bottom: -44px; }
+  .banner-mascot--learn { width: 62px; height: 106px; right: 60px; bottom: -44px; }
+  .banner-mascot--briefings { width: 55px; height: 94px; right: 2px; bottom: -39px; }
+  .page-banner--health { padding-right: 74px; }
+  .page-banner--briefings { padding-right: 62px; }
+}
+@media(prefers-reduced-motion:reduce) { .banner-mascot { animation: none; } }

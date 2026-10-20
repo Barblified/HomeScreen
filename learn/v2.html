@@ -10,14 +10,15 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Gloria+Hallelujah&family=Swanky+and+Moo+Moo&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="v2.css?v=20261020-fieldbook3">
-  <link rel="stylesheet" href="../assets/type-system.css?v=20261020-motus9">
+  <link rel="stylesheet" href="../assets/type-system.css?v=20261020-neon1">
 </head>
 <body>
 <a class="skip" href="#main">Skip to picker</a>
 <div class="shell">
-<header>
+<header class="page-banner page-banner--learn">
   <div><p class="kicker">Controlled serendipity</p><h1>Learn Something New</h1></div>
   <button class="icon" id="settingsButton" type="button" aria-label="Open settings">⚙</button>
+  <span class="banner-mascot banner-mascot--learn" aria-hidden="true"></span>
 </header>
 <main id="main">
 <section class="intro">
@@ -25,7 +26,6 @@
   <p>Choose your time and how far outside your normal orbit to travel. The engine filters for learning value before it adds randomness.</p>
 </section>
 <section class="panel picker">
-        <span class="mascot-anchor mascot-side-peek mascot-on-side" aria-hidden="true"></span>
   <div class="controls">
     <div><label class="label" for="duration">Time available</label><div class="select"><select id="duration"><option value="20-40">20–40 minutes</option><option value="40-90" selected>40–90 minutes</option><option value="90-240">90 minutes–4 hours</option></select></div></div>
     <div><label class="label" for="format">Format</label><div class="select"><select id="format"><option value="any" selected>Any worthwhile format</option><option value="lesson">Practical lesson</option><option value="lecture">Lecture or course</option><option value="documentary">Documentary</option><option value="interview">Expert interview</option></select></div></div>
@@ -47,7 +47,6 @@
   <div class="setup-grid"><label class="sr" for="apiInline">YouTube API key</label><input class="text" id="apiInline" type="password" autocomplete="off" placeholder="Paste API key"><button class="secondary" id="saveInline" type="button">Save key</button></div>
 </section>
 <article class="panel result" id="result">
-        <span class="mascot-anchor mascot-laptop mascot-at-bottom" aria-hidden="true"></span>
   <div class="media"><img id="thumb" alt=""><span class="duration" id="durationBadge"></span></div>
   <div class="body">
     <div class="chips"><span class="chip accent" id="topicChip"></span><span class="chip" id="modeChip"></span><span class="chip" id="captionChip" hidden>Captions</span></div>

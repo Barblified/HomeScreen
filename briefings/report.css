@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Literata:opsz,wght@7..72,400;7..72,500;7..72,600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600;700&family=Major+Mono+Display&display=swap');
 :root {
   color-scheme: light;
   --navy: #2e4d38;
@@ -147,3 +147,22 @@ article,section,aside,.card,.panel,.report-card,.summary,.source-card,.finding,.
 
 /* Match the embedded briefing masthead and report cards to the wallpaper palette. */
 .masthead{background:#4d1e1a!important;border-bottom-color:#42b7dc!important;color:#fff9f2!important}.masthead .kicker{color:#e5c4ac!important}.masthead .meta{color:#f2e4d8!important}.window{background:#fff9f2!important;border-left-color:#42b7dc!important;color:#201c1b!important}.daily.navy{border-top-color:#762923!important}.daily.green{border-top-color:#3d725f!important}h2,h3{color:#285446!important}h2{border-bottom-color:#a9947d!important}.risk-table th{background:#e4d5c7!important;color:#201c1b!important}.action{background:#e2eee7!important;border-left-color:#3d725f!important}.action.now{border-left-color:#762923!important}.status{background:#e2eee7!important;color:#285446!important}.status.alert{background:#f2dfd8!important;color:#511d19!important}
+
+
+/* High-contrast neon treatment for generated briefings; retain their existing reading layout. */
+:root{color-scheme:dark;--neon-green:#b8ff00;--neon-blue:#00d5ff;--neon-yellow:#fff000;--ink:#f7f9fb;--muted:#b5c0c8;--cream:#07090c;--white:#101419;--line:#39434c;--navy:#0a0d11;--navy-2:#f7f9fb;--green:#b8ff00;--green-soft:rgba(184,255,0,.12);--amber:#fff000;--amber-soft:rgba(255,240,0,.12);--red:#fff000;--red-soft:rgba(255,240,0,.12);--shadow:4px 5px 0 rgba(0,0,0,.76)}
+html,body{background:#07090c!important;color:#f7f9fb!important}
+body{font-family:"DIN Alternate","DIN Next","Bahnschrift","Barlow Condensed","Arial Narrow",sans-serif!important}
+a{color:#00d5ff!important}a:hover{color:#fff000!important}
+h1{font-family:"Major Mono Display",monospace!important;color:#f7f9fb!important}
+h2,h3,h4{font-family:"Barlow Condensed","DIN Alternate","Bahnschrift",sans-serif!important;color:#f7f9fb!important}
+.masthead,.report-header{background:#101419!important;color:#f7f9fb!important;border:1px solid #39434c!important;border-bottom:4px solid #00d5ff!important;border-radius:7px!important;box-shadow:4px 5px 0 rgba(0,0,0,.76)!important}
+.masthead .kicker,.report-header .kicker{color:#b8ff00!important;font-family:"Major Mono Display",monospace!important}
+.masthead .meta,.report-header .report-meta,.report-header .meta{color:#b5c0c8!important}
+.card,.panel,.report-card,.summary,.source-card,.finding,.metric,article,section,aside{background-color:#101419!important;color:#f7f9fb!important;border-color:#39434c!important;box-shadow:4px 5px 0 rgba(0,0,0,.55)!important}
+.card h2,.card h3,.card p,.card li{color:#f7f9fb!important}
+.status{background:rgba(184,255,0,.12)!important;color:#b8ff00!important}
+.status.watch,.status.risk,.notice{background:rgba(255,240,0,.12)!important;color:#fff000!important;border-color:#fff000!important}
+th{background:#171e24!important;color:#00d5ff!important}
+th,td{border-color:#39434c!important;color:#f7f9fb!important}
+.sources{color:#b5c0c8!important}
