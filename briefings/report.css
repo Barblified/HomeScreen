@@ -139,3 +139,8 @@ a:hover { color: #c63731 !important; }
 .status.risk { background: #f3d0c4 !important; color: #9f2d28 !important; }
 .notice { border-radius: 2px !important; background: #f4e8ac !important; }
 th { background: #d9efea !important; }
+
+/* Wallpaper palette for reports embedded in Briefings. */
+:root{--navy:#4d1e1a;--navy-2:#201c1b;--green:#3d725f;--green-soft:#e2eee7;--amber:#a9947d;--amber-soft:#f3e8dd;--red:#762923;--red-soft:#f2dfd8;--ink:#201c1b;--muted:#5c514d;--cream:#f1e4d8;--white:#fff9f2;--line:#cdb9a7;--shadow:3px 4px 0 rgba(32,28,27,.13)}
+html,body{background:#f1e4d8!important;color:#201c1b!important}a{color:#285446!important}a:hover{color:#762923!important}h1,h2,h3,h4{color:#201c1b!important}
+article,section,aside,.card,.panel,.report-card,.summary,.source-card,.finding,.metric{border-color:#cdb9a7!important;background-color:#fff9f2!important;color:#201c1b!important}

@@ -194,7 +194,7 @@
       .privacy-note { display: none; }
     }
   </style>
-  <link rel="stylesheet" href="../assets/type-system.css?v=20261020-orbit5">
+  <link rel="stylesheet" href="../assets/type-system.css?v=20261020-motus3">
 </head>
 <body>
   <nav class="site-menu" aria-label="Site navigation">
@@ -205,7 +205,7 @@
   </nav>
 
   <main class="briefings-shell">
-    <section class="briefing-nav" aria-labelledby="briefings-title">
+    <span class="mascot-anchor mascot-peek mascot-on-top" aria-hidden="true"></span><section class="briefing-nav" aria-labelledby="briefings-title">
       <p class="eyebrow">Scheduled task output</p>
       <h1 id="briefings-title">Briefings</h1>
       <p class="intro">The latest completed report from each scheduled task. Choose a briefing below; refresh if you already had the page open during a run.</p>
@@ -241,7 +241,7 @@
       <p class="privacy-note">This is a public website. Scheduled publishers are restricted to public-safe report content and must exclude personal addresses, inbox material, credentials and private workbook details.</p>
     </section>
 
-    <section class="viewer" aria-label="Selected briefing">
+    <span class="mascot-anchor mascot-side-peek mascot-on-side" aria-hidden="true"></span><section class="viewer" aria-label="Selected briefing">
       <div class="viewer-toolbar">
         <span class="viewer-title" id="viewer-title">UK News Scan</span>
         <div class="toolbar-actions">
@@ -284,7 +284,7 @@
           const theme = reportDoc.createElement("link");
           theme.id = "fieldbook-report-theme";
           theme.rel = "stylesheet";
-          theme.href = "/HomeScreen/briefings/report.css?v=20261020-orbit1";
+          theme.href = "/HomeScreen/briefings/report.css?v=20261020-motus3";
           reportDoc.head.append(theme);
         } catch (error) {
           console.warn("Briefing report theme could not be applied.", error);
