@@ -617,3 +617,37 @@ body { background-color: var(--paper) !important; }
     width: 92px; height: 92px;
   }
 }
+
+
+/* Original chibi journal-keeper mascot sprite. */
+.intro-side {
+  display: flex;
+  align-items: flex-end;
+  gap: 10px;
+}
+.chibi-sprite {
+  display: block;
+  width: 114px;
+  height: 152px;
+  flex: 0 0 auto;
+  background-image: url('/HomeScreen/assets/chibi-self-sprite.png');
+  background-repeat: no-repeat;
+  background-size: 400% 100%;
+  background-position: 0 0;
+  animation: chibi-journal-poses 4s steps(4, end) infinite;
+}
+@keyframes chibi-journal-poses {
+  from { background-position: 0 0; }
+  to { background-position: 100% 0; }
+}
+@media (max-width: 760px) {
+  .intro-side { gap: 6px; }
+  .chibi-sprite { width: 84px; height: 112px; }
+}
+@media (max-width: 460px) {
+  .chibi-sprite { width: 68px; height: 91px; }
+  .today-label { max-width: 96px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .chibi-sprite { animation: none; background-position: 0 0; }
+}
