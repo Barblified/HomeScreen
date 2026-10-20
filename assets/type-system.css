@@ -844,3 +844,48 @@ input::placeholder, textarea::placeholder { color: #8e9aa4 !important; }
   .page-banner--briefings { padding-right: 62px; }
 }
 @media(prefers-reduced-motion:reduce) { .banner-mascot { animation: none; } }
+
+
+/* Neon palette cleanup after checking every live page. */
+.card, .main, .link-group, .briefing-nav, .viewer, .hero, .coach, .trend-card,
+.sources-panel, .panel, .small, .picker, .result, .setup, .coach-section,
+.metric, .tile, .chart-card, [class*="-chart-card"], .routine-card {
+  color: var(--ink) !important;
+  background-color: var(--paper-light) !important;
+}
+.health-metric, .card.green .health-metric, .card.green .health-trend,
+.metric, .tile, .home-weight-wrap, .chart-wrap, .bp-chart-wrap, .waist-chart-wrap,
+.routine-chart, [id$="-trend-wrap"] {
+  color: var(--ink) !important;
+  background: var(--chart-surface) !important;
+  border-color: var(--line) !important;
+}
+.health-metric strong, .card.green .health-metric strong,
+.metric strong, .tile strong { color: var(--neon-green) !important; }
+.health-trend, .card.green .health-trend { color: var(--ink) !important; background: #151b21 !important; }
+.link-group summary, .link-group:nth-child(3n + 2) summary, .link-group:nth-child(3n) summary {
+  color: var(--ink) !important;
+  background: #151b21 !important;
+  border-left-color: var(--neon-blue) !important;
+}
+.link-group:nth-child(3n + 2) summary { border-left-color: var(--neon-yellow) !important; }
+.link-group:nth-child(3n) summary { border-left-color: var(--neon-green) !important; }
+.link-group summary > span { color: var(--ink) !important; }
+.shell .mode input:checked + label {
+  color: #050608 !important;
+  background: var(--neon-green) !important;
+  border-color: var(--neon-green) !important;
+  box-shadow: inset 0 0 0 1px var(--neon-green) !important;
+}
+.shell .mode input:checked + label strong,
+.shell .mode input:checked + label span { color: #050608 !important; }
+.page-intro h1, .page-banner h1, .briefings-shell h1, main.card > h1, .shell header h1 {
+  font-family: "Major Mono Display", monospace !important;
+}
+.briefings-shell h1 { font-size: clamp(1.9rem, 4vw, 2.6rem) !important; line-height: 1.1 !important; }
+.page-banner--briefings { margin-bottom: 54px !important; }
+.banner-mascot--briefings { width: 56px !important; height: 96px !important; bottom: -40px !important; }
+@media(max-width:760px) {
+  .page-banner--briefings { margin-bottom: 50px !important; }
+  .banner-mascot--briefings { width: 50px !important; height: 86px !important; bottom: -36px !important; }
+}
