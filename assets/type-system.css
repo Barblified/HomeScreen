@@ -627,14 +627,14 @@ body { background-color: var(--paper) !important; }
 }
 .chibi-sprite {
   display: block;
-  width: 114px;
-  height: 152px;
+  width: 90px;
+  height: 180px;
   flex: 0 0 auto;
   background-image: url('/HomeScreen/assets/chibi-self-sprite.png');
   background-repeat: no-repeat;
-  background-size: 400% 100%;
+  background-size: 600% 100%;
   background-position: 0 0;
-  animation: chibi-journal-poses 4s steps(4, end) infinite;
+  animation: chibi-journal-poses 4.8s steps(6, end) infinite;
 }
 @keyframes chibi-journal-poses {
   from { background-position: 0 0; }
@@ -642,10 +642,10 @@ body { background-color: var(--paper) !important; }
 }
 @media (max-width: 760px) {
   .intro-side { gap: 6px; }
-  .chibi-sprite { width: 84px; height: 112px; }
+  .chibi-sprite { width: 70px; height: 140px; }
 }
 @media (max-width: 460px) {
-  .chibi-sprite { width: 68px; height: 91px; }
+  .chibi-sprite { width: 58px; height: 116px; }
   .today-label { max-width: 96px; }
 }
 @media (prefers-reduced-motion: reduce) {
