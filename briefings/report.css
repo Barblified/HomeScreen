@@ -96,3 +96,46 @@ li + li { margin-top: 6px; }
 .masthead h1, .report-header h1, .masthead h2, .report-header h2 { color: #29342e !important; }
 .masthead .kicker, .report-header .kicker { color: #3e6048 !important; }
 .masthead .meta, .report-header .report-meta, .report-header .meta { color: #667168 !important; }
+
+
+/* Graphic fieldbook report palette: ink, teal, coral and yellow. */
+:root {
+  --navy: #192027;
+  --navy-2: #192027;
+  --green: #16766e;
+  --green-soft: #d9efea;
+  --amber: #a17a0a;
+  --amber-soft: #f4e8ac;
+  --red: #c63731;
+  --red-soft: #f3d0c4;
+  --ink: #192027;
+  --muted: #525d63;
+  --cream: #f2f0e6;
+  --white: #fffdf5;
+  --line: #b9c0bb;
+  --shadow: 3px 4px 0 rgba(25,32,39,.13);
+}
+body { background: var(--cream) !important; color: var(--ink) !important; }
+a { color: #0f6867 !important; }
+a:hover { color: #c63731 !important; }
+.masthead, .report-header {
+  background: #192027 !important;
+  color: #fffdf5 !important;
+  border: 1px solid #192027 !important;
+  border-bottom: 5px solid #f0d83f !important;
+  border-radius: 3px !important;
+  box-shadow: 4px 5px 0 rgba(25,32,39,.16) !important;
+}
+.masthead h1, .report-header h1, .masthead h2, .report-header h2 { color: #fffdf5 !important; }
+.masthead .kicker, .report-header .kicker { color: #f0d83f !important; }
+.masthead .meta, .report-header .report-meta, .report-header .meta { color: #d6e6de !important; }
+.card {
+  border-color: #b9c0bb !important;
+  border-radius: 3px !important;
+  box-shadow: 2px 3px 0 rgba(25,32,39,.1) !important;
+}
+.status { background: #d9efea !important; color: #0f5056 !important; }
+.status.watch { background: #f4e8ac !important; color: #755400 !important; }
+.status.risk { background: #f3d0c4 !important; color: #9f2d28 !important; }
+.notice { border-radius: 2px !important; background: #f4e8ac !important; }
+th { background: #d9efea !important; }
