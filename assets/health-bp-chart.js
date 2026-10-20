@@ -73,9 +73,9 @@
       .bp-chart-card {
         margin-bottom: 18px;
         padding: 18px;
-        border: 1px solid rgba(125,185,232,.28);
+        border: 1px solid rgba(76,110,121,.25);
         border-radius: 22px;
-        background: rgba(10,32,55,.95);
+        background: #fbf9f2;
         color: var(--ink);
         overflow: hidden;
       }
@@ -88,7 +88,7 @@
       }
       .bp-chart-heading h2 {
         margin: 0;
-        color: #7DB9E8 !important;
+        color: #4c6e79 !important;
         font-size: 2rem;
         font-weight: 400;
       }
@@ -102,13 +102,13 @@
         grid-template-columns: repeat(3, minmax(82px, 1fr));
         gap: 7px;
         min-width: min(100%, 330px);
-        font-family: system-ui, sans-serif;
+        font-family: var(--font-ui), Arial, sans-serif;
       }
       .bp-chart-chip {
         padding: 7px 10px 8px;
         border: 1px solid var(--line);
         border-radius: 12px;
-        background: rgba(15,43,70,.96);
+        background: #fffdf8;
         text-align: center;
       }
       .bp-chart-chip small {
@@ -125,12 +125,12 @@
         color: var(--ink);
         font-size: .94rem;
       }
-      .bp-chart-chip.latest { box-shadow: inset 0 3px 0 #FF8126; }
-      .bp-chart-chip.latest strong { color: #FFAD62; }
-      .bp-chart-chip.average { box-shadow: inset 0 3px 0 #7DB9E8; }
-      .bp-chart-chip.average strong { color: #9AC9ED; }
-      .bp-chart-chip.count { box-shadow: inset 0 3px 0 #45DB70; }
-      .bp-chart-chip.count strong { color: #45DB70; }
+      .bp-chart-chip.latest { box-shadow: inset 0 3px 0 #a2533d; }
+      .bp-chart-chip.latest strong { color: #bd7458; }
+      .bp-chart-chip.average { box-shadow: inset 0 3px 0 #4c6e79; }
+      .bp-chart-chip.average strong { color: #7894a2; }
+      .bp-chart-chip.count { box-shadow: inset 0 3px 0 #3e6048; }
+      .bp-chart-chip.count strong { color: #3e6048; }
       .bp-chart-meta {
         display: flex;
         flex-wrap: wrap;
@@ -138,19 +138,19 @@
         gap: 12px 18px;
         margin: 0 0 9px;
         color: var(--muted);
-        font-family: system-ui, sans-serif;
+        font-family: var(--font-ui), Arial, sans-serif;
         font-size: .76rem;
       }
       .bp-legend-item { display: inline-flex; align-items: center; gap: 6px; }
       .bp-legend-line { width: 22px; height: 3px; border-radius: 999px; }
-      .bp-legend-line.systolic { background: #FF8126; }
-      .bp-legend-line.diastolic { background: #7DB9E8; }
+      .bp-legend-line.systolic { background: #a2533d; }
+      .bp-legend-line.diastolic { background: #4c6e79; }
       .bp-chart-wrap {
         position: relative;
         width: 100%;
         height: 310px;
         border-radius: 14px;
-        background: linear-gradient(180deg, rgba(17,52,84,.95), rgba(7,24,42,.94));
+        background: linear-gradient(180deg, #f5f2e9, #f8f6ef);
         overflow: hidden;
       }
       #bp-trend-canvas {
@@ -166,10 +166,10 @@
         padding: 9px 11px;
         border: 1px solid var(--line);
         border-radius: 11px;
-        background: rgba(10,32,55,.98);
-        box-shadow: 0 8px 20px rgba(0,0,0,.28);
+        background: #fbf9f2;
+        box-shadow: 0 8px 20px rgba(43,51,43,.09);
         color: var(--ink);
-        font-family: system-ui, sans-serif;
+        font-family: var(--font-ui), Arial, sans-serif;
         font-size: .75rem;
         line-height: 1.42;
         pointer-events: none;
@@ -353,7 +353,7 @@
     const xForIndex = index => margin.left + (index / Math.max(1, pointCount - 1)) * plotWidth;
     const yFor = value => margin.top + ((yMax - value) / yRange) * plotHeight;
 
-    context.font = `${compact ? 10 : 11}px system-ui, sans-serif`;
+    context.font = `${compact ? 10 : 11}px var(--font-ui), Arial, sans-serif`;
     context.textBaseline = 'middle';
     context.lineWidth = 1;
 
@@ -365,14 +365,14 @@
       context.beginPath();
       context.moveTo(margin.left, y);
       context.lineTo(margin.left + plotWidth, y);
-      context.strokeStyle = 'rgba(190,214,235,.12)';
+      context.strokeStyle = 'rgba(41,52,46,.14)';
       context.stroke();
-      context.fillStyle = '#B6C9DB';
+      context.fillStyle = '#667168';
       context.textAlign = 'right';
       context.fillText(`${Math.round(value)}`, margin.left - 8, y);
     }
 
-    context.fillStyle = '#B6C9DB';
+    context.fillStyle = '#667168';
     context.textAlign = 'left';
     context.fillText('mmHg', 7, margin.top - 6);
 
@@ -384,7 +384,7 @@
 
     tickIndices.forEach((historyIndex, tickIndex) => {
       const x = xForIndex(historyIndex);
-      context.fillStyle = '#B6C9DB';
+      context.fillStyle = '#667168';
       context.textAlign = tickIndex === 0 ? 'left' : historyIndex === pointCount - 1 ? 'right' : 'center';
       context.fillText(formatDate(history[historyIndex].timestamp), x, cssHeight - 17);
     });
@@ -396,7 +396,7 @@
       context.beginPath();
       context.moveTo(x, systolicY);
       context.lineTo(x, diastolicY);
-      context.strokeStyle = 'rgba(182,201,219,.30)';
+      context.strokeStyle = 'rgba(41,52,46,.28)';
       context.lineWidth = compact ? 1.25 : 1.5;
       context.lineCap = 'round';
       context.stroke();
@@ -417,21 +417,21 @@
       context.stroke();
     }
 
-    drawSeries('systolic', '#FF8126', 3.5);
-    drawSeries('diastolic', '#7DB9E8', 3.5);
+    drawSeries('systolic', '#a2533d', 3.5);
+    drawSeries('diastolic', '#4c6e79', 3.5);
 
     const interactivePoints = history.map((entry, index) => {
       const x = xForIndex(index);
       const systolicY = yFor(entry.systolic);
       const diastolicY = yFor(entry.diastolic);
 
-      for (const [y, fill] of [[systolicY, '#FF8126'], [diastolicY, '#7DB9E8']]) {
+      for (const [y, fill] of [[systolicY, '#a2533d'], [diastolicY, '#4c6e79']]) {
         context.beginPath();
         context.arc(x, y, index === history.length - 1 ? 4.5 : 3.5, 0, Math.PI * 2);
         context.fillStyle = fill;
         context.fill();
         context.lineWidth = 1.4;
-        context.strokeStyle = 'rgba(7,24,42,.98)';
+        context.strokeStyle = 'rgba(41,52,46,.55)';
         context.stroke();
       }
 
