@@ -117,7 +117,7 @@
     style.id = 'nehemiah-inline-citation-style';
     style.textContent = `
       .inline-citation {
-        color: #FFAD62;
+        color: #F4FF00;
         font-weight: 700;
       }
     `;
@@ -170,32 +170,32 @@
     style.id = 'nehemiah-chart-palette-fix';
     style.textContent = `
       .chart-card {
-        background: #fbf9f2 !important;
-        border-color: #d8d2c4 !important;
-        color: #29342e !important;
+        background: #101318 !important;
+        border-color: rgba(0,213,255,.34) !important;
+        color: #F7F9FB !important;
       }
-      .chart-heading h2 { color: #3e6048 !important; }
+      .chart-heading h2 { color: #B8FF00 !important; }
       .chart-heading p,
       .chart-note,
-      .chart-empty { color: #667168 !important; }
-      .chart-wrap { background: #f8f6ef !important; }
+      .chart-empty { color: #a8b3ba !important; }
+      .chart-wrap { background: #101318 !important; }
       .chart-chip {
-        background: #fffdf8 !important;
+        background: #151b21 !important;
         border-color: #d8d2c4 !important;
         color: #29342e !important;
       }
-      .chart-chip small { color: #667168 !important; }
-      .chart-chip.current { box-shadow: inset 0 3px 0 #8f7444 !important; }
-      .chart-chip.current strong { color: #8f7444 !important; }
-      .chart-chip.seven { box-shadow: inset 0 3px 0 #a2533d !important; }
-      .chart-chip.seven strong { color: #a2533d !important; }
-      .chart-chip.fourteen { box-shadow: inset 0 3px 0 #3e6048 !important; }
-      .chart-chip.fourteen strong { color: #3e6048 !important; }
+      .chart-chip small { color: #a8b3ba !important; }
+      .chart-chip.current { box-shadow: inset 0 3px 0 #F4FF00 !important; }
+      .chart-chip.current strong { color: #F4FF00 !important; }
+      .chart-chip.seven { box-shadow: inset 0 3px 0 #B8FF00 !important; }
+      .chart-chip.seven strong { color: #B8FF00 !important; }
+      .chart-chip.fourteen { box-shadow: inset 0 3px 0 #B8FF00 !important; }
+      .chart-chip.fourteen strong { color: #B8FF00 !important; }
       .chart-tooltip {
         background: #fbf9f2 !important;
         border-color: #d8d2c4 !important;
         color: #29342e !important;
-        box-shadow: 0 5px 18px rgba(43,51,43,.09) !important;
+        box-shadow: 0 5px 18px rgba(0,0,0,.45), 0 0 10px rgba(0,213,255,.12) !important;
       }
     `;
     doc.head.appendChild(style);
