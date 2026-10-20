@@ -560,3 +560,60 @@ body { background-color: var(--paper) !important; }
 @media (max-width: 600px) {
   .site-menu { background: var(--ink) !important; }
 }
+
+
+/* Let the key panels behave like bold wallpaper colour fields. */
+.card.orange {
+  color: #fffdf5 !important;
+  background: #dc4436 !important;
+  border-color: #192027 !important;
+  box-shadow: 4px 5px 0 rgba(25,32,39,.18) !important;
+}
+.card.green {
+  color: #fffdf5 !important;
+  background: #087773 !important;
+  border-color: #192027 !important;
+  box-shadow: 4px 5px 0 rgba(25,32,39,.18) !important;
+}
+.card.sky {
+  color: #192027 !important;
+  background: #f2d83c !important;
+  border-color: #192027 !important;
+  box-shadow: 4px 5px 0 rgba(25,32,39,.18) !important;
+}
+.card.orange::before, .card.green::before, .card.sky::before {
+  width: 8px !important;
+  background: rgba(255,255,255,.78) !important;
+}
+.card.orange::after { width: 148px; height: 148px; background: #f5b2ca !important; opacity: .35; }
+.card.green::after { width: 148px; height: 148px; background: #36bdb0 !important; opacity: .40; }
+.card.sky::after { width: 148px; height: 148px; background: #fff8a1 !important; opacity: .60; }
+.card.orange .card-heading h2, .card.green .card-heading h2 {
+  color: #fffdf5 !important;
+}
+.card.orange .card-heading p, .card.green .card-heading p,
+.card.orange .section-kicker, .card.green .section-kicker,
+.card.orange .eyebrow, .card.green .eyebrow,
+.card.orange .micro-meta span, .card.green .micro-meta span {
+  color: #fffdf5 !important;
+}
+.card.orange .micro-meta span, .card.green .micro-meta span {
+  background: rgba(25,32,39,.22) !important;
+  border-color: rgba(255,255,255,.35) !important;
+}
+.card.green .health-metric, .card.green .health-trend {
+  color: #192027 !important;
+  background: #fffdf5 !important;
+  border-color: rgba(25,32,39,.24) !important;
+}
+.card.green .health-metric strong { color: #0f5056 !important; }
+.card.green .health-link { color: #fff8a1 !important; }
+.card.sky .card-heading h2, .card.sky .card-heading p,
+.card.sky .section-kicker, .card.sky .eyebrow,
+.card.sky .micro-meta span { color: #192027 !important; }
+.card.sky .micro-meta span { background: rgba(255,255,255,.45) !important; }
+@media (max-width: 760px) {
+  .card.orange::after, .card.green::after, .card.sky::after {
+    width: 92px; height: 92px;
+  }
+}
