@@ -172,14 +172,11 @@
   function renderCategories() {
     const container = document.getElementById('link-groups');
     if (!container) return;
-    const mobile = window.matchMedia('(max-width: 760px)').matches;
-
     [...categories]
       .sort((a, b) => a.name.localeCompare(b.name, 'en-GB', { sensitivity: 'base' }))
       .forEach(category => {
       const details = document.createElement('details');
       details.className = 'link-group';
-      if (!mobile) details.open = true;
 
       const summary = document.createElement('summary');
       summary.innerHTML = `<span>${category.name}</span><small>${category.description}</small>`;
