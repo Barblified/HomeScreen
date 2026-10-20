@@ -932,3 +932,31 @@ a svg, button svg, [class*="icon"] svg, svg.icon {
 .favourite-link svg, .tool-link svg, .discovery-link svg {
   filter: drop-shadow(0 0 4px rgba(0,213,255,.48)) drop-shadow(0 0 9px rgba(184,255,0,.22));
 }
+
+/* Keep the Home Weight Progress panel on the same dark neon surface as its chart. */
+.home-weight-card {
+  color: #F7F9FB !important;
+  background: #101318 !important;
+  border: 1px solid rgba(0,213,255,.38) !important;
+  border-left: 6px solid #B8FF00 !important;
+  box-shadow: 0 0 18px rgba(0,213,255,.08), 3px 4px 0 rgba(0,0,0,.72) !important;
+}
+.home-weight-card .home-weight-heading h3 { color: #F7F9FB !important; }
+.home-weight-card .home-weight-heading p,
+.home-weight-card .home-weight-note,
+.home-weight-card .home-weight-chip small,
+.home-weight-card .home-weight-empty { color: #aeb8c2 !important; }
+.home-weight-card .home-weight-chip {
+  color: #F7F9FB !important;
+  background: #151b21 !important;
+  border-color: rgba(0,213,255,.24) !important;
+}
+.home-weight-card .home-weight-chip.current { box-shadow: inset 0 3px 0 #00D5FF, 0 0 12px rgba(0,213,255,.08) !important; }
+.home-weight-card .home-weight-chip.seven { box-shadow: inset 0 3px 0 #B8FF00, 0 0 12px rgba(184,255,0,.08) !important; }
+.home-weight-card .home-weight-chip.fourteen { box-shadow: inset 0 3px 0 #F4FF00, 0 0 12px rgba(244,255,0,.08) !important; }
+.home-weight-card .home-weight-wrap { background: #101318 !important; }
+.home-weight-card .home-weight-tooltip {
+  color: #F7F9FB !important;
+  background: #101318 !important;
+  border-color: rgba(0,213,255,.42) !important;
+}
