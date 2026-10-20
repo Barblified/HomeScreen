@@ -194,7 +194,7 @@
       .privacy-note { display: none; }
     }
   </style>
-  <link rel="stylesheet" href="../assets/type-system.css?v=20261020-motus6">
+  <link rel="stylesheet" href="../assets/type-system.css?v=20261020-motus7">
 </head>
 <body>
   <nav class="site-menu" aria-label="Site navigation">
@@ -243,7 +243,6 @@
     </section>
 
     <section class="viewer" aria-label="Selected briefing">
-        <span class="mascot-anchor mascot-side-peek mascot-on-side" aria-hidden="true"></span>
       <div class="viewer-toolbar">
         <span class="viewer-title" id="viewer-title">UK News Scan</span>
         <div class="toolbar-actions">
@@ -286,7 +285,7 @@
           const theme = reportDoc.createElement("link");
           theme.id = "fieldbook-report-theme";
           theme.rel = "stylesheet";
-          theme.href = "/HomeScreen/briefings/report.css?v=20261020-motus6";
+          theme.href = "/HomeScreen/briefings/report.css?v=20261020-motus7";
           reportDoc.head.append(theme);
         } catch (error) {
           console.warn("Briefing report theme could not be applied.", error);
