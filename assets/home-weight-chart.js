@@ -225,7 +225,7 @@
           <div class="home-weight-chip fourteen"><small>14-log avg</small><strong id="home-weight-fourteen">—</strong></div>
         </div>
       </div>
-      <p class="home-weight-note">7-log average starts after 4 readings · 14-log average starts after 8 · Empty dates are removed · Sky-blue line = overall linear trend.</p>
+      <p class="home-weight-note">7-log average starts after 4 readings · 14-log average starts after 8 · Empty dates are removed · Neon-blue line = overall linear trend.</p>
       <div class="home-weight-wrap" id="home-weight-trend-wrap">
         <canvas id="home-weight-trend-canvas" role="img" aria-label="Weight progress chart showing individual weigh-ins, 7-log and 14-log rolling averages, and an overall linear trend in kilograms across logged weigh-ins">Weight history chart.</canvas>
         <div class="home-weight-tooltip" id="home-weight-tooltip" hidden aria-live="polite"></div>
