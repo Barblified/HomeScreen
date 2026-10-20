@@ -43,14 +43,10 @@
     return value === null || value === undefined || !Number.isFinite(value) ? '—' : `${value.toFixed(1)} cm`;
   }
 
-  function rollingAverage(history, index, days) {
-    const end = history[index].timestamp;
-    const start = end - ((days - 1) * 24 * 60 * 60 * 1000);
-    const values = history
-      .slice(0, index + 1)
-      .filter(entry => entry.timestamp >= start && entry.timestamp <= end)
-      .map(entry => entry.waistCm);
-    if (!values.length) return null;
+  function rollingAverage(history, index, logCount) {
+    const start = Math.max(0, index - logCount + 1);
+    const values = history.slice(start, index + 1).map(entry => entry.waistCm);
+    if (values.length < logCount) return null;
     return values.reduce((sum, value) => sum + value, 0) / values.length;
   }
 
@@ -206,19 +202,19 @@
       <div class="waist-chart-heading">
         <div>
           <h2 id="waist-trend-heading">Waist Circumference</h2>
-          <p>Raw measurements with 7-day and 14-day rolling averages.</p>
+          <p>Raw measurements with 7-log and 14-log rolling averages.</p>
         </div>
         <div class="waist-chart-summary" id="waist-trend-summary" hidden>
           <div class="waist-chart-chip latest"><small>Latest</small><strong id="waist-trend-latest">—</strong></div>
-          <div class="waist-chart-chip avg7"><small>7-day avg</small><strong id="waist-trend-avg7">—</strong></div>
-          <div class="waist-chart-chip avg14"><small>14-day avg</small><strong id="waist-trend-avg14">—</strong></div>
+          <div class="waist-chart-chip avg7"><small>7-log avg</small><strong id="waist-trend-avg7">—</strong></div>
+          <div class="waist-chart-chip avg14"><small>14-log avg</small><strong id="waist-trend-avg14">—</strong></div>
           <div class="waist-chart-chip count"><small>Readings</small><strong id="waist-trend-count">—</strong></div>
         </div>
       </div>
       <div class="waist-chart-meta">
         <span class="waist-legend-item"><span class="waist-legend-line raw"></span>Waist</span>
-        <span class="waist-legend-item"><span class="waist-legend-line avg7"></span>7-day average</span>
-        <span class="waist-legend-item"><span class="waist-legend-line avg14"></span>14-day average</span>
+        <span class="waist-legend-item"><span class="waist-legend-line avg7"></span>7-log average</span>
+        <span class="waist-legend-item"><span class="waist-legend-line avg14"></span>14-log average</span>
         <span>cm</span>
       </div>
       <div class="waist-chart-wrap" id="waist-trend-wrap">
@@ -255,8 +251,8 @@
     tooltip.innerHTML = `
       <strong>${formatDate(entry.timestamp, true)}</strong>
       <span>Waist: ${formatCm(entry.waistCm)}</span>
-      <span>7-day avg: ${formatCm(entry.avg7)}</span>
-      <span>14-day avg: ${formatCm(entry.avg14)}</span>
+      <span>7-log avg: ${formatCm(entry.avg7)}</span>
+      <span>14-log avg: ${formatCm(entry.avg14)}</span>
     `;
     tooltip.style.left = `${safeX}px`;
     tooltip.style.top = `${Math.max(55, point.y)}px`;
@@ -314,8 +310,8 @@
     summary.hidden = false;
 
     const latest = series[series.length - 1];
-    const avg7 = toNumber(payload.waist7dAvg) ?? latest.avg7;
-    const avg14 = toNumber(payload.waist14dAvg) ?? latest.avg14;
+    const avg7 = latest.avg7;
+    const avg14 = latest.avg14;
 
     setText(doc, 'waist-trend-latest', formatCm(latest.waistCm));
     setText(doc, 'waist-trend-avg7', formatCm(avg7));
@@ -441,7 +437,7 @@
     canvas.setAttribute(
       'aria-label',
       `Waist circumference history. Latest measurement ${formatCm(latest.waistCm)}. ` +
-      `Seven-day average ${formatCm(avg7)}. Fourteen-day average ${formatCm(avg14)}.`
+      `Seven-log average ${formatCm(avg7)}. Fourteen-log average ${formatCm(avg14)}.`
     );
 
     chartState = { cssWidth, series, interactivePoints };
