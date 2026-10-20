@@ -94,7 +94,7 @@
         padding: 18px;
         border: 1px solid rgba(47, 125, 74, 0.20);
         border-radius: 22px;
-        background: rgba(255, 255, 255, 0.68);
+        background: #fbf9f2;
         overflow: hidden;
       }
       .chart-heading {
@@ -126,7 +126,7 @@
         padding: 7px 10px 8px;
         border: 1px solid var(--line);
         border-radius: 12px;
-        background: rgba(255,255,255,0.82);
+        background: #fffdf8;
         text-align: center;
       }
       .chart-chip small {
@@ -143,12 +143,12 @@
         color: var(--ink);
         font-size: 0.94rem;
       }
-      .chart-chip.current { box-shadow: inset 0 3px 0 #2CB5C9; }
-      .chart-chip.current strong { color: #168FA2; }
-      .chart-chip.seven { box-shadow: inset 0 3px 0 #7BC96F; }
-      .chart-chip.seven strong { color: #4C9E54; }
-      .chart-chip.fourteen { box-shadow: inset 0 3px 0 #2F7D4A; }
-      .chart-chip.fourteen strong { color: #2F7D4A; }
+      .chart-chip.current { box-shadow: inset 0 3px 0 #8f7444; }
+      .chart-chip.current strong { color: #8f7444; }
+      .chart-chip.seven { box-shadow: inset 0 3px 0 #58765d; }
+      .chart-chip.seven strong { color: #58765d; }
+      .chart-chip.fourteen { box-shadow: inset 0 3px 0 #3e6048; }
+      .chart-chip.fourteen strong { color: #3e6048; }
       .chart-note {
         margin: 0 0 9px;
         color: var(--muted);
@@ -160,7 +160,7 @@
         width: 100%;
         height: 310px;
         border-radius: 14px;
-        background: rgba(234,247,250,0.48);
+        background: #f8f6ef;
         overflow: hidden;
       }
       #weight-trend-canvas {
@@ -174,10 +174,10 @@
         z-index: 2;
         min-width: 154px;
         padding: 9px 11px;
-        border: 1px solid rgba(35,64,61,0.15);
+        border: 1px solid rgba(41,52,46,.18);
         border-radius: 11px;
-        background: rgba(255,249,241,0.97);
-        box-shadow: 0 6px 18px rgba(35,64,61,0.13);
+        background: #fbf9f2;
+        box-shadow: 0 6px 18px rgba(43,51,43,.09);
         color: var(--ink);
         font-family: "Gloria Hallelujah", cursive;
         font-size: 0.75rem;
@@ -397,15 +397,15 @@
       context.beginPath();
       context.moveTo(margin.left, y);
       context.lineTo(margin.left + plotWidth, y);
-      context.strokeStyle = 'rgba(182, 201, 219, 0.18)';
+      context.strokeStyle = 'rgba(41,52,46,.14)';
       context.stroke();
 
-      context.fillStyle = '#D7E3ED';
+      context.fillStyle = '#667168';
       context.textAlign = 'right';
       context.fillText(`${value.toFixed(1)}`, margin.left - 8, y);
     }
 
-    context.fillStyle = '#D7E3ED';
+    context.fillStyle = '#667168';
     context.textAlign = 'left';
     context.fillText('kg', 7, margin.top - 6);
 
@@ -417,7 +417,7 @@
 
     tickIndices.forEach((historyIndex, tickIndex) => {
       const x = xForIndex(historyIndex);
-      context.fillStyle = '#D7E3ED';
+      context.fillStyle = '#667168';
       context.textAlign = tickIndex === 0 ? 'left' : historyIndex === pointCount - 1 ? 'right' : 'center';
       context.fillText(formatChartDate(history[historyIndex].timestamp), x, cssHeight - 17);
     });
@@ -452,7 +452,7 @@
       context.setLineDash([]);
     }
 
-    drawSeries(linearTrendSeries, 'trendKg', '#7DB9E8', 2.25, [7, 5]);
+    drawSeries(linearTrendSeries, 'trendKg', '#7894a2', 2.25, [7, 5]);
 
     const interactivePoints = history.map((entry, index) => {
       const x = xForIndex(index);
@@ -460,17 +460,17 @@
 
       context.beginPath();
       context.arc(x, y, index === history.length - 1 ? 4.5 : 3.5, 0, Math.PI * 2);
-      context.fillStyle = '#F3F7FB';
+      context.fillStyle = '#fffdf8';
       context.fill();
       context.lineWidth = 1.4;
-      context.strokeStyle = 'rgba(7,24,42,0.98)';
+      context.strokeStyle = 'rgba(41,52,46,.55)';
       context.stroke();
 
       return { index, x, y };
     });
 
-    drawSeries(sevenReadingSeries, 'averageKg', '#FFAD62', 3);
-    drawSeries(fourteenReadingSeries, 'averageKg', '#45DB70', 4.5);
+    drawSeries(sevenReadingSeries, 'averageKg', '#a2533d', 3);
+    drawSeries(fourteenReadingSeries, 'averageKg', '#3e6048', 4.5);
 
     canvas.setAttribute(
       'aria-label',
