@@ -1,5 +1,5 @@
 (() => {
-  const HEALTH_DATA_URL = 'https://script.google.com/macros/s/AKfycbyrHTYuDx6upQC9dXzhE3rK_UMYeFi8J-eRyguKzHlcI2V8742rnn-DcK0AChlXzoYc/exec';
+  const HEALTH_DATA_URL = 'https://script.google.com/macros/s/AKfycbxmuIjmiQe6D-yrB1i8cp3g6NPxTxDPxmqj6ZynwZ-CWDz_F2COc-DEImaFnyaZygMO/exec';
   const ATTENTION_URL = '/HomeScreen/assets/attention-feed.json';
   const CORE_SPRITE = '/HomeScreen/assets/quick-links.svg';
   const EXTRA_SPRITE = '/HomeScreen/assets/quick-links-extra.svg';
