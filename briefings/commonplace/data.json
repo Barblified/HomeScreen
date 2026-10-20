@@ -1,8 +1,31 @@
 {
   "schemaVersion": 1,
-  "publishedAtUtc": "2026-10-19T05:36:22.085Z",
-  "publishedAtDisplay": "19 October 2026 at 06:36 BST",
+  "publishedAtUtc": "2026-10-20T05:30:55.902Z",
+  "publishedAtDisplay": "20 October 2026 at 06:30 BST",
   "entries": [
+    {
+      "date": "2026-10-20",
+      "type": "Craft",
+      "title": "The fountain pen feed: a controlled leak and a controlled breath",
+      "creator": "Alex Nikolov, Sohail Murad, Darsh Wasan and Pingkeng Wu",
+      "sourceLabel": "How capillarity and ink–air flow govern a fountain pen · Journal of Colloid and Interface Science (2020)",
+      "sourceUrl": "https://pubmed.ncbi.nlm.nih.gov/32559481/",
+      "centralIdea": "A fountain pen must let ink travel down to the nib while admitting air back into the reservoir, yet do neither so freely that it floods or starves. Nikolov and colleagues describe its operation as a balance between hydrostatic pressure and the holding pressure of a capillary valve. Narrow, wettable passages draw and retain ink; paper removes ink from the nib; and an air bubble enters the reservoir only when the pressure balance permits it, replacing the lost volume and restarting the cycle. The feed’s channels and collector spaces therefore do more than carry liquid: together they meter flow, buffer excess and keep ink available near the nib. Lewis Waterman’s 1896 patent already separated a capillary ink fissure from an air duct and described the flow stopping automatically when ink covered the air inlet. A fountain pen is not merely a tiny tank with a point. It is a passive feedback system built from geometry, pressure and surface chemistry.",
+      "whyItMayInterestYou": "This turns a familiar writing tool into a compact lesson in fluid mechanics and control. Its reliability comes not from maximising one flow, but from coordinating two coupled flows through carefully chosen geometry—a useful model for any design that must regulate itself without active control.",
+      "commonplaceEntry": "A fountain pen works because two opposing journeys are coordinated: ink moves towards the paper while air moves back towards the reservoir. The narrow ink path exploits capillarity; the air path relieves the falling pressure left behind as ink is consumed. If either route dominates, the pen floods, burps, skips or dries. Its feed is therefore a regulator rather than a pipe. No sensor or software measures the flow: channel widths, wetting, pressure thresholds and small storage spaces embody the control logic in the object itself. Good passive design often looks like this—not maximum throughput, but a geometry that makes the desired exchange easy and unstable behaviour difficult.",
+      "questionToCarry": "What other apparently simple tools succeed by coordinating two opposing flows rather than maximising either one?",
+      "evidenceNote": "Established: the 2020 study identifies the balance between reservoir holding pressure and pressure across the capillary valve as central to fountain-pen function, and experimentally examines how the feed–cartridge connection affects performance. Waterman’s 1896 patent explicitly describes a capillary ink fissure, a separate duct for returning air bubbles and automatic stopping when ink closes the air inlet. A 2011 fluid-dynamics study independently shows that writing also depends on the balance between capillary driving force and resistance in the porous paper. Interpretation: calling the feed a passive feedback system, a controlled leak and a controlled breath is an engineering analogy. Feed geometries vary, and temperature, orientation, ink properties and manufacturing tolerances can disturb the balance.",
+      "additionalSources": [
+        {
+          "label": "Lewis E. Waterman’s fountain-pen feed patent · US 559,422 (1896)",
+          "url": "https://patents.google.com/patent/US559422A/en"
+        },
+        {
+          "label": "Hydrodynamics of Writing with Ink · Physical Review Letters (2011)",
+          "url": "https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.107.264501"
+        }
+      ]
+    },
     {
       "date": "2026-10-19",
       "type": "Data",
