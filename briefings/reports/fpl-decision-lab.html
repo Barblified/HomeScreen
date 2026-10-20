@@ -3,33 +3,33 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>FPL Decision Lab — GW8 Monday update</title>
+  <title>FPL Decision Lab — GW8 Tuesday update</title>
   <link rel="stylesheet" href="../report.css">
 </head>
 <body><main>
 <header>
   <p class="eyebrow">Fantasy Premier League · 2026/27</p>
-  <h1>Decision Lab — GW8 Monday update</h1>
-  <p><strong>Generated:</strong> Monday 19 October 2026, 09:25 Europe/London · <strong>GW8 deadline:</strong> Friday 23 October, 18:30 BST · Decision support only; no transfer, lineup, captaincy or chip action was executed.</p>
+  <h1>Decision Lab — GW8 Tuesday update</h1>
+  <p><strong>Generated:</strong> Tuesday 20 October 2026, 09:10 Europe/London · <strong>GW8 deadline:</strong> Friday 23 October, 18:30 BST · Decision support only; no transfer, lineup, captaincy or chip action was executed.</p>
 </header>
 
 <section class="card"><h2>Evidence first: verified state and material changes</h2>
   <ul>
-    <li>GW7 remains officially live and not data-checked: nine matches have provisional scores and Spurs–Coventry remains on Monday. The estimator therefore still uses completed GW1–6 only. No provisional GW7 player or team performance has entered the forecast.</li>
-    <li>Sunday materially strengthened several current-squad observations: Tavernier returned 10 points in Bournemouth's 2–0 win; Mbeumo eight in Leeds 1–1 Man Utd; Konsa nine in Newcastle 0–1 Arsenal; Verbruggen and Calafiori six each in clean-sheet wins. Bruno returned one, while João Pedro returned two despite Brighton's 5–0 defeat of Palace. Thomas is the only squad player still to play.</li>
-    <li>The official data now show Tavernier £6.2m, João Pedro £7.9m and Wissa £6.1m. Reconstructed selling prices are £6.1m, £7.8m and £6.1m respectively; the opposing João Pedro rise and Wissa fall leave squad sale value about £98.3m and spending power £99.1m with £0.8m bank.</li>
+    <li>All ten GW7 matches have now been played, but the official FPL event remains <code>finished=false</code> and <code>data_checked=false</code>; every fixture is only provisionally finished. The estimator therefore still uses completed GW1–6 only. No provisional GW7 performance has entered the forecast.</li>
+    <li>Thomas completed 90 minutes and returned three points as Coventry lost 1–3 at Spurs. All 15 squad players therefore logged GW7 minutes, totalling 60 provisional points before any starting-XI, captain and autosub treatment. The full-match availability evidence is positive, but Thomas's score is quarantined until finalisation.</li>
+    <li>De Cuyper rose to £5.3m and Groß to £6.2m overnight. Mykolenko → De Cuyper remains just affordable with the £0.8m bank, but would use all available cash. No owned-player price changed; squad sale value remains about £98.3m and spending power £99.1m.</li>
     <li>Player identity validation resolved all 15 owned IDs without remapping. One new selectable player, Tutierov (ID 668), appeared in the pool; this does not affect the squad.</li>
-    <li>The recovered planning state remains one free transfer and £0.8m bank, assuming no unreported post-deadline action. No new relevant inbox evidence contradicted that state.</li>
+    <li>The recovered planning state remains one free transfer and £0.8m bank, assuming no unreported post-deadline action. A fresh Gmail search found no relevant FPL, club or private-squad update.</li>
   </ul>
-  <p>Official reporting records Brighton's 5–0 win, Leeds 1–1 Man Utd and Arsenal's win at Forest; Bournemouth's club report confirms the 2–0 win over Sunderland. <a href="https://www.premierleague.com/en/news/4740393/what-we-learned-from-sundays-premier-league-matches-in-matchweek-7-of-2026-27-season">Premier League Sunday review</a> · <a href="https://www.afcb.co.uk/news/2026/october/18/tavernier-praises-evanilson-impact-in-sunderland-win/">Bournemouth report</a>.</p>
+  <p>The official match report confirms Spurs' 3–1 win and Thomas's completed appearance for Coventry. <a href="https://www.premierleague.com/en/news/4735661/totcov-app">Premier League match report</a> · <a href="https://www.tottenhamhotspur.com/news/1179187/three-points-on-memorable-night-against-coventry">Spurs match report</a>.</p>
 </section>
 
 <section class="card"><h2>Data freshness and validation</h2>
   <table><thead><tr><th>Input</th><th>Validated result</th></tr></thead><tbody>
-    <tr><td>bootstrap-static</td><td>Refreshed 19 Oct at 09:19 BST; 668 elements, 563 selectable, 20 clubs and 38 events. GW7 current, GW8 next; IDs and schema validated.</td></tr>
-    <tr><td>fixtures</td><td>Refreshed 19 Oct at 09:19 BST; 380 fixtures. Nine GW7 scorelines present but not final; ten GW8 fixtures and the 17:30 UTC deadline validated.</td></tr>
-    <tr><td>element-summary</td><td>563/563 selectable-player endpoints refreshed during 09:19–09:21 BST; 3,817 history rows and 17,514 future-fixture rows passed structural checks.</td></tr>
-    <tr><td>event/7/live</td><td>Refreshed 19 Oct at 09:19 BST; 668 unique records. Used for provisional state evidence only.</td></tr>
+    <tr><td>bootstrap-static</td><td>Refreshed 20 Oct at 09:04 BST; 668 elements, 563 selectable, 20 clubs and 38 events. GW7 current, GW8 next; IDs and schema validated.</td></tr>
+    <tr><td>fixtures</td><td>Refreshed 20 Oct at 09:04 BST; 380 fixtures. All ten GW7 scorelines are present but provisional; ten GW8 fixtures and the 17:30 UTC deadline validated.</td></tr>
+    <tr><td>element-summary</td><td>563/563 selectable-player endpoints refreshed during 09:04–09:06 BST; 3,817 history rows and 17,453 future-fixture rows passed structural checks.</td></tr>
+    <tr><td>event/7/live</td><td>Refreshed 20 Oct at 09:04 BST; 668 unique records. Used for provisional state evidence only.</td></tr>
     <tr><td>Private state</td><td>Latest verified squad plus current prices reconstruct one FT, £0.8m bank, £98.3m sale value and £99.1m spending power.</td></tr>
   </tbody></table>
   <p><strong>Blocked input:</strong> no fresh authenticated squad/transfer screen or public entry identifier. This prevents direct confirmation of any unreported action, but not the supported comparison under the verified no-action assumption. No official numerical endpoint was blocked and no field was invented.</p>
@@ -47,12 +47,12 @@
 <section class="card"><h2>Model, simulation and validation</h2>
   <p>The event/state estimator uses only 2026/27 completed events. Player points per 90 are shrunk toward weak current-season positional priors equivalent to 360 minutes, then conditioned on season/recent minutes, availability, opponent difficulty and scheduled fixtures. A consistency audit explicitly removed provisional GW7 totals from the prior.</p>
   <p>The joint generative model is defined before simulation: availability state → shared team shock → Gamma–Poisson player scoring → legal XI/autosubs → captain fallback. Common random numbers are used across 20,000 path draws. Ordinary bench points are excluded.</p>
-  <p><strong>Aleatoric:</strong> match scoring variance. <strong>Epistemic:</strong> six completed weeks and winner's-curse risk around early leaders. <strong>State:</strong> unfinished GW7, Monday selection and pre-deadline club news. Walk-forward holdouts: GW4 MAE 1.42/rank correlation 0.648; GW5 1.32/0.680; GW6 1.34/0.634. Ranking signal is useful; small xPts gaps are not stable.</p>
+  <p><strong>Aleatoric:</strong> match scoring variance. <strong>Epistemic:</strong> six completed weeks and winner's-curse risk around early leaders. <strong>State:</strong> official GW7 finalisation and pre-deadline club news. Walk-forward holdouts: GW4 MAE 1.42/rank correlation 0.648; GW5 1.32/0.680; GW6 1.34/0.634. Ranking signal is useful; small xPts gaps are not stable.</p>
 </section>
 
 <section class="card"><h2>League-wide optimal legal control</h2>
-  <p><strong>Cost £100.0m · XV:</strong> Trafford, Tzolakis; Calafiori, De Cuyper, Vuskovic, Tarkowski, Bogle; Schade, Groß, Rogers, Cherki, Matheus Cunha; Emersonn, Barry, Haaland.</p>
-  <p><strong>GW8 XI:</strong> Tzolakis; Calafiori, De Cuyper, Vuskovic, Bogle; Schade, Groß, Rogers, Cherki, Matheus Cunha; Haaland. <strong>C</strong> Groß, <strong>VC</strong> Haaland. Bench: Tarkowski, Emersonn, Barry; Trafford. <strong>Raw XI 61.5; captain-inclusive 67.7 xPts.</strong></p>
+  <p><strong>Cost £99.6m · XV:</strong> Trafford, Tzolakis; Calafiori, De Cuyper, Vuskovic, Tarkowski, Bogle; Schade, Groß, Rogers, Cherki, Matheus Cunha; Emersonn, Thomas-Asante, Haaland.</p>
+  <p><strong>GW8 XI:</strong> Tzolakis; Calafiori, De Cuyper, Vuskovic, Bogle; Schade, Groß, Rogers, Cherki, Matheus Cunha; Haaland. <strong>C</strong> Groß, <strong>VC</strong> Rogers. Bench: Tarkowski, Emersonn, Thomas-Asante; Trafford. <strong>Raw XI 60.0; captain-inclusive 66.2 xPts.</strong></p>
   <p>This is a diagnostic legal optimum, not a personalised transfer plan. It includes Haaland and is highly exposed to early-season leader selection.</p>
 </section>
 
@@ -61,34 +61,34 @@
   <p><strong>Bench order:</strong> Konsa, Wissa, Mykolenko; Kelleher. The Gonzalo/Konsa margin is only 0.04 xPts, so Monday's Thomas minutes and later team news can flip the shape. Bench points are not counted except in the simulation's legal autosubs.</p>
   <p><strong>Raw XI 52.0; captain-inclusive 57.8 xPts.</strong></p>
   <table><thead><tr><th>Window</th><th>Simulated HOLD score</th><th>80% predictive interval</th></tr></thead><tbody>
-    <tr><td>GW8</td><td>57.7</td><td>39–78</td></tr>
-    <tr><td>GW8–10</td><td>168.8</td><td>135–203</td></tr>
-    <tr><td>GW8–12</td><td>280.1</td><td>238–324</td></tr>
+    <tr><td>GW8</td><td>57.8</td><td>39–79</td></tr>
+    <tr><td>GW8–10</td><td>168.9</td><td>136–204</td></tr>
+    <tr><td>GW8–12</td><td>280.0</td><td>236–325</td></tr>
   </tbody></table>
 </section>
 
 <section class="card"><h2>HOLD versus legal transfer paths</h2>
   <table><thead><tr><th>Action</th><th>Horizon</th><th>Net E[Δ] vs HOLD</th><th>P(Δ&gt;0)</th><th>80% Δ interval</th><th>Dominant downside</th></tr></thead><tbody>
     <tr><td>HOLD; roll FT</td><td>GW8 / 8–10 / 8–12</td><td>0 baseline</td><td>—</td><td>Score intervals above</td><td>May miss a short-term Brighton edge.</td></tr>
-    <tr><td>Tavernier → Groß, free</td><td>GW8</td><td>+2.66</td><td>53.3%</td><td>−10…+17</td><td>Reverses a player who has just returned 10; estimate is winner-sensitive.</td></tr>
-    <tr><td>Mykolenko → De Cuyper, free</td><td>GW8–10</td><td>+8.23</td><td>63.9%</td><td>−15…+33</td><td>Defender returns and six-week De Cuyper rate are unstable.</td></tr>
-    <tr><td>Mykolenko → De Cuyper, free</td><td>GW8–12</td><td>+18.81</td><td>75.5%</td><td>−13…+53</td><td>Compounds the same early-season estimate across five weeks.</td></tr>
-    <tr><td>Bruno → Groß, free</td><td>GW8</td><td>+1.76</td><td>50.2%</td><td>−11…+17</td><td>Released cash has no points value until reinvested.</td></tr>
-    <tr><td>Bruno → Groß, free</td><td>GW8–10</td><td>+6.73</td><td>60.3%</td><td>−17…+33</td><td>Regression and premature loss of a premium role.</td></tr>
-    <tr><td>Bruno → Groß, free</td><td>GW8–12</td><td>+16.19</td><td>71.2%</td><td>−16…+52</td><td>Cash option is undefined without a named second move.</td></tr>
-    <tr><td>Tavernier → Groß + Mykolenko → De Cuyper, −4</td><td>GW8</td><td>+1.06 after hit</td><td>—</td><td>—</td><td>Two early-estimate bets for little one-week edge; not jointly simulated.</td></tr>
+    <tr><td>Tavernier → Groß, free</td><td>GW8</td><td>+2.66</td><td>52.8%</td><td>−10…+17</td><td>Reverses a player who has just returned 10; estimate is winner-sensitive.</td></tr>
+    <tr><td>Mykolenko → De Cuyper, free</td><td>GW8–10</td><td>+8.23</td><td>63.6%</td><td>−15…+33</td><td>Uses the entire bank; defender returns and six-week rate are unstable.</td></tr>
+    <tr><td>Mykolenko → De Cuyper, free</td><td>GW8–12</td><td>+18.81</td><td>75.6%</td><td>−13…+52</td><td>Compounds the same early-season estimate across five weeks.</td></tr>
+    <tr><td>Bruno → Groß, free</td><td>GW8</td><td>+1.76</td><td>49.7%</td><td>−11…+16</td><td>Released cash has no points value until reinvested.</td></tr>
+    <tr><td>Bruno → Groß, free</td><td>GW8–10</td><td>+6.73</td><td>59.6%</td><td>−17…+33</td><td>Regression and premature loss of a premium role.</td></tr>
+    <tr><td>Bruno → Groß, free</td><td>GW8–12</td><td>+16.19</td><td>70.6%</td><td>−17…+52</td><td>Cash option is undefined without a named second move.</td></tr>
+    <tr><td>Tavernier → Groß + Konsa → De Cuyper, −4</td><td>GW8</td><td>+1.06 after hit</td><td>—</td><td>—</td><td>Two early-estimate bets for little one-week edge; not jointly simulated.</td></tr>
   </tbody></table>
-  <p><strong>Recommendation: HOLD and roll the free transfer.</strong> The one-week move wins only 53.3% of defensible joint simulations, while Sunday's 10-point Tavernier return is a material reason not to reverse last week's decision immediately. Rolling creates two free transfers and lets the next comparison value a Bruno replacement together with an actual reinvestment.</p>
+  <p><strong>Recommendation: HOLD and roll the free transfer.</strong> The one-week move wins only 52.8% of defensible joint simulations, while Tavernier's 10-point return is a material reason not to reverse last week's decision immediately. The Monday match did not trigger a move: Thomas completed 90 minutes, while GW7 remains officially unfinalised. Rolling creates two free transfers and lets the next comparison value a Bruno replacement together with an actual reinvestment.</p>
 </section>
 
 <section class="card"><h2>Captaincy and Haaland-out diagnostic</h2>
   <p>GW8 Points-EV order: Palmer 5.76, Calafiori 5.32, João Pedro 5.22, Saka 5.00, Mbeumo 4.95, Bruno 4.85. <strong>Captain Palmer; vice Calafiori.</strong> This is expected-points ordering, not a prediction that Palmer will score.</p>
   <table><thead><tr><th>Window</th><th>Estimated cost of excluding Haaland</th><th>80% interval</th></tr></thead><tbody>
-    <tr><td>GW8</td><td>0.92</td><td>−7…+9</td></tr>
-    <tr><td>GW8–10</td><td>2.77</td><td>−18…+23</td></tr>
-    <tr><td>GW8–12</td><td>4.91</td><td>−21…+31</td></tr>
+    <tr><td>GW8</td><td>0.00</td><td>0…0</td></tr>
+    <tr><td>GW8–10</td><td>1.96</td><td>−18…+23</td></tr>
+    <tr><td>GW8–12</td><td>2.85</td><td>−23…+29</td></tr>
   </tbody></table>
-  <p>The opportunity cost remains modest relative to uncertainty. Maintain Haaland-out; reconsider only through a whole-squad path, not by reacting to one live haul.</p>
+  <p>The one-week unrestricted optimiser independently omits Haaland, hence the zero GW8 exclusion cost; this is not a claim that his individual xPts are zero. Longer-window opportunity cost remains modest relative to uncertainty. Maintain Haaland-out and reconsider only through a whole-squad path.</p>
 </section>
 
 <section class="card"><h2>Chip decisions</h2>
@@ -113,7 +113,7 @@
 <section class="card"><h2>Concise pre-deadline plan</h2>
   <ol>
     <li>Make no early transfer; preserve the route to two free transfers.</li>
-    <li>Finish GW7 with Thomas on Monday, then ingest the week only once official data_checked is true.</li>
+    <li>Ingest GW7 only once the official event is marked finished and data-checked; all matches are played but the gate has not cleared.</li>
     <li>Re-run after European minutes, injury updates and Friday prices.</li>
     <li>Provisional XI is 3-5-2; captain Palmer, vice Calafiori. Recheck Gonzalo versus Konsa.</li>
     <li>Save Bench Boost; prepare a two-transfer Bruno replacement-plus-reinvestment comparison.</li>
@@ -121,7 +121,7 @@
 </section>
 
 <section class="card"><h2>Deadline schedule check</h2>
-  <p>All official future deadlines through GW38 were revalidated. The existing deadline-minus-90-minute entries exactly match the live FPL timestamps, including GW8 on Friday 23 October at 17:00 BST. The daily 09:00 Europe/London run is preserved; no schedule edit was required.</p>
+  <p>All official future deadlines through GW38 were revalidated. Three deadline changes required schedule correction: GW13 now runs Tuesday 1 December at 18:30 GMT, GW14 Saturday 5 December at 11:00 GMT, and GW16 Saturday 19 December at 11:00 GMT. Their deadline-minus-90-minute runs are now 17:00, 09:30 and 09:30 respectively. The daily 09:00 Europe/London run and all other verified entries remain preserved.</p>
 </section>
 
 <section class="card"><h2>Sources</h2><ul>
@@ -129,6 +129,8 @@
   <li><a href="https://fantasy.premierleague.com/api/fixtures/">Official FPL fixtures</a></li>
   <li><a href="https://fantasy.premierleague.com/api/event/7/live/">Official FPL GW7 live data</a></li>
   <li><a href="https://fantasy.premierleague.com/api/element-summary/68/">Official Tavernier element summary</a></li>
+  <li><a href="https://www.premierleague.com/en/news/4735661/totcov-app">Official Spurs 3–1 Coventry report</a></li>
+  <li><a href="https://www.tottenhamhotspur.com/news/1179187/three-points-on-memorable-night-against-coventry">Official Tottenham match report</a></li>
   <li><a href="https://www.premierleague.com/en/news/4740393/what-we-learned-from-sundays-premier-league-matches-in-matchweek-7-of-2026-27-season">Official Premier League Sunday review</a></li>
   <li><a href="https://www.afcb.co.uk/news/2026/october/18/tavernier-praises-evanilson-impact-in-sunderland-win/">Official Bournemouth match reaction</a></li>
   <li><a href="https://www.premierleague.com/en/news/4679879/whats-happening-with-fpl-chips-in-202627">Official 2026/27 chip rules</a></li>
