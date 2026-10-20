@@ -71,9 +71,9 @@
       .waist-chart-card {
         margin-bottom: 18px;
         padding: 18px;
-        border: 1px solid rgba(69,219,112,.26);
+        border: 1px solid rgba(62,96,72,.25);
         border-radius: 22px;
-        background: rgba(10,32,55,.95);
+        background: #fbf9f2;
         color: var(--ink);
         overflow: hidden;
       }
@@ -86,7 +86,7 @@
       }
       .waist-chart-heading h2 {
         margin: 0;
-        color: #45DB70 !important;
+        color: #3e6048 !important;
         font-size: 2rem;
         font-weight: 400;
       }
@@ -100,13 +100,13 @@
         grid-template-columns: repeat(4, minmax(72px, 1fr));
         gap: 7px;
         min-width: min(100%, 430px);
-        font-family: system-ui, sans-serif;
+        font-family: var(--font-ui), Arial, sans-serif;
       }
       .waist-chart-chip {
         padding: 7px 8px 8px;
         border: 1px solid var(--line);
         border-radius: 12px;
-        background: rgba(15,43,70,.96);
+        background: #fffdf8;
         text-align: center;
       }
       .waist-chart-chip small {
@@ -123,13 +123,13 @@
         color: var(--ink);
         font-size: .9rem;
       }
-      .waist-chart-chip.latest { box-shadow: inset 0 3px 0 #7DB9E8; }
-      .waist-chart-chip.latest strong { color: #9AC9ED; }
-      .waist-chart-chip.avg7 { box-shadow: inset 0 3px 0 #FF8126; }
-      .waist-chart-chip.avg7 strong { color: #FFAD62; }
-      .waist-chart-chip.avg14 { box-shadow: inset 0 3px 0 #45DB70; }
-      .waist-chart-chip.avg14 strong { color: #6BE784; }
-      .waist-chart-chip.count { box-shadow: inset 0 3px 0 #B6C9DB; }
+      .waist-chart-chip.latest { box-shadow: inset 0 3px 0 #7894a2; }
+      .waist-chart-chip.latest strong { color: #7894a2; }
+      .waist-chart-chip.avg7 { box-shadow: inset 0 3px 0 #a2533d; }
+      .waist-chart-chip.avg7 strong { color: #bd7458; }
+      .waist-chart-chip.avg14 { box-shadow: inset 0 3px 0 #3e6048; }
+      .waist-chart-chip.avg14 strong { color: #58765d; }
+      .waist-chart-chip.count { box-shadow: inset 0 3px 0 #667168; }
       .waist-chart-meta {
         display: flex;
         flex-wrap: wrap;
@@ -137,20 +137,20 @@
         gap: 12px 18px;
         margin: 0 0 9px;
         color: var(--muted);
-        font-family: system-ui, sans-serif;
+        font-family: var(--font-ui), Arial, sans-serif;
         font-size: .76rem;
       }
       .waist-legend-item { display: inline-flex; align-items: center; gap: 6px; }
       .waist-legend-line { width: 22px; height: 3px; border-radius: 999px; }
-      .waist-legend-line.raw { background: #7DB9E8; }
-      .waist-legend-line.avg7 { background: #FF8126; }
-      .waist-legend-line.avg14 { background: #45DB70; }
+      .waist-legend-line.raw { background: #7894a2; }
+      .waist-legend-line.avg7 { background: #a2533d; }
+      .waist-legend-line.avg14 { background: #3e6048; }
       .waist-chart-wrap {
         position: relative;
         width: 100%;
         height: 310px;
         border-radius: 14px;
-        background: linear-gradient(180deg, rgba(17,52,84,.95), rgba(7,24,42,.94));
+        background: linear-gradient(180deg, #f5f2e9, #f8f6ef);
         overflow: hidden;
       }
       #waist-trend-canvas {
@@ -166,10 +166,10 @@
         padding: 9px 11px;
         border: 1px solid var(--line);
         border-radius: 11px;
-        background: rgba(10,32,55,.98);
-        box-shadow: 0 8px 20px rgba(0,0,0,.28);
+        background: #fbf9f2;
+        box-shadow: 0 8px 20px rgba(43,51,43,.09);
         color: var(--ink);
-        font-family: system-ui, sans-serif;
+        font-family: var(--font-ui), Arial, sans-serif;
         font-size: .75rem;
         line-height: 1.42;
         pointer-events: none;
@@ -353,7 +353,7 @@
       : margin.left + (index / Math.max(1, pointCount - 1)) * plotWidth;
     const yFor = value => margin.top + ((yMax - value) / yRange) * plotHeight;
 
-    context.font = `${compact ? 10 : 11}px system-ui, sans-serif`;
+    context.font = `${compact ? 10 : 11}px var(--font-ui), Arial, sans-serif`;
     context.textBaseline = 'middle';
     context.lineWidth = 1;
 
@@ -365,14 +365,14 @@
       context.beginPath();
       context.moveTo(margin.left, y);
       context.lineTo(margin.left + plotWidth, y);
-      context.strokeStyle = 'rgba(190,214,235,.12)';
+      context.strokeStyle = 'rgba(41,52,46,.14)';
       context.stroke();
-      context.fillStyle = '#B6C9DB';
+      context.fillStyle = '#667168';
       context.textAlign = 'right';
       context.fillText(value.toFixed(1), margin.left - 8, y);
     }
 
-    context.fillStyle = '#B6C9DB';
+    context.fillStyle = '#667168';
     context.textAlign = 'left';
     context.fillText('cm', 10, margin.top - 6);
 
@@ -386,7 +386,7 @@
       series.forEach((entry, index) => {
         if (index % step !== 0 && index !== series.length - 1) return;
         const x = xForIndex(index);
-        context.fillStyle = '#B6C9DB';
+        context.fillStyle = '#667168';
         context.textAlign = index === 0 ? 'left' : index === series.length - 1 ? 'right' : 'center';
         context.fillText(formatDate(entry.timestamp, totalDays > 300), x, cssHeight - 17);
       });
@@ -415,19 +415,19 @@
       context.stroke();
     }
 
-    drawSeries('waistCm', '#7DB9E8', 2.4);
-    drawSeries('avg7', '#FF8126', 3.2);
-    drawSeries('avg14', '#45DB70', 3.8);
+    drawSeries('waistCm', '#7894a2', 2.4);
+    drawSeries('avg7', '#a2533d', 3.2);
+    drawSeries('avg14', '#3e6048', 3.8);
 
     const interactivePoints = series.map((entry, index) => {
       const x = xForIndex(index);
       const y = yFor(entry.waistCm);
       context.beginPath();
       context.arc(x, y, index === series.length - 1 ? 4.8 : 3.6, 0, Math.PI * 2);
-      context.fillStyle = '#7DB9E8';
+      context.fillStyle = '#7894a2';
       context.fill();
       context.lineWidth = 1.4;
-      context.strokeStyle = 'rgba(7,24,42,.98)';
+      context.strokeStyle = 'rgba(41,52,46,.55)';
       context.stroke();
       return { index, x, y };
     });
