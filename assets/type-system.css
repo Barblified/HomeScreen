@@ -960,3 +960,9 @@ a svg, button svg, [class*="icon"] svg, svg.icon {
   background: #101318 !important;
   border-color: rgba(0,213,255,.42) !important;
 }
+
+/* Numeric trend tiles use the site UI face, not the legacy handwritten face. */
+.chart-summary, .chart-summary *, .home-weight-summary, .home-weight-summary *,
+.waist-chart-summary, .waist-chart-summary *, .bmi-category-badge {
+  font-family: var(--font-ui), Arial, sans-serif !important;
+}
