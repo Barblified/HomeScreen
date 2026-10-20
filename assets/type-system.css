@@ -49,7 +49,7 @@
 html { background: var(--paper) !important; scroll-behavior: smooth; }
 body {
   color: var(--ink) !important;
-  background-color: var(--paper) !important;
+  background: var(--paper) !important;
   font-family: var(--font-ui) !important;
   line-height: 1.55;
 }
@@ -333,7 +333,56 @@ main.card { max-width: 1100px; margin: 22px auto; }
 #report-frame { border-color: var(--line) !important; background: var(--paper-light) !important; }
 
 /* Data graphics retain contrast without bringing the old dark palette back. */
-.chart-wrap, .home-weight-wrap { --chart-surface: #f8f6ef; --chart-grid: rgba(41,52,46,.14); --chart-text: #29342e; }
+main.card > h1 { color: var(--ink) !important; }
+.chart-card, [class*="-chart-card"], .routine-card,
+.chart-wrap, .bp-chart-wrap, .waist-chart-wrap, .routine-chart,
+[id$="-trend-wrap"] {
+  color: var(--ink) !important;
+  border-color: var(--line) !important;
+  border-radius: 6px !important;
+  background: var(--chart-surface) !important;
+  box-shadow: none !important;
+}
+.chart-chip, .bp-chart-chip, .waist-chart-chip,
+.routine-summary > div, .routine-chips span {
+  border-color: var(--line) !important;
+  border-radius: 4px !important;
+  color: var(--ink) !important;
+  background: var(--paper-light) !important;
+  box-shadow: none !important;
+}
+.chart-heading h2, .bp-chart-heading h2, .waist-chart-heading h2,
+.routine-head h3, .routine-trends > h2 {
+  color: var(--forest-dark) !important;
+  font-family: var(--font-display) !important;
+}
+.chart-heading p, .bp-chart-heading p, .waist-chart-heading p,
+.chart-note, .chart-empty, .bp-chart-meta, .waist-chart-meta,
+.routine-head p, .routine-note, .routine-period button {
+  color: var(--muted) !important;
+}
+.routine-period button {
+  border-color: var(--line) !important;
+  border-radius: 4px !important;
+  background: var(--paper-light) !important;
+}
+.routine-period button[aria-pressed="true"] {
+  color: #fffdf8 !important;
+  background: var(--forest) !important;
+}
+#weight-trend-canvas, #bp-trend-canvas, #waist-trend-canvas,
+#home-weight-trend-canvas, .routine-chart svg {
+  background: var(--chart-surface) !important;
+}
+#weight-trend-canvas text, #bp-trend-canvas text, #waist-trend-canvas text,
+#home-weight-trend-canvas text, .routine-chart svg text {
+  fill: var(--muted) !important;
+}
+#weight-trend-canvas circle, #bp-trend-canvas circle,
+#waist-trend-canvas circle, #home-weight-trend-canvas circle {
+  stroke: var(--paper-light) !important;
+}
+
 @media (max-width: 760px) {
   .home-shell { width: min(calc(100% - 24px), 1120px) !important; padding-top: 22px !important; }
   .context-grid, .planning-grid { grid-template-columns: 1fr !important; }
