@@ -1,8 +1,31 @@
 {
   "schemaVersion": 1,
-  "publishedAtUtc": "2026-10-20T05:30:55.902Z",
-  "publishedAtDisplay": "20 October 2026 at 06:30 BST",
+  "publishedAtUtc": "2026-10-21T05:26:59.426Z",
+  "publishedAtDisplay": "21 October 2026 at 06:26 BST",
   "entries": [
+    {
+      "date": "2026-10-21",
+      "type": "Theory",
+      "title": "MDA: players experience a designed system backwards",
+      "creator": "Robin Hunicke, Marc LeBlanc and Robert Zubek",
+      "sourceLabel": "MDA: A Formal Approach to Game Design and Game Research · AAAI (2004)",
+      "sourceUrl": "https://cdn.aaai.org/Workshops/2004/WS-04-04/WS04-04-001.pdf",
+      "centralIdea": "The MDA framework separates a game into Mechanics, Dynamics and Aesthetics. Mechanics are the encoded rules, actions, data and algorithms; dynamics are the behaviours that emerge when those mechanics interact with players over time; aesthetics are the desired emotional experiences—challenge, fellowship, discovery or expression, rather than merely visual style. Hunicke, LeBlanc and Zubek argue that designers usually work outward from mechanics towards experience, while players encounter the same system in reverse: first they feel the experience, then notice recurring behaviour, and only gradually infer the rules. This matters because a mechanic does not manufacture “fun” directly. It changes incentives and interactions, which may generate unexpected dynamics and therefore a different experience from the one intended. Good design moves repeatedly in both directions: trace the desired experience down to implementable rules, then test what those rules actually cause people to do and feel.",
+      "whyItMayInterestYou": "This is a compact bridge between game design, systems thinking and organisational design. It explains why a technically correct feature can still create the wrong culture or experience—and why evaluation must follow the causal chain from rules, through behaviour, to felt consequences.",
+      "commonplaceEntry": "People rarely experience a designed rule as a rule; they experience the behaviour it produces. A reward, constraint, ranking or default changes how participants act with one another, and that interaction creates the felt character of the system. The MDA lens therefore asks two linked questions. Working backwards: what mechanics could support the experience we want? Working forwards: what dynamics are these mechanics actually producing? The gap between those answers is where unintended consequences live. A feature can operate exactly as specified while damaging the whole. Judge a mechanism not only by its local function, but by the behaviour it invites and the experience that behaviour compounds over time.",
+      "questionToCarry": "What behaviour does this rule reliably invite, and is that behaviour creating the experience the system was meant to produce?",
+      "evidenceNote": "Established: the authors’ 2004 AAAI workshop paper defines mechanics as game components at the level of data and algorithms, dynamics as run-time behaviour arising from interaction, and aesthetics as desirable emotional responses. It explicitly contrasts the designer’s mechanics-to-aesthetics perspective with the player’s reverse perspective and presents MDA as an iterative design and analysis method. The framework is influential, but the paper proposes a conceptual tool rather than reporting controlled evidence that it is uniquely correct or complete. Its list of aesthetic goals is illustrative, not a universal taxonomy. Applying MDA to organisations, interfaces or policies is an interpretive extension: the causal vocabulary transfers plausibly, but those systems have actors, power relations and goals more complex than a game.",
+      "additionalSources": [
+        {
+          "label": "AAAI publication page and abstract",
+          "url": "https://aaai.org/papers/ws04-04-001-mda-a-formal-approach-to-game-design-and-game-research/"
+        },
+        {
+          "label": "AAAI Challenges in Game AI workshop proceedings",
+          "url": "https://aaai.org/proceeding/ws04-04/"
+        }
+      ]
+    },
     {
       "date": "2026-10-20",
       "type": "Craft",
