@@ -1,8 +1,31 @@
 {
   "schemaVersion": 1,
-  "publishedAtUtc": "2026-10-21T05:26:59.426Z",
-  "publishedAtDisplay": "21 October 2026 at 06:26 BST",
+  "publishedAtUtc": "2026-10-22T05:31:02.960Z",
+  "publishedAtDisplay": "22 October 2026 at 06:31 BST",
   "entries": [
+    {
+      "date": "2026-10-22",
+      "type": "Philosophy",
+      "title": "Tacit knowing: skill lives between the clues and the whole",
+      "creator": "Michael Polanyi",
+      "sourceLabel": "The Structure of Consciousness · Brain 88 (1965), reproduced by the Polanyi Society",
+      "sourceUrl": "https://www.polanyisociety.org/mp-structure.htm",
+      "centralIdea": "Michael Polanyi argues that knowledge is not exhausted by statements we can recite. In perception and skilled action, attention has two levels: we focus on a meaningful whole while relying subsidiarily on many clues, sensations and movements. Recognising a face, balancing on a bicycle or playing a phrase requires these particulars, but not as separate objects of attention; their meaning lies in how they are integrated. Moving attention onto the parts can therefore disrupt the achievement—like repeating a word until its meaning dissolves, or watching one’s fingers instead of playing the music. Tacit knowing is not merely a proposition temporarily forgotten. It is knowledge embodied in a relationship between clues and what they jointly reveal. This explains why rules and documentation cannot carry an entire practice by themselves. They become useful through exemplars, feedback and participation, as a learner acquires the capacity to notice and integrate what the instructions leave unsaid.",
+      "whyItMayInterestYou": "This joins philosophy of science to craft, learning and organisational design. It explains why a technically complete procedure can still fail to reproduce expert judgment—and why genuine knowledge transfer requires guided attention, not merely transferring information.",
+      "commonplaceEntry": "A manual can preserve instructions without preserving the judgment needed to use them. Skilled practice depends on clues that may be individually observable yet meaningful only when held together: tone, resistance, timing, proportion, anomaly, context. Experts often act reliably before they can reconstruct every reason, because their attention is directed through these particulars towards the whole task. The answer is neither to romanticise intuition nor to demand impossible total codification. Make reasoning explicit where it can be tested; then protect the conditions in which the remainder can be learned—shared work, examples, imitation, correction and repeated contact with reality. Knowledge transfer is not complete when the document is finished, but when another person can see what matters.",
+      "questionToCarry": "What would a competent practitioner notice here that the written procedure does not teach me to see?",
+      "evidenceNote": "Established: Polanyi’s 1965 article distinguishes focal awareness of a whole from subsidiary awareness of the clues on which that focus relies; he describes tacit knowing as integration rather than explicit deduction and argues that concentrating on the clues can dissolve their joint meaning. His 1966 book develops tacit knowledge as a challenge to accounts of science that treat knowledge as fully explicit. These are Polanyi’s philosophical arguments, illustrated by perception and skilled action, not experimental proof that every expertise resists codification. Interpretation: the claims about manuals, apprenticeship and organisational knowledge extend his framework into practice. The extent and kinds of tacitness remain debated; some previously tacit elements can become explicit, tested and taught without exhausting the whole skill.",
+      "additionalSources": [
+        {
+          "label": "The Tacit Dimension · University of Chicago Press",
+          "url": "https://press.uchicago.edu/ucp/books/book/chicago/T/bo6035368.html"
+        },
+        {
+          "label": "Glossary of Polanyi’s terminology · The Polanyi Society",
+          "url": "https://polanyisociety.org/glossary-of-polanyis-terminology/"
+        }
+      ]
+    },
     {
       "date": "2026-10-21",
       "type": "Theory",
