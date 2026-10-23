@@ -1,8 +1,31 @@
 {
   "schemaVersion": 1,
-  "publishedAtUtc": "2026-10-22T05:31:02.960Z",
-  "publishedAtDisplay": "22 October 2026 at 06:31 BST",
+  "publishedAtUtc": "2026-10-23T05:30:57.958Z",
+  "publishedAtDisplay": "23 October 2026 at 06:30 BST",
   "entries": [
+    {
+      "date": "2026-10-23",
+      "type": "Wildcard",
+      "title": "Trusting trust: clean source can still build a compromised program",
+      "creator": "Ken Thompson",
+      "sourceLabel": "Reflections on Trusting Trust · Communications of the ACM (1984)",
+      "sourceUrl": "https://dl.acm.org/doi/10.1145/358198.358210",
+      "centralIdea": "Ken Thompson’s three-page Turing Award lecture demonstrates a backdoor that can disappear from every inspected source file yet survive in the executable toolchain. First, alter a compiler so that when it recognises the system’s login program it silently inserts a secret authentication path. That attack is visible in the compiler source, so add a second rule: whenever the compiler compiles its own source, it also inserts both malicious behaviours into the new compiler binary. Compile once with the poisoned version, install the result, then restore the compiler source to its innocent form. Future builds from that clean source reproduce the compromised compiler, which continues corrupting login. Source review now reports truthfully on the text while saying nothing decisive about the binary that produced the running system. Thompson’s deeper point is not paranoia but provenance: assurance must cover the chain that transforms source into execution—compiler, build environment, dependencies and people—not merely the code being inspected.",
+      "whyItMayInterestYou": "This is one of computing’s sharpest demonstrations that transparency and trust are different properties. It turns software provenance into an epistemic problem: evidence about an artefact is only as strong as the tools and chain of custody that produced it.",
+      "commonplaceEntry": "A clean description does not guarantee a clean artefact. Thompson’s compiler can read innocent source and emit a compromised program, then reproduce its own corrupting behaviour when rebuilt. The deception lives in the transformation, not the text being reviewed. The general lesson is to inspect trust chains rather than isolated objects. Ask who or what translated, packaged, signed, distributed and verified the thing now running. Reproducible builds and independent toolchains can narrow the gap; Wheeler’s diverse double-compiling technique tests whether compiler source and executable correspond under stated assumptions. Trust cannot be abolished, but it can be diversified, traced and made expensive to counterfeit.",
+      "questionToCarry": "Which trusted transformation in this system could change the artefact without leaving evidence in the source I am reviewing?",
+      "evidenceNote": "Established: Thompson’s 1984 lecture gives a self-reproducing compiler attack that inserts a login Trojan and reintroduces the attack when compiling the compiler, allowing the malicious source to be removed after the poisoned binary is installed. Russ Cox reproduced the mechanism using Thompson’s original code in 2023. Wheeler later developed diverse double-compiling, with a formal argument and demonstrations, as a way to test whether a compiler binary corresponds to its claimed source under explicit assumptions. Interpretation: extending the lesson from compilers to the whole software supply chain is a modern systems-security reading, not a claim that all build tools are compromised. Source availability and reproducible builds improve assurance but do not by themselves eliminate every trust dependency.",
+      "additionalSources": [
+        {
+          "label": "Running the “Reflections on Trusting Trust” compiler · Russ Cox (2023)",
+          "url": "https://research.swtch.com/nih"
+        },
+        {
+          "label": "Fully Countering Trusting Trust through Diverse Double-Compiling · David A. Wheeler",
+          "url": "https://arxiv.org/abs/1004.5534"
+        }
+      ]
+    },
     {
       "date": "2026-10-22",
       "type": "Philosophy",
