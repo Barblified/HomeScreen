@@ -1,8 +1,31 @@
 {
   "schemaVersion": 1,
-  "publishedAtUtc": "2026-10-23T05:30:57.958Z",
-  "publishedAtDisplay": "23 October 2026 at 06:30 BST",
+  "publishedAtUtc": "2026-10-24T05:34:59.461Z",
+  "publishedAtDisplay": "24 October 2026 at 06:34 BST",
   "entries": [
+    {
+      "date": "2026-10-24",
+      "type": "Quote",
+      "title": "“All models are wrong”: usefulness depends on the error that matters",
+      "creator": "George E. P. Box",
+      "sourceLabel": "Robustness in the Strategy of Scientific Model Building · Academic Press (1979)",
+      "sourceUrl": "https://www.sciencedirect.com/science/chapter/edited-volume/pii/B9780124381506500182",
+      "centralIdea": "George Box’s aphorism is often used as a shrug—as though model failure were inevitable and therefore excusable. His surrounding argument says almost the opposite. A model deliberately omits reality; the task is to choose omissions that preserve what matters for the decision. In 1979 he argued that no simple model can exactly represent a real system, yet a parsimonious one may illuminate structure and approximate usefully. Complexity is not an automatic cure: every added parameter consumes data, reduces precision and opens another route to overfitting. The model should therefore pass through a loop of tentative use, criticism, residual inspection and revision. “Wrong” is not a binary verdict but a prompt to ask where, by how much, under which conditions and with what consequence. A model can be false in detail but reliable for interpolation, dangerous for extrapolation, or helpful for explanation while poor for prediction. Its fitness is purpose-specific.",
+      "whyItMayInterestYou": "The phrase becomes much sharper when restored to its context. It offers a disciplined alternative to both worshipping a dashboard and rejecting quantification: state the model’s purpose, expose its assumptions, test the consequential failures and revise when reality pushes back.",
+      "commonplaceEntry": "Every model is a compression: it gains usefulness by throwing information away. The central question is not whether the compression is imperfect, but whether it discards something that changes the decision. Box’s warning cuts in two directions. A neat model should never be mistaken for reality; an elaborate model should not be mistaken for wisdom. Begin with the simplest representation that could answer the question, then look deliberately for the places where its errors become consequential. Examine residuals, edge cases and failed predictions. Change the model when evidence identifies a tiger, not merely because another mouse can be parameterised. Accuracy is not a property a model possesses in isolation; it is a relationship among model, purpose, data and consequence.",
+      "questionToCarry": "What is this model allowed to get wrong before it changes the decision it was built to support?",
+      "evidenceNote": "Established: Box wrote “Since all models are wrong” in his 1976 JASA paper; the complete phrase “All models are wrong but some are useful” appears as a section heading in his 1979 chapter on robustness. There he argues for parsimonious approximations, iterative criticism through residuals, and selective elaboration against important discrepancies. The widely quoted wording “Essentially, all models are wrong, but some are useful” appears in Box and Draper’s 1987 book. Interpretation: the decision-focused examples about interpolation, extrapolation and dashboards are applications of Box’s argument, not direct quotations or claims that every useful model must be simple. Parsimony can fail when omitted structure is consequential.",
+      "additionalSources": [
+        {
+          "label": "Science and Statistics · Journal of the American Statistical Association (1976)",
+          "url": "https://doi.org/10.1080/01621459.1976.10480949"
+        },
+        {
+          "label": "Play it again, and again, Sam · Significance (2016)",
+          "url": "https://academic.oup.com/jrssig/article-abstract/13/4/46/7037781"
+        }
+      ]
+    },
     {
       "date": "2026-10-23",
       "type": "Wildcard",
