@@ -1,8 +1,31 @@
 {
   "schemaVersion": 1,
-  "publishedAtUtc": "2026-10-24T05:34:59.461Z",
-  "publishedAtDisplay": "24 October 2026 at 06:34 BST",
+  "publishedAtUtc": "2026-10-25T06:34:42.792Z",
+  "publishedAtDisplay": "25 October 2026 at 06:34 GMT",
   "entries": [
+    {
+      "date": "2026-10-25",
+      "type": "Theology",
+      "title": "Bezalel: when the Spirit fills a workshop",
+      "creator": "The Book of Exodus",
+      "sourceLabel": "Exodus 31:1–11 · ESV on Bible.com",
+      "sourceUrl": "https://www.bible.com/bible/59/EXO.31.1-11.ESV",
+      "centralIdea": "Exodus describes Bezalel’s commission in vocabulary often reserved for overtly religious leadership: God calls him by name and fills him with the Spirit, then names the resulting capacities—ability, intelligence, knowledge and craftsmanship. Those gifts are directed toward designs and the exact work of gold, silver, bronze, stone and wood. Oholiab and other artisans join him; later, Exodus adds that Bezalel and Oholiab are enabled to teach. The passage refuses a common split between spiritual work and skilled material work. Thinking, designing, making and transmitting technique all belong inside the divine commission. Yet this is not a blanket claim that every creative impulse is inspired. The artisans are given a defined task: construct the tabernacle according to God’s command. Their freedom operates through obedient mastery of materials. In Exodus, holiness is not made less holy by contact with tools; tools, judgement and practised hands become means of faithful service.",
+      "whyItMayInterestYou": "It joins theology, design and leadership in one compact scene: excellence is neither disembodied inspiration nor solitary genius. It is named responsibility, technical competence, collaboration and the willingness to pass skill on.",
+      "commonplaceEntry": "Bezalel’s calling is strikingly concrete. Spirit, wisdom and craft appear together, then resolve into work a hand can perform: shape metal, set stone, carve wood, make a design, teach another worker. The passage dignifies technical judgement without romanticising it. Skill serves a purpose beyond self-expression, and inspiration does not bypass apprenticeship, materials or constraint. A good work may therefore be both obedient and inventive: faithful to what has been asked, yet requiring decisions no instruction sheet can fully specify. The mature artisan receives a task, learns the grain of the material, makes beauty under constraint and enlarges the community’s capacity by teaching.",
+      "questionToCarry": "Where might faithfulness require not another opinion or plan, but the patient development and sharing of a concrete skill?",
+      "evidenceNote": "Established: Exodus 31:1–11 says God calls Bezalel by name, fills him with the Spirit of God, and gives ability for artistic work in metal, stone and wood; it also appoints Oholiab and other able artisans. Exodus 35:30–35 repeats the commission and explicitly includes teaching. Interpretation: the passage supports the dignity of skilled material work within this tabernacle commission. It does not state that every artwork is Spirit-inspired, that craftsmanship replaces worship or obedience, or that technical excellence proves divine approval. The broader claim that this challenges a modern sacred–secular divide is a theological inference from the text, not its direct wording.",
+      "additionalSources": [
+        {
+          "label": "Exodus 35:30–35 · ESV on Bible.com",
+          "url": "https://www.bible.com/bible/59/EXO.35.30-35.ESV"
+        },
+        {
+          "label": "The Divinely Gifted Tabernacle Artisans · Jay Sklar’s Exodus commentary",
+          "url": "https://www.thegospelcoalition.org/commentary/exodus/"
+        }
+      ]
+    },
     {
       "date": "2026-10-24",
       "type": "Quote",
