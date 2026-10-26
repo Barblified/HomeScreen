@@ -4,106 +4,108 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="color-scheme" content="dark light">
-  <title>FPL Decision Lab — GW9 early view, 25 October 2026</title>
+  <title>FPL Decision Lab — GW9 decision state, 26 October 2026</title>
   <link rel="stylesheet" href="../report.css">
 </head>
 <body>
 <main>
   <header class="hero">
-    <p class="eyebrow">Fantasy Premier League · 2026/27 · GW9 early view</p>
-    <h1>Decision Lab — wait for the weekend to finish</h1>
-    <p><strong>Generated:</strong> Sunday 25 October 2026, 09:12 GMT (Europe/London). <strong>Next deadline:</strong> Saturday 31 October, 11:00 GMT.</p>
+    <p class="eyebrow">Fantasy Premier League · 2026/27 · GW9 decision state</p>
+    <h1>Decision Lab — roles changed; wait for confirmation</h1>
+    <p><strong>Generated:</strong> Monday 26 October 2026, 09:13 GMT (Europe/London). <strong>Next deadline:</strong> Saturday 31 October, 11:00 GMT.</p>
     <p><strong>Decision support only:</strong> no transfer, lineup, captaincy or chip action has been executed.</p>
-    <p class="lede"><strong>Decision:</strong> do not transfer this morning. GW8 is incomplete and four owned players have new 75% flags. The early model prefers a defensive repair or Wissa sale over an immediate Fernandes sale, but the margins are small and the information value of waiting is high.</p>
+    <p class="lede"><strong>Decision:</strong> HOLD the free transfer today. Fernandes was an unused substitute by a “pure football” decision and Wissa was displaced by goalscorer Osula. Those are genuine sell signals, but acting five days early gains no points and discards injury, training and press-conference information. The provisional late-week priority is Wissa → Barry; switch to Fernandes out if his bench role is reiterated, or repair defence if an owned doubt is ruled out.</p>
   </header>
 
   <section class="card">
     <h2>1. Verified state and material changes</h2>
     <div class="table-wrap"><table><thead><tr><th>Item</th><th>Verified state</th><th>Decision consequence</th></tr></thead><tbody>
-      <tr><td>Official feed</td><td><a href="https://fantasy.premierleague.com/api/bootstrap-static/">bootstrap-static</a>, <a href="https://fantasy.premierleague.com/api/fixtures/">fixtures</a>, <a href="https://fantasy.premierleague.com/api/event/8/live/">GW8 live</a> and all 15 personalised element-summary endpoints parsed 09:00–09:02 GMT. Payloads: 669 players, 20 clubs, 380 fixtures and 669 GW8 live records.</td><td>No official numerical endpoint required for this run was blocked.</td></tr>
-      <tr><td>Private state</td><td>Latest official personalised briefing and confirmed screenshot: Saka → Rogers completed; £2.3m bank; Fernandes and Wissa retained; first Wildcard, Free Hit and Triple Captain used; Bench Boost saved. Rogers was the last verified captain.</td><td>GW8 is locked. The first actionable window is GW9; one new FT is assumed under the normal post-deadline rules.</td></tr>
-      <tr><td>GW8 live</td><td>Five of ten matches have produced live data. Known owned-player returns: Konsa 14, Gonzalo 2, Rogers 1, Calafiori 1, Thomas 1, Mykolenko 0 and Palmer −1. Newcastle, Man Utd, Bournemouth, Brentford, Brighton and Leeds assets still have fixtures to play.</td><td>Do not interpret a partial Gameweek as a completed empirical update. GW1–7 remain the training set until GW8 is final and data-checked.</td></tr>
-      <tr><td>Saka</td><td>Official FPL still shows £9.5m, injured, 0% chance and “Thigh injury — unknown return date”. His price fell £0.1m after the sale. No positive post-MRI return date was verified this morning. The Premier League still frames him as an injury doubt and published replacement analysis.</td><td>The Rogers transfer remains defensible; there is no evidence-based case to buy Saka back.</td></tr>
-      <tr><td>Fernandes</td><td>Price has fallen to £11.7m. He has 45,812 transfers out for GW9 at feed time and faces Chelsea away, Aston Villa home, Liverpool away, Brentford home and Newcastle away.</td><td>The weak schedule supports a sale, but a second immediate price-driven move before today’s match would sacrifice information without gaining points.</td></tr>
-      <tr><td>New flags</td><td>Calafiori, Mykolenko, Bobby Thomas and João Pedro are each at 75% in the official feed. All four identities were validated by element ID, position and club; duplicate web names were explicitly disambiguated.</td><td>Availability state, rather than Fernandes alone, is the dominant transfer uncertainty.</td></tr>
+      <tr><td>Official feed</td><td><a href="https://fantasy.premierleague.com/api/bootstrap-static/">bootstrap-static</a>, <a href="https://fantasy.premierleague.com/api/fixtures/">fixtures</a>, <a href="https://fantasy.premierleague.com/api/event/8/live/">GW8 live</a> and all 15 squad element-summary endpoints parsed 09:06–09:09 GMT. Payloads: 669 players, 20 clubs, 380 fixtures and 669 live records; every squad history contains eight rounds.</td><td>No public numerical endpoint required for this run was blocked.</td></tr>
+      <tr><td>GW8 status</td><td>All ten matches have scores, but the official event remains <code>finished=false</code> and <code>data_checked=false</code>. The model therefore retains GW1–7 as its completed training panel and uses GW8 only as live state evidence.</td><td>Avoids treating provisional points as final while still reacting to starts, minutes and roles.</td></tr>
+      <tr><td>Private state</td><td>Latest official personalised briefing still predates the deadline; no newer official team email was found. Confirmed state remains Saka → Rogers completed, £2.3m bank, first Wildcard/Free Hit/Triple Captain used, Bench Boost saved, Rogers last verified captain. One FT is inferred after the GW8 deadline.</td><td>Authenticated <code>/my-team/</code> was unavailable, so the current FT and selling prices are reconstructed rather than directly read.</td></tr>
+      <tr><td>Fernandes</td><td>£11.7m, officially marked available, but 0 minutes against Bournemouth. Premier League analysis says he watched the 3–0 defeat from the bench and Carrick called the omission a “pure football” decision.</td><td>Role/state uncertainty is now the issue, not injury. He is benched in the provisional XI until selection evidence improves.</td></tr>
+      <tr><td>Wissa</td><td>£6.1m; left out of the Newcastle XI, entered for 13 minutes and recorded 1 point with 0.00 xGI. Osula replaced him and scored in a 2–0 win.</td><td>The incumbent-role assumption is broken; a sale now has a clearer three- and five-week edge.</td></tr>
+      <tr><td>Other squad flags</td><td>Calafiori, Mykolenko, Bobby Thomas and João Pedro remain at 75%. João Pedro recorded 0 minutes; Calafiori 22, Mykolenko 73 and Thomas 59.</td><td>A confirmed absence can supersede the preferred Wissa sale, particularly if it weakens the starting XI.</td></tr>
+      <tr><td>Positive signals</td><td>Tavernier produced 10 points and 0.93 xGI; Konsa 14 points; Hall 5. Mbeumo played 90 minutes, while Rogers and Palmer retained substantial minutes.</td><td>Tavernier remains the narrow Points-EV captain; no midfield transfer should remove him.</td></tr>
     </tbody></table></div>
-    <p><strong>Freshness:</strong> official numerical data 25 October 2026, 09:00–09:02 GMT; official news and deadline search 09:02–09:07 GMT. Authenticated <code>/my-team/</code> remained unavailable, so exact purchase/sale prices are reconstructed from the GW6 Wildcard, GW7 Tavernier transfer and GW8 Rogers transfer; bank and last FT state are directly verified.</p>
+    <p><strong>Freshness:</strong> official numerical data 26 October 2026, 09:06–09:09 GMT; official club/league news checked 09:09–09:12 GMT. Player identities were resolved by live element ID, full name, position and club; Bobby Thomas/Sorba Thomas and Cole Palmer/Alex Palmer were explicitly disambiguated.</p>
   </section>
 
   <section class="card">
-    <h2>2. Evidence before action</h2>
-    <div class="table-wrap"><table><thead><tr><th>Player/state</th><th>Evidence</th><th>Interpretation</th></tr></thead><tbody>
-      <tr><td>Fernandes · £11.7m</td><td>GW1–7: 33 points, 630 minutes, 3G + 1A from 2.66 xG + 1.50 xA. The model now gives 3.94 GW9 xPts and only a small five-week edge to the best direct replacement.</td><td>Sellable, but not an emergency. His full value comes from what the released cash upgrades next, not from the first swap alone.</td></tr>
-      <tr><td>Wissa · £6.1m</td><td>GW1–7: 18 points, 608 minutes, 1G + 1A from 2.97 xG + 0.14 xA. GW9–13 fixtures are Everton, Fulham, Arsenal, Brighton and Man Utd.</td><td>Barry or Evanilson improves the forward slot modestly in the current model, but today’s Crystal Palace match is material new evidence still to come.</td></tr>
-      <tr><td>Defence</td><td>Mykolenko, Calafiori and Thomas are flagged; Konsa has just returned 14 live points. De Cuyper is the strongest five-week one-transfer model upgrade, but Brighton visit Liverpool and Man City first.</td><td>The mathematical leader is not automatically the best move today. Waiting protects against buying into two bad fixtures or selling a fit player unnecessarily.</td></tr>
-      <tr><td>Manager/system state</td><td>Carrick remains in post for Man Utd v Bournemouth and says a different performance is required. No confirmed managerial change exists.</td><td>Potential Fernandes revival remains state uncertainty, not forecastable upside to bank as expected points.</td></tr>
+    <h2>2. Evidence before recommendations</h2>
+    <div class="table-wrap"><table><thead><tr><th>Question</th><th>Evidence</th><th>Interpretation</th></tr></thead><tbody>
+      <tr><td>Is Fernandes still a secure premium?</td><td>GW1–7: 33 points and 630 minutes, with 3G + 1A from 2.66 xG + 1.50 xA. GW8 then delivered an unused benching in a match United lost 3–0. Upcoming fixtures are Chelsea away, Aston Villa home and Liverpool away.</td><td>The current-season production survives, but minutes security no longer does. Selling becomes attractive if Carrick repeats the selection signal.</td></tr>
+      <tr><td>Is Wissa still first choice?</td><td>GW1–7: 18 points and 608 minutes, with 1G + 1A from 2.97 xG + 0.14 xA. In GW8, the new coach left him out, Osula scored and Wissa received only 13 minutes.</td><td>One match is not proof of permanent demotion, but it is enough to price a genuine role-loss state rather than assume 80–90 minutes.</td></tr>
+      <tr><td>Which one-transfer path leads?</td><td>The model’s raw five-week leader is Mykolenko → De Cuyper (+9.01 simulated points), but the seven-match defensive-contribution model is visibly aggressive and Brighton face difficult first fixtures. Wissa → Barry is +5.95 with a narrower downside range and direct role logic.</td><td>Use the mathematical leader as a diagnostic, not an automatic transfer. Practical priority is Wissa unless late injury news forces a repair.</td></tr>
+      <tr><td>Why not act now?</td><td>The same FT is available on Friday, while press conferences can resolve five owned availability/role questions. No current target is known to become unaffordable with £2.3m bank.</td><td>Waiting has information value and negligible known cost.</td></tr>
     </tbody></table></div>
   </section>
 
   <section class="card">
-    <h2>3. Model used</h2>
-    <p>The empirical sample is strictly GW1–7 of 2026/27. Player minutes, xG, xA, clean sheets, saves, bonus, cards and defensive contributions are estimated from current-season element histories. Per-90 xG/xA rates are shrunk toward current-season positional medians with a weak 360-minute pseudo-sample:</p>
+    <h2>3. Model, uncertainty and validation</h2>
+    <p>The empirical sample is strictly GW1–7 of 2026/27. Player minutes, xG, xA, clean sheets, saves, bonus, cards and defensive contributions come only from current-season element histories. Per-90 rates are shrunk toward current-season positional medians with a weak 360-minute pseudo-sample:</p>
     <p><code>posterior rate = (minutes × observed rate + 360 × positional rate) / (minutes + 360)</code></p>
-    <p>Fixtures then adjust attacking and clean-sheet components through official FDR and home/away state. The player forecast is 82% component expectation and 18% shrunken current-season realised points, retaining a small correction for omitted scoring channels.</p>
-    <p>After those means are defined, 20,000 common-random-number simulations jointly draw player availability, shared team shocks and over-dispersed scoring. They apply legal formations, captain/vice fallback and ordered autosubs; ordinary bench points are excluded unless an autosub occurs.</p>
+    <p>Fixture state adjusts attacking and clean-sheet components using official FDR and home/away status. The mean forecast is 82% component expectation plus 18% shrunken realised-points rate. GW8 role evidence is then applied as a separate state mixture: Fernandes is treated as an uncertain starter/appearance; Wissa as likely involved but with sharply reduced starting probability. These are modelling assumptions, not asserted medical probabilities.</p>
+    <p>Only after those means and states are defined, 20,000 common-random-number simulations jointly draw availability, shared club shocks and over-dispersed scoring. They enforce legal formations, captain/vice fallback and ordered autosubs; ordinary bench points are excluded.</p>
     <ul>
-      <li><strong>Aleatoric:</strong> match and scoring randomness inside the simulation.</li>
-      <li><strong>State:</strong> injury flags, minutes, manager/system, captain fallback and autosubs.</li>
-      <li><strong>Epistemic:</strong> only seven completed Gameweeks and model specification. Shrinkage and walk-forward testing reduce, but do not remove, this uncertainty.</li>
+      <li><strong>Aleatoric uncertainty:</strong> match, scoring and bonus randomness.</li>
+      <li><strong>State uncertainty:</strong> Fernandes/Wissa selection, four 75% flags, minutes, captain fallback and autosubs.</li>
+      <li><strong>Epistemic uncertainty:</strong> seven completed Gameweeks, provisional GW8 finalisation and model specification.</li>
     </ul>
     <div class="table-wrap"><table><thead><tr><th>Walk-forward target</th><th>Players</th><th>MAE</th><th>Spearman ρ</th></tr></thead><tbody>
       <tr><td>GW4</td><td>549</td><td>1.84</td><td>0.624</td></tr><tr><td>GW5</td><td>554</td><td>1.69</td><td>0.671</td></tr><tr><td>GW6</td><td>562</td><td>1.73</td><td>0.603</td></tr><tr><td>GW7</td><td>562</td><td>1.71</td><td>0.634</td></tr>
     </tbody></table></div>
-    <p>No GW8 validation row is added while the Gameweek is incomplete. The ranking signal is useful; tenths of a point are not.</p>
+    <p>GW8 is not added to validation until the official feed marks it data-checked. Ranking signal is useful; tenths of a point are not.</p>
   </section>
 
   <section class="card">
     <h2>4. HOLD versus transfer paths</h2>
-    <p>Windows are <strong>GW+1 = GW9</strong>, <strong>GW+3 = GW9–11</strong>, and <strong>GW+5 = GW9–13</strong>. Deltas use the reconstructed sale-price budget and one free transfer; no hit is charged. P(Δ&gt;0) and 80% intervals are from the joint simulation.</p>
-    <div class="table-wrap"><table><thead><tr><th>Action</th><th>Window</th><th>Net E[Δ] vs HOLD</th><th>P(Δ&gt;0)</th><th>80% Δ interval</th><th>Dominant uncertainty / downside</th></tr></thead><tbody>
-      <tr><td>WAIT / retain FT today</td><td>All</td><td>0.00</td><td>Baseline</td><td>Team totals below</td><td>Small price risk; maximum information retained.</td></tr>
-      <tr><td>Fernandes → Dewsbury-Hall</td><td>GW9</td><td>+0.26</td><td>47.0%</td><td>−6 to +6</td><td>Near tie; released £7.4m is idle in this one-move comparison.</td></tr>
-      <tr><td>Fernandes → Groß</td><td>GW9–11</td><td>+1.63</td><td>51.4%</td><td>−14 to +18</td><td>Brighton face Liverpool and Man City first.</td></tr>
-      <tr><td>Fernandes → Groß</td><td>GW9–13</td><td>+2.47</td><td>53.5%</td><td>−16 to +22</td><td>Small direct edge; real value requires a specified second upgrade.</td></tr>
-      <tr><td>Wissa → Barry</td><td>GW9</td><td>+0.75</td><td>49.9%</td><td>−5 to +7</td><td>Outcome edge is indistinguishable from noise.</td></tr>
-      <tr><td>Wissa → Barry</td><td>GW9–11</td><td>+2.34</td><td>57.6%</td><td>−9 to +14</td><td>Wissa’s role and today’s performance are not yet observed.</td></tr>
-      <tr><td>Wissa → Barry</td><td>GW9–13</td><td>+3.23</td><td>58.9%</td><td>−12 to +19</td><td>Moderate mean edge, wide outcome range.</td></tr>
-      <tr><td>Mykolenko → De Cuyper</td><td>GW9–11</td><td>+3.15</td><td>53.9%</td><td>−17 to +24</td><td>Injury flag may clear; difficult first two fixtures.</td></tr>
-      <tr><td>Mykolenko → De Cuyper</td><td>GW9–13</td><td>+5.50</td><td>57.2%</td><td>−22 to +35</td><td>Highest mean, but defensive-contribution estimates are volatile.</td></tr>
+    <p><strong>GW+1 = GW9</strong>, <strong>GW+3 = GW9–11</strong>, <strong>GW+5 = GW9–13</strong>. Deltas are against the best attainable HOLD lineups, use reconstructed sale prices and one free transfer, and include no hit. P(Δ&gt;0) and 80% intervals come from the joint simulation.</p>
+    <div class="table-wrap"><table><thead><tr><th>Action</th><th>Window</th><th>Net E[Δ]</th><th>P(Δ&gt;0)</th><th>80% Δ interval</th><th>Confidence / dominant downside</th></tr></thead><tbody>
+      <tr><td>WAIT / retain FT today</td><td>All</td><td>0.00</td><td>Baseline</td><td>Team totals below</td><td>High evidence for waiting; price-change risk appears non-binding.</td></tr>
+      <tr><td>Wissa → Barry</td><td>GW9</td><td>+1.30</td><td>55.3%</td><td>−4 to +7</td><td>Medium-low model confidence; Wissa may regain the start.</td></tr>
+      <tr><td>Wissa → Barry</td><td>GW9–11</td><td>+3.78</td><td>64.2%</td><td>−7 to +15</td><td>Role evidence supports it; striker outcomes remain volatile.</td></tr>
+      <tr><td>Wissa → Barry</td><td>GW9–13</td><td>+5.95</td><td>68.4%</td><td>−8 to +21</td><td>Most stable practical sale; one-match role sample is the weakness.</td></tr>
+      <tr><td>Fernandes → Dewsbury-Hall</td><td>GW9</td><td>+0.99</td><td>52.6%</td><td>−5 to +7</td><td>Released £7.4m is idle; direct move understates two-step option value.</td></tr>
+      <tr><td>Fernandes → Groß</td><td>GW9–11</td><td>+3.79</td><td>58.4%</td><td>−12 to +20</td><td>Fernandes could immediately return; Brighton’s opening fixtures are difficult.</td></tr>
+      <tr><td>Fernandes → Groß</td><td>GW9–13</td><td>+6.86</td><td>65.6%</td><td>−11 to +26</td><td>Higher upside from role loss, but direct replacement leaves large cash unused.</td></tr>
+      <tr><td>Mykolenko → Tarkowski</td><td>GW9</td><td>+1.56</td><td>56.7%</td><td>−5 to +8</td><td>Sideways-club move; flag may clear.</td></tr>
+      <tr><td>Mykolenko → De Cuyper</td><td>GW9–11</td><td>+5.00</td><td>58.5%</td><td>−14 to +26</td><td>Defensive-contribution model and difficult first fixtures.</td></tr>
+      <tr><td>Mykolenko → De Cuyper</td><td>GW9–13</td><td>+9.01</td><td>63.6%</td><td>−18 to +38</td><td>Largest mean, widest model-specification concern.</td></tr>
     </tbody></table></div>
-    <p><strong>Option value:</strong> acting today and acting on Friday cost the same FT, but Friday includes five remaining GW8 matches, confirmed injuries and most press conferences. Unless a price move would make a chosen path impossible, waiting weakly dominates.</p>
+    <p><strong>Decision rule:</strong> do not spend a hit this week. A −4 requires a second move to beat the best one-FT path by more than four expected points after future FT and flexibility costs; no verified pair currently clears that bar robustly.</p>
   </section>
 
   <section class="card">
     <h2>5. Our provisional optimal GW9 team</h2>
-    <p><strong>3-5-2 · 49.9 Points-EV including captain</strong> (44.9 raw XI xPts). This is an early view and must be re-solved after GW8.</p>
+    <p><strong>4-4-2 · 48.9 Points-EV including captain</strong> (43.9 raw XI xPts). Availability is embedded in these means; legal autosubs are modelled in the simulation, not added to raw XI points.</p>
     <div class="table-wrap"><table><thead><tr><th>Role</th><th>Players</th></tr></thead><tbody>
       <tr><td>GK</td><td>Kelleher</td></tr>
-      <tr><td>DEF</td><td>Hall · Bobby Thomas · Calafiori</td></tr>
-      <tr><td>MID</td><td>Tavernier · Mbeumo · Rogers · Fernandes · Palmer</td></tr>
-      <tr><td>FWD</td><td>Gonzalo · Wissa</td></tr>
-      <tr><td>Bench order</td><td>João Pedro · Konsa · Mykolenko · Verbruggen (GK)</td></tr>
+      <tr><td>DEF</td><td>Hall · Bobby Thomas · Calafiori · Konsa</td></tr>
+      <tr><td>MID</td><td>Tavernier · Mbeumo · Rogers · Palmer</td></tr>
+      <tr><td>FWD</td><td>Gonzalo · João Pedro</td></tr>
+      <tr><td>Bench order</td><td>Mykolenko · Fernandes · Wissa · Verbruggen (GK)</td></tr>
       <tr><td>Captain / vice</td><td>Tavernier / Hall</td></tr>
     </tbody></table></div>
-    <p>Tavernier leads at 5.03 xPts for Leeds at home; Hall is 4.70 and Mbeumo 4.53. The captain gap is below historical forecast error, so confidence is low-to-medium. If preferring a lower-regret attacking profile, Mbeumo vice is reasonable; pure Points-EV currently selects Hall.</p>
+    <p>Tavernier is 5.03 GW9 xPts, Hall 4.70 and Mbeumo 4.53. The captain gap is much smaller than walk-forward error, so evidence/model confidence is low-to-medium even though Tavernier is the strict Points-EV choice.</p>
     <div class="table-wrap"><table><thead><tr><th>Window</th><th>HOLD xPts</th><th>Simulated 80% team interval</th></tr></thead><tbody>
-      <tr><td>GW9</td><td>49.9</td><td>34–73</td></tr><tr><td>GW9–11</td><td>153.6</td><td>128–198</td></tr><tr><td>GW9–13</td><td>257.3</td><td>227–318</td></tr>
+      <tr><td>GW9</td><td>48.9</td><td>34–72</td></tr><tr><td>GW9–11</td><td>151.0</td><td>126–195</td></tr><tr><td>GW9–13</td><td>252.4</td><td>222–312</td></tr>
     </tbody></table></div>
   </section>
 
   <section class="card">
     <h2>6. League-wide legal control</h2>
-    <p>This is the model’s legal one-Gameweek control, not a Wildcard instruction: £90.9m, 2 GK / 5 DEF / 5 MID / 3 FWD, maximum three per club, 59.4 GW9 Points-EV including captain.</p>
+    <p>The one-Gameweek optimiser’s legal control costs <strong>£90.4m</strong> and projects <strong>59.4 GW9 Points-EV</strong> including captain. It obeys £100.0m, 2 GK / 5 DEF / 5 MID / 3 FWD, maximum three per club and a legal XI.</p>
     <div class="table-wrap"><table><thead><tr><th>Position</th><th>15-player squad</th></tr></thead><tbody>
       <tr><td>GK</td><td>Tzolakis £4.7 · Roefs £4.9</td></tr>
       <tr><td>DEF</td><td>Tarkowski £6.2 · Van Hecke £4.9 · Hall £5.3 · Egan £4.1 · O’Shea £4.0</td></tr>
-      <tr><td>MID</td><td>Tavernier £6.3 · Mbeumo £7.9 · Belloumi £5.2 · Tanaka £4.9 · Henderson £4.9</td></tr>
-      <tr><td>FWD</td><td>Haaland £15.7 · Barry £5.7 · Evanilson £6.2</td></tr>
+      <tr><td>MID</td><td>Tavernier £6.3 · Mbeumo £7.9 · Rudoni £4.9 · Tanaka £4.9 · Onyeka £4.8</td></tr>
+      <tr><td>FWD</td><td>Haaland £15.7 · Barry £5.6 · Evanilson £6.2</td></tr>
       <tr><td>GW9 XI</td><td>Tzolakis; Tarkowski, Van Hecke, Hall, Egan, O’Shea; Tavernier, Mbeumo; Haaland, Barry, Evanilson</td></tr>
-      <tr><td>Bench</td><td>Belloumi · Tanaka · Henderson · Roefs</td></tr>
+      <tr><td>Bench</td><td>Rudoni · Tanaka · Onyeka · Roefs</td></tr>
       <tr><td>C / VC</td><td>Haaland / Tzolakis</td></tr>
     </tbody></table></div>
-    <p>The unused budget is a diagnostic: a seven-match model currently overweights defensive-contribution value and underprices long-run premium reliability. It is a control, not a recommendation to rebuild toward £90.9m.</p>
+    <p>The unused budget is a diagnostic warning: with seven completed rounds, the model can overvalue defensive-contribution floors and underprice premium long-run reliability. This is a control, not a Wildcard instruction.</p>
   </section>
 
   <section class="card">
@@ -112,21 +114,27 @@
       <tr><td>Wildcard (first set)</td><td>UNAVAILABLE</td><td>Used GW6.</td></tr>
       <tr><td>Free Hit (first set)</td><td>UNAVAILABLE</td><td>Used GW4.</td></tr>
       <tr><td>Triple Captain (first set)</td><td>UNAVAILABLE</td><td>Used GW3.</td></tr>
-      <tr><td>Bench Boost (first set)</td><td>SAVE</td><td>Four current 75% flags and no exceptional 15-player fixture set.</td></tr>
-      <tr><td>Second chip set</td><td>UNAVAILABLE YET</td><td>Activates for the second half after the GW19 deadline.</td></tr>
+      <tr><td>Bench Boost (first set)</td><td>SAVE</td><td>Four 75% flags, two new role risks and no exceptional 15-player fixture set.</td></tr>
+      <tr><td>Second chip set</td><td>UNAVAILABLE YET</td><td>Available only for the second half after the GW19 deadline.</td></tr>
     </tbody></table></div>
-    <p><strong>Evidence quality:</strong> high for public IDs, prices, fixtures, status flags, histories and deadlines; medium for the private state because the latest official personalised email predates the GW8 deadline; medium for reconstructed selling prices. <strong>Model stability:</strong> medium-low with only seven completed Gameweeks. <strong>Outcome probability:</strong> wide even where a mean edge exists; the five-week best-move success probabilities remain below 60%.</p>
+    <p><strong>Evidence quality:</strong> high for public IDs, prices, fixtures, minutes, histories and deadlines; medium for private FT/sale-price reconstruction; medium for Fernandes/Wissa persistence because each role signal is one match. <strong>Model stability:</strong> medium-low with seven completed rounds. <strong>Realised-outcome probability:</strong> wide—positive five-week means still lose in roughly 32–36% of simulations.</p>
     <ul>
-      <li><strong>Flip to Fernandes sale:</strong> a named two-step use of the released cash raises the five-week path materially, or Man Utd’s process remains poor today with no role improvement.</li>
-      <li><strong>Flip to Wissa sale:</strong> confirmed role loss, another weak central performance today, or Barry/Evanilson retains a clear edge after GW8 is incorporated.</li>
-      <li><strong>Flip to defender transfer:</strong> Mykolenko, Calafiori or Thomas remains doubtful after press conferences and the replacement starts our GW9 XI.</li>
-      <li><strong>Flip to immediate action before Friday:</strong> only if a verified price move would make the chosen legal path unaffordable.</li>
+      <li><strong>Execute Wissa → Barry:</strong> Wissa remains behind Osula in training/press indications and no flagged starter is ruled out.</li>
+      <li><strong>Prefer Fernandes sale:</strong> Carrick indicates the benching can persist, or Fernandes is again projected outside the XI; require a named use for the released cash.</li>
+      <li><strong>Prefer defensive repair:</strong> Mykolenko, Calafiori or Thomas is ruled out and the replacement starts our XI.</li>
+      <li><strong>Cancel a sale:</strong> secure-start evidence returns and the alternative’s minutes or injury outlook worsens.</li>
+      <li><strong>Act before Friday:</strong> only if a verified price move would otherwise make the chosen legal path unaffordable.</li>
     </ul>
   </section>
 
   <section class="card">
-    <h2>8. Pre-deadline plan</h2>
-    <p><strong>Today: WAIT. Do not transfer and do not activate a chip.</strong> Let Palace–Newcastle and Man Utd–Bournemouth resolve the Wissa/Fernandes question, then rerun after GW8 is final. Provisional priorities are: injury repair if a flagged starter remains out; otherwise Wissa → Barry/Evanilson; otherwise Fernandes → a cheaper midfielder only with the second use of the released cash specified. Reassess captaincy late in the week; current Points-EV is Tavernier captain, Hall vice.</p>
+    <h2>8. Concise pre-deadline plan</h2>
+    <p><strong>Today: HOLD the FT; save Bench Boost.</strong> Recheck all five material role/availability states after press conferences. If no defender is ruled out and Wissa remains second choice, make Wissa → Barry. If Wissa regains the likely start but Fernandes remains a bench risk, sell Fernandes only with the cash’s next upgrade specified. Then re-optimise the XI; current provisional captaincy is Tavernier, vice Hall.</p>
+  </section>
+
+  <section class="card">
+    <h2>9. Deadline schedule</h2>
+    <p>All official FPL event deadlines from GW9 through GW38 were parsed from the live feed. Every future deadline-minus-90-minute timestamp already matches the existing extra-run schedule, including GW9 at <strong>09:30 GMT on Saturday 31 October</strong>. The daily 09:00 Europe/London run remains in place; no schedule change was required.</p>
   </section>
 
   <section class="card sources">
@@ -135,12 +143,11 @@
       <li><a href="https://fantasy.premierleague.com/api/bootstrap-static/">Official FPL bootstrap-static</a></li>
       <li><a href="https://fantasy.premierleague.com/api/fixtures/">Official FPL fixtures and deadline timestamps</a></li>
       <li><a href="https://fantasy.premierleague.com/api/event/8/live/">Official FPL GW8 live data</a></li>
-      <li><a href="https://fantasy.premierleague.com/api/element-summary/426/">Official Fernandes history (ID 426)</a></li>
-      <li><a href="https://fantasy.premierleague.com/api/element-summary/464/">Official Wissa history (ID 464)</a></li>
-      <li><a href="https://fantasy.premierleague.com/api/element-summary/40/">Official Rogers history (ID 40)</a></li>
-      <li><a href="https://www.premierleague.com/en/news/4744535/who-are-the-best-replacements-for-injured-saka-in-fpl">Premier League: Saka replacement analysis, 23 October 2026</a></li>
-      <li><a href="https://www.manutd.com/en/news/carricks-team-news-for-man-utd-v-bournemouth-25-october">Manchester United: Carrick’s Bournemouth team news</a></li>
-      <li><a href="https://fantasy.premierleague.com/en/help/rules">Official FPL rules and deadlines</a></li>
+      <li><a href="https://fantasy.premierleague.com/api/element-summary/426/">Official Fernandes history (element 426)</a></li>
+      <li><a href="https://fantasy.premierleague.com/api/element-summary/464/">Official Wissa history (element 464)</a></li>
+      <li><a href="https://www.premierleague.com/en/news/4744555/what-we-learned-from-sundays-premier-league-matches">Premier League: Sunday tactical review, 25 October 2026</a></li>
+      <li><a href="https://www.manutd.com/en/news/carrick-selects-team-to-face-bournemouth-25-october">Manchester United: Bournemouth team selection</a></li>
+      <li><a href="https://fantasy.premierleague.com/en/help/rules">Official FPL rules</a></li>
     </ul>
   </section>
 </main>
