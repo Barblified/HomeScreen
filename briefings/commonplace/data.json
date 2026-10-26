@@ -1,8 +1,31 @@
 {
   "schemaVersion": 1,
-  "publishedAtUtc": "2026-10-25T06:34:42.792Z",
-  "publishedAtDisplay": "25 October 2026 at 06:34 GMT",
+  "publishedAtUtc": "2026-10-26T06:33:57.942Z",
+  "publishedAtDisplay": "26 October 2026 at 06:33 GMT",
   "entries": [
+    {
+      "date": "2026-10-26",
+      "type": "Mathematics",
+      "title": "Arrow’s theorem: no preference-aggregation rule keeps every promise",
+      "creator": "Kenneth J. Arrow",
+      "sourceLabel": "Arrow’s Theorem · Stanford Encyclopedia of Philosophy",
+      "sourceUrl": "https://plato.stanford.edu/entries/arrows-theorem/",
+      "centralIdea": "Take three options and ask every voter to rank them. A collective rule might be asked to work for every coherent set of rankings, produce a coherent social ordering, respect unanimous preferences, avoid a dictator, and compare A with B using only how people rank A against B. Arrow proved that with at least three alternatives no social welfare function can satisfy all five requirements simultaneously. The familiar majority cycle hints at the problem: one majority can prefer A to B, another B to C, and another C to A, even though every individual ranking is transitive. Arrow’s result is stronger than showing that majority voting sometimes cycles; it rules out every aggregation rule within his framework that keeps all the conditions. The constructive lesson is not that collective choice is pointless. It is that institutional design must expose its trade-offs: restrict admissible preferences, relax independence, use more information than rankings, accept occasional incompleteness, or privilege some principle over another.",
+      "whyItMayInterestYou": "This is a mathematical antidote to arguments that treat one voting method as neutral. Procedures embed value judgements. The theorem offers a precise way to ask which failure a decision system accepts, who bears it, and whether that compromise fits the decision.",
+      "commonplaceEntry": "Fairness criteria can be individually persuasive yet jointly impossible. Arrow’s theorem turns that uncomfortable fact into mathematics. With three or more alternatives, a rule that accepts every coherent preference profile, returns a coherent social ranking, respects unanimity, excludes dictatorship and keeps pairwise comparisons independent cannot exist. Therefore a real institution does not choose between a perfect rule and an imperfect one; it chooses which condition to relax and how visibly. That is a wider design lesson. When a specification contains several admirable guarantees, test their compatibility before optimising the machinery. An impossibility result is not nihilism. It marks the boundary within which honest engineering and political judgement must begin.",
+      "questionToCarry": "Which guarantee should this collective decision rule relax, and what kind of failure becomes possible when it does?",
+      "evidenceNote": "Established: in the standard formulation, Arrow’s theorem applies when there are more than two alternatives and individual rankings are aggregated into a social ordering. Unrestricted Domain, Social Ordering, Weak Pareto, Non-Dictatorship and Independence of Irrelevant Alternatives cannot all hold. Arrow’s 1951 Social Choice and Individual Values introduced the theorem. Interpretation: saying every institutional design “chooses which promise to break” translates the formal result into design language. It does not show that all elections are irrational, that democracy is impossible in every sense, or that all reasonable fairness criteria are captured by Arrow’s conditions. Alternative procedures work by changing the information, domain, output or requirements.",
+      "additionalSources": [
+        {
+          "label": "Social Choice and Individual Values · Yale University Press",
+          "url": "https://yalebooks.yale.edu/book/9780300186987/social-choice-and-individual-values/"
+        },
+        {
+          "label": "A full formal representation of Arrow’s impossibility theorem · PLOS One (2026)",
+          "url": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0343069"
+        }
+      ]
+    },
     {
       "date": "2026-10-25",
       "type": "Theology",
