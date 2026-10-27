@@ -1,8 +1,31 @@
 {
   "schemaVersion": 1,
-  "publishedAtUtc": "2026-10-26T06:33:57.942Z",
-  "publishedAtDisplay": "26 October 2026 at 06:33 GMT",
+  "publishedAtUtc": "2026-10-27T06:29:09.829Z",
+  "publishedAtDisplay": "27 October 2026 at 06:29 GMT",
   "entries": [
+    {
+      "date": "2026-10-27",
+      "type": "Wildcard",
+      "title": "Why ice is slippery: one question, several microscopic mechanisms",
+      "creator": "James H. Lever, Austin P. Lines, Susan Taylor, Garrett R. Hoch, Emily Asenath-Smith and Devinder S. Sodhi",
+      "sourceLabel": "Revisiting mechanics of ice–skate friction · Journal of Glaciology (2022)",
+      "sourceUrl": "https://www.cambridge.org/core/journals/journal-of-glaciology/article/revisiting-mechanics-of-iceskate-friction-from-experiments-at-a-skating-rink-to-a-unified-hypothesis/AC9154A588AC121ADE373EAEC3A50BAA",
+      "centralIdea": "The schoolbook story says a skate’s pressure melts the ice and the resulting water lubricates the blade. The measured picture is messier. Pressure lowers ice’s melting point only weakly, while sliding also generates frictional heat; even before melting, surface molecules can be unusually mobile. A 2021 Physical Review X study found friction varied with temperature, speed and local contact pressure, linking low friction to molecular mobility at the surface and to ice hardness. A 2022 Journal of Glaciology rink study did not find a continuous, blade-wide water film; its observations fit discontinuous high-pressure contacts producing crushing, abrasion and ice-rich slurry. Other experiments measured a nanometre-scale interfacial film with viscoelastic behaviour unlike ordinary water. No single mechanism yet explains every condition. A skate works across regimes in which premelting, heating, pressure, ploughing, wear particles and slurry can each contribute. The everyday glide is a live problem in tribology—the science of friction, wear and lubrication.",
+      "whyItMayInterestYou": "A familiar sensation hides an unresolved multi-scale system: molecular mobility, brittle fracture, heat flow, surface roughness and blade geometry all matter. It is a fine example of why simple explanations can remain useful while ceasing to be complete.",
+      "commonplaceEntry": "“Ice is slippery because pressure melts it” is memorable, but too clean. Pressure melting is thermodynamically possible, yet the pressure effect is small and cannot by itself account for all skating conditions. Frictional heating, a mobile quasi-liquid surface, plastic deformation, microscopic ploughing and crushed ice slurry each have experimental support in particular regimes. The blade is therefore not riding on one uniform mechanism. Its smooth lower surface limits pressure and supports glide; its sharp edges concentrate pressure and create grip. The lesson travels beyond skating: when a phenomenon spans scales, rival explanations may be parts of a coupled process rather than mutually exclusive stories. Prefer a map of regimes to a single universal slogan.",
+      "questionToCarry": "Which part of this explanation changes first when temperature, speed, surface roughness or contact pressure changes?",
+      "evidenceNote": "Established: ice friction depends strongly on temperature, sliding speed, contact pressure and surface geometry. Experiments have detected mobile surface layers and thin interfacial films; skating-rink observations also show brittle failure, wear and discontinuous contact. The 2022 Journal of Glaciology authors report that their observations did not confirm a full-contact water film and propose ice-rich slurries at high-pressure zones as a unifying hypothesis. Uncertain: the dominant mechanism under an actual blade remains unresolved, and different experiments probe different scales, materials and regimes. Interpretation: treating the mechanisms as a regime map is a synthesis of the cited research, not a settled single theory of skating.",
+      "additionalSources": [
+        {
+          "label": "Friction on Ice: How Temperature, Pressure, and Speed Control Slipperiness · Physical Review X (2021)",
+          "url": "https://journals.aps.org/prx/abstract/10.1103/PhysRevX.11.011025"
+        },
+        {
+          "label": "Nanorheology of Interfacial Water during Ice Gliding · Physical Review X (2019)",
+          "url": "https://journals.aps.org/prx/abstract/10.1103/PhysRevX.9.041025"
+        }
+      ]
+    },
     {
       "date": "2026-10-26",
       "type": "Mathematics",
