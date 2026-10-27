@@ -181,9 +181,8 @@
     if (!filtered.length) return;
     const width = 760, height = 270, padL = 68, padR = 23, padT = 18, padB = 34;
     const plotW = width - padL - padR, plotH = height - padT - padB;
-    const minTime = filtered[0].stamp;
-    const maxTime = filtered[filtered.length - 1].stamp;
-    const spanTime = Math.max(86400000, maxTime - minTime);
+    const pointCount = filtered.length;
+    const plotted = filtered.map((point, index) => ({ ...point, chartIndex: index }));
     let minY, maxY, ticks;
     if (config.unit === 'score') { minY = 0; maxY = 10; ticks = [0, 2, 4, 6, 8, 10]; }
     else {
@@ -195,7 +194,9 @@
       ticks = [];
       for (let t = Math.ceil(minY / step) * step; t <= maxY; t += step) ticks.push(t);
     }
-    const x = p => padL + ((p.stamp - minTime) / spanTime) * plotW;
+    const x = p => pointCount === 1
+      ? padL + plotW / 2
+      : padL + (p.chartIndex / (pointCount - 1)) * plotW;
     const y = v => padT + (1 - (v - minY) / Math.max(1, maxY - minY)) * plotH;
     const svg = svgNode(doc, 'svg', { viewBox: '0 0 760 270', role: 'img', 'aria-label': config.title + ', with raw measurements and seven and fourteen day averages. ' + filtered.length + ' observed records in selected range.' });
     ticks.forEach(t => {
@@ -203,14 +204,23 @@
       svg.appendChild(svgNode(doc, 'line', { x1: padL, y1: yy, x2: width - padR, y2: yy, stroke: '#a8b3ba', 'stroke-opacity': '.38' }));
       svg.appendChild(svgNode(doc, 'text', { x: padL - 10, y: yy + 4, fill: '#a8b3ba', 'text-anchor': 'end', 'font-size': '12', 'font-family': 'system-ui, sans-serif' }, config.unit === 'time' ? format(config, t) : String(t)));
     });
-    const range = [filtered[0].stamp, (filtered[0].stamp + filtered[filtered.length-1].stamp)/2, filtered[filtered.length-1].stamp];
-    range.forEach((t, i) => {
-      svg.appendChild(svgNode(doc, 'text', { x: padL + i * plotW / 2, y: height - 9, fill: '#a8b3ba', 'text-anchor': i === 0 ? 'start' : i === 2 ? 'end' : 'middle', 'font-size': '12', 'font-family': 'system-ui, sans-serif' }, dayLabel(t)));
+    const tickIndices = [...new Set([0, Math.floor((pointCount - 1) / 2), pointCount - 1])];
+    tickIndices.forEach(index => {
+      const point = plotted[index];
+      svg.appendChild(svgNode(doc, 'text', {
+        x: x(point),
+        y: height - 9,
+        fill: '#a8b3ba',
+        'text-anchor': index === 0 ? 'start' : index === pointCount - 1 ? 'end' : 'middle',
+        'font-size': '12',
+        'font-family': 'system-ui, sans-serif'
+      }, dayLabel(point.stamp)));
     });
-    const rolling = filtered.map(p => ({ ...p, avg7: average(history, 7, p.stamp), avg14: average(history, 14, p.stamp) }));
+    const rolling = plotted.map(p => ({ ...p, avg7: average(history, 7, p.stamp), avg14: average(history, 14, p.stamp) }));
     const line = (points, key, colour, thickness, opacity) => {
-      if (!points.length) return;
-      const d = points.map((p, i) => (i ? 'L' : 'M') + x(p).toFixed(2) + ',' + y(p[key]).toFixed(2)).join(' ');
+      const validPoints = points.filter(point => Number.isFinite(point[key]));
+      if (!validPoints.length) return;
+      const d = validPoints.map((p, i) => (i ? 'L' : 'M') + x(p).toFixed(2) + ',' + y(p[key]).toFixed(2)).join(' ');
       svg.appendChild(svgNode(doc, 'path', { d, fill: 'none', stroke: colour, 'stroke-width': thickness, 'stroke-linecap': 'round', 'stroke-linejoin': 'round', opacity, filter: `drop-shadow(0 0 5px ${colour})` }));
     };
     line(rolling, 'value', config.color, 2, 0.7);
