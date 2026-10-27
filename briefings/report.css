@@ -246,3 +246,7 @@ h2, h3 { font-family: "DIN Alternate", "DIN Next", "Bahnschrift", "Barlow Conden
 h2 { border-bottom-color: rgba(0,213,255,.55) !important; }
 .daily.navy { border-top-color: #00d5ff !important; }
 .daily.green { border-top-color: #b8ff00 !important; }
+
+
+/* Keep generated preparedness tables on the dark report surface. */
+table.risk { background-color: #101419 !important; }
