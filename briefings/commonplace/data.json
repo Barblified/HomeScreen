@@ -1,8 +1,27 @@
 {
   "schemaVersion": 1,
-  "publishedAtUtc": "2026-10-27T06:29:09.829Z",
-  "publishedAtDisplay": "27 October 2026 at 06:29 GMT",
+  "publishedAtUtc": "2026-10-28T06:27:41.559Z",
+  "publishedAtDisplay": "28 October 2026 at 06:27 GMT",
   "entries": [
+    {
+      "date": "2026-10-28",
+      "type": "Theory",
+      "title": "Exit, voice and loyalty: decline produces different kinds of signal",
+      "creator": "Albert O. Hirschman",
+      "sourceLabel": "Exit, Voice, and Loyalty: Further Reflections and a Survey of Recent Contributions · Milbank Memorial Fund Quarterly (1980)",
+      "sourceUrl": "https://www.milbank.org/wp-content/uploads/mq/volume-58/issue-03/58-3-Exit-Voice-and-Loyality.pdf",
+      "centralIdea": "Albert O. Hirschman distinguishes two responses to deteriorating quality. Exit means leaving an organisation or switching products; voice means trying to change the situation from within. They are not equivalent feedback. Exit is clean and countable but often says little about what failed. Voice is richer, slower and more costly, yet can supply information needed for repair. Loyalty alters the balance by delaying exit and giving voice time to work, although it can also preserve a bad arrangement when voice has no consequence. The mechanisms can undermine each other: easy exit may remove the very members most able to diagnose decline, while blocked exit can turn loyalty into captivity. Hirschman later emphasised that voice is especially valuable where quality is hard for both provider and user to define, because silent switching cannot teach an uncertain system what better would mean. The question is therefore institutional: which feedback channel is available, credible and consequential?",
+      "whyItMayInterestYou": "It is a compact way to reason about failing products, institutions and communities without reducing every response to satisfaction scores. Exit is legible but information-poor; voice is costly but diagnostic; loyalty can help repair or conceal decline.",
+      "commonplaceEntry": "Decline sends different signals depending on what people are allowed to do. Exit records absence; voice carries explanation; loyalty buys time. A healthy institution needs more than low churn. People may stay because leaving is costly, not because the system works. Nor is complaint necessarily dysfunction: when quality is uncertain, well-formed voice can be the most informative instrument available. The design task is to make voice consequential before loyalty curdles into captivity, while treating exit as evidence rather than betrayal. Ask not only whether people remain, but whether they can name failure, influence repair and leave without disproportionate cost. Retention without credible voice can hide decay; choice without usable feedback can merely redistribute it.",
+      "questionToCarry": "Where is this system receiving bare exit signals when it most needs the richer information of voice?",
+      "evidenceNote": "Established: Hirschman’s 1970 book distinguishes exit and voice as responses to decline and analyses loyalty as a force that can retard exit and permit voice to operate. In his later reflections, he argues that voice can complement or sometimes supersede exit, especially where producers and users share uncertainty about quality, because voice supplies richer information than silent departure. Interpretation: describing loyalty as capable of becoming captivity and framing low churn as ambiguous are applications of the model, not Hirschman’s exhaustive categories or universal conclusions. Outcomes depend on power, alternatives, switching costs and whether institutions respond.",
+      "additionalSources": [
+        {
+          "label": "Exit, Voice, and Loyalty: Responses to Decline in Firms, Organizations, and States · Google Books",
+          "url": "https://books.google.com/books/about/Exit_Voice_and_Loyalty.html?id=q85kAAAAIAAJ"
+        }
+      ]
+    },
     {
       "date": "2026-10-27",
       "type": "Wildcard",
