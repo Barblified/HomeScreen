@@ -1,8 +1,27 @@
 {
   "schemaVersion": 1,
-  "publishedAtUtc": "2026-10-28T06:27:41.559Z",
-  "publishedAtDisplay": "28 October 2026 at 06:27 GMT",
+  "publishedAtUtc": "2026-10-29T06:36:12.969Z",
+  "publishedAtDisplay": "29 October 2026 at 06:36 GMT",
   "entries": [
+    {
+      "date": "2026-10-29",
+      "type": "Craft",
+      "title": "Cast-iron seasoning: the thinnest coat makes the strongest skin",
+      "creator": "Andy Brunning and Chemical & Engineering News",
+      "sourceLabel": "Periodic Graphics: The chemistry of cast-iron cookware · Chemical & Engineering News (2024)",
+      "sourceUrl": "https://cen.acs.org/food/food-science/Periodic-Graphics-chemistry-cast-iron/102/i9",
+      "centralIdea": "Seasoning is not a reservoir of grease soaked into iron. It is a surface treatment built by spreading a very thin film of oil and heating it so its unsaturated fatty-acid chains oxidise, fragment and cross-link into larger polymeric structures that adhere to pores and irregularities in the metal. Repeated thin coats produce a harder, drier barrier than one thick coat, which is more likely to remain tacky or flake. The barrier’s clearest function is corrosion control: it separates reactive iron from water and oxygen. It also changes surface texture and wetting, but the familiar claim that polymerised oil alone makes cast iron non-stick is less settled than cookery lore suggests; heat control, food chemistry, surface roughness and cooking fat also matter. This explains why modern dish soap usually does not strip sound seasoning: cured polymer is no longer a loose layer of ordinary cooking oil. Craft here is controlled transformation—less oil, more uniformity, enough heat and patient repetition.",
+      "whyItMayInterestYou": "It joins polymer chemistry to an ordinary, durable object and explains several counterintuitive practices at once: wipe away excess oil, build the finish gradually, dry the pan promptly and do not fear a little modern dish soap.",
+      "commonplaceEntry": "A seasoned pan carries a manufactured skin. Heat does not merely dry the oil; it converts a thin film into a bonded polymer network that protects reactive iron. The counterintuitive rule is subtraction: wipe away nearly all visible oil before curing. Thickness feels like progress, but it traps soft material and invites tackiness or flaking; strength comes from many controlled passes. The metaphor travels cautiously: durable craft often depends on transforming small layers completely before adding more. But keep the chemistry honest. Seasoning unquestionably helps resist rust; how much the polymer itself causes non-stick behaviour is not conclusively established. Good cooking still depends on preheating, temperature, surface condition and added fat. A useful tradition can survive scrutiny by becoming more precise, not less loved.",
+      "questionToCarry": "Where am I adding more material when the work actually calls for a thinner layer that is fully cured?",
+      "evidenceNote": "Established: heating thin films of oil on iron promotes oxidation and polymerisation, producing a bonded protective coating; repeated thin layers are standard seasoning practice, and modern dish detergent generally does not dissolve a sound polymerised layer. Strong support exists for corrosion protection and altered wetting or surface behaviour. Uncertain: Chemical & Engineering News corrected its 2024 graphic to note that researchers have not definitively proved that the polymerised layer itself is what makes cast iron non-stick. Interpretation: “a manufactured skin” and the lesson about fully curing thin layers are explanatory metaphors, not claims that all seasoning mechanisms or oils behave identically.",
+      "additionalSources": [
+        {
+          "label": "Virginia Tech food scientist dispels the myths behind cast iron pan use",
+          "url": "https://news.vt.edu/articles/2024/08/cast-iron-myths.html"
+        }
+      ]
+    },
     {
       "date": "2026-10-28",
       "type": "Theory",
