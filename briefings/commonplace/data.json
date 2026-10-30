@@ -1,8 +1,31 @@
 {
   "schemaVersion": 1,
-  "publishedAtUtc": "2026-10-29T06:36:12.969Z",
-  "publishedAtDisplay": "29 October 2026 at 06:36 GMT",
+  "publishedAtUtc": "2026-10-30T06:27:33.485Z",
+  "publishedAtDisplay": "30 October 2026 at 06:27 GMT",
   "entries": [
+    {
+      "date": "2026-10-30",
+      "type": "Video",
+      "title": "The backwards bicycle: understanding a rule is not possessing a skill",
+      "creator": "Destin Sandlin · Smarter Every Day",
+      "sourceLabel": "The Backwards Brain Bicycle – Smarter Every Day 133 · YouTube",
+      "sourceUrl": "https://www.youtube.com/watch?v=MFzDaBzBlL0",
+      "centralIdea": "Destin Sandlin had a bicycle rebuilt so turning the handlebars left steered the front wheel right. He could state the rule immediately, yet could not ride: balance normally depends on fast, largely automatic corrections, and the familiar control policy kept issuing the wrong movement. With brief daily practice, Sandlin reports that learning took eight months. The demonstration makes a useful distinction between propositional knowledge and embodied control. Motor learning is not simply unconscious repetition, however. Contemporary research describes an interaction among reasoning—working out action–outcome relationships—refinement—tuning timing and force through feedback—and retrieval—calling up the appropriate control policy in context. The bicycle therefore does not prove that knowledge is powerless; it shows that explicit understanding is only one component of skilled action. A learner may know what to do while lacking a stable policy that can execute quickly enough. Fluency arrives when explanation, error-driven practice and context-sensitive retrieval begin to cooperate.",
+      "whyItMayInterestYou": "It is a vivid test of the gap between explanation and execution. The idea travels well into teaching, coaching, programming, sport and leadership: a correct instruction may still need a deliberately engineered path to fluency.",
+      "commonplaceEntry": "Knowing the instruction and owning the skill are different achievements. A reversed-steering bicycle defeats the rider who can perfectly explain its rule because balance requires corrections faster than deliberate reasoning can supervise. Practice does not merely add confidence; it builds and tunes a control policy that can be retrieved at speed. Yet the lesson is not “stop thinking.” Reasoning proposes a workable map, feedback refines it and retrieval makes it available when the situation demands. This suggests a diagnostic for stalled learning: ask which layer is missing. Is the relationship misunderstood? Has the movement received too little high-quality repetition? Or is the right action failing to appear in the right context? Explanation begins competence; repeated, informative correction makes it usable.",
+      "questionToCarry": "What do I understand clearly in words but still lack the repeated feedback needed to perform reliably?",
+      "evidenceNote": "Established: Smarter Every Day’s video documents a mechanically reversed-steering bicycle and Sandlin’s reported practice; the official page says sub-five-minute daily attempts took him eight months. Motor-learning research supports the broader claim that skill acquisition combines explicit reasoning with refinement and retrieval of control policies. Uncertain: this is a personal demonstration, not a controlled study, so it cannot establish universal learning times, age effects or a single neural mechanism. Interpretation: treating failure as a missing layer among reasoning, refinement and retrieval applies the 2024 3R framework to the demonstration.",
+      "additionalSources": [
+        {
+          "label": "BackwardsBicycle · Smarter Every Day official page",
+          "url": "https://www.smartereveryday.com/backwardsbicycle"
+        },
+        {
+          "label": "Fundamental processes in sensorimotor learning: Reasoning, refinement, and retrieval · eLife (2024)",
+          "url": "https://elifesciences.org/articles/91839"
+        }
+      ]
+    },
     {
       "date": "2026-10-29",
       "type": "Craft",
