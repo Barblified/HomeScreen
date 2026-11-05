@@ -1,8 +1,31 @@
 {
   "schemaVersion": 1,
-  "publishedAtUtc": "2026-10-30T06:27:33.485Z",
-  "publishedAtDisplay": "30 October 2026 at 06:27 GMT",
+  "publishedAtUtc": "2026-11-05T06:28:45.224Z",
+  "publishedAtDisplay": "5 November 2026 at 06:28 GMT",
   "entries": [
+    {
+      "date": "2026-11-05",
+      "type": "Data",
+      "title": "The Datasaurus Dozen: identical statistics can conceal different worlds",
+      "creator": "Justin Matejka and George Fitzmaurice",
+      "sourceLabel": "Same Stats, Different Graphs · Autodesk Research and CHI 2017",
+      "sourceUrl": "https://www.research.autodesk.com/publications/same-stats-different-graphs/",
+      "centralIdea": "Justin Matejka and George Fitzmaurice began with a scatterplot whose points formed a dinosaur. They then moved points through thousands of small, constrained steps, accepting changes that pushed the plot toward a target shape while keeping chosen summaries—x and y means, standard deviations and Pearson correlation—unchanged to two decimal places. The result was the Datasaurus Dozen: radically different pictures, including a circle, star, lines and clusters, with the same headline statistics. The demonstration extends Anscombe’s 1973 quartet and makes a precise point: summaries are projections, not miniature copies of the data. A mean discards distribution; a correlation can hide curvature, subgroups and influential points; even a boxplot may remain stable while the raw distribution changes. Visualisation is therefore not decoration added after analysis. It is a diagnostic operation that can reveal model failure, data-quality problems and structures the selected statistics were never designed to preserve.",
+      "whyItMayInterestYou": "The paper turns a familiar warning into a generative method: it does not merely find exceptions but manufactures many of them. That makes it a durable test for dashboards, models and any argument built from a small set of summary measures.",
+      "commonplaceEntry": "A summary statistic answers one narrow question and forgets almost everything else. The Datasaurus Dozen makes that loss visible: a dinosaur, circle, star and several line patterns can share the same means, standard deviations and correlation. None of the numbers is false; the mistake is asking them to stand in for the whole distribution. Good analysis moves between views. Calculate to compress, plot to inspect, return to the raw data when the picture exposes structure, and then revise the model or summary. A chart can mislead too, but that is not an argument against seeing. It is an argument for deliberate graphical choices, multiple checks and explicit attention to outliers, curvature, clusters and missingness. The statistic is a lens, not the landscape.",
+      "questionToCarry": "Which materially different datasets could produce the same dashboard number I am treating as a complete description?",
+      "evidenceNote": "Established: the 2017 CHI paper provides a simulated-annealing method that perturbs points toward target shapes while constraining selected statistical properties; its example datasets match means, standard deviations and Pearson correlation to two decimal places yet differ visibly. Anscombe’s earlier quartet established the same general lesson with four constructed datasets. Interpretation: calling visualisation a diagnostic operation extends the authors’ demonstration into analytical practice. The result does not show that summary statistics are useless, that every plot is trustworthy, or that the matched statistics are exactly identical at unlimited precision; the published examples preserve specified summaries within stated tolerances.",
+      "additionalSources": [
+        {
+          "label": "Same Stats, Different Graphs · DBLP bibliographic record",
+          "url": "https://dblp.dagstuhl.de/rec/conf/chi/MatejkaF17.html"
+        },
+        {
+          "label": "Graphs in Statistical Analysis · F. J. Anscombe (1973)",
+          "url": "https://www.csee.umbc.edu/courses/graduate/CMSC601/Spring11/papers/anscombe1973.pdf"
+        }
+      ]
+    },
     {
       "date": "2026-10-30",
       "type": "Video",
