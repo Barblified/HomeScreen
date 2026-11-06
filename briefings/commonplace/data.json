@@ -1,8 +1,31 @@
 {
   "schemaVersion": 1,
-  "publishedAtUtc": "2026-11-05T06:28:45.224Z",
-  "publishedAtDisplay": "5 November 2026 at 06:28 GMT",
+  "publishedAtUtc": "2026-11-06T06:32:36.525Z",
+  "publishedAtDisplay": "6 November 2026 at 06:32 GMT",
   "entries": [
+    {
+      "date": "2026-11-06",
+      "type": "Book",
+      "title": "How Buildings Learn: design for what happens after completion",
+      "creator": "Stewart Brand",
+      "sourceLabel": "How Buildings Learn · Penguin Random House",
+      "sourceUrl": "https://www.penguinrandomhouse.com/books/320919/how-buildings-learn-by-stewart-brand/",
+      "centralIdea": "Stewart Brand argues that buildings are not finished objects but long-running negotiations between design, use, maintenance and time. The most successful structures often become good through alteration: occupants discover what the original plan misunderstood, then repair, extend, subdivide or repurpose. Brand describes a building as layers that change at different speeds—site, structure, skin, services, space plan and stuff. Trouble arises when a fast layer is trapped by a slow one: wiring that cannot be reached, partitions that bear loads, façades that prevent services from being renewed. Adaptability therefore depends less on predicting every future need than on making later learning cheap and legible. Access, modularity, generous tolerances and records of previous changes allow a building to absorb feedback without wholesale demolition. The larger lesson is that design quality is revealed not only on opening day but by how gracefully the artefact can be corrected.",
+      "whyItMayInterestYou": "The book connects architecture to systems thinking, maintenance and organisational learning. Its central reversal is valuable: change is not evidence that the original design failed; refusing to make change possible may be the deeper failure.",
+      "commonplaceEntry": "A finished building is only the beginning of its real design history. Use exposes assumptions that drawings cannot test, and time separates the layers: furniture moves quickly, services age, façades weather, structures persist and sites outlast them all. Good design does not freeze these layers together. It gives faster parts room, access and permission to change without destroying slower ones. This reframes maintenance as learning rather than mere preservation. The question is not only, “Does this work now?” but, “Can its users discover what is wrong, reach the relevant layer and alter it at proportionate cost?” Prediction has limits. Adaptability is a practical form of humility: build enough structure to endure, but enough looseness to let experience improve the thing.",
+      "questionToCarry": "Which fast-changing layer is currently trapped inside a slower one, making ordinary correction unnecessarily expensive?",
+      "evidenceNote": "Established: Brand’s 1994 book studies how buildings change after occupation and presents six “shearing layers”—site, structure, skin, services, space plan and stuff—developed from architect Frank Duffy’s earlier four-layer model. The publisher and Brand’s own site both describe the work as an argument for learning from buildings in use. Interpretation: describing adaptability as humility and maintenance as learning extends Brand’s framework beyond architecture. The layer model is a design heuristic, not a universal law; actual components interact, rates vary, and adaptability can carry cost, safety and regulatory trade-offs.",
+      "additionalSources": [
+        {
+          "label": "How Buildings Learn · Stewart Brand",
+          "url": "https://stewartbrand.org/books/how-buildings-learn/"
+        },
+        {
+          "label": "Pace Layering: How Complex Systems Learn and Keep Learning · Journal of Design and Science",
+          "url": "https://jods.mitpress.mit.edu/pub/issue3-brand/release/1"
+        }
+      ]
+    },
     {
       "date": "2026-11-05",
       "type": "Data",
@@ -663,29 +686,6 @@
         {
           "label": "Contemporary academic review · Cambridge Core",
           "url": "https://www.cambridge.org/core/journals/comparative-studies-in-society-and-history/article/abs/james-c-scott-seeing-like-a-state-how-certain-schemes-to-improve-the-human-condition-have-failed-new-haven-and-london-yale-agrarian-studies-yale-university-press-1998/562F8C3310E11202AA8ABCDB19064AB4"
-        }
-      ]
-    },
-    {
-      "date": "2026-10-02",
-      "type": "Mathematics",
-      "title": "Why does mathematics fit the world so well?",
-      "creator": "Eugene P. Wigner",
-      "sourceLabel": "Wigner’s 1960 essay in Communications on Pure and Applied Mathematics",
-      "sourceUrl": "https://onlinelibrary.wiley.com/doi/abs/10.1002/cpa.3160130102",
-      "centralIdea": "In 1960, physicist Eugene Wigner asked why mathematical structures so often describe nature with precision far beyond their origins. Concepts such as complex numbers, linear operators and matrix algebra were developed largely through internal mathematical questions and aesthetic judgement; later they became indispensable in physics. For Wigner, the puzzle is not merely that calculation is useful. It is that compact abstractions can expose regularities, unify apparently different phenomena and sometimes predict features of the world before observation catches up. The essay does not settle whether mathematics is discovered, invented, selected from many failed formalisms, or effective because science focuses on mathematically tractable aspects of reality. Its lasting value is the question itself: when a model works remarkably well, what exactly is doing the work—the structure of nature, the architecture of human thought, or the disciplined selection of useful representations?",
-      "whyItMayInterestYou": "It connects mathematics, modelling, data and philosophy. The practical sting is that model accuracy is never merely technical: choosing an abstraction determines what can be seen, predicted and ignored. Wigner’s puzzle invites both wonder at elegant structure and suspicion toward models that look mathematically impressive without earning contact with reality.",
-      "commonplaceEntry": "A mathematical model is a wager that some structure matters more than the surrounding detail. Its success can be astonishing: an abstraction invented for elegance may later describe the physical world with extraordinary precision. But predictive success alone does not tell us why the fit exists. Perhaps nature is deeply mathematical; perhaps human minds and scientific methods select the small part of reality that yields to mathematics; perhaps both are true. The proper response is neither blind reverence nor cynicism. Use mathematics boldly, then keep asking which features of reality were preserved, which were discarded, and whether the model still works beyond the conditions that made it look convincing.",
-      "questionToCarry": "When a model predicts well, how can we tell whether it has captured a real structure rather than merely fitted the slice of reality we chose to measure?",
-      "evidenceNote": "Established: Wiley records the work as Wigner’s Richard Courant lecture, delivered at New York University on 11 May 1959 and published in February 1960, pages 1–14. Wigner gives historical examples and frames mathematical applicability as a puzzle. Interpretive: applying that puzzle to data and organisational models is an analogy, not Wigner’s demonstrated result. Uncertain: there is no agreed philosophical explanation; realist, structuralist, instrumentalist and selection-effect accounts remain contested.",
-      "additionalSources": [
-        {
-          "label": "Full essay PDF · University of Edinburgh",
-          "url": "https://webhomes.maths.ed.ac.uk/~v1ranick/papers/wigner.pdf"
-        },
-        {
-          "label": "Scientific representation · Stanford Encyclopedia of Philosophy",
-          "url": "https://plato.stanford.edu/entries/scientific-representation/"
         }
       ]
     }
