@@ -11,20 +11,20 @@
   <header class="card">
     <p class="eyebrow">Fantasy Premier League · 2026/27</p>
     <h1>FPL Decision Lab — GW11</h1>
-    <p><strong>Generated:</strong> Wednesday 11 November 2026, 09:07 GMT (Europe/London). <strong>Next deadline:</strong> Saturday 21 November, 11:00 GMT.</p>
+    <p><strong>Generated:</strong> Thursday 12 November 2026, 09:04 GMT (Europe/London). <strong>Next deadline:</strong> Saturday 21 November, 11:00 GMT.</p>
     <p><strong>Decision today:</strong> <mark>WAIT / HOLD</mark>. Keep both free transfers through the international break. Provisional captain Haaland, vice Tavernier; save Bench Boost. No team action has been executed.</p>
   </header>
   <section class="card">
     <h2>1. Verified evidence and current state</h2>
     <ul>
-      <li>Official FPL payloads were retrieved between 09:00 and 09:04 GMT: <a href="https://fantasy.premierleague.com/api/bootstrap-static/">bootstrap-static</a>, <a href="https://fantasy.premierleague.com/api/fixtures/">fixtures</a>, <a href="https://fantasy.premierleague.com/api/event/10/live/">GW10 live</a>, public entry/history/transfer records and all 672 valid <code>element-summary</code> endpoints.</li>
+      <li>Official FPL payloads were retrieved between 08:56 and 09:01 GMT: <a href="https://fantasy.premierleague.com/api/bootstrap-static/">bootstrap-static</a>, <a href="https://fantasy.premierleague.com/api/fixtures/">fixtures</a>, <a href="https://fantasy.premierleague.com/api/event/10/live/">GW10 live</a>, public entry/history/transfer records and all 672 valid <code>element-summary</code> endpoints.</li>
       <li>The database validates 672 players, 20 clubs and GW10 as finished. Player identities were resolved by element ID, full name, club and position.</li>
       <li>GW10 produced 47 points with no transfer or hit. Total: 599 points; overall rank approximately 2.866m. Bank: £1.1m; displayed squad value: £100.4m.</li>
       <li>Because GW10 was rolled, the current state is <strong>two free transfers</strong>. This is inferred from the official zero-transfer history; the authenticated <code>my-team</code> endpoint remains unavailable.</li>
       <li>Bobby Thomas remains flagged at 50% after consecutive zero-minute Gameweeks. Reporting on 10 November says Lampard expects him to be ready for Crystal Palace on 21 November, so the model treats his return as a state mixture rather than a certain absence.</li>
       <li>Wissa started in GW10 and played 60 minutes. This materially improves his role state from the consecutive substitute appearances before it.</li>
       <li>Calafiori played 68 minutes; Konsa, Hall and Mykolenko completed 90. Mykolenko recorded 0.33 expected goal involvement.</li>
-      <li>An official personalised post-GW10 email was checked and corroborated the completed matchweek. No private email content or identifiers are published here.</li>
+      <li>The personalised FPL inbox was checked again; no new official message has arrived since yesterday's post-GW10 email. No private email content or identifiers are published here.</li>
     </ul>
     <p><strong>Blocked input:</strong> live authenticated FT and exact selling-price fields. Selling prices are reconstructed from official acquisition/current prices. The material affordability boundary is Thomas + £1.1m = £5.1m, which currently fits Van Hecke exactly.</p>
   </section>
@@ -55,13 +55,13 @@
   <section class="card">
     <h2>3. Static HOLD baseline</h2>
     <table><thead><tr><th>Window</th><th>Deterministic xPts</th><th>Simulation mean</th><th>80% predictive interval</th></tr></thead><tbody>
-      <tr><td>GW+1</td><td>55.26</td><td>55.47</td><td>36–77</td></tr><tr><td>GW+3</td><td>161.96</td><td>162.57</td><td>128–199</td></tr><tr><td>GW+5</td><td>270.10</td><td>270.88</td><td>226–318</td></tr>
+      <tr><td>GW+1</td><td>55.26</td><td>55.41</td><td>36–77</td></tr><tr><td>GW+3</td><td>161.96</td><td>162.48</td><td>128–199</td></tr><tr><td>GW+5</td><td>270.10</td><td>270.55</td><td>226–316</td></tr>
     </tbody></table>
     <p>Bench points are excluded except through legal simulated autosubs.</p>
   </section>
   <section class="card">
     <h2>4. Our provisional optimal GW11 team</h2>
-    <p><strong>4-5-1 · 55.26 deterministic Points-EV including captain · 55.47 simulation mean</strong></p>
+    <p><strong>4-5-1 · 55.26 deterministic Points-EV including captain · 55.41 simulation mean</strong></p>
     <table><thead><tr><th>Role</th><th>Players</th><th>xPts</th></tr></thead><tbody>
       <tr><td>GK</td><td>Verbruggen</td><td>4.76</td></tr>
       <tr><td>DEF</td><td>Hall · Konsa · Calafiori · Mykolenko</td><td>4.23 · 4.18 · 3.93 · 3.40</td></tr>
@@ -76,12 +76,12 @@
     <p>HOLD today retains two FTs for GW11 and can become three at GW12. A one-transfer path reaches two at GW12; a two-transfer path reaches one. Each future state is re-optimised.</p>
     <table><thead><tr><th>Action</th><th>Horizon</th><th>Net E[Δ] vs best HOLD path</th><th>P(Δ&gt;0)</th><th>80% Δ interval</th><th>Confidence / dominant downside</th></tr></thead><tbody>
       <tr><td><strong>WAIT / HOLD today</strong></td><td>All</td><td>0.00</td><td>—</td><td>—</td><td>High evidence; preserves international-break information</td></tr>
-      <tr><td>Thomas → Van Hecke</td><td>GW+1 / +3 / +5</td><td>+2.13</td><td>59.5%</td><td>−4 to +9</td><td>Medium evidence, low-medium model; Thomas may return fit</td></tr>
-      <tr><td>Mykolenko → De Cuyper</td><td>GW+1 / +3</td><td>+2.20</td><td>59.3%</td><td>−4 to +9</td><td>High role evidence, low-medium model; sells a fit 90-minute player</td></tr>
-      <tr><td>Mykolenko → De Cuyper</td><td>GW+5</td><td>+1.86</td><td>56.1%</td><td>−7 to +11</td><td>Defensive-model specification dominates</td></tr>
-      <tr><td>Wissa → Barry</td><td>GW+1 / +3 / +5</td><td>+1.50</td><td>55.6%</td><td>−4 to +8</td><td>Wissa just regained a start; premature sale risk</td></tr>
-      <tr><td>Thomas + Calafiori → De Cuyper + Van Hecke</td><td>GW+1 / +3 / +5</td><td>+3.49</td><td>63.3%</td><td>−6 to +14</td><td><strong>Low model confidence:</strong> sells fit Calafiori and relies heavily on defensive-contribution floors</td></tr>
-      <tr><td>Mykolenko + Wissa → De Cuyper + Barry</td><td>GW+5</td><td>+2.52</td><td>57.9%</td><td>−9 to +15</td><td>Wide role/outcome uncertainty; consumes both FTs</td></tr>
+      <tr><td>Thomas → Van Hecke</td><td>GW+1 / +3 / +5</td><td>+2.03</td><td>58.9%</td><td>−4 to +9</td><td>Medium evidence, low-medium model; Thomas may return fit</td></tr>
+      <tr><td>Mykolenko → De Cuyper</td><td>GW+1 / +3</td><td>+2.15</td><td>59.2%</td><td>−4 to +9</td><td>High role evidence, low-medium model; sells a fit 90-minute player</td></tr>
+      <tr><td>Mykolenko → De Cuyper</td><td>GW+5</td><td>+1.82</td><td>56.2%</td><td>−8 to +12</td><td>Defensive-model specification dominates</td></tr>
+      <tr><td>Wissa → Barry</td><td>GW+1 / +3 / +5</td><td>+1.50</td><td>55.7%</td><td>−4 to +8</td><td>Wissa just regained a start; premature sale risk</td></tr>
+      <tr><td>Thomas + Calafiori → De Cuyper + Van Hecke</td><td>GW+1 / +3 / +5</td><td>+3.48</td><td>63.4%</td><td>−6 to +14</td><td><strong>Low model confidence:</strong> sells fit Calafiori and relies heavily on defensive-contribution floors</td></tr>
+      <tr><td>Mykolenko + Wissa → De Cuyper + Barry</td><td>GW+5</td><td>+2.62</td><td>58.5%</td><td>−9 to +15</td><td>Wide role/outcome uncertainty; consumes both FTs</td></tr>
     </tbody></table>
     <p><strong>Judgment:</strong> no move should be made ten days before the deadline. The raw double-defender maximum is not robust enough to justify selling a fit Arsenal defender. Thomas → Van Hecke is the leading single-move watchlist path, but Thomas is now expected back for GW11 and the transfer fits the budget exactly; final international-break information is more valuable than acting now.</p>
     <p><strong>Flip conditions:</strong> make Thomas → Van Hecke if Thomas remains flagged or suffers a setback while Van Hecke stays fit and £5.1m. HOLD both FTs if Thomas is fully cleared. Reassess Wissa only if the GW10 start proves temporary. No hit is required under any supported path.</p>
@@ -107,12 +107,12 @@
   <section class="card">
     <h2>8. Recommendation, confidence and plan</h2>
     <p><strong>WAIT / HOLD today. Do not spend either FT during the international break. Provisional XI: Verbruggen; Hall, Konsa, Calafiori, Mykolenko; Tavernier, Rogers, Rudoni, Mbeumo, Palmer; Haaland. Captain Haaland, vice Tavernier. Save Bench Boost.</strong></p>
-    <p><strong>Evidence confidence:</strong> high for public squad history, prices, fixtures, deadline and GW10 roles; medium for Thomas’s return; medium for reconstructed sale prices. <strong>Model stability:</strong> medium-low, especially for defender comparisons. <strong>Outcome probability:</strong> the best credible single move wins only 59.5% of joint simulations; the apparent double-move maximum wins 63.3% but rests on the least stable model component.</p>
+    <p><strong>Evidence confidence:</strong> high for public squad history, prices, fixtures, deadline and GW10 roles; medium for Thomas’s return; medium for reconstructed sale prices. <strong>Model stability:</strong> medium-low, especially for defender comparisons. <strong>Outcome probability:</strong> the best credible single move wins only 58.9% of joint simulations; the apparent double-move maximum wins 63.4% but rests on the least stable model component.</p>
     <p><strong>Pre-deadline plan:</strong> reassess after international matches and press conferences. If Thomas is not fully fit, Thomas → Van Hecke is the provisional one-FT move; otherwise keep both FTs and revisit the broader two-transfer structure in GW12.</p>
   </section>
   <section class="card">
     <h2>9. Freshness and schedule audit</h2>
-    <p>Official numerical data: 11 November 2026, 09:00–09:04 GMT. Model completed 09:06 GMT. Injury reporting checked through 10 November. The official GW11 deadline is Saturday 21 November at 11:00 GMT. Daily 09:00 Europe/London runs remain preserved; every published future deadline-minus-90-minute run is present, and the elapsed 6 November extra run was removed.</p>
+    <p>Official numerical data: 12 November 2026, 08:56–09:01 GMT. Model completed 09:03 GMT. Injury and price reporting checked through 12 November. The official GW11 deadline is Saturday 21 November at 11:00 GMT. Daily 09:00 Europe/London runs remain preserved, and every published future deadline-minus-90-minute run remains present.</p>
     <p>Sources: <a href="https://fantasy.premierleague.com/api/bootstrap-static/">official FPL data</a>; <a href="https://fantasy.premierleague.com/api/fixtures/">official fixtures/deadlines</a>; <a href="https://www.premierleague.com/en/news/4450606/latest-premier-league-player-injuries-club-by-club-news">Premier League injury centre</a>; <a href="https://www.premierleague.com/en/news/4757100/lampards-update-on-bobby-thomas-fitness">Lampard/Thomas update</a>; <a href="https://www.premierleague.com/en/news/2884829">official FPL price changes</a>.</p>
   </section>
   <footer><p>Decision support only. No transfer, lineup, captaincy or chip action was executed.</p></footer>
