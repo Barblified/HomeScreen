@@ -1,8 +1,31 @@
 {
   "schemaVersion": 1,
-  "publishedAtUtc": "2026-11-06T06:32:36.525Z",
-  "publishedAtDisplay": "6 November 2026 at 06:32 GMT",
+  "publishedAtUtc": "2026-11-12T06:33:52.218Z",
+  "publishedAtDisplay": "12 November 2026 at 06:33 GMT",
   "entries": [
+    {
+      "date": "2026-11-12",
+      "type": "Craft",
+      "title": "Prince Rupert’s drops: strength and fragility in the same stress field",
+      "creator": "Hillar Aben, Johan Anton, Marella Ois, Koushik Viswanathan, Srinivasan Chandrasekar and Munawar M. Chaudhri",
+      "sourceLabel": "On the extraordinary strength of Prince Rupert’s drops · Applied Physics Letters",
+      "sourceUrl": "https://pubs.aip.org/aip/apl/article/109/23/231903/32394/On-the-extraordinary-strength-of-Prince-Rupert-s",
+      "centralIdea": "Drop molten soda-lime glass into cold water and it freezes into a tadpole-shaped Prince Rupert’s drop. Its bulbous head can withstand hammer blows and loads of about 15,000 N, yet snapping the hair-thin tail makes the whole object explode into powder. The apparent contradiction comes from the cooling sequence. The outside solidifies first; as the interior cools and contracts later, it pulls inward, leaving the surface under strong compression and the core under tension. Surface compression makes cracks at the head difficult to open, so ordinary impacts struggle to propagate. The tail, however, offers a route through that protective shell into the tensile interior. Once a crack enters, stored elastic energy drives a branching fracture front through the drop at extraordinary speed. The drop is therefore not alternately strong and fragile. Both behaviours are consequences of the same residual-stress field—a principle also used in toughened glass.",
+      "whyItMayInterestYou": "One object makes a deep engineering principle visible: strength is not merely a property of material composition, but of how stresses are arranged and where failure can begin. It is also a miniature lesson in hidden state, thresholds and system-wide cascades.",
+      "commonplaceEntry": "A Prince Rupert’s drop survives violence at the head because its surface is already squeezed shut. The same manufacturing history leaves its core stretched and full of stored energy. Break the tail, breach the compressed shell, and the protection reverses into propulsion: the internal tension pays for a fracture that races through everything. Strength and fragility are therefore not opposites here; they are two readings of one architecture. A system may look robust where pressure closes its cracks while remaining exquisitely vulnerable at the point that exposes its hidden tension. When assessing resilience, ask less “How much force can this withstand?” and more “Where can a small crack reach the stored energy?”",
+      "questionToCarry": "Where does apparent strength depend on preventing one small crack from reaching a reservoir of stored tension?",
+      "evidenceNote": "Established: the 2016 Applied Physics Letters study used integrated photoelasticity to measure surface compressive stresses of roughly 400–700 MPa and reported that the head could withstand loads around 15,000 N; Purdue’s account explains the compensating tensile interior and rapid crack propagation after the tail is breached. Interpretation: treating the drop as a general lesson about hidden state and cascading failure extends the materials result beyond glass. The exact stresses and fracture behaviour depend on glass composition, geometry and quenching conditions, and industrial toughened glass uses related principles without being identical to a Prince Rupert’s drop.",
+      "additionalSources": [
+        {
+          "label": "Research solves centuries-old riddle of Prince Rupert’s drops · Purdue University",
+          "url": "https://www.purdue.edu/newsroom/archive/releases/2017/Q2/research-solves-centuries-old-riddle-of-prince-ruperts-drops.html"
+        },
+        {
+          "label": "Prince Rupert’s Drops: An analysis of fragmentation by thermal stresses · PNAS",
+          "url": "https://www.pnas.org/doi/10.1073/pnas.2202856119"
+        }
+      ]
+    },
     {
       "date": "2026-11-06",
       "type": "Book",
@@ -663,29 +686,6 @@
         {
           "label": "Psalms guide · BibleProject",
           "url": "https://bibleproject.com/guides/book-of-psalms/"
-        }
-      ]
-    },
-    {
-      "date": "2026-10-03",
-      "type": "Book",
-      "title": "Seeing Like a State: How Certain Schemes to Improve the Human Condition Have Failed",
-      "creator": "James C. Scott",
-      "sourceLabel": "Yale University Press book page",
-      "sourceUrl": "https://yalebooks.yale.edu/book/9780300078152/seeing-like-a-state/",
-      "centralIdea": "James C. Scott argues that large institutions cannot act on a complex society until they render it legible: standard names, cadastral maps, uniform measures, simplified forests and planned cities. Legibility creates administrative power and can deliver real benefits, but it also discards tacit relationships and local skills—what Scott calls mētis. Disaster becomes likely when four features combine: administrative simplification, high-modernist confidence, coercive power and weak civil society. The deeper lesson is not that planning or measurement is inherently wrong. It is that a representation designed for control can be mistaken for the thing represented. A clean schema may reveal patterns while hiding the dependencies that keep a system alive. Good governance therefore needs feedback, reversibility, local knowledge and the humility to treat the map as an instrument, not reality itself.",
-      "whyItMayInterestYou": "This is a bridge between data, organisational design, leadership and political philosophy. It explains why a technically tidy system can become less truthful as it becomes easier to administer—and why the people closest to the work often hold knowledge that no central dashboard has captured.",
-      "commonplaceEntry": "Legibility is useful, but it is never neutral. To manage a forest, city, organisation or population from the centre, we simplify it into categories that can be counted and compared. The resulting map may be accurate for its purpose while still omitting the relationships that make the real system function. Failure begins when the map is mistaken for reality and local knowledge is treated as noise. The corrective is not to reject standards or planning, but to combine them with practical knowledge, dissent, feedback and reversible experiments. A good system should remain governable without making reality disappear merely because reality is awkward to encode.",
-      "questionToCarry": "What valuable local knowledge becomes invisible when a system is redesigned to be clean, comparable and centrally manageable?",
-      "evidenceNote": "Established: Yale University Press identifies Scott’s book and summarises its comparative case against authoritarian high-modernist planning, including four recurring conditions in planning disasters. Those conditions are Scott’s argued framework, not a universal causal law. A scholarly counterpoint from anthropologist Michael Herzfeld says Scott overgeneralises resistance, understates how bureaucrats and local populations modify schemes together, and lacks ethnographic specificity. The safest use is therefore as a diagnostic lens, not proof that central coordination must fail.",
-      "additionalSources": [
-        {
-          "label": "Scholarly counterpoint · American Anthropologist",
-          "url": "https://anthrosource.onlinelibrary.wiley.com/doi/abs/10.1525/aa.2005.107.3.369"
-        },
-        {
-          "label": "Contemporary academic review · Cambridge Core",
-          "url": "https://www.cambridge.org/core/journals/comparative-studies-in-society-and-history/article/abs/james-c-scott-seeing-like-a-state-how-certain-schemes-to-improve-the-human-condition-have-failed-new-haven-and-london-yale-agrarian-studies-yale-university-press-1998/562F8C3310E11202AA8ABCDB19064AB4"
         }
       ]
     }
