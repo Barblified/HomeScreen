@@ -1,8 +1,35 @@
 {
   "schemaVersion": 1,
-  "publishedAtUtc": "2026-11-12T06:33:52.218Z",
-  "publishedAtDisplay": "12 November 2026 at 06:33 GMT",
+  "publishedAtUtc": "2026-11-13T06:36:02.746Z",
+  "publishedAtDisplay": "13 November 2026 at 06:36 GMT",
   "entries": [
+    {
+      "date": "2026-11-13",
+      "type": "Theory",
+      "title": "The generation effect: memory is stronger for answers you help create",
+      "creator": "Norman J. Slamecka and Peter Graf",
+      "sourceLabel": "The generation effect: Delineation of a phenomenon · Journal of Experimental Psychology",
+      "sourceUrl": "https://doi.org/10.1037/0278-7393.4.6.592",
+      "centralIdea": "The generation effect is a robust asymmetry in memory: people tend to remember material better when they produce it from a cue than when they merely read the same completed material. In Slamecka and Graf’s original experiments, participants generated target words from prompts; across recognition and recall tests, generated items outperformed read items. Later meta-analyses found a moderate average benefit, but also substantial variation. Generation is not simply “try harder.” It may make an item more distinctive, bind it to its cue and activate relevant knowledge, creating several routes back at retrieval. The constraint matters: a prompt that is neither trivial nor impossibly open can require meaningful construction while still steering toward the intended answer. The practical implication is modest but powerful: leave strategically chosen blanks in an explanation, ask for a prediction before revealing a result, or reconstruct a rule from an example. Memory can improve when reception becomes authorship.",
+      "whyItMayInterestYou": "The effect connects learning design, writing and communication: a reader’s small act of completion can matter more than another polished paragraph. It also explains why a question, a worked example with one missing step or a prediction can remain memorable without becoming a full examination.",
+      "commonplaceEntry": "Finished information is efficient to consume but gives the learner little to do. A well-made gap changes the task: the mind must search, choose and commit before the answer arrives. That act can leave more traces than recognition alone. The lesson is not to make every idea difficult or to romanticise struggle. Generation works best when the cue supplies enough structure for a meaningful answer; unfamiliar material and unconstrained guessing can erase the advantage. Design the smallest useful act of authorship. Ask for the next step, the missing word, the predicted outcome or a one-sentence explanation—then provide feedback. If an idea deserves to be retained, do not only display it. Arrange for the learner to help complete it.",
+      "questionToCarry": "Where could one carefully chosen gap turn passive recognition into a meaningful act of reconstruction?",
+      "evidenceNote": "Established: Slamecka and Graf’s 1978 paper reported five experiments with 96 undergraduates and found superior memory for generated versus read words across several recognition and recall measures. A 2007 meta-analysis of 445 effect sizes from 86 studies estimated an average benefit of about 0.40 standard deviations, with substantial moderation. A 2020 review covering 310 experiments found that generation constraint significantly changes the effect and that no single explanatory theory settles every result. Other work reports weaker or absent benefits for unfamiliar material. Interpretation: the “smallest useful act of authorship” is design advice derived from this evidence, not a directly tested universal rule; generation does not guarantee comprehension, transfer or accuracy.",
+      "additionalSources": [
+        {
+          "label": "The generation effect: a meta-analytic review · Memory & Cognition",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/17645161/"
+        },
+        {
+          "label": "Theories of the generation effect and the impact of generation constraint · Psychonomic Bulletin & Review",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/32671573/"
+        },
+        {
+          "label": "An examination of the value of the generation effect for learning new material · Journal of General Psychology",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/12773019/"
+        }
+      ]
+    },
     {
       "date": "2026-11-12",
       "type": "Craft",
@@ -667,25 +694,6 @@
         {
           "label": "Wood Handbook, Chapter 13 · drying and dimensional change",
           "url": "https://research.fs.usda.gov/treesearch/62261"
-        }
-      ]
-    },
-    {
-      "date": "2026-10-04",
-      "type": "Theology",
-      "title": "Psalm 13: lament is faith without camouflage",
-      "creator": "The Book of Psalms",
-      "sourceLabel": "Psalm 13 · English Standard Version on Bible.com",
-      "sourceUrl": "https://www.bible.com/bible/59/PSA.13.ESV",
-      "centralIdea": "Psalm 13 begins with four repetitions of “How long?” The speaker does not disguise the felt absence of God, inner sorrow or external threat. The poem then moves from complaint in verses 1–2, to a direct petition in verses 3–4, and finally to trust and promised praise in verses 5–6. Crucially, the text does not report that the circumstances changed between those movements. The change happens within the prayer: suffering is named, help is requested, and trust is placed in God’s steadfast love without pretending the pain was unreal. Lament is therefore not the opposite of faith. It is faith refusing both silence and performance—continuing to address God honestly when easy reassurance would be false. The psalm permits anguish to speak while denying it the final word.",
-      "whyItMayInterestYou": "The psalm offers a disciplined pattern for truthful thought as well as prayer: describe reality without euphemism, ask plainly for what is needed, then decide what deeper truth current conditions cannot cancel. It avoids both forced positivity and hopelessness.",
-      "commonplaceEntry": "Biblical lament is faith speaking without camouflage. Psalm 13 does not begin by minimising absence; it addresses God, names sorrow and asks for an answer. Its closing trust is not supported by a narrated rescue. Trust, then, is not pretending the circumstances have changed. It is refusing to let present experience exhaust what can truthfully be said of God. Complaint, petition, trust and praise belong inside one honest prayer. The lesson is not that pain must quickly resolve into cheerfulness, but that pain may be brought into relationship rather than hidden. Lament remains prayer because it continues addressing God when silence feels more plausible.",
-      "questionToCarry": "What would change if truthful complaint were treated as an act of faith rather than evidence that faith is failing?",
-      "evidenceNote": "Established by the text: Psalm 13 repeats “How long?”, petitions God to answer, then declares trust and intended praise. The psalm supplies no historical setting beyond its attribution to David and does not narrate an external change before the closing declaration. Interpretation: describing the sequence as complaint, petition, trust and praise is a literary reading; describing the internal shift as trust without denial is an inference from that sequence. BibleProject places lament and praise within the broader design of Psalms and argues that biblical prayer neither ignores pain nor lets pain determine life’s meaning.",
-      "additionalSources": [
-        {
-          "label": "Psalms guide · BibleProject",
-          "url": "https://bibleproject.com/guides/book-of-psalms/"
         }
       ]
     }
