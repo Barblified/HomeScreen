@@ -6,7 +6,7 @@ button,input,select,textarea{font:inherit}
 button,a{-webkit-tap-highlight-color:transparent}
 a{color:inherit}
 :focus-visible{outline:3px solid var(--focus);outline-offset:3px}
-.skip{position:fixed;z-index:100;top:12px;left:12px;transform:translateY(-160%);padding:10px 14px;border-radius:10px;background:var(--text);color:var(--bg)}
+.skip{position:fixed;z-index:100;top:12px;left:12px;transform:translateY(-160%);padding:10px 14px;border-radius:10px;background:var(--text);color:var(--bg)!important}
 .skip:focus{transform:none}
 .shell{width:min(calc(100% - 28px),var(--max));margin:auto;padding:28px 0 60px}
 header{display:flex;align-items:center;justify-content:space-between;gap:20px;margin-bottom:28px}
