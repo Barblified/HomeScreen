@@ -524,10 +524,11 @@
       injectChart(doc);
       loadWeightHistory(doc);
 
+      const view = doc.defaultView;
       let resizeFrame;
-      doc.defaultView?.addEventListener('resize', () => {
-        doc.defaultView.cancelAnimationFrame(resizeFrame);
-        resizeFrame = doc.defaultView.requestAnimationFrame(() => {
+      view?.addEventListener('resize', () => {
+        view.cancelAnimationFrame(resizeFrame);
+        resizeFrame = view.requestAnimationFrame(() => {
           if (currentWeightHistory.length) drawWeightChart(doc, currentWeightHistory);
         });
       });
