@@ -205,16 +205,26 @@ a:hover { color: #fff000 !important; }
   border: 1px solid #39434c !important; box-shadow: 4px 5px 0 rgba(0,0,0,.76) !important;
 }
 .card h2, .card h3 { color: #f7f9fb !important; }
-.status, .status.watch, .status.risk {
+.status, .status.watch, .status.risk, .tag {
   color: #b8ff00 !important; background: rgba(184,255,0,.12) !important;
   border: 1px solid rgba(184,255,0,.45) !important;
 }
-table { color: #f7f9fb !important; }
+.tag.alert {
+  color: #fff000 !important; background: rgba(255,240,0,.12) !important;
+  border-color: rgba(255,240,0,.45) !important;
+}
+table { color: #f7f9fb !important; background: #101419 !important; }
 th, td { border-color: #39434c !important; }
 th { color: #00d5ff !important; background: #151b21 !important; }
 .notice { color: #f7f9fb !important; border-left-color: #fff000 !important; background: rgba(255,240,0,.08) !important; }
 .awaiting strong { color: #b8ff00 !important; }
 .awaiting span { color: #b5c0c8 !important; }
+.metric strong { color: #b8ff00 !important; }
+.actions > div, .no-news {
+  background: #101419 !important; color: #f7f9fb !important;
+  border-color: #39434c !important;
+}
+.muted, footer { color: #b5c0c8 !important; }
 .skip { color: #050608 !important; background: #b8ff00 !important; }
 
 /* Small contrast and type refinements. */
