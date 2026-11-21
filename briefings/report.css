@@ -260,3 +260,20 @@ h2 { border-bottom-color: rgba(0,213,255,.55) !important; }
 
 /* Keep generated preparedness tables on the dark report surface. */
 table.risk { background-color: #101419 !important; }
+
+/* Preserve Commonplace's light archive cards with readable controls. */
+.link-button {
+  background: #101419 !important;
+  color: #00d5ff !important;
+  border-color: #39434c !important;
+}
+.link-button.primary {
+  background: #b8ff00 !important;
+  color: #050608 !important;
+  border-color: #b8ff00 !important;
+}
+.archive-date { color: #35424b !important; }
+.archive-body { color: #101419 !important; }
+.archive-body a { color: #075e78 !important; }
+.archive-body a:hover { color: #14572e !important; }
+.archive details > summary::after { color: #1f5600 !important; }
